@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMatrizTempo));
-            this.panelMatriz = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,18 +41,10 @@
             this.btnQuad2 = new System.Windows.Forms.Button();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.barraNavegacao1 = new MyAgenda.Componentes.Geral.BarraNavegacao();
+            this.loader1 = new MyAgenda.Componentes.Geral.Loader();
+            this.matrizTempo = new MyAgenda.Componentes.MatrizTempo.Matriz();
+            ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panelMatriz
-            // 
-            this.panelMatriz.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelMatriz.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMatriz.Location = new System.Drawing.Point(288, 53);
-            this.panelMatriz.Name = "panelMatriz";
-            this.panelMatriz.Size = new System.Drawing.Size(527, 408);
-            this.panelMatriz.TabIndex = 1;
             // 
             // label1
             // 
@@ -115,13 +106,14 @@
             this.btnQuad4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnQuad4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuad4.ForeColor = System.Drawing.Color.White;
-            this.btnQuad4.Location = new System.Drawing.Point(14, 236);
+            this.btnQuad4.Location = new System.Drawing.Point(144, 314);
             this.btnQuad4.Name = "btnQuad4";
             this.btnQuad4.Size = new System.Drawing.Size(129, 77);
             this.btnQuad4.TabIndex = 6;
             this.btnQuad4.Text = "4";
             this.btnQuad4.UseVisualStyleBackColor = false;
             this.btnQuad4.MouseEnter += new System.EventHandler(this.btnQuad4_MouseEnter);
+            this.btnQuad4.MouseLeave += new System.EventHandler(this.btnQuad4_MouseLeave);
             // 
             // btnQuad1
             // 
@@ -132,13 +124,14 @@
             this.btnQuad1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnQuad1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuad1.ForeColor = System.Drawing.Color.White;
-            this.btnQuad1.Location = new System.Drawing.Point(144, 236);
+            this.btnQuad1.Location = new System.Drawing.Point(14, 236);
             this.btnQuad1.Name = "btnQuad1";
             this.btnQuad1.Size = new System.Drawing.Size(129, 77);
             this.btnQuad1.TabIndex = 3;
             this.btnQuad1.Text = "1";
             this.btnQuad1.UseVisualStyleBackColor = false;
             this.btnQuad1.MouseEnter += new System.EventHandler(this.btnQuad1_MouseEnter);
+            this.btnQuad1.MouseLeave += new System.EventHandler(this.btnQuad1_MouseLeave);
             // 
             // btnQuad3
             // 
@@ -156,6 +149,7 @@
             this.btnQuad3.Text = "3";
             this.btnQuad3.UseVisualStyleBackColor = false;
             this.btnQuad3.MouseEnter += new System.EventHandler(this.btnQuad3_MouseEnter);
+            this.btnQuad3.MouseLeave += new System.EventHandler(this.btnQuad3_MouseLeave);
             // 
             // btnQuad2
             // 
@@ -166,13 +160,14 @@
             this.btnQuad2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnQuad2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuad2.ForeColor = System.Drawing.Color.White;
-            this.btnQuad2.Location = new System.Drawing.Point(144, 314);
+            this.btnQuad2.Location = new System.Drawing.Point(144, 236);
             this.btnQuad2.Name = "btnQuad2";
             this.btnQuad2.Size = new System.Drawing.Size(129, 77);
             this.btnQuad2.TabIndex = 4;
             this.btnQuad2.Text = "2";
             this.btnQuad2.UseVisualStyleBackColor = false;
             this.btnQuad2.MouseEnter += new System.EventHandler(this.btnQuad2_MouseEnter);
+            this.btnQuad2.MouseLeave += new System.EventHandler(this.btnQuad2_MouseLeave);
             // 
             // btnAdicionar
             // 
@@ -201,25 +196,47 @@
             this.barraNavegacao1.Size = new System.Drawing.Size(827, 40);
             this.barraNavegacao1.TabIndex = 0;
             // 
+            // loader1
+            // 
+            this.loader1.Active = false;
+            this.loader1.Location = new System.Drawing.Point(0, 39);
+            this.loader1.Name = "loader1";
+            this.loader1.Size = new System.Drawing.Size(827, 7);
+            this.loader1.TabIndex = 8;
+            this.loader1.TabStop = false;
+            // 
+            // matrizTempo
+            // 
+            this.matrizTempo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.matrizTempo.BackColor = System.Drawing.Color.White;
+            this.matrizTempo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.matrizTempo.Location = new System.Drawing.Point(285, 53);
+            this.matrizTempo.Name = "matrizTempo";
+            this.matrizTempo.Size = new System.Drawing.Size(530, 409);
+            this.matrizTempo.TabIndex = 9;
+            // 
             // FormMatrizTempo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(827, 473);
-            this.Controls.Add(this.btnAdicionar);
+            this.Controls.Add(this.matrizTempo);
+            this.Controls.Add(this.barraNavegacao1);
+            this.Controls.Add(this.loader1);
+            this.Controls.Add(this.btnQuad4);
             this.Controls.Add(this.btnQuad2);
+            this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.btnQuad3);
             this.Controls.Add(this.btnQuad1);
-            this.Controls.Add(this.btnQuad4);
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panelMatriz);
-            this.Controls.Add(this.barraNavegacao1);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -228,6 +245,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Matriz do Tempo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,7 +254,6 @@
         #endregion
 
         private Componentes.Geral.BarraNavegacao barraNavegacao1;
-        private System.Windows.Forms.Panel panelMatriz;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -248,5 +265,7 @@
         private System.Windows.Forms.Button btnQuad3;
         private System.Windows.Forms.Button btnQuad2;
         private System.Windows.Forms.Button btnAdicionar;
+        private Componentes.Geral.Loader loader1;
+        private Componentes.MatrizTempo.Matriz matrizTempo;
     }
 }

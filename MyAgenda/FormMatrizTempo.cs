@@ -50,21 +50,25 @@ namespace MyAgenda
         private void btnQuad1_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 1 na matriz
+            matrizTempo.IniciaHighlightQuadrante1();
         }
 
         private void btnQuad2_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 2 na matriz
+            matrizTempo.IniciaHighlightQuadrante2();
         }
 
         private void btnQuad3_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 3 na matriz
+            matrizTempo.IniciaHighlightQuadrante3();
         }
 
         private void btnQuad4_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 4 na matriz
+            matrizTempo.IniciaHighlightQuadrante4();
         }
 
         private void btnAdicionar_MouseEnter(object sender, EventArgs e)
@@ -77,6 +81,26 @@ namespace MyAgenda
         {
             btnAdicionar.Image = Properties.Resources.ic_add_circle_black;
             btnAdicionar.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void btnQuad1_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante1();
+        }
+
+        private void btnQuad2_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante2();
+        }
+
+        private void btnQuad3_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante3();
+        }
+
+        private void btnQuad4_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante4();
         }
     }
 }
