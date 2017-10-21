@@ -104,6 +104,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon %281%29.ico" />
+    <None Include="Resources\ic_turned_in_not_black.png" />
+    <None Include="Resources\ic_turned_in_black.png" />
+    <None Include="Resources\ic_delete_black.png" />
+    <None Include="Resources\ic_delete_white.png" />
     <None Include="Resources\ic_refresh_white.png" />
     <None Include="Resources\ic_home_white.png" />
     <None Include="Resources\ic_exit_to_app_white.png" />

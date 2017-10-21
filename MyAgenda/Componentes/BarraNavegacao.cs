@@ -28,6 +28,11 @@ namespace MyAgenda.Componentes
             
         }
 
+        /// <summary>
+        /// Adiciona um botão na barra.
+        /// </summary>
+        /// <param name="titulo">Texto so botão</param>
+        /// <param name="id">Id único para o botão</param>
         public void AddItem(string titulo, int id)
         {
             Button btn = new Button();
@@ -55,6 +60,12 @@ namespace MyAgenda.Componentes
             this.Invalidate();
         }
 
+        /// <summary>
+        /// Adiciona um botão na barra
+        /// </summary>
+        /// <param name="titulo">Texto do botão</param>
+        /// <param name="icon">Ícone que será mostrado na parte direita do botão</param>
+        /// <param name="id">Id único para o botão</param>
         public void AddItem(string titulo, Bitmap icon, int id)
         {
             Button btn = new Button();
@@ -83,6 +94,13 @@ namespace MyAgenda.Componentes
             this.Invalidate();
         }
 
+        /// <summary>
+        /// Adiciona um botão na barra
+        /// </summary>
+        /// <param name="titulo">Texto do botão</param>
+        /// <param name="icon">Ícone que será mostrado na parte direita do botão</param>
+        /// <param name="posicao">Posição do botão: lado esquerdo da barra ou lado direito da barra</param>
+        /// <param name="id">Id único para o botão</param>
         public void AddItem(string titulo, Bitmap icon, EPosicao posicao, int id)
         {
             Button btn = new Button();
@@ -123,6 +141,14 @@ namespace MyAgenda.Componentes
             this.Invalidate();
         }
 
+        /// <summary>
+        /// Adiciona um botão na barra
+        /// </summary>
+        /// <param name="titulo">Texto do botão</param>
+        /// <param name="icon">Ícone que será mostrado na parte direita do botão</param>
+        /// <param name="posicao">Posição do botão: lado esquerdo da barra ou lado direito da barra</param>
+        /// <param name="id">Id único para o botão</param>
+        /// <param name="handler">Método de callback para o clique do botão</param>
         public void AddItem(string titulo, Bitmap icon, EPosicao posicao, MenuItemClickEventHandler handler, int id)
         {
             Button btn = new Button();

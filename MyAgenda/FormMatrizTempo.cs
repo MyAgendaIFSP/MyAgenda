@@ -23,6 +23,8 @@ namespace MyAgenda
         {
             MessageBox.Show("botão Nuvem");
 
+            //Realizar aqui a sincronização dos dados do usuário
+
             btn.Image = Properties.Resources.ic_cloud_white;
         }
 
