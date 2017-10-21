@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using static MyAgenda.Componentes.BarraNavegacao;
 
 namespace MyAgenda
 {
@@ -13,11 +14,19 @@ namespace MyAgenda
             barraNavegacao1.AddItem("Início", Properties.Resources.ic_home_white, 1);
             barraNavegacao1.AddItem("Pomodoro", 2);
             barraNavegacao1.AddItem("Tarefas", 3);
-            barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, 4);           
+            barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, EPosicao.DIREITA, 4);
+            barraNavegacao1.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, EPosicao.DIREITA, _cloudClick, 5);
 
         }
 
-        private void _click(int itemId)
+        private void _cloudClick(ref Button btn, int itemId)
+        {
+            MessageBox.Show("botão Nuvem");
+
+            btn.Image = Properties.Resources.ic_cloud_white;
+        }
+
+        private void _click(ref Button btn, int itemId)
         {            
             switch(itemId)
             {
@@ -33,7 +42,6 @@ namespace MyAgenda
                 case 4:
                     MessageBox.Show("botão Sair");
                     break;
-
             }
         }
 
