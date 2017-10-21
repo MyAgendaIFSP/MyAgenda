@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MyAgenda.Componentes
+namespace MyAgenda.Componentes.Geral
 {
-    class BarraNavegacao : Panel
+    public class BarraNavegacao : Panel
     {
 
         public delegate void MenuItemClickEventHandler(ref Button btn, int itemId);

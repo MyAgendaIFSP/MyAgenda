@@ -41,7 +41,7 @@
             this.btnQuad3 = new System.Windows.Forms.Button();
             this.btnQuad2 = new System.Windows.Forms.Button();
             this.btnAdicionar = new System.Windows.Forms.Button();
-            this.barraNavegacao1 = new MyAgenda.Componentes.BarraNavegacao();
+            this.barraNavegacao1 = new MyAgenda.Componentes.Geral.BarraNavegacao();
             this.SuspendLayout();
             // 
             // panelMatriz
@@ -235,7 +235,7 @@
 
         #endregion
 
-        private Componentes.BarraNavegacao barraNavegacao1;
+        private Componentes.Geral.BarraNavegacao barraNavegacao1;
         private System.Windows.Forms.Panel panelMatriz;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

@@ -3,9 +3,9 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MyAgenda.Componentes
+namespace MyAgenda.Componentes.MatrizTempo
 {
-    class VerticalLabel : Label
+    public class VerticalLabel : Label
     {
 
         public override bool AutoSize { get => base.AutoSize; set => base.AutoSize = base.AutoSize; }

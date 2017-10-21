@@ -50,13 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Componentes\BarraNavegacao.cs">
+    <Compile Include="Componentes\Geral\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Componentes\Loader.cs">
+    <Compile Include="Componentes\Geral\Loader.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Componentes\VerticalLabel.cs">
+    <Compile Include="Componentes\MatrizTempo\VerticalLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="FormLogin.cs">

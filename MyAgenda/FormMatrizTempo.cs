@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using static MyAgenda.Componentes.BarraNavegacao;
+using static MyAgenda.Componentes.Geral.BarraNavegacao;
 
 namespace MyAgenda
 {

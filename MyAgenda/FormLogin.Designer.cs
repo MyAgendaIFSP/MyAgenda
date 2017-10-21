@@ -37,7 +37,7 @@
             this.btnEntrar = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.llblCadastrar = new System.Windows.Forms.LinkLabel();
-            this.loader1 = new MyAgenda.Componentes.Loader();
+            this.loader1 = new MyAgenda.Componentes.Geral.Loader();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -182,7 +182,7 @@
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.LinkLabel llblCadastrar;
-        private MyAgenda.Componentes.Loader loader1;
+        private MyAgenda.Componentes.Geral.Loader loader1;
     }
 }
 

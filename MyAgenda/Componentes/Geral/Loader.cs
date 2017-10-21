@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyAgenda.Componentes
+namespace MyAgenda.Componentes.Geral
 {
-    class Loader : PictureBox
+    public class Loader : PictureBox
     {
         /// <summary>
         /// Determina se o loader estará ativo (ligado) ou não.
