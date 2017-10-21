@@ -95,11 +95,11 @@ namespace MyAgenda.Componentes.MatrizTempo
 
         public void AdicionaItem(ItemMatriz item)
         {
-            Label lbl = new Label();
+            LabelItemMatriz lbl = new LabelItemMatriz();
             lbl.Location = new Point(6, _ultimosY[(int)item.Quadrante]);
-            lbl.AutoSize = true;
+            lbl.Ativo = item.Ativo;
             lbl.Text = item.Titulo + ((String.IsNullOrEmpty(item.Descricao)) ? "" : " - " + item.Descricao);
-            lbl.Font = new Font(this.Font.Name, 10);
+            lbl.Font = new Font(this.Font.Name, 11);
             lbl.CreateControl();
 
             _ultimosY[(int)item.Quadrante] += lbl.Height + 2;

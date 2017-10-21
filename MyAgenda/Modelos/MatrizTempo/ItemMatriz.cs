@@ -35,6 +35,8 @@ namespace MyAgenda.Modelos.MatrizTempo
             Titulo = titulo;
             Descricao = descricao;
             Quadrante = quadrante;
+            Ativo = true;
+            DataAdicao = DateTime.Now;
         }
 
         public ItemMatriz(string titulo, string descricao, EQuadrante quadrante, bool ativo)
@@ -43,6 +45,7 @@ namespace MyAgenda.Modelos.MatrizTempo
             Descricao = descricao;
             Quadrante = quadrante;
             Ativo = ativo;
+            DataAdicao = DateTime.Now;
         }
 
         public ItemMatriz(string titulo, string descricao, EQuadrante quadrante, bool ativo, DateTime dataAdicao)
