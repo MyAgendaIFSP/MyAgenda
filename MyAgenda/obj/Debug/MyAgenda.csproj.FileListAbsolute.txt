@@ -9,3 +9,4 @@ F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.csproj.GenerateRe
 F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.csproj.CoreCompileInputs.cache
 F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.exe
 F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.pdb
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.FormMatrizTempo.resources

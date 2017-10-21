@@ -14,6 +14,9 @@ namespace MyAgenda
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             _autenticarUsuario();
+
+            FormMatrizTempo f = new FormMatrizTempo();
+                f.Show();
         }
 
         private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

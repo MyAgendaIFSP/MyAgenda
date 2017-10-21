@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,7 +37,7 @@
             this.btnEntrar = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.llblCadastrar = new System.Windows.Forms.LinkLabel();
-            this.loader1 = new MyAgenda.Loader();
+            this.loader1 = new MyAgenda.Componentes.Loader();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -159,6 +160,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "FormLogin";
@@ -180,7 +182,7 @@
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.LinkLabel llblCadastrar;
-        private Loader loader1;
+        private MyAgenda.Componentes.Loader loader1;
     }
 }
 

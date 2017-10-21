@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyAgenda
+namespace MyAgenda.Componentes
 {
     class Loader : PictureBox
     {
