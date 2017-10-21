@@ -104,6 +104,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon %281%29.ico" />
+    <None Include="Resources\ic_refresh_white.png" />
+    <None Include="Resources\ic_home_white.png" />
+    <None Include="Resources\ic_exit_to_app_white.png" />
+    <None Include="Resources\ic_cloud_white.png" />
+    <None Include="Resources\ic_cloud_queue_white.png" />
+    <None Include="Resources\ic_add_circle_white.png" />
+    <None Include="Resources\ic_add_circle_black.png" />
+    <None Include="Resources\MyAgendaIcon.png" />
+    <None Include="Resources\ic_archive_white.png" />
+    <None Include="Resources\ic_add_circle_outline_black.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

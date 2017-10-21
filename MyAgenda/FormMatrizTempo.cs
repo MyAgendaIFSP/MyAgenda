@@ -9,11 +9,11 @@ namespace MyAgenda
         {
             InitializeComponent();
             barraNavegacao1.MenuItemClick += _click;
-
-            barraNavegacao1.AddItem("Início", 1);
+            
+            barraNavegacao1.AddItem("Início", Properties.Resources.ic_home_white, 1);
             barraNavegacao1.AddItem("Pomodoro", 2);
             barraNavegacao1.AddItem("Tarefas", 3);
-            barraNavegacao1.AddItem("Sair", 4);
+            barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, 4);           
 
         }
 
@@ -35,6 +35,38 @@ namespace MyAgenda
                     break;
 
             }
+        }
+
+        private void btnQuad1_MouseEnter(object sender, EventArgs e)
+        {
+            //Destacar quadrante 1 na matriz
+        }
+
+        private void btnQuad2_MouseEnter(object sender, EventArgs e)
+        {
+            //Destacar quadrante 2 na matriz
+        }
+
+        private void btnQuad3_MouseEnter(object sender, EventArgs e)
+        {
+            //Destacar quadrante 3 na matriz
+        }
+
+        private void btnQuad4_MouseEnter(object sender, EventArgs e)
+        {
+            //Destacar quadrante 4 na matriz
+        }
+
+        private void btnAdicionar_MouseEnter(object sender, EventArgs e)
+        {
+            btnAdicionar.Image = Properties.Resources.ic_add_circle_white;
+            btnAdicionar.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnAdicionar_MouseLeave(object sender, EventArgs e)
+        {
+            btnAdicionar.Image = Properties.Resources.ic_add_circle_black;
+            btnAdicionar.ForeColor = System.Drawing.Color.Black;
         }
     }
 }

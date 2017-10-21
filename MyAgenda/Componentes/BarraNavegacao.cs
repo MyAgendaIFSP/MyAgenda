@@ -48,6 +48,34 @@ namespace MyAgenda.Componentes
             this.Invalidate();
         }
 
+        public void AddItem(string titulo, Bitmap icon, int id)
+        {
+            Button btn = new Button();
+            btn.Height = this.Height;
+            btn.AutoSize = true;
+            btn.Font = this.Font;
+            btn.ForeColor = Color.White;
+            btn.Cursor = Cursors.Hand;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.MouseDownBackColor = Color.SlateGray;
+            btn.FlatAppearance.MouseOverBackColor = Color.DarkSlateGray;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.Click += _disparaCallback;
+            btn.Location = new Point(_ultimoX, 0);
+            btn.Image = icon;
+            btn.Text = titulo;
+            btn.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btn.Tag = id;
+
+            btn.CreateControl();
+
+            this.Controls.Add(btn);
+
+            _ultimoX += btn.Width + 3;
+
+            this.Invalidate();
+        }
+
         private void _disparaCallback(object sender, EventArgs e)
         {
             Button btn = (Button)sender;

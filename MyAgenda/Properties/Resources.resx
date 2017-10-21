@@ -121,4 +121,34 @@
   <data name="favicon__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\favicon (1).ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ic_add_circle_outline_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_add_circle_outline_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_archive_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_archive_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_cloud_queue_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_cloud_queue_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_cloud_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_cloud_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_home_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_home_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_refresh_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_refresh_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MyAgendaIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MyAgendaIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_add_circle_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_add_circle_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_add_circle_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_add_circle_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_exit_to_app_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ic_exit_to_app_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
