@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyAgenda.Componentes.MatrizTempo
@@ -13,16 +9,31 @@ namespace MyAgenda.Componentes.MatrizTempo
 
         public bool Ativo { get; set; } = true;
 
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+
+            this.BackColor = Color.FromArgb(255, 230, 230, 230);
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+
+            this.BackColor = Color.White;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
-            //base.OnPaint(e);
-
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             Size txt = e.Graphics.MeasureString(this.Text, this.Font).ToSize();
             txt.Width += txt.Height + 10;
 
-            this.Size = txt;
+            if (txt.Width > this.Width)
+            {
+                this.Size = txt;
+            }
 
             if (Ativo)
             {

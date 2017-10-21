@@ -1,13 +1,8 @@
-﻿using System;
+﻿using MyAgenda.Modelos.MatrizTempo;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MyAgenda.Modelos.MatrizTempo;
 
 namespace MyAgenda.Componentes.MatrizTempo
 {
@@ -93,6 +88,10 @@ namespace MyAgenda.Componentes.MatrizTempo
 
         #endregion
 
+        /// <summary>
+        /// Adiciona um item na matriz
+        /// </summary>
+        /// <param name="item">Item da matriz que será adicionado</param>
         public void AdicionaItem(ItemMatriz item)
         {
             LabelItemMatriz lbl = new LabelItemMatriz();
@@ -100,30 +99,35 @@ namespace MyAgenda.Componentes.MatrizTempo
             lbl.Ativo = item.Ativo;
             lbl.Text = item.Titulo + ((String.IsNullOrEmpty(item.Descricao)) ? "" : " - " + item.Descricao);
             lbl.Font = new Font(this.Font.Name, 11);
+            lbl.Cursor = Cursors.Hand;
             lbl.CreateControl();
-
-            _ultimosY[(int)item.Quadrante] += lbl.Height + 2;
 
             switch (item.Quadrante)
             {
                 case EQuadrante.QUADRANTE_1:
+                    lbl.Size = new Size(panelQuad1.ClientSize.Width - 12, lbl.Font.Height);
                     panelQuad1.Controls.Add(lbl);
                     break;
 
                 case EQuadrante.QUADRANTE_2:
+                    lbl.Size = new Size(panelQuad2.ClientSize.Width - 12, lbl.Font.Height);
                     panelQuad2.Controls.Add(lbl);
                     break;
 
                 case EQuadrante.QUADRANTE_3:
+                    lbl.Size = new Size(panelQuad3.ClientSize.Width - 12, lbl.Font.Height);
                     panelQuad3.Controls.Add(lbl);
                     break;
 
                 case EQuadrante.QUADRANTE_4:
+                    lbl.Size = new Size(panelQuad4.ClientSize.Width - 12, lbl.Font.Height);
                     panelQuad4.Controls.Add(lbl);
                     break;
             }
 
             Itens.Add(item);
+
+            _ultimosY[(int)item.Quadrante] += lbl.Height + 2;
         }
     }
 }
