@@ -77,6 +77,7 @@
     <Compile Include="FormMatrizTempo.Designer.cs">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\MatrizTempo\ItemMatriz.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Componentes\MatrizTempo\Matriz.resx">

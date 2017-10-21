@@ -1,11 +1,16 @@
-﻿using System;
+﻿using MyAgenda.Modelos.MatrizTempo;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
 using static MyAgenda.Componentes.Geral.BarraNavegacao;
+using static MyAgenda.Componentes.MatrizTempo.Matriz;
 
 namespace MyAgenda
 {
     public partial class FormMatrizTempo : Form
     {
+        private EQuadrante _quadranteSelecionado = EQuadrante.NENHUM;
+
         public FormMatrizTempo()
         {
             InitializeComponent();
@@ -19,6 +24,39 @@ namespace MyAgenda
 
         }
 
+        private void FormMatrizTempo_Load(object sender, EventArgs e)
+        {
+            _comecaCarregar();
+            //Buscar no banco de dados os itens do usuário
+
+            _paraCarregar();
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            string titulo = txtTitulo.Text;
+            string descricao = txtDescricao.Text;
+
+            if (String.IsNullOrEmpty(titulo))
+            {
+                _mostraErro("Digite um título para o item");
+                return;
+            }
+            else if (_quadranteSelecionado == EQuadrante.NENHUM)
+            {
+                _mostraErro("Selecione um quadrante");
+                return;
+            }
+
+            ItemMatriz item = new ItemMatriz(titulo, descricao, _quadranteSelecionado);
+
+            matrizTempo.AdicionaItem(item);
+
+            _mostraSucesso("Item adicionado.");
+        }
+
+        #region Click handlers da barra de navegação
+
         private void _cloudClick(ref Button btn, int itemId)
         {
             MessageBox.Show("botão Nuvem");
@@ -29,8 +67,8 @@ namespace MyAgenda
         }
 
         private void _click(ref Button btn, int itemId)
-        {            
-            switch(itemId)
+        {
+            switch (itemId)
             {
                 case 1:
                     MessageBox.Show("botão início");
@@ -46,6 +84,10 @@ namespace MyAgenda
                     break;
             }
         }
+
+        #endregion
+
+        #region Tramits de interface do usuário
 
         private void btnQuad1_MouseEnter(object sender, EventArgs e)
         {
@@ -101,6 +143,74 @@ namespace MyAgenda
         private void btnQuad4_MouseLeave(object sender, EventArgs e)
         {
             matrizTempo.ParaHighlightQuadrante4();
+        }
+
+        #endregion
+
+        #region Funções de apoio
+
+        private void _mostraErro(string msg)
+        {
+            lblStatus.ForeColor = Color.Red;
+            lblStatus.Text = msg;
+            lblStatus.Visible = true;
+        }
+
+        private void _mostraSucesso(string msg)
+        {
+            lblStatus.ForeColor = Color.LimeGreen;
+            lblStatus.Text = msg;
+            lblStatus.Visible = true;
+        }
+
+        private void _comecaCarregar()
+        {
+            loader1.Active = true;
+            _desabilitaTudo();
+        }
+
+        private void _paraCarregar()
+        {
+            loader1.Active = false;
+            _habilitaTudo();
+        }
+
+        private void _desabilitaTudo()
+        {
+            foreach (Control c in this.Controls)
+            {
+                c.Enabled = false;
+            }
+        }
+
+        private void _habilitaTudo()
+        {
+            foreach (Control c in this.Controls)
+            {
+                c.Enabled = true;
+            }
+        }
+
+        #endregion
+
+        private void btnQuad1_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_1;
+        }
+
+        private void btnQuad2_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_2;
+        }
+
+        private void btnQuad3_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_3;
+        }
+
+        private void btnQuad4_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_4;
         }
     }
 }

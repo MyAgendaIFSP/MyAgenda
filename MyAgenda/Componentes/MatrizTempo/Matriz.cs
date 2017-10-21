@@ -7,11 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MyAgenda.Modelos.MatrizTempo;
 
 namespace MyAgenda.Componentes.MatrizTempo
 {
     public partial class Matriz : UserControl
     {
+        public List<ItemMatriz> Itens { get; private set; } = new List<ItemMatriz>();
+
+        public enum EQuadrante { QUADRANTE_1, QUADRANTE_2, QUADRANTE_3, QUADRANTE_4, NENHUM }
+
+        /// <summary>
+        /// Indica a próxima coordenada item do item a ser adicionado
+        /// indice 0: quadrante 1
+        /// indice 1: quadrante 2
+        /// indice 2: quadrante 3
+        /// indice 3: quadrante 4
+        /// </summary>
+        private int[] _ultimosY = new int[4] { 0, 0, 0, 0};
+
         public Matriz()
         {
             InitializeComponent();
@@ -34,6 +48,8 @@ namespace MyAgenda.Componentes.MatrizTempo
             panel4.Location = new Point(tamPadrao.Width, tamPadrao.Height);
             panel4.Size = tamPadrao;
         }
+
+        #region Métodos de highlight dos quadrantes
 
         public void IniciaHighlightQuadrante1()
         {
@@ -73,6 +89,41 @@ namespace MyAgenda.Componentes.MatrizTempo
         public void ParaHighlightQuadrante4()
         {
             gpQuad4.BackColor = Color.White;
+        }
+
+        #endregion
+
+        public void AdicionaItem(ItemMatriz item)
+        {
+            Label lbl = new Label();
+            lbl.Location = new Point(6, _ultimosY[(int)item.Quadrante]);
+            lbl.AutoSize = true;
+            lbl.Text = item.Titulo + ((String.IsNullOrEmpty(item.Descricao)) ? "" : " - " + item.Descricao);
+            lbl.Font = new Font(this.Font.Name, 10);
+            lbl.CreateControl();
+
+            _ultimosY[(int)item.Quadrante] += lbl.Height + 2;
+
+            switch (item.Quadrante)
+            {
+                case EQuadrante.QUADRANTE_1:
+                    panelQuad1.Controls.Add(lbl);
+                    break;
+
+                case EQuadrante.QUADRANTE_2:
+                    panelQuad2.Controls.Add(lbl);
+                    break;
+
+                case EQuadrante.QUADRANTE_3:
+                    panelQuad3.Controls.Add(lbl);
+                    break;
+
+                case EQuadrante.QUADRANTE_4:
+                    panelQuad4.Controls.Add(lbl);
+                    break;
+            }
+
+            Itens.Add(item);
         }
     }
 }
