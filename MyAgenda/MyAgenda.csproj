@@ -56,6 +56,9 @@
     <Compile Include="Componentes\Loader.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Componentes\VerticalLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>

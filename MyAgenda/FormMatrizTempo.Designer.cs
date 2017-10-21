@@ -40,8 +40,8 @@
             this.btnQuad1 = new System.Windows.Forms.Button();
             this.btnQuad3 = new System.Windows.Forms.Button();
             this.btnQuad2 = new System.Windows.Forms.Button();
-            this.barraNavegacao1 = new MyAgenda.Componentes.BarraNavegacao();
             this.btnAdicionar = new System.Windows.Forms.Button();
+            this.barraNavegacao1 = new MyAgenda.Componentes.BarraNavegacao();
             this.SuspendLayout();
             // 
             // panelMatriz
@@ -174,15 +174,6 @@
             this.btnQuad2.UseVisualStyleBackColor = false;
             this.btnQuad2.MouseEnter += new System.EventHandler(this.btnQuad2_MouseEnter);
             // 
-            // barraNavegacao1
-            // 
-            this.barraNavegacao1.BackColor = System.Drawing.Color.LightSlateGray;
-            this.barraNavegacao1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barraNavegacao1.Location = new System.Drawing.Point(0, 0);
-            this.barraNavegacao1.Name = "barraNavegacao1";
-            this.barraNavegacao1.Size = new System.Drawing.Size(827, 40);
-            this.barraNavegacao1.TabIndex = 0;
-            // 
             // btnAdicionar
             // 
             this.btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -200,6 +191,15 @@
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.MouseEnter += new System.EventHandler(this.btnAdicionar_MouseEnter);
             this.btnAdicionar.MouseLeave += new System.EventHandler(this.btnAdicionar_MouseLeave);
+            // 
+            // barraNavegacao1
+            // 
+            this.barraNavegacao1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.barraNavegacao1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barraNavegacao1.Location = new System.Drawing.Point(0, 0);
+            this.barraNavegacao1.Name = "barraNavegacao1";
+            this.barraNavegacao1.Size = new System.Drawing.Size(827, 40);
+            this.barraNavegacao1.TabIndex = 0;
             // 
             // FormMatrizTempo
             // 
