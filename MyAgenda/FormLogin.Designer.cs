@@ -28,33 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnEntrar = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.llblCadastrar = new System.Windows.Forms.LinkLabel();
+            this.loader1 = new MyAgenda.Loader();
+            ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtUsuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(48, 111);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(351, 27);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtUsuario.Location = new System.Drawing.Point(48, 109);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(351, 27);
+            this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox2
+            // txtSenha
             // 
-            this.textBox2.Location = new System.Drawing.Point(48, 180);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(351, 27);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox2.UseSystemPasswordChar = true;
+            this.txtSenha.Location = new System.Drawing.Point(48, 174);
+            this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
+            this.txtSenha.Size = new System.Drawing.Size(351, 27);
+            this.txtSenha.TabIndex = 1;
+            this.txtSenha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSenha.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -70,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 85);
+            this.label2.Location = new System.Drawing.Point(44, 83);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 21);
@@ -80,7 +84,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 154);
+            this.label3.Location = new System.Drawing.Point(44, 148);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 21);
@@ -96,25 +100,62 @@
             this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.ForeColor = System.Drawing.Color.White;
-            this.btnEntrar.Location = new System.Drawing.Point(48, 233);
+            this.btnEntrar.Location = new System.Drawing.Point(48, 238);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(351, 37);
             this.btnEntrar.TabIndex = 5;
-            this.btnEntrar.Text = "Entrar";
+            this.btnEntrar.Text = "&Entrar";
             this.btnEntrar.UseVisualStyleBackColor = false;
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblStatus.Location = new System.Drawing.Point(48, 204);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(113, 17);
+            this.lblStatus.TabIndex = 6;
+            this.lblStatus.Text = "<erro ou sucesso>";
+            this.lblStatus.Visible = false;
+            // 
+            // llblCadastrar
+            // 
+            this.llblCadastrar.AutoSize = true;
+            this.llblCadastrar.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.llblCadastrar.LinkColor = System.Drawing.Color.RoyalBlue;
+            this.llblCadastrar.Location = new System.Drawing.Point(48, 277);
+            this.llblCadastrar.Name = "llblCadastrar";
+            this.llblCadastrar.Size = new System.Drawing.Size(118, 17);
+            this.llblCadastrar.TabIndex = 7;
+            this.llblCadastrar.TabStop = true;
+            this.llblCadastrar.Text = "Não possui conta?";
+            this.llblCadastrar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblCadastrar_LinkClicked);
+            // 
+            // loader1
+            // 
+            this.loader1.Active = false;
+            this.loader1.Location = new System.Drawing.Point(0, 0);
+            this.loader1.Name = "loader1";
+            this.loader1.Size = new System.Drawing.Size(449, 5);
+            this.loader1.TabIndex = 8;
+            this.loader1.TabStop = false;
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(449, 305);
+            this.ClientSize = new System.Drawing.Size(449, 317);
+            this.Controls.Add(this.loader1);
+            this.Controls.Add(this.llblCadastrar);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSenha);
+            this.Controls.Add(this.txtUsuario);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -122,7 +163,8 @@
             this.MaximizeBox = false;
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "MyAgenda | Entrar";
+            ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,13 +172,15 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnEntrar;
-
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.LinkLabel llblCadastrar;
+        private Loader loader1;
     }
 }
 
