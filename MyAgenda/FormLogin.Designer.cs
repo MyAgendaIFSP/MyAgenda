@@ -43,14 +43,18 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(351, 27);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(48, 180);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(351, 27);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -85,9 +89,12 @@
             // 
             // btnEntrar
             // 
-            this.btnEntrar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnEntrar.BackColor = System.Drawing.Color.LightSlateGray;
             this.btnEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEntrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SlateGray;
+            this.btnEntrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEntrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.ForeColor = System.Drawing.Color.White;
             this.btnEntrar.Location = new System.Drawing.Point(48, 233);
             this.btnEntrar.Name = "btnEntrar";
@@ -101,7 +108,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(456, 305);
+            this.ClientSize = new System.Drawing.Size(449, 305);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);

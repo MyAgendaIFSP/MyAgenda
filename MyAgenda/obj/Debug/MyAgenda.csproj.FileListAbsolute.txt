@@ -1,1 +1,11 @@
 C:\Users\Aluno IFSPCMP\Desktop\MyAgenda\MyAgenda\bin\Debug\MyAgenda.exe.config
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\bin\Debug\MyAgenda.exe.config
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\bin\Debug\MyAgenda.exe
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\bin\Debug\MyAgenda.pdb
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.csprojResolveAssemblyReference.cache
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.FormLogin.resources
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.Properties.Resources.resources
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.csproj.GenerateResource.Cache
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.csproj.CoreCompileInputs.cache
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.exe
+F:\Usuarios\allex\Desktop\MyAgenda\MyAgenda\obj\Debug\MyAgenda.pdb
