@@ -29,10 +29,12 @@ namespace MyAgenda
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
                 _mostraErro("Digite um nome de usuário.");
+                txtUsuario.Focus();
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
                 _mostraErro("Digite sua senha cadastrada.");
+                txtSenha.Focus();
             }
 
             _paraCarregar();
