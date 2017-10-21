@@ -56,6 +56,12 @@
     <Compile Include="Componentes\Loader.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FormListaAfazeres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListaAfazeres.Designer.cs">
+      <DependentUpon>FormListaAfazeres.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormListaAfazeres.resx">
+      <DependentUpon>FormListaAfazeres.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
