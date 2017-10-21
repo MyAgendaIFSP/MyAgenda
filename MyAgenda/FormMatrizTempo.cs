@@ -55,6 +55,26 @@ namespace MyAgenda
             _mostraSucesso("Item adicionado.");
         }
 
+        private void btnQuad1_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_1;
+        }
+
+        private void btnQuad2_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_2;
+        }
+
+        private void btnQuad3_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_3;
+        }
+
+        private void btnQuad4_Click(object sender, EventArgs e)
+        {
+            _quadranteSelecionado = EQuadrante.QUADRANTE_4;
+        }
+
         #region Click handlers da barra de navegação
 
         private void _cloudClick(ref Button btn, int itemId)
@@ -193,24 +213,5 @@ namespace MyAgenda
 
         #endregion
 
-        private void btnQuad1_Click(object sender, EventArgs e)
-        {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_1;
-        }
-
-        private void btnQuad2_Click(object sender, EventArgs e)
-        {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_2;
-        }
-
-        private void btnQuad3_Click(object sender, EventArgs e)
-        {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_3;
-        }
-
-        private void btnQuad4_Click(object sender, EventArgs e)
-        {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_4;
-        }
     }
 }

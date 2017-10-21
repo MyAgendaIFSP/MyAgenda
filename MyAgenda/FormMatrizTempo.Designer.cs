@@ -44,6 +44,7 @@
             this.barraNavegacao1 = new MyAgenda.Componentes.Geral.BarraNavegacao();
             this.loader1 = new MyAgenda.Componentes.Geral.Loader();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,9 +63,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 21);
+            this.label2.Size = new System.Drawing.Size(61, 21);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Título";
+            this.label2.Text = "* Título";
             // 
             // label3
             // 
@@ -80,9 +81,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 218);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 21);
+            this.label4.Size = new System.Drawing.Size(109, 21);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Quadrante";
+            this.label4.Text = "* Quadrante";
             // 
             // txtTitulo
             // 
@@ -234,12 +235,23 @@
             this.lblStatus.Text = "<erro ou sucesso>";
             this.lblStatus.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 8F);
+            this.label5.Location = new System.Drawing.Point(12, 401);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(179, 16);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Itens com um * são obrigatórios!";
+            // 
             // FormMatrizTempo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(827, 473);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.matrizTempo);
             this.Controls.Add(this.barraNavegacao1);
@@ -287,5 +299,6 @@
         private Componentes.Geral.Loader loader1;
         private Componentes.MatrizTempo.Matriz matrizTempo;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label label5;
     }
 }

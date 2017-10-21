@@ -53,42 +53,42 @@ namespace MyAgenda.Componentes.MatrizTempo
 
         public void IniciaHighlightQuadrante1()
         {
-            gpQuad1.BackColor = Color.AliceBlue;
+            gbxQuad1.BackColor = Color.AliceBlue;
         }
 
         public void IniciaHighlightQuadrante2()
         {
-            gpQuad2.BackColor = Color.AliceBlue;
+            gbxQuad2.BackColor = Color.AliceBlue;
         }
 
         public void IniciaHighlightQuadrante3()
         {
-            gpQuad3.BackColor = Color.AliceBlue;
+            gbxQuad3.BackColor = Color.AliceBlue;
         }
 
         public void IniciaHighlightQuadrante4()
         {
-            gpQuad4.BackColor = Color.AliceBlue;
+            gbxQuad4.BackColor = Color.AliceBlue;
         }
 
         public void ParaHighlightQuadrante1()
         {
-            gpQuad1.BackColor = Color.White;
+            gbxQuad1.BackColor = Color.White;
         }
 
         public void ParaHighlightQuadrante2()
         {
-            gpQuad2.BackColor = Color.White;
+            gbxQuad2.BackColor = Color.White;
         }
 
         public void ParaHighlightQuadrante3()
         {
-            gpQuad3.BackColor = Color.White;
+            gbxQuad3.BackColor = Color.White;
         }
 
         public void ParaHighlightQuadrante4()
         {
-            gpQuad4.BackColor = Color.White;
+            gbxQuad4.BackColor = Color.White;
         }
 
         #endregion

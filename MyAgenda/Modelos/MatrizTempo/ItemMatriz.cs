@@ -35,12 +35,6 @@ namespace MyAgenda.Modelos.MatrizTempo
             Titulo = titulo;
             Descricao = descricao;
             Quadrante = quadrante;
-
-            //Define um títul padrão caso não existe um 
-            if (String.IsNullOrEmpty(Titulo))
-            {
-                Titulo = _getTitulo();
-            }
         }
 
         public ItemMatriz(string titulo, string descricao, EQuadrante quadrante, bool ativo)
@@ -49,12 +43,6 @@ namespace MyAgenda.Modelos.MatrizTempo
             Descricao = descricao;
             Quadrante = quadrante;
             Ativo = ativo;
-
-            //Define um títul padrão caso não existe um 
-            if (String.IsNullOrEmpty(Titulo))
-            {
-                Titulo = _getTitulo();
-            }
         }
 
         public ItemMatriz(string titulo, string descricao, EQuadrante quadrante, bool ativo, DateTime dataAdicao)
@@ -64,32 +52,7 @@ namespace MyAgenda.Modelos.MatrizTempo
             Quadrante = quadrante;
             Ativo = ativo;
             DataAdicao = dataAdicao;
-
-            //Define um títul padrão caso não existe um 
-            if (String.IsNullOrEmpty(Titulo))
-            {
-                Titulo = _getTitulo();
-            }
         }
-
-        private string _getTitulo()
-        {
-            switch (Quadrante)
-            {
-                case EQuadrante.QUADRANTE_1:
-                    return "Estresse";
-
-                case EQuadrante.QUADRANTE_2:
-                    return "Qualidade";
-
-                case EQuadrante.QUADRANTE_3:
-                    return "Ilusão";
-
-                case EQuadrante.QUADRANTE_4:
-                    return "Desperdício";
-            }
-
-            return null;
-        }
+        
     }
 }

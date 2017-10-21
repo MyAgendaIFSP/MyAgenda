@@ -32,28 +32,28 @@ namespace MyAgenda.Componentes.MatrizTempo
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.gpQuad2 = new System.Windows.Forms.GroupBox();
-            this.gpQuad3 = new System.Windows.Forms.GroupBox();
-            this.gpQuad4 = new System.Windows.Forms.GroupBox();
+            this.gbxQuad2 = new System.Windows.Forms.GroupBox();
+            this.gbxQuad3 = new System.Windows.Forms.GroupBox();
+            this.gbxQuad4 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.verticalLabel1 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
             this.verticalLabel2 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
-            this.gpQuad1 = new System.Windows.Forms.GroupBox();
+            this.gbxQuad1 = new System.Windows.Forms.GroupBox();
             this.panelQuad1 = new System.Windows.Forms.Panel();
             this.panelQuad2 = new System.Windows.Forms.Panel();
             this.panelQuad3 = new System.Windows.Forms.Panel();
             this.panelQuad4 = new System.Windows.Forms.Panel();
-            this.gpQuad2.SuspendLayout();
-            this.gpQuad3.SuspendLayout();
-            this.gpQuad4.SuspendLayout();
+            this.gbxQuad2.SuspendLayout();
+            this.gbxQuad3.SuspendLayout();
+            this.gbxQuad4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.gpQuad1.SuspendLayout();
+            this.gbxQuad1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -82,50 +82,50 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.label2.Text = "NÃO URGENTES";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // gpQuad2
+            // gbxQuad2
             // 
-            this.gpQuad2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbxQuad2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpQuad2.BackColor = System.Drawing.Color.White;
-            this.gpQuad2.Controls.Add(this.panelQuad2);
-            this.gpQuad2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gpQuad2.Location = new System.Drawing.Point(5, 24);
-            this.gpQuad2.Name = "gpQuad2";
-            this.gpQuad2.Size = new System.Drawing.Size(340, 219);
-            this.gpQuad2.TabIndex = 7;
-            this.gpQuad2.TabStop = false;
-            this.gpQuad2.Text = "II - Qualidade";
+            this.gbxQuad2.BackColor = System.Drawing.Color.White;
+            this.gbxQuad2.Controls.Add(this.panelQuad2);
+            this.gbxQuad2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbxQuad2.Location = new System.Drawing.Point(5, 24);
+            this.gbxQuad2.Name = "gbxQuad2";
+            this.gbxQuad2.Size = new System.Drawing.Size(340, 219);
+            this.gbxQuad2.TabIndex = 7;
+            this.gbxQuad2.TabStop = false;
+            this.gbxQuad2.Text = "II - Qualidade";
             // 
-            // gpQuad3
+            // gbxQuad3
             // 
-            this.gpQuad3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbxQuad3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpQuad3.BackColor = System.Drawing.Color.White;
-            this.gpQuad3.Controls.Add(this.panelQuad3);
-            this.gpQuad3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gpQuad3.Location = new System.Drawing.Point(29, 5);
-            this.gpQuad3.Name = "gpQuad3";
-            this.gpQuad3.Size = new System.Drawing.Size(314, 240);
-            this.gpQuad3.TabIndex = 8;
-            this.gpQuad3.TabStop = false;
-            this.gpQuad3.Text = "III - Ilusão";
+            this.gbxQuad3.BackColor = System.Drawing.Color.White;
+            this.gbxQuad3.Controls.Add(this.panelQuad3);
+            this.gbxQuad3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbxQuad3.Location = new System.Drawing.Point(29, 5);
+            this.gbxQuad3.Name = "gbxQuad3";
+            this.gbxQuad3.Size = new System.Drawing.Size(314, 240);
+            this.gbxQuad3.TabIndex = 8;
+            this.gbxQuad3.TabStop = false;
+            this.gbxQuad3.Text = "III - Ilusão";
             // 
-            // gpQuad4
+            // gbxQuad4
             // 
-            this.gpQuad4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbxQuad4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpQuad4.BackColor = System.Drawing.Color.White;
-            this.gpQuad4.Controls.Add(this.panelQuad4);
-            this.gpQuad4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gpQuad4.Location = new System.Drawing.Point(5, 5);
-            this.gpQuad4.Name = "gpQuad4";
-            this.gpQuad4.Size = new System.Drawing.Size(340, 240);
-            this.gpQuad4.TabIndex = 9;
-            this.gpQuad4.TabStop = false;
-            this.gpQuad4.Text = "IV - Desperdício";
+            this.gbxQuad4.BackColor = System.Drawing.Color.White;
+            this.gbxQuad4.Controls.Add(this.panelQuad4);
+            this.gbxQuad4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbxQuad4.Location = new System.Drawing.Point(5, 5);
+            this.gbxQuad4.Name = "gbxQuad4";
+            this.gbxQuad4.Size = new System.Drawing.Size(340, 240);
+            this.gbxQuad4.TabIndex = 9;
+            this.gbxQuad4.TabStop = false;
+            this.gbxQuad4.Text = "IV - Desperdício";
             // 
             // panel1
             // 
@@ -133,7 +133,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.gpQuad1);
+            this.panel1.Controls.Add(this.gbxQuad1);
             this.panel1.Controls.Add(this.verticalLabel1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -146,7 +146,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.gpQuad2);
+            this.panel2.Controls.Add(this.gbxQuad2);
             this.panel2.Location = new System.Drawing.Point(349, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(350, 250);
@@ -157,7 +157,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.AutoScroll = true;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.gpQuad4);
+            this.panel4.Controls.Add(this.gbxQuad4);
             this.panel4.Location = new System.Drawing.Point(349, 249);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(350, 250);
@@ -169,7 +169,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel3.AutoScroll = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.verticalLabel2);
-            this.panel3.Controls.Add(this.gpQuad3);
+            this.panel3.Controls.Add(this.gbxQuad3);
             this.panel3.Location = new System.Drawing.Point(0, 249);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(350, 250);
@@ -200,20 +200,20 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.verticalLabel2.Text = "NÃO IMPORTANTES";
             this.verticalLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // gpQuad1
+            // gbxQuad1
             // 
-            this.gpQuad1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbxQuad1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gpQuad1.BackColor = System.Drawing.Color.White;
-            this.gpQuad1.Controls.Add(this.panelQuad1);
-            this.gpQuad1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gpQuad1.Location = new System.Drawing.Point(29, 24);
-            this.gpQuad1.Name = "gpQuad1";
-            this.gpQuad1.Size = new System.Drawing.Size(314, 219);
-            this.gpQuad1.TabIndex = 6;
-            this.gpQuad1.TabStop = false;
-            this.gpQuad1.Text = "I - Estresse";
+            this.gbxQuad1.BackColor = System.Drawing.Color.White;
+            this.gbxQuad1.Controls.Add(this.panelQuad1);
+            this.gbxQuad1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbxQuad1.Location = new System.Drawing.Point(29, 24);
+            this.gbxQuad1.Name = "gbxQuad1";
+            this.gbxQuad1.Size = new System.Drawing.Size(314, 219);
+            this.gbxQuad1.TabIndex = 6;
+            this.gbxQuad1.TabStop = false;
+            this.gbxQuad1.Text = "I - Estresse";
             // 
             // panelQuad1
             // 
@@ -268,18 +268,18 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.Name = "Matriz";
             this.Size = new System.Drawing.Size(700, 500);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Matriz_Paint);
-            this.gpQuad2.ResumeLayout(false);
-            this.gpQuad2.PerformLayout();
-            this.gpQuad3.ResumeLayout(false);
-            this.gpQuad3.PerformLayout();
-            this.gpQuad4.ResumeLayout(false);
-            this.gpQuad4.PerformLayout();
+            this.gbxQuad2.ResumeLayout(false);
+            this.gbxQuad2.PerformLayout();
+            this.gbxQuad3.ResumeLayout(false);
+            this.gbxQuad3.PerformLayout();
+            this.gbxQuad4.ResumeLayout(false);
+            this.gbxQuad4.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.gpQuad1.ResumeLayout(false);
-            this.gpQuad1.PerformLayout();
+            this.gbxQuad1.ResumeLayout(false);
+            this.gbxQuad1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -289,15 +289,15 @@ namespace MyAgenda.Componentes.MatrizTempo
         private VerticalLabel verticalLabel2;
         private Label label1;
         private Label label2;
-        private GroupBox gpQuad2;
-        private GroupBox gpQuad3;
-        private GroupBox gpQuad4;
+        private GroupBox gbxQuad2;
+        private GroupBox gbxQuad3;
+        private GroupBox gbxQuad4;
         private Panel panel1;
         private Panel panel2;
         private Panel panel4;
         private Panel panel3;
         private VerticalLabel verticalLabel1;
-        private GroupBox gpQuad1;
+        private GroupBox gbxQuad1;
         private Panel panelQuad1;
         private Panel panelQuad2;
         private Panel panelQuad3;
