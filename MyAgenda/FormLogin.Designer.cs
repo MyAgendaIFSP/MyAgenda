@@ -43,20 +43,24 @@
             // 
             // txtUsuario
             // 
+            this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsuario.Location = new System.Drawing.Point(48, 109);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(351, 27);
+            this.txtUsuario.Size = new System.Drawing.Size(444, 27);
             this.txtUsuario.TabIndex = 0;
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSenha
             // 
+            this.txtSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSenha.Location = new System.Drawing.Point(48, 174);
             this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(351, 27);
+            this.txtSenha.Size = new System.Drawing.Size(444, 27);
             this.txtSenha.TabIndex = 1;
             this.txtSenha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSenha.UseSystemPasswordChar = true;
@@ -78,9 +82,9 @@
             this.label2.Location = new System.Drawing.Point(44, 83);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 21);
+            this.label2.Size = new System.Drawing.Size(51, 21);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Usuário";
+            this.label2.Text = "Email";
             // 
             // label3
             // 
@@ -94,6 +98,8 @@
             // 
             // btnEntrar
             // 
+            this.btnEntrar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEntrar.BackColor = System.Drawing.Color.LightSlateGray;
             this.btnEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEntrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SlateGray;
@@ -103,7 +109,7 @@
             this.btnEntrar.ForeColor = System.Drawing.Color.White;
             this.btnEntrar.Location = new System.Drawing.Point(48, 238);
             this.btnEntrar.Name = "btnEntrar";
-            this.btnEntrar.Size = new System.Drawing.Size(351, 37);
+            this.btnEntrar.Size = new System.Drawing.Size(444, 37);
             this.btnEntrar.TabIndex = 5;
             this.btnEntrar.Text = "&Entrar";
             this.btnEntrar.UseVisualStyleBackColor = false;
@@ -136,9 +142,11 @@
             // loader1
             // 
             this.loader1.Active = false;
+            this.loader1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.loader1.Location = new System.Drawing.Point(0, 0);
             this.loader1.Name = "loader1";
-            this.loader1.Size = new System.Drawing.Size(449, 5);
+            this.loader1.Size = new System.Drawing.Size(542, 5);
             this.loader1.TabIndex = 8;
             this.loader1.TabStop = false;
             // 
@@ -147,7 +155,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(449, 317);
+            this.ClientSize = new System.Drawing.Size(542, 317);
             this.Controls.Add(this.loader1);
             this.Controls.Add(this.llblCadastrar);
             this.Controls.Add(this.lblStatus);

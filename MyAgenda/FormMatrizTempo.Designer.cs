@@ -201,7 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.matrizTempo.BackColor = System.Drawing.Color.White;
             this.matrizTempo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.matrizTempo.Location = new System.Drawing.Point(285, 53);
+            this.matrizTempo.Location = new System.Drawing.Point(285, 52);
             this.matrizTempo.Name = "matrizTempo";
             this.matrizTempo.Size = new System.Drawing.Size(530, 409);
             this.matrizTempo.TabIndex = 9;

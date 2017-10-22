@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyAgenda.Controladores.MatrizTempo;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,7 +8,53 @@ namespace MyAgenda.Componentes.MatrizTempo
     class LabelItemMatriz : Label
     {
 
-        public bool Ativo { get; set; } = true;
+        public delegate void ItemClickedEventHandler(object sender, ref ItemMatrizController item, bool removePermanente);
+
+        public event ItemClickedEventHandler QuadranteItemClick;
+
+        private ItemMatrizController _matrizItem;
+        public ItemMatrizController MatrizItem
+        {
+            get
+            {
+                return _matrizItem;
+            }
+
+            set
+            {
+                _matrizItem = value;
+            }
+        }
+        
+        public LabelItemMatriz(ref ItemMatrizController item)
+        {
+            MatrizItem = item;
+        }
+
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+
+            if (QuadranteItemClick != null)
+            {
+                QuadranteItemClick(this, ref _matrizItem, false);
+            }
+
+            this.Invalidate();
+        }
+
+        protected override void OnDoubleClick(EventArgs e)
+        {
+            base.OnDoubleClick(e);
+
+            if (QuadranteItemClick != null)
+            {
+                QuadranteItemClick(this, ref _matrizItem, true);
+            }
+
+            this.Invalidate();
+        }
+                
 
         protected override void OnMouseEnter(EventArgs e)
         {
@@ -35,7 +82,7 @@ namespace MyAgenda.Componentes.MatrizTempo
                 this.Size = txt;
             }
 
-            if (Ativo)
+            if (MatrizItem.GetModel().Ativo)
             {
                 e.Graphics.DrawImage(Properties.Resources.ic_turned_in_black, 0, 0, this.Height, this.Height);
             }

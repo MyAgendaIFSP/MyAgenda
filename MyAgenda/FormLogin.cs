@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyAgenda.Controladores.Geral;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -13,7 +14,10 @@ namespace MyAgenda
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            
             _autenticarUsuario();
+
+            _mostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
 
             FormMatrizTempo f = new FormMatrizTempo();
                 f.Show();
@@ -40,7 +44,19 @@ namespace MyAgenda
                 txtSenha.Focus();
             }
 
+            UsuarioController usuarioC = UsuarioController.GetInstance();
+            bool auth = usuarioC.Autentica(txtUsuario.Text, txtSenha.Text);
+
             _paraCarregar();
+
+            if (auth)
+            {
+                //abrir próximo form
+            }
+            else
+            {
+                _mostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
+            }
 
             btnEntrar.Enabled = true;
         }

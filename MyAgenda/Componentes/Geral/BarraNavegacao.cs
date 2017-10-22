@@ -194,8 +194,16 @@ namespace MyAgenda.Componentes.Geral
         {
             Button btn = (Button)sender;
             int id = (int) btn.Tag;
+            MenuItemClickEventHandler handler;
 
-            MenuItemClickEventHandler handler = (_callbacksEspecificos[id] != null) ? _callbacksEspecificos[id] : MenuItemClick;
+            try
+            {
+                handler = (_callbacksEspecificos[id] != null) ? _callbacksEspecificos[id] : MenuItemClick;
+            }
+            catch
+            {
+                handler = MenuItemClick;
+            }
 
             if(handler != null)
             {

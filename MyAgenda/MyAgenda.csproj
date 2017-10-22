@@ -68,6 +68,9 @@
     <Compile Include="Componentes\MatrizTempo\VerticalLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controladores\Geral\UsuarioController.cs" />
+    <Compile Include="Controladores\MatrizTempo\ItemMatrizController.cs" />
+    <Compile Include="Controladores\MatrizTempo\MatrizController.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,7 +83,9 @@
     <Compile Include="FormMatrizTempo.Designer.cs">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\MatrizTempo\ItemMatriz.cs" />
+    <Compile Include="Modelos\Geral\UsuarioModel.cs" />
+    <Compile Include="Modelos\MatrizTempo\ItemMatrizModel.cs" />
+    <Compile Include="Modelos\MatrizTempo\MatrizModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Componentes\MatrizTempo\Matriz.resx">

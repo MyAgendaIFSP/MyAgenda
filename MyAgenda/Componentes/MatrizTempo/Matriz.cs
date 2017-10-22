@@ -1,14 +1,13 @@
-﻿using MyAgenda.Modelos.MatrizTempo;
+﻿using MyAgenda.Controladores.MatrizTempo;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace MyAgenda.Componentes.MatrizTempo
 {
     public partial class Matriz : UserControl
-    {
-        public List<ItemMatriz> Itens { get; private set; } = new List<ItemMatriz>();
+    { 
+        private MatrizController _controlador;
 
         public enum EQuadrante { QUADRANTE_1, QUADRANTE_2, QUADRANTE_3, QUADRANTE_4, NENHUM }
 
@@ -24,6 +23,12 @@ namespace MyAgenda.Componentes.MatrizTempo
         public Matriz()
         {
             InitializeComponent();
+        }
+
+        public bool CarregaMatriz()
+        {
+            _controlador = MatrizController.GetInstance();
+            return true;
         }
 
         private void Matriz_Paint(object sender, PaintEventArgs e)
@@ -92,17 +97,18 @@ namespace MyAgenda.Componentes.MatrizTempo
         /// Adiciona um item na matriz
         /// </summary>
         /// <param name="item">Item da matriz que será adicionado</param>
-        public void AdicionaItem(ItemMatriz item)
+        public void AdicionaItem(ItemMatrizController item)
         {
-            LabelItemMatriz lbl = new LabelItemMatriz();
-            lbl.Location = new Point(6, _ultimosY[(int)item.Quadrante]);
-            lbl.Ativo = item.Ativo;
-            lbl.Text = item.Titulo + ((String.IsNullOrEmpty(item.Descricao)) ? "" : " - " + item.Descricao);
+            LabelItemMatriz lbl = new LabelItemMatriz(ref item);
+            lbl.Location = new Point(6, _ultimosY[(int)item.GetModel().Quadrante]);
+            lbl.Text = item.GetModel().Titulo + ((String.IsNullOrEmpty(item.GetModel().Descricao)) ? "" : " - " + item.GetModel().Descricao);
             lbl.Font = new Font(this.Font.Name, 11);
             lbl.Cursor = Cursors.Hand;
+            lbl.QuadranteItemClick += _quadranteItemClick;
             lbl.CreateControl();
 
-            switch (item.Quadrante)
+            //Determina a qual quadrante o item pertence e adiciona-o nele
+            switch (item.GetModel().Quadrante)
             {
                 case EQuadrante.QUADRANTE_1:
                     lbl.Size = new Size(panelQuad1.ClientSize.Width - 12, lbl.Font.Height);
@@ -124,10 +130,37 @@ namespace MyAgenda.Componentes.MatrizTempo
                     panelQuad4.Controls.Add(lbl);
                     break;
             }
+            
+            _ultimosY[(int)item.GetModel().Quadrante] += lbl.Height + 2;
 
-            Itens.Add(item);
-
-            _ultimosY[(int)item.Quadrante] += lbl.Height + 2;
+            _controlador.AddItem(item);
         }
+
+        private void _quadranteItemClick(object sender, ref ItemMatrizController item, bool removePermanente)
+        {
+            if (removePermanente)
+            {
+                //Deletar o item do banco de dados
+                LabelItemMatriz lbl = (LabelItemMatriz)sender;
+                Panel quadrante = (Panel) lbl.Parent;
+                quadrante.Controls.Remove(lbl);
+
+                _controlador.DeletarItem(item);
+            }
+            else
+            {
+                if (item.GetModel().Ativo)
+                {
+                    //Marcar o item como inativo no banco de dados
+                    item.MarcarItemInativo();
+                }
+                else
+                {
+                    //Marcar o item como ativo no banco de dados
+                    item.MarcarItemAtivo();
+                }
+            }
+        }
+
     }
 }

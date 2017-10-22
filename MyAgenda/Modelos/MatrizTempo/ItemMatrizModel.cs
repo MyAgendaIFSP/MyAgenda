@@ -3,7 +3,7 @@ using static MyAgenda.Componentes.MatrizTempo.Matriz;
 
 namespace MyAgenda.Modelos.MatrizTempo
 {
-    public class ItemMatriz
+    public class ItemMatrizModel
     {
         /// <summary>
         /// Título do item
@@ -30,7 +30,9 @@ namespace MyAgenda.Modelos.MatrizTempo
         /// </summary>
         public DateTime DataAdicao { get; set; }
 
-        public ItemMatriz(string titulo, string descricao, EQuadrante quadrante)
+        public int Id { get; set; }
+
+        public ItemMatrizModel(string titulo, string descricao, EQuadrante quadrante)
         {
             Titulo = titulo;
             Descricao = descricao;
@@ -39,7 +41,7 @@ namespace MyAgenda.Modelos.MatrizTempo
             DataAdicao = DateTime.Now;
         }
 
-        public ItemMatriz(string titulo, string descricao, EQuadrante quadrante, bool ativo)
+        public ItemMatrizModel(string titulo, string descricao, EQuadrante quadrante, bool ativo)
         {
             Titulo = titulo;
             Descricao = descricao;
@@ -48,7 +50,7 @@ namespace MyAgenda.Modelos.MatrizTempo
             DataAdicao = DateTime.Now;
         }
 
-        public ItemMatriz(string titulo, string descricao, EQuadrante quadrante, bool ativo, DateTime dataAdicao)
+        public ItemMatrizModel(string titulo, string descricao, EQuadrante quadrante, bool ativo, DateTime dataAdicao)
         {
             Titulo = titulo;
             Descricao = descricao;

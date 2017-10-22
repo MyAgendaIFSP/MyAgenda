@@ -1,4 +1,5 @@
-﻿using MyAgenda.Modelos.MatrizTempo;
+﻿using MyAgenda.Controladores.MatrizTempo;
+using MyAgenda.Modelos.MatrizTempo;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -27,7 +28,9 @@ namespace MyAgenda
         private void FormMatrizTempo_Load(object sender, EventArgs e)
         {
             _comecaCarregar();
+
             //Buscar no banco de dados os itens do usuário
+            matrizTempo.CarregaMatriz();
 
             _paraCarregar();
         }
@@ -48,9 +51,9 @@ namespace MyAgenda
                 return;
             }
 
-            ItemMatriz item = new ItemMatriz(titulo, descricao, _quadranteSelecionado);
+            ItemMatrizModel item = new ItemMatrizModel(titulo, descricao, _quadranteSelecionado);
 
-            matrizTempo.AdicionaItem(item);
+            matrizTempo.AdicionaItem(new ItemMatrizController(item));
 
             _mostraSucesso("Item adicionado.");
         }
