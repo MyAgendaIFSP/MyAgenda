@@ -11,9 +11,19 @@ namespace MyAgenda.Controladores.MatrizTempo
 
         private static MatrizController _instancia = null;
 
-        public static MatrizController GetInstance()
+        public static MatrizController GetInstance(int id, DateTime dtInicializacao, DateTime ultimoAcesso)
         {
             if(_instancia == null)
+            {
+                _instancia = new MatrizController(id, dtInicializacao, ultimoAcesso);
+            }
+
+            return _instancia;
+        }
+
+        public static MatrizController GetInstance()
+        {
+            if (_instancia == null)
             {
                 _instancia = new MatrizController();
             }
@@ -22,9 +32,12 @@ namespace MyAgenda.Controladores.MatrizTempo
         }
 
         private MatrizController()
+        { }
+
+        private MatrizController(int id, DateTime dtInicializacao, DateTime ultimoAcesso)
         {
             //Buscar no banco a matriz do usuário
-            _modelo = new MatrizModel(1, DateTime.Now, DateTime.Now, _carregaItens());
+            _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens());
         }
 
         private List<ItemMatrizController> _carregaItens()

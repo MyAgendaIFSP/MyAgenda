@@ -71,6 +71,7 @@
     <Compile Include="Controladores\Geral\UsuarioController.cs" />
     <Compile Include="Controladores\MatrizTempo\ItemMatrizController.cs" />
     <Compile Include="Controladores\MatrizTempo\MatrizController.cs" />
+    <Compile Include="Database\MyAgendaAPI.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +89,7 @@
     <Compile Include="Modelos\MatrizTempo\MatrizModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguranca\Criptografia.cs" />
     <EmbeddedResource Include="Componentes\MatrizTempo\Matriz.resx">
       <DependentUpon>Matriz.cs</DependentUpon>
     </EmbeddedResource>

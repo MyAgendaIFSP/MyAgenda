@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Controladores.Geral;
+using MyAgenda.Seguranca;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,13 +15,13 @@ namespace MyAgenda
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            
+            /*Criptografia c = new Criptografia();
+            string pass, salt;
+            salt = c.GeraSalt();
+            pass = c.GetHashSenha("123456", salt);*/
+
             _autenticarUsuario();
-
-            _mostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
-
-            FormMatrizTempo f = new FormMatrizTempo();
-                f.Show();
+            
         }
 
         private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -37,11 +38,15 @@ namespace MyAgenda
             {
                 _mostraErro("Digite um nome de usuário.");
                 txtUsuario.Focus();
+                _paraCarregar();
+                return;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
                 _mostraErro("Digite sua senha cadastrada.");
                 txtSenha.Focus();
+                _paraCarregar();
+                return;
             }
 
             UsuarioController usuarioC = UsuarioController.GetInstance();
@@ -52,13 +57,14 @@ namespace MyAgenda
             if (auth)
             {
                 //abrir próximo form
+                FormMatrizTempo f = new FormMatrizTempo(usuarioC);
+                f.Show();
+                this.Close();
             }
             else
             {
                 _mostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
             }
-
-            btnEntrar.Enabled = true;
         }
 
         private void _mostraErro(string msg)

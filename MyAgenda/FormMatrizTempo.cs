@@ -1,4 +1,5 @@
-﻿using MyAgenda.Controladores.MatrizTempo;
+﻿using MyAgenda.Controladores.Geral;
+using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.MatrizTempo;
 using System;
 using System.Drawing;
@@ -12,7 +13,9 @@ namespace MyAgenda
     {
         private EQuadrante _quadranteSelecionado = EQuadrante.NENHUM;
 
-        public FormMatrizTempo()
+        private UsuarioController _usuario = null;
+
+        public FormMatrizTempo(UsuarioController u)
         {
             InitializeComponent();
             barraNavegacao1.MenuItemClick += _click;
@@ -23,6 +26,7 @@ namespace MyAgenda
             barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, EPosicao.DIREITA, 4);
             barraNavegacao1.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, EPosicao.DIREITA, _cloudClick, 5);
 
+            _usuario = u;
         }
 
         private void FormMatrizTempo_Load(object sender, EventArgs e)

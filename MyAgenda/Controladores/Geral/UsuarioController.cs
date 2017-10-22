@@ -1,18 +1,17 @@
-﻿using MyAgenda.Modelos.Geral;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyAgenda.Controladores.MatrizTempo;
+using MyAgenda.Database;
+using MyAgenda.Modelos.Geral;
 
 namespace MyAgenda.Controladores.Geral
 {
-    class UsuarioController
+    public class UsuarioController
     {
 
         private UsuarioModel _modelo;
 
         private static UsuarioController _instancia = null;
+        
+        private MyAgendaAPI _api;
 
         public static UsuarioController GetInstance()
         {
@@ -22,6 +21,11 @@ namespace MyAgenda.Controladores.Geral
             }
 
             return _instancia;
+        }
+
+        private UsuarioController()
+        {
+            _api = new MyAgendaAPI();
         }
         
         /// <summary>
@@ -33,7 +37,8 @@ namespace MyAgenda.Controladores.Geral
             //Autenticar usuário no banco de dados
             if (_verificaEmail(email))
             {
-                return true;
+                _modelo = _api.AutenticaUsuario(email, senha);
+                return _modelo != null;
             }
 
             return false;
@@ -42,7 +47,7 @@ namespace MyAgenda.Controladores.Geral
         private bool _verificaEmail(string email)
         {
             //Checar se o email existe
-            return true;
+            return _api.EmailExiste(email);
         }
 
     }
