@@ -275,6 +275,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Matriz do Tempo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMatrizTempo_FormClosing);
             this.Load += new System.EventHandler(this.FormMatrizTempo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);

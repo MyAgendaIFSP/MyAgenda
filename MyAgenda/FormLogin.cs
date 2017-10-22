@@ -15,13 +15,7 @@ namespace MyAgenda
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            /*Criptografia c = new Criptografia();
-            string pass, salt;
-            salt = c.GeraSalt();
-            pass = c.GetHashSenha("123456", salt);*/
-
-            _autenticarUsuario();
-            
+            _autenticarUsuario();                        
         }
 
         private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -107,6 +101,11 @@ namespace MyAgenda
             {
                 c.Enabled = true;
             }
+        }
+
+        private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

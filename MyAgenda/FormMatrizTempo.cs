@@ -220,5 +220,9 @@ namespace MyAgenda
 
         #endregion
 
+        private void FormMatrizTempo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

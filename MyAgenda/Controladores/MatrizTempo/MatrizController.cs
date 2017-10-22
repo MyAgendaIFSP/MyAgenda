@@ -1,4 +1,5 @@
-﻿using MyAgenda.Modelos.MatrizTempo;
+﻿using MyAgenda.Database;
+using MyAgenda.Modelos.MatrizTempo;
 using System;
 using System.Collections.Generic;
 
@@ -8,6 +9,8 @@ namespace MyAgenda.Controladores.MatrizTempo
     {
 
         private MatrizModel _modelo;
+
+        private MyAgendaAPI _api;
 
         private static MatrizController _instancia = null;
 
@@ -32,17 +35,20 @@ namespace MyAgenda.Controladores.MatrizTempo
         }
 
         private MatrizController()
-        { }
+        {
+            _api = new MyAgendaAPI();
+        }
 
         private MatrizController(int id, DateTime dtInicializacao, DateTime ultimoAcesso)
         {
             //Buscar no banco a matriz do usuário
-            _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens());
+            _api = new MyAgendaAPI();
+            _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens(id));
         }
 
-        private List<ItemMatrizController> _carregaItens()
+        private List<ItemMatrizController> _carregaItens(int id)
         {
-            return new List<ItemMatrizController>();
+            return _api.CarregaItensMatriz(id);
         }
 
         public List<ItemMatrizController> GetItens()

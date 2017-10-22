@@ -16,7 +16,9 @@ namespace MyAgenda
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            FormLogin f = new FormLogin();
+            f.Show();
+            Application.Run();
         }
     }
 }

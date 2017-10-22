@@ -1,5 +1,6 @@
 ﻿using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.Geral;
+using MyAgenda.Modelos.MatrizTempo;
 using MyAgenda.Seguranca;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace MyAgenda.Database
                 return false;
             }
         }
-
+        
         /// <summary>
         /// Fecha a conexão com o banco de dados
         /// </summary>
@@ -70,49 +71,6 @@ namespace MyAgenda.Database
         }
 
         /// <summary>
-        /// Verifica se o email existe nos registros
-        /// </summary>
-        /// <param name="email">email a ser verificado</param>
-        /// <returns></returns>
-        public bool EmailExiste(string email)
-        {
-            if (_abreConexao())
-            {
-
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM usuario WHERE email LIKE @email;", _conexao);
-                cmd.Parameters.AddWithValue("@email", email);
-
-                int qtd = (int)cmd.ExecuteScalar();
-
-                _fechaConexao();
-
-                return qtd > 0;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Autentica um usuário no sistema
-        /// </summary>
-        /// <param name="email">email do usuario</param>
-        /// <param name="senha">senha do usuario</param>
-        /// <returns>Modelo do usuário</returns>
-        public UsuarioModel AutenticaUsuario(string email, string senha)
-        {
-            Criptografia cripto = new Criptografia();
-            bool autorizado = cripto.VerificaSenha(_getSenha(email), senha, _getSalt(email));
-
-            if (autorizado)
-            {
-                UsuarioModel u = _getUsuario(email);
-                return u;
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Obtém o modelo de um usuário
         /// </summary>
         /// <param name="email">email do usuário</param>
@@ -125,11 +83,11 @@ namespace MyAgenda.Database
                 UsuarioModel usuario = null;
                 MatrizController matriz;
 
-                if(id < 0)
+                if (id < 0)
                 {
                     return null;
                 }
-                
+
                 SqlCommand cmd = new SqlCommand("GetModeloUsuario", _conexao);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -140,7 +98,7 @@ namespace MyAgenda.Database
                     // iterate through results, printing each to console
                     while (rdr.Read())
                     {
-                        int uid = (int) rdr["id"];
+                        int uid = (int)rdr["id"];
                         int matrizId = (int)rdr["matriz"];
                         string nome = rdr["nome"].ToString();
                         string d = rdr["matriz_inicializacao"].ToString();
@@ -151,7 +109,7 @@ namespace MyAgenda.Database
                         matriz = MatrizController.GetInstance(matrizId, matInit, matUtili);
                         usuario = new UsuarioModel(uid, nome, dtNasc, matriz);
                     }
-                    
+
                 }
                 _fechaConexao();
 
@@ -172,7 +130,7 @@ namespace MyAgenda.Database
             cmd.Parameters.AddWithValue("@email", email);
 
             int id = (int)cmd.ExecuteScalar();
-            
+
             return id;
         }
 
@@ -219,5 +177,89 @@ namespace MyAgenda.Database
 
             return null;
         }
+
+        /// <summary>
+        /// Verifica se o email existe nos registros
+        /// </summary>
+        /// <param name="email">email a ser verificado</param>
+        /// <returns></returns>
+        public bool EmailExiste(string email)
+        {
+            if (_abreConexao())
+            {
+
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM usuario WHERE email LIKE @email;", _conexao);
+                cmd.Parameters.AddWithValue("@email", email);
+
+                int qtd = (int)cmd.ExecuteScalar();
+
+                _fechaConexao();
+
+                return qtd > 0;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Autentica um usuário no sistema
+        /// </summary>
+        /// <param name="email">email do usuario</param>
+        /// <param name="senha">senha do usuario</param>
+        /// <returns>Modelo do usuário</returns>
+        public UsuarioModel AutenticaUsuario(string email, string senha)
+        {
+            Criptografia cripto = new Criptografia();
+            bool autorizado = cripto.VerificaSenha(_getSenha(email), senha, _getSalt(email));
+
+            if (autorizado)
+            {
+                UsuarioModel u = _getUsuario(email);
+                return u;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Carrega os itens da matriz do tempo especificada
+        /// </summary>
+        /// <param name="matrizId">id da matriz</param>
+        /// <returns></returns>
+        public List<ItemMatrizController> CarregaItensMatriz(int matrizId)
+        {
+            if (_abreConexao())
+            {
+                List<ItemMatrizController> itens = new List<ItemMatrizController>();
+                
+                SqlCommand cmd = new SqlCommand("GetItensMatriz", _conexao);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@matriz_id", matrizId);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    // iterate through results, printing each to console
+                    while (rdr.Read())
+                    {
+                        int uid = (int)rdr["id"];
+                        Componentes.MatrizTempo.Matriz.EQuadrante quadrante = (Componentes.MatrizTempo.Matriz.EQuadrante)((int)rdr["quadrante"] - 1);
+                        string titulo = rdr["titulo"].ToString();
+                        string descricao = rdr["descricao"].ToString();
+                        bool ativo = (bool)rdr["ativo"];
+                        DateTime dtAdd = DateTime.Parse(rdr["data_adicao"].ToString());
+
+                        itens.Add(new ItemMatrizController(new ItemMatrizModel(titulo, descricao, quadrante, ativo, dtAdd)));
+                    }
+
+                }
+                _fechaConexao();
+
+                return itens;
+            }
+
+            return null;
+        }
+
     }
 }
