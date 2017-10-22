@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyAgenda.Componentes.MatrizTempo;
+using System;
+using System.Drawing;
 using static MyAgenda.Componentes.MatrizTempo.Matriz;
 
 namespace MyAgenda.Modelos.MatrizTempo

@@ -26,7 +26,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             }
         }
         
-        public LabelItemMatriz(ref ItemMatrizController item)
+        public LabelItemMatriz(ItemMatrizController item)
         {
             MatrizItem = item;
         }

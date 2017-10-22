@@ -33,27 +33,27 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.gbxQuad2 = new System.Windows.Forms.GroupBox();
+            this.panelQuad2 = new System.Windows.Forms.Panel();
             this.gbxQuad3 = new System.Windows.Forms.GroupBox();
+            this.panelQuad3 = new System.Windows.Forms.Panel();
             this.gbxQuad4 = new System.Windows.Forms.GroupBox();
+            this.panelQuad4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gbxQuad1 = new System.Windows.Forms.GroupBox();
+            this.panelQuad1 = new System.Windows.Forms.Panel();
+            this.verticalLabel1 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.verticalLabel1 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
             this.verticalLabel2 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
-            this.gbxQuad1 = new System.Windows.Forms.GroupBox();
-            this.panelQuad1 = new System.Windows.Forms.Panel();
-            this.panelQuad2 = new System.Windows.Forms.Panel();
-            this.panelQuad3 = new System.Windows.Forms.Panel();
-            this.panelQuad4 = new System.Windows.Forms.Panel();
             this.gbxQuad2.SuspendLayout();
             this.gbxQuad3.SuspendLayout();
             this.gbxQuad4.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.gbxQuad1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.gbxQuad1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -97,6 +97,16 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.gbxQuad2.TabStop = false;
             this.gbxQuad2.Text = "II - Qualidade";
             // 
+            // panelQuad2
+            // 
+            this.panelQuad2.AutoScroll = true;
+            this.panelQuad2.AutoSize = true;
+            this.panelQuad2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelQuad2.Location = new System.Drawing.Point(3, 23);
+            this.panelQuad2.Name = "panelQuad2";
+            this.panelQuad2.Size = new System.Drawing.Size(334, 193);
+            this.panelQuad2.TabIndex = 0;
+            // 
             // gbxQuad3
             // 
             this.gbxQuad3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -111,6 +121,16 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.gbxQuad3.TabIndex = 8;
             this.gbxQuad3.TabStop = false;
             this.gbxQuad3.Text = "III - Ilusão";
+            // 
+            // panelQuad3
+            // 
+            this.panelQuad3.AutoScroll = true;
+            this.panelQuad3.AutoSize = true;
+            this.panelQuad3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelQuad3.Location = new System.Drawing.Point(3, 23);
+            this.panelQuad3.Name = "panelQuad3";
+            this.panelQuad3.Size = new System.Drawing.Size(308, 214);
+            this.panelQuad3.TabIndex = 0;
             // 
             // gbxQuad4
             // 
@@ -127,6 +147,16 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.gbxQuad4.TabStop = false;
             this.gbxQuad4.Text = "IV - Desperdício";
             // 
+            // panelQuad4
+            // 
+            this.panelQuad4.AutoScroll = true;
+            this.panelQuad4.AutoSize = true;
+            this.panelQuad4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelQuad4.Location = new System.Drawing.Point(3, 23);
+            this.panelQuad4.Name = "panelQuad4";
+            this.panelQuad4.Size = new System.Drawing.Size(334, 214);
+            this.panelQuad4.TabIndex = 1;
+            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
@@ -139,6 +169,43 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(350, 250);
             this.panel1.TabIndex = 10;
+            // 
+            // gbxQuad1
+            // 
+            this.gbxQuad1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxQuad1.BackColor = System.Drawing.Color.White;
+            this.gbxQuad1.Controls.Add(this.panelQuad1);
+            this.gbxQuad1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbxQuad1.Location = new System.Drawing.Point(29, 24);
+            this.gbxQuad1.Name = "gbxQuad1";
+            this.gbxQuad1.Size = new System.Drawing.Size(314, 219);
+            this.gbxQuad1.TabIndex = 6;
+            this.gbxQuad1.TabStop = false;
+            this.gbxQuad1.Text = "I - Estresse";
+            // 
+            // panelQuad1
+            // 
+            this.panelQuad1.AutoScroll = true;
+            this.panelQuad1.AutoSize = true;
+            this.panelQuad1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelQuad1.Location = new System.Drawing.Point(3, 23);
+            this.panelQuad1.Name = "panelQuad1";
+            this.panelQuad1.Size = new System.Drawing.Size(308, 193);
+            this.panelQuad1.TabIndex = 0;
+            // 
+            // verticalLabel1
+            // 
+            this.verticalLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.verticalLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.verticalLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.verticalLabel1.Location = new System.Drawing.Point(-1, 0);
+            this.verticalLabel1.Name = "verticalLabel1";
+            this.verticalLabel1.Size = new System.Drawing.Size(24, 248);
+            this.verticalLabel1.TabIndex = 0;
+            this.verticalLabel1.Text = "IMPORTANTES";
             // 
             // panel2
             // 
@@ -175,18 +242,6 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel3.Size = new System.Drawing.Size(350, 250);
             this.panel3.TabIndex = 12;
             // 
-            // verticalLabel1
-            // 
-            this.verticalLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.verticalLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.verticalLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.verticalLabel1.Location = new System.Drawing.Point(-1, 0);
-            this.verticalLabel1.Name = "verticalLabel1";
-            this.verticalLabel1.Size = new System.Drawing.Size(24, 248);
-            this.verticalLabel1.TabIndex = 0;
-            this.verticalLabel1.Text = "IMPORTANTES";
-            // 
             // verticalLabel2
             // 
             this.verticalLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -200,61 +255,6 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.verticalLabel2.Text = "NÃO IMPORTANTES";
             this.verticalLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // gbxQuad1
-            // 
-            this.gbxQuad1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxQuad1.BackColor = System.Drawing.Color.White;
-            this.gbxQuad1.Controls.Add(this.panelQuad1);
-            this.gbxQuad1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gbxQuad1.Location = new System.Drawing.Point(29, 24);
-            this.gbxQuad1.Name = "gbxQuad1";
-            this.gbxQuad1.Size = new System.Drawing.Size(314, 219);
-            this.gbxQuad1.TabIndex = 6;
-            this.gbxQuad1.TabStop = false;
-            this.gbxQuad1.Text = "I - Estresse";
-            // 
-            // panelQuad1
-            // 
-            this.panelQuad1.AutoScroll = true;
-            this.panelQuad1.AutoSize = true;
-            this.panelQuad1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelQuad1.Location = new System.Drawing.Point(3, 23);
-            this.panelQuad1.Name = "panelQuad1";
-            this.panelQuad1.Size = new System.Drawing.Size(308, 193);
-            this.panelQuad1.TabIndex = 0;
-            // 
-            // panelQuad2
-            // 
-            this.panelQuad2.AutoScroll = true;
-            this.panelQuad2.AutoSize = true;
-            this.panelQuad2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelQuad2.Location = new System.Drawing.Point(3, 23);
-            this.panelQuad2.Name = "panelQuad2";
-            this.panelQuad2.Size = new System.Drawing.Size(334, 193);
-            this.panelQuad2.TabIndex = 0;
-            // 
-            // panelQuad3
-            // 
-            this.panelQuad3.AutoScroll = true;
-            this.panelQuad3.AutoSize = true;
-            this.panelQuad3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelQuad3.Location = new System.Drawing.Point(3, 23);
-            this.panelQuad3.Name = "panelQuad3";
-            this.panelQuad3.Size = new System.Drawing.Size(308, 214);
-            this.panelQuad3.TabIndex = 0;
-            // 
-            // panelQuad4
-            // 
-            this.panelQuad4.AutoScroll = true;
-            this.panelQuad4.AutoSize = true;
-            this.panelQuad4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelQuad4.Location = new System.Drawing.Point(3, 23);
-            this.panelQuad4.Name = "panelQuad4";
-            this.panelQuad4.Size = new System.Drawing.Size(334, 214);
-            this.panelQuad4.TabIndex = 1;
-            // 
             // Matriz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -264,6 +264,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Matriz";
             this.Size = new System.Drawing.Size(700, 500);
@@ -275,11 +276,11 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.gbxQuad4.ResumeLayout(false);
             this.gbxQuad4.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.gbxQuad1.ResumeLayout(false);
+            this.gbxQuad1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.gbxQuad1.ResumeLayout(false);
-            this.gbxQuad1.PerformLayout();
             this.ResumeLayout(false);
 
         }

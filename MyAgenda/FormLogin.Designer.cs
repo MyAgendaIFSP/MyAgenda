@@ -50,6 +50,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(444, 27);
             this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.Text = "allexxrodriguess@gmail.com";
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSenha
@@ -62,6 +63,7 @@
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(444, 27);
             this.txtSenha.TabIndex = 1;
+            this.txtSenha.Text = "123456";
             this.txtSenha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
@@ -174,7 +176,7 @@
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Entrar";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormLogin_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

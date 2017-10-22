@@ -261,5 +261,23 @@ namespace MyAgenda.Database
             return null;
         }
 
+        public bool AtualizaUltimoAcessoMatriz(int idMatriz)
+        {
+            if (_abreConexao())
+            {
+
+                SqlCommand cmd = new SqlCommand("UPDATE matriz_tempo SET ultima_utilizacao = @data WHERE matriz_tempo.id = @id;", _conexao);
+                cmd.Parameters.AddWithValue("@id", idMatriz);
+                cmd.Parameters.AddWithValue("@data", DateTime.Now);
+
+                int qtd = cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                return qtd > 0;
+            }
+
+            return false;
+        }
     }
 }

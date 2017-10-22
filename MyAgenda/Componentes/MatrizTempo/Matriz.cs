@@ -1,5 +1,6 @@
 ﻿using MyAgenda.Controladores.MatrizTempo;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -19,7 +20,7 @@ namespace MyAgenda.Componentes.MatrizTempo
         /// indice 3: quadrante 4
         /// </summary>
         private int[] _ultimosY = new int[4] { 0, 0, 0, 0};
-
+        
         public Matriz()
         {
             InitializeComponent();
@@ -28,7 +29,18 @@ namespace MyAgenda.Componentes.MatrizTempo
         public bool CarregaMatriz()
         {
             _controlador = MatrizController.GetInstance();
-            return true;
+
+            _controlador.AlteraUltimoAcesso();
+
+            if (_controlador != null)
+            {
+                _carregaQuadrante(EQuadrante.QUADRANTE_1, panelQuad1);
+                _carregaQuadrante(EQuadrante.QUADRANTE_2, panelQuad2);
+                _carregaQuadrante(EQuadrante.QUADRANTE_3, panelQuad3);
+                _carregaQuadrante(EQuadrante.QUADRANTE_4, panelQuad4);
+            }
+
+            return _controlador != null;
         }
 
         private void Matriz_Paint(object sender, PaintEventArgs e)
@@ -47,6 +59,105 @@ namespace MyAgenda.Componentes.MatrizTempo
 
             panel4.Location = new Point(tamPadrao.Width, tamPadrao.Height);
             panel4.Size = tamPadrao;
+            
+        }
+
+        /// <summary>
+        /// Adiciona um item na matriz
+        /// </summary>
+        /// <param name="item">Item da matriz que será adicionado</param>
+        public void AdicionaItem(ItemMatrizController item)
+        {
+            _controlador.AddItem(item);
+
+            switch (item.GetModel().Quadrante)
+            {
+                case EQuadrante.QUADRANTE_1:
+                    _addItemQuadrante(panelQuad1, item);
+                    break;
+
+                case EQuadrante.QUADRANTE_2:
+                    _addItemQuadrante(panelQuad2, item);
+                    break;
+
+                case EQuadrante.QUADRANTE_3:
+                    _addItemQuadrante(panelQuad3, item);
+                    break;
+
+                case EQuadrante.QUADRANTE_4:
+                    _addItemQuadrante(panelQuad4, item);
+                    break;
+            }
+            
+        }
+
+        private void _quadranteItemClick(object sender, ref ItemMatrizController item, bool removePermanente)
+        {
+            if (removePermanente)
+            {
+                //Deletar o item do banco de dados
+                LabelItemMatriz lbl = (LabelItemMatriz)sender;
+                Panel quadrante = (Panel) lbl.Parent;
+                quadrante.Controls.Remove(lbl);
+
+                _controlador.DeletarItem(item);
+
+                _atualizarQuadrante(quadrante, lbl.Location);
+
+                //quadrante.Invalidate();
+            }
+            else
+            {
+                if (item.GetModel().Ativo)
+                {
+                    //Marcar o item como inativo no banco de dados
+                    item.MarcarItemInativo();
+                }
+                else
+                {
+                    //Marcar o item como ativo no banco de dados
+                    item.MarcarItemAtivo();
+                }
+            }
+            
+        }
+
+        private void _addItemQuadrante(Panel panel, ItemMatrizController item)
+        {
+            LabelItemMatriz lbl = new LabelItemMatriz(item);
+            lbl.Location = new Point(6, _ultimosY[(int)item.GetModel().Quadrante]);
+            lbl.Text = item.GetModel().Titulo + ((String.IsNullOrEmpty(item.GetModel().Descricao)) ? "" : " - " + item.GetModel().Descricao);
+            lbl.Font = new Font(this.Font.Name, 11);
+            lbl.Cursor = Cursors.Hand;
+            lbl.QuadranteItemClick += _quadranteItemClick;
+            lbl.CreateControl();
+
+            lbl.Size = new Size(panel.ClientSize.Width - 12, lbl.Font.Height);
+            panel.Controls.Add(lbl);
+
+            _ultimosY[(int)item.GetModel().Quadrante] += lbl.Height + 2;
+        }
+
+        private void _atualizarQuadrante(Panel quadrante, Point location)
+        {
+            Point ultimaPosicao = new Point();
+
+            for(int i = 0; i < quadrante.Controls.Count; i++)
+            {
+                if (quadrante.Controls[i].Location.Y > location.Y)
+                {
+                    if (ultimaPosicao.Y == 0) {
+                        ultimaPosicao = quadrante.Controls[i].Location;
+                        quadrante.Controls[i].Location = location;
+                    }
+                    else
+                    {
+                        location = ultimaPosicao;
+                        ultimaPosicao = quadrante.Controls[i].Location;
+                        quadrante.Controls[i].Location = location;
+                    }
+                }
+            }
         }
 
         #region Métodos de highlight dos quadrantes
@@ -93,73 +204,40 @@ namespace MyAgenda.Componentes.MatrizTempo
 
         #endregion
 
-        /// <summary>
-        /// Adiciona um item na matriz
-        /// </summary>
-        /// <param name="item">Item da matriz que será adicionado</param>
-        public void AdicionaItem(ItemMatrizController item)
+        private void _carregaQuadrante(EQuadrante quadrante, Panel panel)
         {
-            LabelItemMatriz lbl = new LabelItemMatriz(ref item);
-            lbl.Location = new Point(6, _ultimosY[(int)item.GetModel().Quadrante]);
-            lbl.Text = item.GetModel().Titulo + ((String.IsNullOrEmpty(item.GetModel().Descricao)) ? "" : " - " + item.GetModel().Descricao);
-            lbl.Font = new Font(this.Font.Name, 11);
-            lbl.Cursor = Cursors.Hand;
-            lbl.QuadranteItemClick += _quadranteItemClick;
-            lbl.CreateControl();
-
-            //Determina a qual quadrante o item pertence e adiciona-o nele
-            switch (item.GetModel().Quadrante)
+            try
             {
-                case EQuadrante.QUADRANTE_1:
-                    lbl.Size = new Size(panelQuad1.ClientSize.Width - 12, lbl.Font.Height);
-                    panelQuad1.Controls.Add(lbl);
-                    break;
+                List<ItemMatrizController> itens = _controlador.GetModel().Itens;
 
-                case EQuadrante.QUADRANTE_2:
-                    lbl.Size = new Size(panelQuad2.ClientSize.Width - 12, lbl.Font.Height);
-                    panelQuad2.Controls.Add(lbl);
-                    break;
+                panel.Controls.Clear();
 
-                case EQuadrante.QUADRANTE_3:
-                    lbl.Size = new Size(panelQuad3.ClientSize.Width - 12, lbl.Font.Height);
-                    panelQuad3.Controls.Add(lbl);
-                    break;
+                _ultimosY[(int)quadrante] = 0;
 
-                case EQuadrante.QUADRANTE_4:
-                    lbl.Size = new Size(panelQuad4.ClientSize.Width - 12, lbl.Font.Height);
-                    panelQuad4.Controls.Add(lbl);
-                    break;
-            }
-            
-            _ultimosY[(int)item.GetModel().Quadrante] += lbl.Height + 2;
-
-            _controlador.AddItem(item);
-        }
-
-        private void _quadranteItemClick(object sender, ref ItemMatrizController item, bool removePermanente)
-        {
-            if (removePermanente)
-            {
-                //Deletar o item do banco de dados
-                LabelItemMatriz lbl = (LabelItemMatriz)sender;
-                Panel quadrante = (Panel) lbl.Parent;
-                quadrante.Controls.Remove(lbl);
-
-                _controlador.DeletarItem(item);
-            }
-            else
-            {
-                if (item.GetModel().Ativo)
+                for (int i = 0; i < itens.Count; i++)
                 {
-                    //Marcar o item como inativo no banco de dados
-                    item.MarcarItemInativo();
+                    if (itens[i].GetModel().Quadrante != quadrante)
+                    {
+                        continue;
+                    }
+
+                    LabelItemMatriz lbl = new LabelItemMatriz(itens[i]);
+                    lbl.Location = new Point(6, _ultimosY[(int)quadrante]);
+                    lbl.Text = itens[i].GetModel().Titulo + ((String.IsNullOrEmpty(itens[i].GetModel().Descricao)) ? "" : " - " + itens[i].GetModel().Descricao);
+                    lbl.Font = new Font(this.Font.Name, 11);
+                    lbl.Cursor = Cursors.Hand;
+                    lbl.QuadranteItemClick += _quadranteItemClick;
+                    lbl.CreateControl();
+
+                    lbl.Size = new Size(panel.ClientSize.Width - 12, lbl.Font.Height);
+                    panel.Controls.Add(lbl);
+
+                    _ultimosY[(int)quadrante] += lbl.Height + 2;
+
                 }
-                else
-                {
-                    //Marcar o item como ativo no banco de dados
-                    item.MarcarItemAtivo();
-                }
+
             }
+            catch { }
         }
 
     }

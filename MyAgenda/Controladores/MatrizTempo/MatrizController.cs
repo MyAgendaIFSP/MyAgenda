@@ -1,7 +1,10 @@
-﻿using MyAgenda.Database;
+﻿using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Database;
 using MyAgenda.Modelos.MatrizTempo;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyAgenda.Controladores.MatrizTempo
 {
@@ -33,7 +36,7 @@ namespace MyAgenda.Controladores.MatrizTempo
 
             return _instancia;
         }
-
+        
         private MatrizController()
         {
             _api = new MyAgendaAPI();
@@ -54,6 +57,11 @@ namespace MyAgenda.Controladores.MatrizTempo
         public List<ItemMatrizController> GetItens()
         {
             return _modelo.Itens;
+        }
+
+        public bool AlteraUltimoAcesso()
+        {
+            return _api.AtualizaUltimoAcessoMatriz(_modelo.Id);
         }
 
         public MatrizModel GetModel()

@@ -1,4 +1,6 @@
-﻿using MyAgenda.Modelos.MatrizTempo;
+﻿using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Modelos.MatrizTempo;
+using System.Drawing;
 
 namespace MyAgenda.Controladores.MatrizTempo
 {
@@ -32,5 +34,6 @@ namespace MyAgenda.Controladores.MatrizTempo
 
             return true;
         }
+        
     }
 }

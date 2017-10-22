@@ -40,11 +40,11 @@
             this.btnQuad3 = new System.Windows.Forms.Button();
             this.btnQuad2 = new System.Windows.Forms.Button();
             this.btnAdicionar = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.matrizTempo = new MyAgenda.Componentes.MatrizTempo.Matriz();
             this.barraNavegacao1 = new MyAgenda.Componentes.Geral.BarraNavegacao();
             this.loader1 = new MyAgenda.Componentes.Geral.Loader();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,6 +194,27 @@
             this.btnAdicionar.MouseEnter += new System.EventHandler(this.btnAdicionar_MouseEnter);
             this.btnAdicionar.MouseLeave += new System.EventHandler(this.btnAdicionar_MouseLeave);
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblStatus.Location = new System.Drawing.Point(13, 78);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(113, 17);
+            this.lblStatus.TabIndex = 10;
+            this.lblStatus.Text = "<erro ou sucesso>";
+            this.lblStatus.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 8F);
+            this.label5.Location = new System.Drawing.Point(12, 401);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(179, 16);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Itens com um * são obrigatórios!";
+            // 
             // matrizTempo
             // 
             this.matrizTempo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -224,27 +245,6 @@
             this.loader1.TabIndex = 8;
             this.loader1.TabStop = false;
             // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblStatus.Location = new System.Drawing.Point(13, 78);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(113, 17);
-            this.lblStatus.TabIndex = 10;
-            this.lblStatus.Text = "<erro ou sucesso>";
-            this.lblStatus.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 8F);
-            this.label5.Location = new System.Drawing.Point(12, 401);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 16);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Itens com um * são obrigatórios!";
-            // 
             // FormMatrizTempo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -267,6 +267,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -275,7 +276,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Matriz do Tempo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMatrizTempo_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMatrizTempo_FormClosed);
             this.Load += new System.EventHandler(this.FormMatrizTempo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);

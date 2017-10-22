@@ -53,7 +53,7 @@ namespace MyAgenda
                 //abrir próximo form
                 FormMatrizTempo f = new FormMatrizTempo(usuarioC);
                 f.Show();
-                this.Close();
+                this.Hide();
             }
             else
             {
@@ -102,10 +102,28 @@ namespace MyAgenda
                 c.Enabled = true;
             }
         }
-
-        private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
+        
+        private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            FormCollection forms = Application.OpenForms;
+            if (forms.Count == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                bool quit = true;
+
+                foreach (Form f in forms)
+                {
+                    quit = !(f.Visible == true);
+                }
+
+                if (quit)
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }

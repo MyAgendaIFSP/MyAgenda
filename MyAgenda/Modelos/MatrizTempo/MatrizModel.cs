@@ -23,5 +23,10 @@ namespace MyAgenda.Modelos.MatrizTempo
             Itens = itens;
         }
 
+        public ItemMatrizController GetItemAt(int index)
+        {
+            return Itens[index];
+        }
+
     }
 }

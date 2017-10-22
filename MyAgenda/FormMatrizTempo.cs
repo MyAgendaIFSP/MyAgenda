@@ -2,6 +2,7 @@
 using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.MatrizTempo;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using static MyAgenda.Componentes.Geral.BarraNavegacao;
@@ -220,9 +221,28 @@ namespace MyAgenda
 
         #endregion
 
-        private void FormMatrizTempo_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormMatrizTempo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            FormCollection forms = Application.OpenForms;
+            if (forms.Count == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                bool quit = true;
+
+                foreach (Form f in forms)
+                {
+                    quit = !(f.Visible == true);
+                }
+
+                if (quit)
+                {
+                    Application.Exit();
+                }
+            }
         }
+        
     }
 }
