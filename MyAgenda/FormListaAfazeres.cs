@@ -20,13 +20,13 @@ namespace MyAgenda
         public FormListaAfazeres()
         {
             InitializeComponent();
-            barraNavegacao1.MenuItemClick += _click;
+            barraNavegacao2.MenuItemClick += _click;
 
-            barraNavegacao1.AddItem("Início", Properties.Resources.ic_home_white, 1);
-            barraNavegacao1.AddItem("Pomodoro", 2);
-            barraNavegacao1.AddItem("Tarefas", 3);
-            barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, EPosicao.DIREITA, 4);
-            barraNavegacao1.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, EPosicao.DIREITA, _cloudClick, 5);
+            barraNavegacao2.AddItem("Início", Properties.Resources.ic_home_white, 1);
+            barraNavegacao2.AddItem("Pomodoro", 2);
+            barraNavegacao2.AddItem("Tarefas", 3);
+            barraNavegacao2.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, EPosicao.DIREITA, 4);
+            barraNavegacao2.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, EPosicao.DIREITA, _cloudClick, 5);
         }
 
         private void _cloudClick(ref Button btn, int itemId)
@@ -55,7 +55,7 @@ namespace MyAgenda
             }
         }
 
-        private void FormListaAfazeres_Load(object sender, EventArgs e)
+        private void _carregaDataAtual()
         {
             string dia = DateTime.Now.Day.ToString() + " de ";
             string mes = cultureInfo.TextInfo.ToTitleCase(cultureInfo.DateTimeFormat.GetMonthName(DateTime.Now.Month)) + " de ";
@@ -64,6 +64,27 @@ namespace MyAgenda
 
             lblDataAtual.Text = dia + mes + ano;
             lblDiaSemana.Text = diaDaSemana;
+        }
+
+        private void FormListaAfazeres_Load(object sender, EventArgs e)
+        {
+            _carregaDataAtual();
+        }
+
+        private void btnNovaLista_Click(object sender, EventArgs e)
+        {
+            FormNovaListaAfazeres form = new FormNovaListaAfazeres();
+            form.Show();
+        }
+
+        private void txtTarefa_Click(object sender, EventArgs e)
+        {
+            txtTarefa.Text = "";
+        }
+
+        private void txtTarefa_Leave(object sender, EventArgs e)
+        {
+            txtTarefa.Text = "Descrição da tarefa";
         }
     }
 }

@@ -53,6 +53,9 @@
     <Compile Include="Componentes\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Componentes\ItemTarefa.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Componentes\Loader.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,6 +77,12 @@
     <Compile Include="FormMatrizTempo.Designer.cs">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNovaListaAfazeres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNovaListaAfazeres.Designer.cs">
+      <DependentUpon>FormNovaListaAfazeres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormListaAfazeres.resx">
@@ -84,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatrizTempo.resx">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNovaListaAfazeres.resx">
+      <DependentUpon>FormNovaListaAfazeres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
