@@ -15,8 +15,8 @@ namespace MyAgenda.Componentes
         {
             this.Location = new System.Drawing.Point(0, 0);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Height = 30;
             this.Dock = DockStyle.Top;
+            this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
 
             btnChecar = new Button();
             btnChecar.Height = 18;
@@ -30,12 +30,12 @@ namespace MyAgenda.Componentes
             btnChecar.CreateControl();
 
             lblDescricaoTarefa = new Label();
-            lblDescricaoTarefa.Text = "Testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
-            lblDescricaoTarefa.TextAlign = ContentAlignment.MiddleCenter;
+            lblDescricaoTarefa.Text = "A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z.A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z.A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z.";
             lblDescricaoTarefa.Font = new Font("Century Gothic", 12, FontStyle.Regular);
             lblDescricaoTarefa.Location = new System.Drawing.Point(35, 0);
-            int locationX = (this.Size.Width - lblDescricaoTarefa.Size.Width) / 2;
-            lblDescricaoTarefa.Location = new Point(locationX, lblDescricaoTarefa.Location.Y);
+            lblDescricaoTarefa.AutoSize = true;
+            lblDescricaoTarefa.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            lblDescricaoTarefa.MaximumSize = new Size(600, 0);
             lblDescricaoTarefa.CreateControl();
 
 
