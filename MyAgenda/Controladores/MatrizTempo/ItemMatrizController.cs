@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Database;
 using MyAgenda.Modelos.MatrizTempo;
 using System.Drawing;
 
@@ -6,33 +7,41 @@ namespace MyAgenda.Controladores.MatrizTempo
 {
     public class ItemMatrizController
     {
+        private MyAgendaAPI _api;
 
-        private ItemMatrizModel _item;
+        private ItemMatrizModel _modelo;
 
         public ItemMatrizController(ItemMatrizModel item)
         {
-            _item = item;
+            _modelo = item;
+            _api = new MyAgendaAPI();
         }
 
         public ItemMatrizModel GetModel()
         {
-            return _item;
+            return _modelo;
         }
 
         public bool MarcarItemInativo()
         {
-            //Marcar o item como inativo no banco
-            _item.Ativo = false;
+            if (_api.MarcarItemMatrizInativo(_modelo.Id))
+            {
+                _modelo.Ativo = false;
+                return true;
+            }
 
-            return true;
+            return false;
         }
         
         internal bool MarcarItemAtivo()
         {
-            //Marcar o item como ativo no banco de dados
-            _item.Ativo = true;
+            if (_api.MarcarItemMatrizAtivo(_modelo.Id))
+            {
+                _modelo.Ativo = false;
+                return true;
+            }
 
-            return true;
+            return false;
         }
         
     }

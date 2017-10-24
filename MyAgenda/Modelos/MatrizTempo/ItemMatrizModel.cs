@@ -1,7 +1,6 @@
 ﻿using MyAgenda.Componentes.MatrizTempo;
 using System;
 using System.Drawing;
-using static MyAgenda.Componentes.MatrizTempo.Matriz;
 
 namespace MyAgenda.Modelos.MatrizTempo
 {
@@ -20,7 +19,7 @@ namespace MyAgenda.Modelos.MatrizTempo
         /// <summary>
         /// Quadrante ao qual o item pertence. Varia de 1 a 4
         /// </summary>
-        public EQuadrante Quadrante { get; set; }
+        public Matriz.EQuadrante Quadrante { get; set; }
 
         /// <summary>
         /// Indica se o item está ativo ou foi finalizado
@@ -34,7 +33,7 @@ namespace MyAgenda.Modelos.MatrizTempo
 
         public int Id { get; set; }
 
-        public ItemMatrizModel(string titulo, string descricao, EQuadrante quadrante)
+        public ItemMatrizModel(string titulo, string descricao, Matriz.EQuadrante quadrante)
         {
             Titulo = titulo;
             Descricao = descricao;
@@ -43,7 +42,7 @@ namespace MyAgenda.Modelos.MatrizTempo
             DataAdicao = DateTime.Now;
         }
 
-        public ItemMatrizModel(string titulo, string descricao, EQuadrante quadrante, bool ativo)
+        public ItemMatrizModel(string titulo, string descricao, Matriz.EQuadrante quadrante, bool ativo)
         {
             Titulo = titulo;
             Descricao = descricao;
@@ -52,7 +51,7 @@ namespace MyAgenda.Modelos.MatrizTempo
             DataAdicao = DateTime.Now;
         }
 
-        public ItemMatrizModel(string titulo, string descricao, EQuadrante quadrante, bool ativo, DateTime dataAdicao)
+        public ItemMatrizModel(string titulo, string descricao, Matriz.EQuadrante quadrante, bool ativo, DateTime dataAdicao)
         {
             Titulo = titulo;
             Descricao = descricao;
@@ -60,6 +59,6 @@ namespace MyAgenda.Modelos.MatrizTempo
             Ativo = ativo;
             DataAdicao = dataAdicao;
         }
-        
+
     }
 }

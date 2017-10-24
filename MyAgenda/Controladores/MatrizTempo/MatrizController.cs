@@ -72,23 +72,28 @@ namespace MyAgenda.Controladores.MatrizTempo
         public bool AddItem(ItemMatrizController item)
         {
             try {
-                _modelo.Itens.Add(item);
+                if (_api.AdicionaItemMatriz(item.GetModel()))
+                {
+                    _modelo.Itens.Add(item);
+                    return true;
+                }
             }
-            catch
-            {
-                return false;
-            }
+            catch { }
 
-            return true;
+            return false;
         }
 
         public bool DeletarItem(ItemMatrizController item)
         {
             //Apagar o item do banco
-            _modelo.Itens.Remove(item);
+            if (_api.RemoveItemMatriz(item.GetModel().Id))
+            {
+                _modelo.Itens.Remove(item);
+                return true;
+            }
 
-            return true;
+            return false;
         }
-        
+                
     }
 }

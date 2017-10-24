@@ -5,10 +5,6 @@ using MyAgenda.Seguranca;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyAgenda.Database
 {
@@ -261,6 +257,11 @@ namespace MyAgenda.Database
             return null;
         }
 
+        /// <summary>
+        /// Atualiza a data do último acesso da matriz do tempo
+        /// </summary>
+        /// <param name="idMatriz">id da matriz</param>
+        /// <returns></returns>
         public bool AtualizaUltimoAcessoMatriz(int idMatriz)
         {
             if (_abreConexao())
@@ -275,6 +276,74 @@ namespace MyAgenda.Database
                 _fechaConexao();
 
                 return qtd > 0;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Adiciona um item novo à matriz do tempo
+        /// </summary>
+        /// <param name="item">modelo do item que será adicionado</param>
+        /// <returns></returns>
+        public bool AdicionaItemMatriz(ItemMatrizModel item)
+        {
+            if (_abreConexao())
+            {
+                throw new NotImplementedException();
+
+                _fechaConexao();
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Remove permanentemente um item da matriz do tempo
+        /// </summary>
+        /// <param name="itemId">id do item que será removido</param>
+        /// <returns></returns>
+        public bool RemoveItemMatriz(int itemId)
+        {
+            if (_abreConexao())
+            {
+                throw new NotImplementedException();
+
+                _fechaConexao();
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Marca um item da matriz do tempo como inativo
+        /// </summary>
+        /// <param name="itemId">id do item</param>
+        /// <returns></returns>
+        public bool MarcarItemMatrizInativo(int itemId)
+        {
+            if (_abreConexao())
+            {
+                throw new NotImplementedException();
+
+                _fechaConexao();
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Marca um item da matriz do tempo como ativo
+        /// </summary>
+        /// <param name="itemId">id do item</param>
+        /// <returns></returns>
+        public bool MarcarItemMatrizAtivo(int itemId)
+        {
+            if (_abreConexao())
+            {
+                throw new NotImplementedException();
+
+                _fechaConexao();
             }
 
             return false;

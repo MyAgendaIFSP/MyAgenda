@@ -5,14 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using static MyAgenda.Componentes.Geral.BarraNavegacao;
-using static MyAgenda.Componentes.MatrizTempo.Matriz;
+using MyAgenda.Componentes.Geral;
+using MyAgenda.Componentes.MatrizTempo;
 
 namespace MyAgenda
 {
     public partial class FormMatrizTempo : Form
     {
-        private EQuadrante _quadranteSelecionado = EQuadrante.NENHUM;
+        private Matriz.EQuadrante _quadranteSelecionado = Matriz.EQuadrante.NENHUM;
 
         private UsuarioController _usuario = null;
 
@@ -20,12 +20,12 @@ namespace MyAgenda
         {
             InitializeComponent();
             barraNavegacao1.MenuItemClick += _click;
-            
+
             barraNavegacao1.AddItem("Início", Properties.Resources.ic_home_white, 1);
             barraNavegacao1.AddItem("Pomodoro", 2);
             barraNavegacao1.AddItem("Tarefas", 3);
-            barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, EPosicao.DIREITA, 4);
-            barraNavegacao1.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, EPosicao.DIREITA, _cloudClick, 5);
+            barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, BarraNavegacao.EPosicao.DIREITA, 4);
+            barraNavegacao1.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, BarraNavegacao.EPosicao.DIREITA, _cloudClick, 5);
 
             _usuario = u;
         }
@@ -50,7 +50,7 @@ namespace MyAgenda
                 _mostraErro("Digite um título para o item");
                 return;
             }
-            else if (_quadranteSelecionado == EQuadrante.NENHUM)
+            else if (_quadranteSelecionado == Matriz.EQuadrante.NENHUM)
             {
                 _mostraErro("Selecione um quadrante");
                 return;
@@ -65,22 +65,22 @@ namespace MyAgenda
 
         private void btnQuad1_Click(object sender, EventArgs e)
         {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_1;
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_1;
         }
 
         private void btnQuad2_Click(object sender, EventArgs e)
         {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_2;
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_2;
         }
 
         private void btnQuad3_Click(object sender, EventArgs e)
         {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_3;
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_3;
         }
 
         private void btnQuad4_Click(object sender, EventArgs e)
         {
-            _quadranteSelecionado = EQuadrante.QUADRANTE_4;
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_4;
         }
 
         #region Click handlers da barra de navegação
@@ -243,6 +243,6 @@ namespace MyAgenda
                 }
             }
         }
-        
+
     }
 }

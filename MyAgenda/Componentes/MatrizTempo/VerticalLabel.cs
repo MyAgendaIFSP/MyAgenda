@@ -6,8 +6,19 @@ namespace MyAgenda.Componentes.MatrizTempo
     public class VerticalLabel : Label
     {
 
-        public override bool AutoSize { get => base.AutoSize; set => base.AutoSize = base.AutoSize; }
-        
+        public override bool AutoSize
+        {
+            get
+            {
+                return base.AutoSize;
+            }
+
+            set
+            {
+                base.AutoSize = base.AutoSize;
+            }
+        }
+
         public VerticalLabel()
         {
             this.AutoSize = false;
