@@ -45,6 +45,8 @@ namespace MyAgenda
             string titulo = txtTitulo.Text;
             string descricao = txtDescricao.Text;
 
+            _comecaCarregar();
+
             if (String.IsNullOrEmpty(titulo))
             {
                 _mostraErro("Digite um título para o item");
@@ -60,26 +62,47 @@ namespace MyAgenda
 
             matrizTempo.AdicionaItem(new ItemMatrizController(item));
 
+            _paraCarregar();
             _mostraSucesso("Item adicionado.");
         }
 
         private void btnQuad1_Click(object sender, EventArgs e)
         {
+            btnQuad1.BackColor = Color.DarkSlateGray;
+            btnQuad2.BackColor = Color.LightSlateGray;
+            btnQuad3.BackColor = Color.LightSlateGray;
+            btnQuad4.BackColor = Color.LightSlateGray;
+
             _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_1;
         }
 
         private void btnQuad2_Click(object sender, EventArgs e)
         {
+            btnQuad2.BackColor = Color.DarkSlateGray;
+            btnQuad1.BackColor = Color.LightSlateGray;
+            btnQuad3.BackColor = Color.LightSlateGray;
+            btnQuad4.BackColor = Color.LightSlateGray;
+
             _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_2;
         }
 
         private void btnQuad3_Click(object sender, EventArgs e)
         {
+            btnQuad3.BackColor = Color.DarkSlateGray;
+            btnQuad1.BackColor = Color.LightSlateGray;
+            btnQuad2.BackColor = Color.LightSlateGray;
+            btnQuad4.BackColor = Color.LightSlateGray;
+
             _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_3;
         }
 
         private void btnQuad4_Click(object sender, EventArgs e)
         {
+            btnQuad4.BackColor = Color.DarkSlateGray;
+            btnQuad1.BackColor = Color.LightSlateGray;
+            btnQuad2.BackColor = Color.LightSlateGray;
+            btnQuad3.BackColor = Color.LightSlateGray;
+
             _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_4;
         }
 

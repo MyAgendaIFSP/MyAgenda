@@ -103,8 +103,7 @@ namespace MyAgenda.Componentes.MatrizTempo
                 _controlador.DeletarItem(item);
 
                 _atualizarQuadrante(quadrante, lbl.Location);
-
-                //quadrante.Invalidate();
+                
             }
             else
             {

@@ -35,27 +35,27 @@ namespace MyAgenda.Componentes.MatrizTempo
         {
             base.OnClick(e);
 
+            MouseEventArgs args = (MouseEventArgs)e;
+
             if (QuadranteItemClick != null)
             {
-                QuadranteItemClick(this, ref _matrizItem, false);
+                bool removePermanente = false;
+
+                if (args.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    removePermanente = false;
+                }
+                else
+                {
+                    removePermanente = true;
+                }
+
+                QuadranteItemClick(this, ref _matrizItem, removePermanente);
             }
 
             this.Invalidate();
         }
-
-        protected override void OnDoubleClick(EventArgs e)
-        {
-            base.OnDoubleClick(e);
-
-            if (QuadranteItemClick != null)
-            {
-                QuadranteItemClick(this, ref _matrizItem, true);
-            }
-
-            this.Invalidate();
-        }
-                
-
+        
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);

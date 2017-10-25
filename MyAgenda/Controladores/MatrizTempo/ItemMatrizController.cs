@@ -37,7 +37,7 @@ namespace MyAgenda.Controladores.MatrizTempo
         {
             if (_api.MarcarItemMatrizAtivo(_modelo.Id))
             {
-                _modelo.Ativo = false;
+                _modelo.Ativo = true;
                 return true;
             }
 

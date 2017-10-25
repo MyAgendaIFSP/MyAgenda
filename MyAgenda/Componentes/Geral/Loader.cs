@@ -39,7 +39,7 @@ namespace MyAgenda.Componentes.Geral
             if (Active)
             {
                 _desenhaLinha(pe.Graphics);
-                this.Invalidate();
+                this.Refresh();
             }
         }
 
