@@ -4,6 +4,7 @@ using MyAgenda.Modelos.MatrizTempo;
 using MyAgenda.Seguranca;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace MyAgenda.Database
@@ -31,8 +32,7 @@ namespace MyAgenda.Database
             IpFixoSqnApi.Api server = new IpFixoSqnApi.Api();
             string maq = server.AuthUsuario("allex123", "123456");
             string ip = server.GetAddress(maq);
-
-            //STRING_CONEXAO = "Server=" + ip + ":5123;Database=my_agenda;Integrated Security=true";
+            
             STRING_CONEXAO = @"Data Source=tcp:" + ip + @";Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
 
@@ -307,9 +307,28 @@ namespace MyAgenda.Database
         {
             if (_abreConexao())
             {
-                throw new NotImplementedException();
+                MatrizController m = MatrizController.GetInstance();
+                int matId = m.GetModel().Id;
+
+                SqlCommand cmd = new SqlCommand("NovoItemMatriz", _conexao);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@quadrante", ((int)item.Quadrante) + 1);
+                cmd.Parameters.AddWithValue("@titulo", item.Titulo);
+                cmd.Parameters.AddWithValue("@mat_id", matId);
+                cmd.Parameters.AddWithValue("@descricao", item.Descricao);
+
+                SqlParameter output = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                output.Direction = ParameterDirection.ReturnValue;
+
+                cmd.ExecuteNonQuery();
+
+                int ultId = (int)output.Value;
+                item.Id = ultId;
 
                 _fechaConexao();
+
+                return ultId > 0;
             }
 
             return false;

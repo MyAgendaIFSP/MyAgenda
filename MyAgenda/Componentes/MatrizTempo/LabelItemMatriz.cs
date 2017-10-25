@@ -67,7 +67,7 @@ namespace MyAgenda.Componentes.MatrizTempo
         {
             base.OnMouseLeave(e);
 
-            this.BackColor = Color.White;
+            this.BackColor = Color.Transparent;
         }
 
         protected override void OnPaint(PaintEventArgs e)

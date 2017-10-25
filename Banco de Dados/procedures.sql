@@ -41,3 +41,20 @@ begin
 	
 end
 go
+
+create
+procedure NovoItemMatriz @mat_id int, @quadrante int, @titulo varchar(50), @descricao varchar(100)
+as
+begin
+
+	declare @id int;
+
+	insert into item_matriz (matriz, quadrante, titulo, descricao, ativo, data_adicao)
+	values(@mat_id, @quadrante, @titulo, @descricao, 1, getdate());
+
+	select @id = max(id) from item_matriz;
+
+	return @id;
+
+end
+go
