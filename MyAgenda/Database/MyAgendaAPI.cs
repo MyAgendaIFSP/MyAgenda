@@ -255,14 +255,14 @@ namespace MyAgenda.Database
                     // iterate through results, printing each to console
                     while (rdr.Read())
                     {
-                        int uid = (int)rdr["id"];
+                        int id = (int)rdr["id"];
                         Componentes.MatrizTempo.Matriz.EQuadrante quadrante = (Componentes.MatrizTempo.Matriz.EQuadrante)((int)rdr["quadrante"] - 1);
                         string titulo = rdr["titulo"].ToString();
                         string descricao = rdr["descricao"].ToString();
                         bool ativo = (bool)rdr["ativo"];
                         DateTime dtAdd = DateTime.Parse(rdr["data_adicao"].ToString());
 
-                        itens.Add(new ItemMatrizController(new ItemMatrizModel(titulo, descricao, quadrante, ativo, dtAdd)));
+                        itens.Add(new ItemMatrizController(new ItemMatrizModel(id, titulo, descricao, quadrante, ativo, dtAdd)));
                     }
                     
                 }
@@ -341,12 +341,23 @@ namespace MyAgenda.Database
         /// <returns></returns>
         public bool RemoveItemMatriz(int itemId)
         {
+            
             if (_abreConexao())
             {
-                throw new NotImplementedException();
+                MatrizController m = MatrizController.GetInstance();
+                int matId = m.GetModel().Id;
+
+                SqlCommand cmd = new SqlCommand("DELETE FROM item_matriz WHERE id = @item", _conexao);
+                cmd.Parameters.AddWithValue("@item", itemId);                    
+
+                int qtd = cmd.ExecuteNonQuery();
 
                 _fechaConexao();
+
+                return qtd > 0;
             }
+                
+            _fechaConexao();
 
             return false;
         }
@@ -358,14 +369,7 @@ namespace MyAgenda.Database
         /// <returns></returns>
         public bool MarcarItemMatrizInativo(int itemId)
         {
-            if (_abreConexao())
-            {
-                throw new NotImplementedException();
-
-                _fechaConexao();
-            }
-
-            return false;
+            return _alteraEstadoItem(itemId, false);
         }
 
         /// <summary>
@@ -375,12 +379,31 @@ namespace MyAgenda.Database
         /// <returns></returns>
         public bool MarcarItemMatrizAtivo(int itemId)
         {
+            return _alteraEstadoItem(itemId, true);
+        }
+
+        /// <summary>
+        /// Altera o estado de um item no banco de dados (ativo/inativo)
+        /// </summary>
+        /// <param name="itemId">id do item</param>
+        /// <param name="ativo">estado (ativo=true,inativo=fase)</param>
+        /// <returns></returns>
+        private bool _alteraEstadoItem(int itemId, bool ativo)
+        {
             if (_abreConexao())
             {
-                throw new NotImplementedException();
+                SqlCommand cmd = new SqlCommand("UPDATE item_matriz SET ativo = @estado WHERE id = @item;", _conexao);
+                cmd.Parameters.AddWithValue("@item", itemId);
+                cmd.Parameters.AddWithValue("@estado", (ativo)? 1 : 0);
+
+                int qtd = cmd.ExecuteNonQuery();
 
                 _fechaConexao();
+
+                return qtd > 0;
             }
+
+            _fechaConexao();
 
             return false;
         }

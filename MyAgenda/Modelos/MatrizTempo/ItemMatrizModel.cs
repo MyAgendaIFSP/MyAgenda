@@ -60,5 +60,15 @@ namespace MyAgenda.Modelos.MatrizTempo
             DataAdicao = dataAdicao;
         }
 
+        public ItemMatrizModel(int id, string titulo, string descricao, Matriz.EQuadrante quadrante, bool ativo, DateTime dataAdicao)
+        {
+            Id = id;
+            Titulo = titulo;
+            Descricao = descricao;
+            Quadrante = quadrante;
+            Ativo = ativo;
+            DataAdicao = dataAdicao;
+        }
+
     }
 }
