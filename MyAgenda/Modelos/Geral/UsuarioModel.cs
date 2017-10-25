@@ -3,7 +3,7 @@ using System;
 
 namespace MyAgenda.Modelos.Geral
 {
-    class UsuarioModel
+    public class UsuarioModel
     {
 
         public int Id { get; set; }

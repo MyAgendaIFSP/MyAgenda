@@ -8,9 +8,9 @@ using System.Data.SqlClient;
 
 namespace MyAgenda.Database
 {
-    class MyAgendaAPI
+    public class MyAgendaAPI
     {
-        private const string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
+        private readonly string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
 
         private static MyAgendaAPI _instancia = null;
 
@@ -24,6 +24,16 @@ namespace MyAgenda.Database
             }
 
             return _instancia;
+        }
+
+        private MyAgendaAPI()
+        {
+            IpFixoSqnApi.Api server = new IpFixoSqnApi.Api();
+            string maq = server.AuthUsuario("allex123", "123456");
+            string ip = server.GetAddress(maq);
+
+            //STRING_CONEXAO = "Server=" + ip + ":5123;Database=my_agenda;Integrated Security=true";
+            STRING_CONEXAO = @"Data Source=tcp:" + ip + @";Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
 
         /// <summary>
@@ -44,6 +54,11 @@ namespace MyAgenda.Database
             }
             catch
             {
+                if(_conexao.State == System.Data.ConnectionState.Open)
+                {
+                    return true;
+                }
+
                 return false;
             }
         }
@@ -91,21 +106,23 @@ namespace MyAgenda.Database
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
-                    // iterate through results, printing each to console
-                    while (rdr.Read())
+                    try
                     {
-                        int uid = (int)rdr["id"];
-                        int matrizId = (int)rdr["matriz"];
-                        string nome = rdr["nome"].ToString();
-                        string d = rdr["matriz_inicializacao"].ToString();
-                        DateTime dtNasc = DateTime.Parse(rdr["data_nascimento"].ToString());
-                        DateTime matInit = DateTime.Parse(rdr["matriz_inicializacao"].ToString());
-                        DateTime matUtili = DateTime.Parse(rdr["matriz_ulti_utilizacao"].ToString());
+                        while (rdr.Read())
+                        {
+                            int uid = (int)rdr["id"];
+                            int matrizId = (int)rdr["matriz"];
+                            string nome = rdr["nome"].ToString();
+                            string d = rdr["matriz_inicializacao"].ToString();
+                            DateTime dtNasc = DateTime.Parse(rdr["data_nascimento"].ToString());
+                            DateTime matInit = DateTime.Parse(rdr["matriz_inicializacao"].ToString());
+                            DateTime matUtili = DateTime.Parse(rdr["matriz_ulti_utilizacao"].ToString());
 
-                        matriz = MatrizController.GetInstance(matrizId, matInit, matUtili);
-                        usuario = new UsuarioModel(uid, nome, dtNasc, matriz);
+                            matriz = MatrizController.GetInstance(matrizId, matInit, matUtili);
+                            usuario = new UsuarioModel(uid, nome, dtNasc, matriz);
+                        }
                     }
-
+                    catch { }
                 }
                 _fechaConexao();
 
@@ -247,7 +264,7 @@ namespace MyAgenda.Database
 
                         itens.Add(new ItemMatrizController(new ItemMatrizModel(titulo, descricao, quadrante, ativo, dtAdd)));
                     }
-
+                    
                 }
                 _fechaConexao();
 

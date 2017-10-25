@@ -24,7 +24,7 @@ namespace MyAgenda.Controladores.Geral
 
         private UsuarioController()
         {
-            _api = new MyAgendaAPI();
+            _api = MyAgendaAPI.GetInstance();
         }
         
         /// <summary>

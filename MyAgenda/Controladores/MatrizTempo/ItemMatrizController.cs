@@ -14,7 +14,7 @@ namespace MyAgenda.Controladores.MatrizTempo
         public ItemMatrizController(ItemMatrizModel item)
         {
             _modelo = item;
-            _api = new MyAgendaAPI();
+            _api = MyAgendaAPI.GetInstance();
         }
 
         public ItemMatrizModel GetModel()

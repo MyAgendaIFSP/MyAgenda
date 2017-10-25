@@ -17,6 +17,13 @@ namespace MyAgenda.Controladores.MatrizTempo
 
         private static MatrizController _instancia = null;
 
+        /// <summary>
+        /// Método chamado pela API para iniciar o controlador da matriz
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dtInicializacao"></param>
+        /// <param name="ultimoAcesso"></param>
+        /// <returns></returns>
         public static MatrizController GetInstance(int id, DateTime dtInicializacao, DateTime ultimoAcesso)
         {
             if(_instancia == null)
@@ -27,6 +34,10 @@ namespace MyAgenda.Controladores.MatrizTempo
             return _instancia;
         }
 
+        /// <summary>
+        /// Método chamado pelas classes. Sempre será chamado depois do GetInstance com parametros, que foi inicializado pela API
+        /// </summary>
+        /// <returns></returns>
         public static MatrizController GetInstance()
         {
             if (_instancia == null)
@@ -39,13 +50,13 @@ namespace MyAgenda.Controladores.MatrizTempo
         
         private MatrizController()
         {
-            _api = new MyAgendaAPI();
+            _api = MyAgendaAPI.GetInstance();
         }
 
         private MatrizController(int id, DateTime dtInicializacao, DateTime ultimoAcesso)
         {
             //Buscar no banco a matriz do usuário
-            _api = new MyAgendaAPI();
+            _api = MyAgendaAPI.GetInstance();
             _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens(id));
         }
 
