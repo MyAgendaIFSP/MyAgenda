@@ -1,6 +1,7 @@
 ﻿using MyAgenda.Controladores.Geral;
 using MyAgenda.Seguranca;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,6 +9,8 @@ namespace MyAgenda
 {
     public partial class FormLogin : Form
     {
+        private UsuarioController user = UsuarioController.GetInstance();
+
         public FormLogin()
         {
             InitializeComponent();
@@ -15,7 +18,50 @@ namespace MyAgenda
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            _autenticarUsuario();                        
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+
+            //Validar entradas do usuário
+            if (String.IsNullOrEmpty(txtUsuario.Text))
+            {
+                _mostraErro("Digite um nome de usuário.");
+                txtUsuario.Focus();
+                _paraCarregar();
+                return;
+            }
+            else if (String.IsNullOrEmpty(txtSenha.Text))
+            {
+                _mostraErro("Digite sua senha cadastrada.");
+                txtSenha.Focus();
+                _paraCarregar();
+                return;
+            }
+
+            _comecaCarregar();
+            worker.RunWorkerAsync();
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            _paraCarregar();
+
+            if (user.IsAutenticado)
+            {
+                //abrir próximo form
+                FormMatrizTempo f = new FormMatrizTempo(user);
+                f.Show();
+                this.Hide();
+            }
+            else
+            {
+                _mostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
+            }
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            user.Autentica(txtUsuario.Text, txtSenha.Text);
         }
 
         private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

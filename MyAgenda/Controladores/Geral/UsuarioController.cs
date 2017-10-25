@@ -12,6 +12,8 @@ namespace MyAgenda.Controladores.Geral
         
         private MyAgendaAPI _api;
 
+        public bool IsAutenticado { get; set; } = false;
+
         public static UsuarioController GetInstance()
         {
             if(_instancia == null)
@@ -37,7 +39,8 @@ namespace MyAgenda.Controladores.Geral
             if (_verificaEmail(email))
             {
                 _modelo = _api.AutenticaUsuario(email, senha);
-                return _modelo != null;
+                IsAutenticado = _modelo != null;
+                return IsAutenticado;
             }
 
             return false;
