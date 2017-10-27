@@ -66,9 +66,7 @@ namespace MyAgenda
         {
             string titulo = txtTitulo.Text;
             string descricao = txtDescricao.Text;
-
-            this.ComecaCarregar();
-
+            
             if (String.IsNullOrEmpty(titulo))
             {
                 this.MostraErro("Digite um título para o item");
@@ -79,6 +77,8 @@ namespace MyAgenda
                 this.MostraErro("Selecione um quadrante");
                 return;
             }
+
+            this.ComecaCarregar();
 
             ItemMatrizModel item = new ItemMatrizModel(titulo, descricao, _quadranteSelecionado);
 
@@ -186,8 +186,12 @@ namespace MyAgenda
             matrizTempo.ParaHighlightQuadrante4();
         }
 
+
         #endregion
 
-
+        private void FormMatrizTempo_ResizeEnd(object sender, EventArgs e)
+        {
+            matrizTempo.Invalidate();
+        }
     }
 }

@@ -41,10 +41,10 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbxQuad1 = new System.Windows.Forms.GroupBox();
             this.panelQuad1 = new System.Windows.Forms.Panel();
-            this.verticalLabel1 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.verticalLabel1 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
             this.verticalLabel2 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
             this.gbxQuad2.SuspendLayout();
             this.gbxQuad3.SuspendLayout();
@@ -195,18 +195,6 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panelQuad1.Size = new System.Drawing.Size(308, 193);
             this.panelQuad1.TabIndex = 0;
             // 
-            // verticalLabel1
-            // 
-            this.verticalLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.verticalLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.verticalLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.verticalLabel1.Location = new System.Drawing.Point(-1, 0);
-            this.verticalLabel1.Name = "verticalLabel1";
-            this.verticalLabel1.Size = new System.Drawing.Size(24, 248);
-            this.verticalLabel1.TabIndex = 0;
-            this.verticalLabel1.Text = "IMPORTANTES";
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -241,6 +229,18 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(350, 250);
             this.panel3.TabIndex = 12;
+            // 
+            // verticalLabel1
+            // 
+            this.verticalLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.verticalLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.verticalLabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.verticalLabel1.Location = new System.Drawing.Point(-1, 0);
+            this.verticalLabel1.Name = "verticalLabel1";
+            this.verticalLabel1.Size = new System.Drawing.Size(24, 248);
+            this.verticalLabel1.TabIndex = 0;
+            this.verticalLabel1.Text = "IMPORTANTES";
             // 
             // verticalLabel2
             // 

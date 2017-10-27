@@ -24,6 +24,10 @@ namespace MyAgenda.Componentes.MatrizTempo
         public Matriz()
         {
             InitializeComponent();
+
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         public bool CarregaMatriz()
@@ -46,7 +50,7 @@ namespace MyAgenda.Componentes.MatrizTempo
         private void Matriz_Paint(object sender, PaintEventArgs e)
         {
             //Reposiciona os quadrantes na tela
-            Size tamPadrao = new Size(this.Width / 2, this.Height / 2);
+            Size tamPadrao = new Size(this.ClientSize.Width / 2, this.ClientSize.Height / 2);
 
             panel1.Location = new Point(0, 0);
             panel1.Size = tamPadrao;
@@ -238,6 +242,6 @@ namespace MyAgenda.Componentes.MatrizTempo
             }
             catch { }
         }
-
+        
     }
 }

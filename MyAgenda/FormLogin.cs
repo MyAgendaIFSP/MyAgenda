@@ -16,7 +16,7 @@ namespace MyAgenda
         {
             InitializeComponent();
 
-            this.Size = new Size(558, 356);
+            this.Size = new Size(558, 362);
             this.WindowState = FormWindowState.Normal;
             
             this.StartPosition = FormStartPosition.CenterScreen;

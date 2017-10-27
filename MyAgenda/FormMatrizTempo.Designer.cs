@@ -43,7 +43,16 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.matrizTempo = new MyAgenda.Componentes.MatrizTempo.Matriz();
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             this.SuspendLayout();
+            // 
+            // BarraNavegacao
+            // 
+            this.BarraNavegacao.Size = new System.Drawing.Size(710, 40);
+            // 
+            // Loader
+            // 
+            this.Loader.Size = new System.Drawing.Size(694, 7);
             // 
             // label1
             // 
@@ -251,6 +260,9 @@
             this.Name = "FormMatrizTempo";
             this.Text = "MyAgenda | Matriz do Tempo";
             this.Load += new System.EventHandler(this.FormMatrizTempo_Load);
+            this.ResizeEnd += new System.EventHandler(this.FormMatrizTempo_ResizeEnd);
+            this.Controls.SetChildIndex(this.BarraNavegacao, 0);
+            this.Controls.SetChildIndex(this.Loader, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
@@ -265,6 +277,7 @@
             this.Controls.SetChildIndex(this.matrizTempo, 0);
             this.Controls.SetChildIndex(this.lblStatus, 0);
             this.Controls.SetChildIndex(this.label5, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

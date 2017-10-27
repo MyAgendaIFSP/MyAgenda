@@ -38,6 +38,7 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.llblCadastrar = new System.Windows.Forms.LinkLabel();
             this.loader1 = new MyAgenda.Componentes.Geral.Loader();
+            this.ckbLembrar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +55,7 @@
             // 
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsuario.Location = new System.Drawing.Point(48, 109);
+            this.txtUsuario.Location = new System.Drawing.Point(48, 100);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(444, 27);
@@ -66,7 +67,7 @@
             // 
             this.txtSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSenha.Location = new System.Drawing.Point(48, 174);
+            this.txtSenha.Location = new System.Drawing.Point(48, 162);
             this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
@@ -90,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 83);
+            this.label2.Location = new System.Drawing.Point(44, 74);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 21);
@@ -100,7 +101,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 148);
+            this.label3.Location = new System.Drawing.Point(44, 136);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 21);
@@ -118,7 +119,7 @@
             this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.ForeColor = System.Drawing.Color.White;
-            this.btnEntrar.Location = new System.Drawing.Point(48, 238);
+            this.btnEntrar.Location = new System.Drawing.Point(48, 245);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(444, 37);
             this.btnEntrar.TabIndex = 5;
@@ -130,7 +131,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblStatus.Location = new System.Drawing.Point(48, 204);
+            this.lblStatus.Location = new System.Drawing.Point(48, 220);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(113, 17);
             this.lblStatus.TabIndex = 6;
@@ -142,7 +143,7 @@
             this.llblCadastrar.AutoSize = true;
             this.llblCadastrar.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.llblCadastrar.LinkColor = System.Drawing.Color.RoyalBlue;
-            this.llblCadastrar.Location = new System.Drawing.Point(48, 277);
+            this.llblCadastrar.Location = new System.Drawing.Point(48, 284);
             this.llblCadastrar.Name = "llblCadastrar";
             this.llblCadastrar.Size = new System.Drawing.Size(118, 17);
             this.llblCadastrar.TabIndex = 7;
@@ -161,12 +162,29 @@
             this.loader1.TabIndex = 8;
             this.loader1.TabStop = false;
             // 
+            // ckbLembrar
+            // 
+            this.ckbLembrar.AutoSize = true;
+            this.ckbLembrar.Checked = true;
+            this.ckbLembrar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbLembrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckbLembrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ckbLembrar.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.ckbLembrar.Location = new System.Drawing.Point(49, 193);
+            this.ckbLembrar.Name = "ckbLembrar";
+            this.ckbLembrar.Size = new System.Drawing.Size(108, 23);
+            this.ckbLembrar.TabIndex = 9;
+            this.ckbLembrar.Text = "Lembrar-me";
+            this.ckbLembrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ckbLembrar.UseVisualStyleBackColor = true;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(542, 317);
+            this.ClientSize = new System.Drawing.Size(542, 323);
+            this.Controls.Add(this.ckbLembrar);
             this.Controls.Add(this.loader1);
             this.Controls.Add(this.llblCadastrar);
             this.Controls.Add(this.lblStatus);
@@ -197,6 +215,7 @@
             this.Controls.SetChildIndex(this.loader1, 0);
             this.Controls.SetChildIndex(this.BarraNavegacao, 0);
             this.Controls.SetChildIndex(this.Loader, 0);
+            this.Controls.SetChildIndex(this.ckbLembrar, 0);
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);
@@ -215,6 +234,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.LinkLabel llblCadastrar;
         private MyAgenda.Componentes.Geral.Loader loader1;
+        private System.Windows.Forms.CheckBox ckbLembrar;
     }
 }
 
