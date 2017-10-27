@@ -12,7 +12,7 @@ namespace MyAgenda.Controladores.Geral
         
         private MyAgendaAPI _api;
 
-        public bool IsAutenticado { get; set; } = false;
+        public bool IsAutenticado { get; set; }
 
         public static UsuarioController GetInstance()
         {
@@ -26,6 +26,7 @@ namespace MyAgenda.Controladores.Geral
 
         private UsuarioController()
         {
+            IsAutenticado = false;
             _api = MyAgendaAPI.GetInstance();
         }
         

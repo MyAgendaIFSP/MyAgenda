@@ -1,4 +1,5 @@
-﻿using MyAgenda.Controladores.Geral;
+﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Controladores.Geral;
 using MyAgenda.Seguranca;
 using System;
 using System.ComponentModel;
@@ -7,13 +8,21 @@ using System.Windows.Forms;
 
 namespace MyAgenda
 {
-    public partial class FormLogin : Form
+    public partial class FormLogin : BaseForm
     {
         private UsuarioController user = UsuarioController.GetInstance();
 
         public FormLogin()
         {
             InitializeComponent();
+
+            this.Size = new Size(558, 356);
+            this.WindowState = FormWindowState.Normal;
+            
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.TemBarraNavegacao = false;
+            this.StatusLabel = lblStatus;
+            
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
@@ -25,26 +34,26 @@ namespace MyAgenda
             //Validar entradas do usuário
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
-                _mostraErro("Digite um nome de usuário.");
+                this.MostraErro("Digite um nome de usuário.");
                 txtUsuario.Focus();
-                _paraCarregar();
+                this.ParaCarregar();
                 return;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
-                _mostraErro("Digite sua senha cadastrada.");
+                this.MostraErro("Digite sua senha cadastrada.");
                 txtSenha.Focus();
-                _paraCarregar();
+                this.ParaCarregar();
                 return;
             }
 
-            _comecaCarregar();
+            this.ComecaCarregar();
             worker.RunWorkerAsync();
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            _paraCarregar();
+            this.ParaCarregar();
 
             if (user.IsAutenticado)
             {
@@ -55,7 +64,7 @@ namespace MyAgenda
             }
             else
             {
-                _mostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
+                this.MostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
             }
         }
 
@@ -71,28 +80,28 @@ namespace MyAgenda
 
         private void _autenticarUsuario()
         {
-            _comecaCarregar();
+            this.ComecaCarregar();
 
             //Validar entradas do usuário
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
-                _mostraErro("Digite um nome de usuário.");
+                this.MostraErro("Digite um nome de usuário.");
                 txtUsuario.Focus();
-                _paraCarregar();
+                this.ParaCarregar();
                 return;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
-                _mostraErro("Digite sua senha cadastrada.");
+                this.MostraErro("Digite sua senha cadastrada.");
                 txtSenha.Focus();
-                _paraCarregar();
+                this.ParaCarregar();
                 return;
             }
 
             UsuarioController usuarioC = UsuarioController.GetInstance();
             bool auth = usuarioC.Autentica(txtUsuario.Text, txtSenha.Text);
 
-            _paraCarregar();
+            this.ParaCarregar();
 
             if (auth)
             {
@@ -103,73 +112,14 @@ namespace MyAgenda
             }
             else
             {
-                _mostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
+                this.MostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
             }
         }
 
-        private void _mostraErro(string msg)
+        private void FormLogin_Load(object sender, EventArgs e)
         {
-            lblStatus.ForeColor = Color.Red;
-            lblStatus.Text = msg;
-            lblStatus.Visible = true;
+            this.Loader.Width = this.Width;
         }
 
-        private void _mostraSucesso(string msg)
-        {
-            lblStatus.ForeColor = Color.LimeGreen;
-            lblStatus.Text = msg;
-            lblStatus.Visible = true;
-        }
-
-        private void _comecaCarregar()
-        {
-            loader1.Active = true;
-            _desabilitaTudo();
-        }
-
-        private void _paraCarregar()
-        {
-            loader1.Active = false;
-            _habilitaTudo();
-        }
-
-        private void _desabilitaTudo()
-        {
-            foreach(Control c in this.Controls)
-            {
-                c.Enabled = false;
-            }
-        }
-
-        private void _habilitaTudo()
-        {
-            foreach (Control c in this.Controls)
-            {
-                c.Enabled = true;
-            }
-        }
-        
-        private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            FormCollection forms = Application.OpenForms;
-            if (forms.Count == 0)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                bool quit = true;
-
-                foreach (Form f in forms)
-                {
-                    quit = !(f.Visible == true);
-                }
-
-                if (quit)
-                {
-                    Application.Exit();
-                }
-            }
-        }
     }
 }

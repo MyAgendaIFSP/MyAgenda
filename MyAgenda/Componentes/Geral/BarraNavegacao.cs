@@ -8,7 +8,7 @@ namespace MyAgenda.Componentes.Geral
     public class BarraNavegacao : Panel
     {
 
-        public delegate void MenuItemClickEventHandler(ref Button btn, int itemId);
+        public delegate void MenuItemClickEventHandler(Button btn, int itemId);
 
         public event MenuItemClickEventHandler MenuItemClick;
 
@@ -26,6 +26,36 @@ namespace MyAgenda.Componentes.Geral
             this.Height = 40;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             
+        }
+
+        protected override void OnInvalidated(InvalidateEventArgs e)
+        {
+            base.OnInvalidated(e);
+
+            _ultimoxEsquerda = 13;
+            _ultimoxDireita = this.ClientSize.Width - 30;
+
+            foreach (Button btn in this.Controls)
+            {
+                EPosicao posicao = (EPosicao)btn.Tag;
+
+                if (posicao == EPosicao.ESQUERDA)
+                {
+                    btn.Location = new Point(_ultimoxEsquerda, 0);
+                    _ultimoxEsquerda += btn.PreferredSize.Width + 3;
+                }
+                else
+                {
+                    btn.Location = new Point(_ultimoxDireita - btn.PreferredSize.Width, 0);
+                    _ultimoxDireita -= btn.PreferredSize.Width + 3;
+                }
+            }
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            this.Invalidate();
         }
 
         /// <summary>
@@ -49,14 +79,13 @@ namespace MyAgenda.Componentes.Geral
             btn.Location = new Point(_ultimoxEsquerda, 0);
             btn.TextAlign = ContentAlignment.MiddleCenter;
             btn.Text = titulo;
-            btn.Tag = id;
+            btn.Name = id.ToString();
+            btn.Tag = EPosicao.ESQUERDA;
 
             btn.CreateControl();
 
             this.Controls.Add(btn);
 
-            _ultimoxEsquerda += btn.Width + 3;
-            
             this.Invalidate();
         }
 
@@ -83,13 +112,12 @@ namespace MyAgenda.Componentes.Geral
             btn.Image = icon;
             btn.Text = titulo;
             btn.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btn.Tag = id;
+            btn.Name = id.ToString();
+            btn.Tag = EPosicao.ESQUERDA;
 
             btn.CreateControl();
 
             this.Controls.Add(btn);
-
-            _ultimoxEsquerda += btn.Width + 3;
 
             this.Invalidate();
         }
@@ -117,25 +145,11 @@ namespace MyAgenda.Componentes.Geral
             btn.Image = icon;
             btn.Text = titulo;
             btn.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btn.Tag = id;
+            btn.Name = id.ToString();
+            btn.Tag = posicao;
+
             btn.CreateControl();
 
-            if (_ultimoxDireita <= 0)
-            {
-                _ultimoxDireita = this.Width - 13;
-            }
-
-            if (posicao == EPosicao.ESQUERDA)
-            {
-                btn.Location = new Point(_ultimoxEsquerda, 0);
-                _ultimoxEsquerda += btn.PreferredSize.Width + 3;
-            }
-            else
-            {
-                btn.Location = new Point(_ultimoxDireita - btn.PreferredSize.Width, 0);
-                _ultimoxDireita -= btn.PreferredSize.Width + 3;
-            }
-            
             this.Controls.Add(btn);
 
             this.Invalidate();
@@ -166,24 +180,10 @@ namespace MyAgenda.Componentes.Geral
             btn.Image = icon;
             btn.Text = titulo;
             btn.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btn.Tag = id;
+            btn.Name = id.ToString();
+            btn.Tag = posicao;
+
             btn.CreateControl();
-
-            if (_ultimoxDireita <= 0)
-            {
-                _ultimoxDireita = this.Width - 13;
-            }
-
-            if (posicao == EPosicao.ESQUERDA)
-            {
-                btn.Location = new Point(_ultimoxEsquerda, 0);
-                _ultimoxEsquerda += btn.PreferredSize.Width + 3;
-            }
-            else
-            {
-                btn.Location = new Point(_ultimoxDireita - btn.PreferredSize.Width, 0);
-                _ultimoxDireita -= btn.PreferredSize.Width + 3;
-            }
 
             this.Controls.Add(btn);
 
@@ -193,7 +193,7 @@ namespace MyAgenda.Componentes.Geral
         private void _disparaCallback(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            int id = (int) btn.Tag;
+            int id = Int32.Parse(btn.Name);
             MenuItemClickEventHandler handler;
 
             try
@@ -207,7 +207,7 @@ namespace MyAgenda.Componentes.Geral
 
             if(handler != null)
             {
-                handler(ref btn, id);
+                handler(btn, id);
             }
             
         }

@@ -38,8 +38,17 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.llblCadastrar = new System.Windows.Forms.LinkLabel();
             this.loader1 = new MyAgenda.Componentes.Geral.Loader();
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // BarraNavegacao
+            // 
+            this.BarraNavegacao.Size = new System.Drawing.Size(710, 40);
+            // 
+            // Loader
+            // 
+            this.Loader.Size = new System.Drawing.Size(694, 7);
             // 
             // txtUsuario
             // 
@@ -167,16 +176,28 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtUsuario);
-            this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "FormLogin";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Entrar";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormLogin_FormClosed);
+            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+            this.Load += new System.EventHandler(this.FormLogin_Load);
+            this.Controls.SetChildIndex(this.txtUsuario, 0);
+            this.Controls.SetChildIndex(this.txtSenha, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.btnEntrar, 0);
+            this.Controls.SetChildIndex(this.lblStatus, 0);
+            this.Controls.SetChildIndex(this.llblCadastrar, 0);
+            this.Controls.SetChildIndex(this.loader1, 0);
+            this.Controls.SetChildIndex(this.BarraNavegacao, 0);
+            this.Controls.SetChildIndex(this.Loader, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

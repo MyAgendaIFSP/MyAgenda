@@ -43,9 +43,6 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.matrizTempo = new MyAgenda.Componentes.MatrizTempo.Matriz();
-            this.barraNavegacao1 = new MyAgenda.Componentes.Geral.BarraNavegacao();
-            this.loader1 = new MyAgenda.Componentes.Geral.Loader();
-            ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -227,24 +224,6 @@
             this.matrizTempo.Size = new System.Drawing.Size(530, 409);
             this.matrizTempo.TabIndex = 9;
             // 
-            // barraNavegacao1
-            // 
-            this.barraNavegacao1.BackColor = System.Drawing.Color.LightSlateGray;
-            this.barraNavegacao1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barraNavegacao1.Location = new System.Drawing.Point(0, 0);
-            this.barraNavegacao1.Name = "barraNavegacao1";
-            this.barraNavegacao1.Size = new System.Drawing.Size(827, 40);
-            this.barraNavegacao1.TabIndex = 0;
-            // 
-            // loader1
-            // 
-            this.loader1.Active = false;
-            this.loader1.Location = new System.Drawing.Point(0, 39);
-            this.loader1.Name = "loader1";
-            this.loader1.Size = new System.Drawing.Size(827, 7);
-            this.loader1.TabIndex = 8;
-            this.loader1.TabStop = false;
-            // 
             // FormMatrizTempo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -254,8 +233,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.matrizTempo);
-            this.Controls.Add(this.barraNavegacao1);
-            this.Controls.Add(this.loader1);
             this.Controls.Add(this.btnQuad4);
             this.Controls.Add(this.btnQuad2);
             this.Controls.Add(this.btnAdicionar);
@@ -268,17 +245,26 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormMatrizTempo";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Matriz do Tempo";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMatrizTempo_FormClosed);
             this.Load += new System.EventHandler(this.FormMatrizTempo_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.txtTitulo, 0);
+            this.Controls.SetChildIndex(this.txtDescricao, 0);
+            this.Controls.SetChildIndex(this.btnQuad1, 0);
+            this.Controls.SetChildIndex(this.btnQuad3, 0);
+            this.Controls.SetChildIndex(this.btnAdicionar, 0);
+            this.Controls.SetChildIndex(this.btnQuad2, 0);
+            this.Controls.SetChildIndex(this.btnQuad4, 0);
+            this.Controls.SetChildIndex(this.matrizTempo, 0);
+            this.Controls.SetChildIndex(this.lblStatus, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,7 +272,6 @@
 
         #endregion
 
-        private Componentes.Geral.BarraNavegacao barraNavegacao1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -298,7 +283,6 @@
         private System.Windows.Forms.Button btnQuad3;
         private System.Windows.Forms.Button btnQuad2;
         private System.Windows.Forms.Button btnAdicionar;
-        private Componentes.Geral.Loader loader1;
         private Componentes.MatrizTempo.Matriz matrizTempo;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label label5;

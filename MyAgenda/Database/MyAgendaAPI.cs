@@ -29,11 +29,13 @@ namespace MyAgenda.Database
 
         private MyAgendaAPI()
         {
-            IpFixoSqnApi.Api server = new IpFixoSqnApi.Api();
+            /*IpFixoSqnApi.Api server = new IpFixoSqnApi.Api();
             string maq = server.AuthUsuario("allex123", "123456");
             string ip = server.GetAddress(maq);
             
-            STRING_CONEXAO = @"Data Source=tcp:" + ip + @";Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+            STRING_CONEXAO = @"Data Source=tcp:" + ip + @";Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";*/
+
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
 
         /// <summary>
@@ -49,14 +51,25 @@ namespace MyAgenda.Database
 
             try
             {
+                //throw new NotImplementedException();
                 _conexao.Open();
                 return true;
             }
             catch
             {
+                
                 if(_conexao.State == System.Data.ConnectionState.Open)
                 {
                     return true;
+                }
+                else
+                {
+                    try {
+                        _conexao = new SqlConnection("Server=localhost;Database=my_agenda;MultipleActiveResultSets=true;Integrated Security=true");
+                        _conexao.Open();
+                        return true;
+                    }
+                    catch { }
                 }
 
                 return false;

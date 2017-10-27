@@ -1,3 +1,5 @@
+create database my_agenda;
+
 use my_agenda;
 
 create table matriz_tempo(
