@@ -12,6 +12,37 @@ namespace MyAgenda.Componentes.Contato
 {
     public partial class ContatoItem : UserControl
     {
+
+        private string _nome;
+        public string Nome
+        {
+            get
+            {
+                return _nome;
+            }
+
+            set
+            {
+                _nome = value;
+                lblNome.Text = _nome;
+            }
+        }
+
+        private string _email;
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+
+            set
+            {
+                _email = value;
+                lblEmail.Text = _email;
+            }
+        }
+
         public ContatoItem()
         {
             InitializeComponent();

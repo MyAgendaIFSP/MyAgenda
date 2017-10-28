@@ -116,6 +116,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguranca\Criptografia.cs" />
+    <EmbeddedResource Include="Componentes\Contato\ContatoItem.resx">
+      <DependentUpon>ContatoItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Componentes\Geral\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +163,8 @@
   <ItemGroup>
     <Content Include="favicon %281%29.ico" />
     <Content Include="Libs\IpFixoSqnApi.dll" />
+    <None Include="Resources\ic_account_circle_white_2x.png" />
+    <None Include="Resources\ic_account_circle_black_2x.png" />
     <None Include="Resources\ic_send_white.png" />
     <None Include="Resources\ic_send_black.png" />
     <None Include="Resources\ic_person_add_white.png" />

@@ -4,8 +4,10 @@ using MyAgenda.Modelos.MatrizTempo;
 using MyAgenda.Seguranca;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 
 namespace MyAgenda.Database
 {
@@ -385,20 +387,12 @@ namespace MyAgenda.Database
         {
             if (_abreConexao())
             {
-                SqlCommand cmd = new SqlCommand("UPDATE usuario SET estado = @estado WHERE usuario.id = @id", _conexao);
-                cmd.Parameters.AddWithValue("@id", uid);
-                cmd.Parameters.AddWithValue("@estado", (int)EEstadoUsuario.ONLINE);
-
-                int qtd = (int)cmd.ExecuteNonQuery();
-
-                _fechaConexao();
-
-                if(qtd > 0)
+                if (_abreSessao(uid))
                 {
                     UsuarioModel u = _getUsuario(uid);
                     return u;
                 }
-                
+                                
             }
 
             return null;
@@ -421,6 +415,8 @@ namespace MyAgenda.Database
 
                 _fechaConexao();
 
+                _atualizaIp(uid);
+
                 return qtd > 0;
 
             }
@@ -428,5 +424,59 @@ namespace MyAgenda.Database
             return false;
         }
 
+        /// <summary>
+        /// Atualiza o ip do usuário no banco de dados
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        private bool _atualizaIp(int uid)
+        {
+            if (_abreConexao())
+            {
+                string ip = _getIp();
+
+                if (string.IsNullOrEmpty(ip))
+                {
+                    return false;
+                }
+
+                SqlCommand cmd = new SqlCommand("UPDATE usuario SET ip = @ip WHERE usuario.id = @id", _conexao);
+                cmd.Parameters.AddWithValue("@id", uid);
+                cmd.Parameters.AddWithValue("@ip", ip);
+
+                int qtd = (int)cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                return qtd > 0;
+
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Obtém o ip público do usuário
+        /// </summary>
+        /// <returns></returns>
+        private string _getIp()
+        {
+            using (WebClient client = new WebClient())
+            {
+
+                NameValueCollection collection = new NameValueCollection();
+
+                byte[] response = client.UploadValues("http://allexhome.ddns.net/IP/ip", collection);
+
+                string result = System.Text.Encoding.UTF8.GetString(response);
+
+                if (result.Contains("FAIL"))
+                {
+                    return null;
+                }
+
+                return result;
+            }
+        }
     }
 }

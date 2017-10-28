@@ -58,3 +58,21 @@ begin
 
 end
 go
+
+create
+procedure GetContatos @usuario_id int
+as
+begin
+
+	SELECT usuario.nome, usuario.email, usuario.ip, usuario.id
+	FROM(
+			SELECT contato.usuario AS uid
+			FROM usuario, contato, lista_contatos
+			WHERE lista_contatos.usuario = @usuario_id
+			AND contato.lista_contato = lista_contatos.id
+			AND contato.usuario = usuario.id
+		) contatos, usuario
+	WHERE usuario.id = contatos.uid;
+
+end
+go

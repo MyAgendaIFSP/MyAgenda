@@ -9,5 +9,8 @@ namespace MyAgenda.Componentes.Contato
 {
     class ContatoLista : Panel
     {
+
+
+
     }
 }

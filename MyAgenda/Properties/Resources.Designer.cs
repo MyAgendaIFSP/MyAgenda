@@ -83,9 +83,29 @@ namespace MyAgenda.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_account_circle_black_2x {
+            get {
+                object obj = ResourceManager.GetObject("ic_account_circle_black_2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_account_circle_white {
             get {
                 object obj = ResourceManager.GetObject("ic_account_circle_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_account_circle_white_2x {
+            get {
+                object obj = ResourceManager.GetObject("ic_account_circle_white_2x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
