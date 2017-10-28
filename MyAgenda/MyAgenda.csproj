@@ -54,6 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componentes\Contato\ContatoItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\Contato\ContatoItem.Designer.cs">
+      <DependentUpon>ContatoItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes\Contato\ContatoLista.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Componentes\Geral\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -95,6 +104,12 @@
     <Compile Include="FormMatrizTempo.Designer.cs">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListaContatos\Contatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaContatos\Contatos.Designer.cs">
+      <DependentUpon>Contatos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Geral\UsuarioModel.cs" />
     <Compile Include="Modelos\MatrizTempo\ItemMatrizModel.cs" />
     <Compile Include="Modelos\MatrizTempo\MatrizModel.cs" />
@@ -112,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatrizTempo.resx">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaContatos\Contatos.resx">
+      <DependentUpon>Contatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -164,6 +182,9 @@
     <None Include="Resources\MyAgendaIcon.png" />
     <None Include="Resources\ic_archive_white.png" />
     <None Include="Resources\ic_add_circle_outline_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ListaContatos\Chat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,6 +27,8 @@ namespace MyAgenda
             BarraNavegacao.AddItem("Tarefas", (int)EBarraNavegacaoBotoes.TAREFAS);
 
             _usuario = u;
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
         protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)

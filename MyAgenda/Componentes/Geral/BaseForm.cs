@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Controladores.Geral;
+using MyAgenda.ListaContatos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,8 +57,6 @@ namespace MyAgenda.Componentes.Geral
 
             BarraNavegacao.Width = this.Width;
 
-            this.StartPosition = FormStartPosition.CenterScreen;
-
         }
 
         private void OnBarraNavegacaoSairClick(Button btn, int itemId)
@@ -71,6 +70,8 @@ namespace MyAgenda.Componentes.Geral
         private void OnBarraNavegacaoContatosClick(Button btn, int itemId)
         {
             //Abrir form de contatos
+            Contatos contatos = new Contatos();
+            contatos.Show();
         }
 
         protected virtual void OnBarraNavegacaoItemClick(Button btn, int itemId){ }
