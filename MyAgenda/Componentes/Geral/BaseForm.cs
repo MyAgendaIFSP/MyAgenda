@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyAgenda.Controladores.Geral;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,6 +61,9 @@ namespace MyAgenda.Componentes.Geral
 
         private void OnBarraNavegacaoSairClick(Button btn, int itemId)
         {
+            UsuarioController u = UsuarioController.GetInstance();
+            u.EncerraSessaoDefinitivo();
+
             Application.Exit();
         }
 
@@ -76,6 +80,12 @@ namespace MyAgenda.Componentes.Geral
 
         private void BaseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            UsuarioController u = UsuarioController.GetInstance();
+            if (u.IsAutenticado)
+            {
+                u.EncerraSessao();
+            }
+
             FormCollection forms = Application.OpenForms;
             if (forms.Count == 0)
             {
@@ -151,5 +161,6 @@ namespace MyAgenda.Componentes.Geral
                 this.Location = new Point((tamTela.Width / 2) - (this.Width / 2), (tamTela.Height / 2) - (this.Height / 2));
             }
         }
+        
     }
 }

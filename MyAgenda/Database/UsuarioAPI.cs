@@ -9,25 +9,27 @@ using System.Data.SqlClient;
 
 namespace MyAgenda.Database
 {
-    public class MyAgendaAPI
+    public class UsuarioAPI
     {
         private readonly string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
 
-        private static MyAgendaAPI _instancia = null;
+        private static UsuarioAPI _instancia = null;
 
         private SqlConnection _conexao = null;
 
-        public static MyAgendaAPI GetInstance()
+        public enum EEstadoUsuario { ONLINE = 1, OFFLINE }
+
+        public static UsuarioAPI GetInstance()
         {
             if(_instancia == null)
             {
-                _instancia = new MyAgendaAPI();
+                _instancia = new UsuarioAPI();
             }
 
             return _instancia;
         }
 
-        private MyAgendaAPI()
+        private UsuarioAPI()
         {
             /*IpFixoSqnApi.Api server = new IpFixoSqnApi.Api();
             string maq = server.AuthUsuario("allex123", "123456");
@@ -145,6 +147,50 @@ namespace MyAgenda.Database
             return null;
         }
 
+        private UsuarioModel _getUsuario(int uid)
+        {
+            if (_abreConexao())
+            {
+                UsuarioModel usuario = null;
+                MatrizController matriz;
+
+                if (uid < 0)
+                {
+                    return null;
+                }
+
+                SqlCommand cmd = new SqlCommand("GetModeloUsuario", _conexao);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@user_id", uid);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    try
+                    {
+                        while (rdr.Read())
+                        {
+                            int matrizId = (int)rdr["matriz"];
+                            string nome = rdr["nome"].ToString();
+                            string d = rdr["matriz_inicializacao"].ToString();
+                            DateTime dtNasc = DateTime.Parse(rdr["data_nascimento"].ToString());
+                            DateTime matInit = DateTime.Parse(rdr["matriz_inicializacao"].ToString());
+                            DateTime matUtili = DateTime.Parse(rdr["matriz_ulti_utilizacao"].ToString());
+
+                            matriz = MatrizController.GetInstance(matrizId, matInit, matUtili);
+                            usuario = new UsuarioModel(uid, nome, dtNasc, matriz);
+                        }
+                    }
+                    catch { }
+                }
+                _fechaConexao();
+
+                return usuario;
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Obtém o id do usuário
         /// </summary>
@@ -226,14 +272,15 @@ namespace MyAgenda.Database
 
             return false;
         }
-
+        
         /// <summary>
         /// Autentica um usuário no sistema
         /// </summary>
         /// <param name="email">email do usuario</param>
         /// <param name="senha">senha do usuario</param>
+        /// <param name="lembrar">manter o usuário logado no sistema</param>
         /// <returns>Modelo do usuário</returns>
-        public UsuarioModel AutenticaUsuario(string email, string senha)
+        public UsuarioModel AutenticaUsuario(string email, string senha, bool lembrar)
         {
             Criptografia cripto = new Criptografia();
             bool autorizado = cripto.VerificaSenha(_getSenha(email), senha, _getSalt(email));
@@ -241,10 +288,144 @@ namespace MyAgenda.Database
             if (autorizado)
             {
                 UsuarioModel u = _getUsuario(email);
+
+                try
+                {
+                    _lembrarUsuario(u.Id, lembrar);
+                }
+                catch { }
+
+                _abreSessao(u.Id);
+
                 return u;
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Marca o usuário para login automático
+        /// </summary>
+        /// <param name="uid">id do usuário</param>
+        /// <param name="lembrar"></param>
+        /// <returns></returns>
+        private bool _lembrarUsuario(int uid, bool lembrar)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE usuario SET lembrar = @lembrar WHERE usuario.id = @id", _conexao);
+                cmd.Parameters.AddWithValue("@id", uid);
+                cmd.Parameters.AddWithValue("@lembrar", ((lembrar) ? 1 : 0));
+
+                int qtd = (int)cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                if(qtd > 0)
+                {
+                    Properties.Settings configs = Properties.Settings.Default;
+                    configs.LembrarLogin = lembrar;
+                    configs.UsuarioLembrado = (lembrar) ? uid : 0;
+                    configs.Save();
+                }
+
+                return qtd > 0;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Encerra a sessão de um usuario
+        /// </summary>
+        /// <param name="uid">id do usuárioque será deslogado</param>
+        /// <returns></returns>
+        public bool Logoff(int uid, bool manterEstadoLembrar)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd;
+
+                if (manterEstadoLembrar)
+                {
+                    cmd = new SqlCommand("UPDATE usuario SET estado = @estado WHERE usuario.id = @id", _conexao);
+                }
+                else
+                {
+                    cmd = new SqlCommand("UPDATE usuario SET lembrar = 0, estado = @estado WHERE usuario.id = @id", _conexao);
+                }
+
+                cmd.Parameters.AddWithValue("@id", uid);
+                cmd.Parameters.AddWithValue("@estado", (int) EEstadoUsuario.OFFLINE);
+
+                int qtd = (int)cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                if (qtd > 0 && !manterEstadoLembrar)
+                {
+                    Properties.Settings configs = Properties.Settings.Default;
+                    configs.LembrarLogin = false;
+                    configs.UsuarioLembrado = 0;
+                    configs.Save();
+                }
+
+                return qtd > 0;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Abre uma sessão de um usuário lembrado
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public UsuarioModel Login(int uid)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE usuario SET estado = @estado WHERE usuario.id = @id", _conexao);
+                cmd.Parameters.AddWithValue("@id", uid);
+                cmd.Parameters.AddWithValue("@estado", (int)EEstadoUsuario.ONLINE);
+
+                int qtd = (int)cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                if(qtd > 0)
+                {
+                    UsuarioModel u = _getUsuario(uid);
+                    return u;
+                }
+                
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Marca a sessão de um usuário como ativa
+        /// </summary>
+        /// <param name="uid">id do usuário</param>
+        /// <returns></returns>
+        private bool _abreSessao(int uid)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE usuario SET estado = @estado WHERE usuario.id = @id", _conexao);
+                cmd.Parameters.AddWithValue("@id", uid);
+                cmd.Parameters.AddWithValue("@estado", (int)EEstadoUsuario.ONLINE);
+
+                int qtd = (int)cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                return qtd > 0;
+
+            }
+
+            return false;
         }
 
     }

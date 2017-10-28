@@ -14,6 +14,10 @@ create table pomodoro(
 	inicializacao datetime null
 );
 
+create table lista_contatos(
+	 id int primary key identity(1,1) not null
+);
+
 create table item_matriz(
 	id int primary key identity(1,1) not null,
 	matriz int not null,
@@ -42,19 +46,58 @@ create table secao_pomodoro(
 
 create table usuario (
 	id int primary key identity(1,1) not null,
-	matriz_tempo int not null,
-	pomodoro int not null,
+	matriz_tempo int null,
+	pomodoro int null,
+	lista_contatos int null,
+	estado int not null,
 	nome varchar(100) not null,
 	email varchar(50) not null,
 	senha varchar(256) not null,
 	salt varchar(256) not null,
+	[ip] varchar(15) not null,
+	lembrar int not null,
 	data_nascimento date not null,
 	constraint usuario_pomodoro_fk foreign key(pomodoro) references pomodoro(id)
 	on delete cascade
 	on update cascade,
 	constraint usuario_matriz_fk foreign key(matriz_tempo) references matriz_tempo(id)
 	on delete cascade
+	on update cascade,
+	constraint usuario_lista_contatos_fk foreign key(lista_contatos) references lista_contatos(id)
+	on delete cascade
 	on update cascade
+);
+
+create table contato(
+	lista_contato int not null,
+	usuario int not null,
+	constraint contato_lista_fk foreign key(lista_contato) references lista_contatos(id)
+	on delete cascade
+	on update cascade,
+	constraint contato_usuario_fk foreign key(usuario) references usuario(id)
+	on delete no action
+	on update no action
+);
+
+create table conversa(
+	id int primary key identity(1,1) not null,
+	usuario_criador int not null,
+	usuario_dest int not null,
+	data datetime not null,
+	constraint conversa_criador_fk foreign key(usuario_criador) references usuario(id)
+	on delete cascade
+	on update cascade,
+	constraint conversa_dest_fk foreign key(usuario_dest) references usuario(id)
+	on delete no action
+	on update no action
+);
+
+create table mensagem(
+	conversa int not null,
+	destinatario int not null,
+	texto varchar(1024) not null,
+	estado int not null,
+	data datetime not null
 );
 
 create table evento(

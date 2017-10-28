@@ -1,4 +1,4 @@
-USE [my_agenda]
+USE my_agenda
 GO
 
 create

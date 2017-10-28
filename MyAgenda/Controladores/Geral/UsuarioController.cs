@@ -10,7 +10,7 @@ namespace MyAgenda.Controladores.Geral
 
         private static UsuarioController _instancia = null;
         
-        private MyAgendaAPI _api;
+        private UsuarioAPI _api;
 
         public bool IsAutenticado { get; set; }
 
@@ -27,24 +27,50 @@ namespace MyAgenda.Controladores.Geral
         private UsuarioController()
         {
             IsAutenticado = false;
-            _api = MyAgendaAPI.GetInstance();
+            _api = UsuarioAPI.GetInstance();
         }
-        
+
         /// <summary>
         /// Autentica o usuário no sistema
         /// </summary>
         /// <returns></returns>
-        public bool Autentica(string email, string senha)
+        public bool Autentica(string email, string senha, bool lembrar)
         {
             //Autenticar usuário no banco de dados
             if (_verificaEmail(email))
             {
-                _modelo = _api.AutenticaUsuario(email, senha);
+                _modelo = _api.AutenticaUsuario(email, senha, lembrar);
                 IsAutenticado = _modelo != null;
                 return IsAutenticado;
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Finaliza a sessão de um usuário, mas não muda i estado de lembrar
+        /// </summary>
+        /// <returns></returns>
+        public bool EncerraSessao()
+        {
+            return _api.Logoff(_modelo.Id, true);
+        }
+
+        /// <summary>
+        /// Finaliza a sessão do usuário e reseta a opção de lembrar login. 
+        /// </summary>
+        /// <returns></returns>
+        public bool EncerraSessaoDefinitivo()
+        {
+            return _api.Logoff(_modelo.Id, false);
+        }
+
+        public bool AbreSessaoLembrada()
+        {
+            Properties.Settings configs = Properties.Settings.Default;
+            _modelo = _api.Login(configs.UsuarioLembrado);
+            IsAutenticado = _modelo != null;
+            return IsAutenticado;
         }
 
         private bool _verificaEmail(string email)

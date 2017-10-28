@@ -53,6 +53,16 @@ namespace MyAgenda
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            _avancaTela();
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            user.Autentica(txtUsuario.Text, txtSenha.Text, ckbLembrar.Checked);
+        }
+
+        private void _avancaTela()
+        {
             this.ParaCarregar();
 
             if (user.IsAutenticado)
@@ -68,52 +78,9 @@ namespace MyAgenda
             }
         }
 
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            user.Autentica(txtUsuario.Text, txtSenha.Text);
-        }
-
         private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             //Abrir tela de cadastro como um diálogo
-        }
-
-        private void _autenticarUsuario()
-        {
-            this.ComecaCarregar();
-
-            //Validar entradas do usuário
-            if (String.IsNullOrEmpty(txtUsuario.Text))
-            {
-                this.MostraErro("Digite um nome de usuário.");
-                txtUsuario.Focus();
-                this.ParaCarregar();
-                return;
-            }
-            else if (String.IsNullOrEmpty(txtSenha.Text))
-            {
-                this.MostraErro("Digite sua senha cadastrada.");
-                txtSenha.Focus();
-                this.ParaCarregar();
-                return;
-            }
-
-            UsuarioController usuarioC = UsuarioController.GetInstance();
-            bool auth = usuarioC.Autentica(txtUsuario.Text, txtSenha.Text);
-
-            this.ParaCarregar();
-
-            if (auth)
-            {
-                //abrir próximo form
-                FormMatrizTempo f = new FormMatrizTempo(usuarioC);
-                f.Show();
-                this.Hide();
-            }
-            else
-            {
-                this.MostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
-            }
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
@@ -121,5 +88,17 @@ namespace MyAgenda
             this.Loader.Width = this.Width;
         }
 
+        private void FormLogin_Shown(object sender, EventArgs e)
+        {
+            Properties.Settings configs = Properties.Settings.Default;
+
+            if (configs.LembrarLogin)
+            {
+                this.ComecaCarregar();
+
+                user.AbreSessaoLembrada();
+                _avancaTela();
+            }
+        }
     }
 }

@@ -204,6 +204,7 @@
             this.Text = "MyAgenda | Entrar";
             this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             this.Load += new System.EventHandler(this.FormLogin_Load);
+            this.Shown += new System.EventHandler(this.FormLogin_Shown);
             this.Controls.SetChildIndex(this.txtUsuario, 0);
             this.Controls.SetChildIndex(this.txtSenha, 0);
             this.Controls.SetChildIndex(this.label1, 0);
