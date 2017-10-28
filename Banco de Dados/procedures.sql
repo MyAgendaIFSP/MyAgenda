@@ -64,11 +64,11 @@ procedure GetContatos @usuario_id int
 as
 begin
 
-	SELECT usuario.nome, usuario.email, usuario.ip, usuario.id
+	SELECT usuario.nome, usuario.email, usuario.ip, usuario.id, usuario.estado
 	FROM(
 			SELECT contato.usuario AS uid
 			FROM usuario, contato, lista_contatos
-			WHERE lista_contatos.usuario = @usuario_id
+			WHERE lista_contatos.usuario = 1
 			AND contato.lista_contato = lista_contatos.id
 			AND contato.usuario = usuario.id
 		) contatos, usuario

@@ -7,45 +7,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MyAgenda.Modelos.ListaContatos;
 
 namespace MyAgenda.Componentes.ListaContatos.Contato
 {
     public partial class ContatoItem : UserControl
     {
+        public event EventHandler ContatoClick;
 
-        private string _nome;
-        public string Nome
+        private ContatoModelo _modelo;
+        public ContatoModelo Modelo
         {
             get
             {
-                return _nome;
+                return _modelo;
             }
 
             set
             {
-                _nome = value;
-                lblNome.Text = _nome;
-            }
-        }
-
-        private string _email;
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-
-            set
-            {
-                _email = value;
-                lblEmail.Text = _email;
+                _modelo = value;
+                lblNome.Text = _modelo.Nome;
+                lblEmail.Text = _modelo.Email;
+                
+                if(_modelo.Estado == Database.UsuarioAPI.EEstadoUsuario.ONLINE)
+                {
+                    pcbEstado.BackgroundImage = Properties.Resources.ic_status_online;
+                }
+                else
+                {
+                    pcbEstado.BackgroundImage = Properties.Resources.ic_status_offline;
+                }
             }
         }
 
         public ContatoItem()
         {
             InitializeComponent();
+        }
+
+        private void pcbMensagem_Click(object sender, EventArgs e)
+        {
+            if(ContatoClick != null)
+            {
+                ContatoClick(this, new EventArgs());
+            }
         }
     }
 }

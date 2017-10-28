@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyAgenda.Componentes.ListaContatos
+namespace MyAgenda
 {
     public partial class Contatos : Form
     {

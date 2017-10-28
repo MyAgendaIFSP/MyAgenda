@@ -88,8 +88,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controladores\Geral\UsuarioController.cs" />
+    <Compile Include="Controladores\ListaContatos\ContatoController.cs" />
     <Compile Include="Controladores\MatrizTempo\ItemMatrizController.cs" />
     <Compile Include="Controladores\MatrizTempo\MatrizController.cs" />
+    <Compile Include="Database\ContatosAPI.cs" />
     <Compile Include="Database\MatrizTempoAPI.cs" />
     <Compile Include="Database\UsuarioAPI.cs" />
     <Compile Include="FormLogin.cs">
@@ -104,13 +106,14 @@
     <Compile Include="FormMatrizTempo.Designer.cs">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\ListaContatos\Contatos.cs">
+    <Compile Include="Contatos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Componentes\ListaContatos\Contatos.Designer.cs">
+    <Compile Include="Contatos.Designer.cs">
       <DependentUpon>Contatos.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Geral\UsuarioModel.cs" />
+    <Compile Include="Modelos\ListaContatos\ContatoModelo.cs" />
     <Compile Include="Modelos\MatrizTempo\ItemMatrizModel.cs" />
     <Compile Include="Modelos\MatrizTempo\MatrizModel.cs" />
     <Compile Include="Program.cs" />
@@ -131,7 +134,7 @@
     <EmbeddedResource Include="FormMatrizTempo.resx">
       <DependentUpon>FormMatrizTempo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\ListaContatos\Contatos.resx">
+    <EmbeddedResource Include="Contatos.resx">
       <DependentUpon>Contatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -163,6 +166,9 @@
   <ItemGroup>
     <Content Include="favicon %281%29.ico" />
     <Content Include="Libs\IpFixoSqnApi.dll" />
+    <None Include="Resources\ic_message_black.png" />
+    <None Include="Resources\ic_status_online.png" />
+    <None Include="Resources\ic_status_offline.png" />
     <None Include="Resources\ic_person_add_white_24dp.png" />
     <None Include="Resources\ic_person_add_black_24dp.png" />
     <None Include="Resources\ic_account_circle_white_2x.png" />

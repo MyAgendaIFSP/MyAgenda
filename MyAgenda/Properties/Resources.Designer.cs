@@ -213,6 +213,16 @@ namespace MyAgenda.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_message_black {
+            get {
+                object obj = ResourceManager.GetObject("ic_message_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_people_black {
             get {
                 object obj = ResourceManager.GetObject("ic_people_black", resourceCulture);
@@ -296,6 +306,26 @@ namespace MyAgenda.Properties {
         internal static System.Drawing.Bitmap ic_send_white {
             get {
                 object obj = ResourceManager.GetObject("ic_send_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_status_offline {
+            get {
+                object obj = ResourceManager.GetObject("ic_status_offline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_status_online {
+            get {
+                object obj = ResourceManager.GetObject("ic_status_online", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
