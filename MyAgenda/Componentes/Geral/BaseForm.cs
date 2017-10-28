@@ -50,9 +50,9 @@ namespace MyAgenda.Componentes.Geral
 
             BarraNavegacao.MenuItemClick += OnBarraNavegacaoItemClick;
 
-
             BarraNavegacao.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoSairClick, (int) EBarraNavegacaoBotoes.SAIR);
             BarraNavegacao.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoCloudClick, (int)EBarraNavegacaoBotoes.OFFLINE);
+            BarraNavegacao.AddItem("Contatos", Properties.Resources.ic_people_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoContatosClick, (int)EBarraNavegacaoBotoes.CONTATOS);
 
             BarraNavegacao.Width = this.Width;
 
@@ -66,6 +66,11 @@ namespace MyAgenda.Componentes.Geral
             u.EncerraSessaoDefinitivo();
 
             Application.Exit();
+        }
+
+        private void OnBarraNavegacaoContatosClick(Button btn, int itemId)
+        {
+            //Abrir form de contatos
         }
 
         protected virtual void OnBarraNavegacaoItemClick(Button btn, int itemId){ }
