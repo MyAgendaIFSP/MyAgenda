@@ -13,7 +13,7 @@ namespace MyAgenda.Componentes.Geral
 {
     public partial class BaseForm : Form
     {
-
+        public enum EBarraNavegacaoBotoes { INICIO = 1, POMODORO, TAREFAS, MATRIZ_TEMPO, CONTATOS, OFFLINE, SAIR }
         public Label StatusLabel { get; set; }
 
         private bool _temBarraNavegacao = true;
@@ -50,8 +50,9 @@ namespace MyAgenda.Componentes.Geral
 
             BarraNavegacao.MenuItemClick += OnBarraNavegacaoItemClick;
 
-            BarraNavegacao.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoSairClick, 4);
-            BarraNavegacao.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoCloudClick, 5);
+
+            BarraNavegacao.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoSairClick, (int) EBarraNavegacaoBotoes.SAIR);
+            BarraNavegacao.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoCloudClick, (int)EBarraNavegacaoBotoes.OFFLINE);
 
             BarraNavegacao.Width = this.Width;
 
