@@ -81,6 +81,7 @@
     <Compile Include="Controladores\Geral\UsuarioController.cs" />
     <Compile Include="Controladores\MatrizTempo\ItemMatrizController.cs" />
     <Compile Include="Controladores\MatrizTempo\MatrizController.cs" />
+    <Compile Include="Database\MatrizTempoAPI.cs" />
     <Compile Include="Database\MyAgendaAPI.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>

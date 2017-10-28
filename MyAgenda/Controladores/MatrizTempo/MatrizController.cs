@@ -13,7 +13,7 @@ namespace MyAgenda.Controladores.MatrizTempo
 
         private MatrizModel _modelo;
 
-        private MyAgendaAPI _api;
+        private MatrizTempoAPI _api;
 
         private static MatrizController _instancia = null;
 
@@ -50,13 +50,13 @@ namespace MyAgenda.Controladores.MatrizTempo
         
         private MatrizController()
         {
-            _api = MyAgendaAPI.GetInstance();
+            _api = MatrizTempoAPI.GetInstance();
         }
 
         private MatrizController(int id, DateTime dtInicializacao, DateTime ultimoAcesso)
         {
             //Buscar no banco a matriz do usuário
-            _api = MyAgendaAPI.GetInstance();
+            _api = MatrizTempoAPI.GetInstance();
             _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens(id));
         }
 
