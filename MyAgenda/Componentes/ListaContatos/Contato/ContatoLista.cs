@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyAgenda.Componentes.Contato
+namespace MyAgenda.Componentes.ListaContatos.Contato
 {
     class ContatoLista : Panel
     {

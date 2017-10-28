@@ -243,9 +243,29 @@ namespace MyAgenda.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_person_add_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("ic_person_add_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_person_add_white {
             get {
                 object obj = ResourceManager.GetObject("ic_person_add_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_person_add_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("ic_person_add_white_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

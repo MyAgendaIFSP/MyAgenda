@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyAgenda.ListaContatos
+namespace MyAgenda.Componentes.ListaContatos
 {
     public partial class Contatos : Form
     {
@@ -21,12 +21,12 @@ namespace MyAgenda.ListaContatos
 
         private void btnAddContato_MouseEnter(object sender, EventArgs e)
         {
-            btnAddContato.Image = Properties.Resources.ic_add_circle_white;
+            btnAddContato.Image = Properties.Resources.ic_person_add_white_24dp;
         }
 
         private void btnAddContato_MouseLeave(object sender, EventArgs e)
         {
-            btnAddContato.Image = Properties.Resources.ic_add_circle_black;
+            btnAddContato.Image = Properties.Resources.ic_person_add_black_24dp;
         }
     }
 }

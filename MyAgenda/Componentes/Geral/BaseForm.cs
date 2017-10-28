@@ -1,5 +1,5 @@
 ﻿using MyAgenda.Controladores.Geral;
-using MyAgenda.ListaContatos;
+using MyAgenda.Componentes.ListaContatos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

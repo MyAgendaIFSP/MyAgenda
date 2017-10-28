@@ -1,4 +1,4 @@
-﻿namespace MyAgenda.Componentes.Contato
+﻿namespace MyAgenda.Componentes.ListaContatos.Contato
 {
     partial class ContatoItem
     {

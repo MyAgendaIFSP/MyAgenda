@@ -1,4 +1,4 @@
-﻿namespace MyAgenda.ListaContatos
+﻿namespace MyAgenda.Componentes.ListaContatos
 {
     partial class Contatos
     {
@@ -34,8 +34,6 @@
             this.btnAddContato = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.contatoLista1 = new MyAgenda.Componentes.Contato.ContatoLista();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,12 +65,11 @@
             this.btnAddContato.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddContato.BackColor = System.Drawing.Color.White;
             this.btnAddContato.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddContato.FlatAppearance.BorderSize = 0;
             this.btnAddContato.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnAddContato.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnAddContato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddContato.ForeColor = System.Drawing.Color.Black;
-            this.btnAddContato.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
+            this.btnAddContato.Image = global::MyAgenda.Properties.Resources.ic_person_add_black_24dp;
             this.btnAddContato.Location = new System.Drawing.Point(287, 52);
             this.btnAddContato.Name = "btnAddContato";
             this.btnAddContato.Size = new System.Drawing.Size(30, 30);
@@ -86,7 +83,6 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.contatoLista1);
             this.groupBox1.Location = new System.Drawing.Point(10, 88);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(307, 415);
@@ -104,14 +100,6 @@
             this.label2.Size = new System.Drawing.Size(76, 19);
             this.label2.TabIndex = 7;
             this.label2.Text = "Contatos";
-            // 
-            // contatoLista1
-            // 
-            this.contatoLista1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contatoLista1.Location = new System.Drawing.Point(3, 20);
-            this.contatoLista1.Name = "contatoLista1";
-            this.contatoLista1.Size = new System.Drawing.Size(301, 392);
-            this.contatoLista1.TabIndex = 0;
             // 
             // Contatos
             // 
@@ -133,7 +121,6 @@
             this.Name = "Contatos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Contatos";
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,6 +133,5 @@
         private System.Windows.Forms.Button btnAddContato;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private Componentes.Contato.ContatoLista contatoLista1;
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyAgenda.Componentes.Contato
+namespace MyAgenda.Componentes.ListaContatos.Contato
 {
     public partial class ContatoItem : UserControl
     {
