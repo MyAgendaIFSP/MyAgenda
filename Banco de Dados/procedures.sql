@@ -76,3 +76,20 @@ begin
 
 end
 go
+
+create
+procedure BuscaContato @usuario_id int, @busca varchar(255)
+as
+begin
+
+	select id, nome, email, estado, [ip]
+	from usuario
+	where (usuario.nome like concat('%', @busca, '%') or email like concat('%', @busca, '%'))
+	and id <> @usuario_id
+	and id not in (select contato.usuario
+					from contato, lista_contatos, usuario
+					where lista_contatos.usuario = @usuario_id
+					and contato.lista_contato = lista_contatos.id);
+
+end
+go

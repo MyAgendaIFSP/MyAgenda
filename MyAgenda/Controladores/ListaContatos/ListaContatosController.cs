@@ -30,7 +30,7 @@ namespace MyAgenda.Controladores.ListaContatos
         private void _carregaContatos()
         {
             UsuarioController usuario = UsuarioController.GetInstance();
-            _contatos = _api.CarregaContatos(usuario.GetModel().Id);
+            _contatos = _api.CarregaContatos(usuario.GetModelo().Id);
         }
 
         /// <summary>

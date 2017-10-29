@@ -30,7 +30,7 @@ namespace MyAgenda.Controladores.Geral
             _api = UsuarioAPI.GetInstance();
         }
 
-        public UsuarioModel GetModel()
+        public UsuarioModel GetModelo()
         {
             return _modelo;
         }

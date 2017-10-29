@@ -11,6 +11,8 @@ namespace MyAgenda
     {
         private ContatoController _contatoBuscado;
 
+        private List<ContatoController> _contatosBuscados;
+
         private ListaContatosController _lista;
 
         public FormListaContatos()
@@ -37,6 +39,7 @@ namespace MyAgenda
         private void btnAddContato_Click(object sender, EventArgs e)
         {
             //Adicionar o contato buscado
+            _contatoBuscado = _contatosBuscados.Single(contato => cbbBuscarContato.Text.Contains(contato.GetModelo().Email));
         }
 
         private void Contatos_FormClosed(object sender, FormClosedEventArgs e)
@@ -79,10 +82,10 @@ namespace MyAgenda
         {
             string busca = cbbBuscarContato.Text;
 
-            List<ContatoController> contatos = contatoLista.BuscaContato(busca);
+            _contatosBuscados = contatoLista.BuscaContato(busca);
 
             cbbBuscarContato.Items.Clear();
-            cbbBuscarContato.Items.AddRange(contatos.Select(contato => contato.GetModelo().Nome + " - " + contato.GetModelo().Email).ToArray());
+            cbbBuscarContato.Items.AddRange(_contatosBuscados.Select(contato => contato.GetModelo().Nome + " - " + contato.GetModelo().Email).ToArray());
 
             cbbBuscarContato.DroppedDown = true;
 

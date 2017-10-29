@@ -171,7 +171,7 @@ namespace MyAgenda.Componentes.Geral
             UsuarioController u = UsuarioController.GetInstance();
             if (u.IsAutenticado)
             {
-                this.Text = u.GetModel().Nome + " | " + this.Text;
+                this.Text = u.GetModelo().Nome + " | " + this.Text;
             }
         }
         
