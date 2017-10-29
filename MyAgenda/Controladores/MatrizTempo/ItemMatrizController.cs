@@ -33,7 +33,7 @@ namespace MyAgenda.Controladores.MatrizTempo
             return false;
         }
         
-        internal bool MarcarItemAtivo()
+        public bool MarcarItemAtivo()
         {
             if (_api.MarcarItemMatrizAtivo(_modelo.Id))
             {
@@ -44,5 +44,16 @@ namespace MyAgenda.Controladores.MatrizTempo
             return false;
         }
         
+        public bool MoveItem(Matriz.EQuadrante quadrante)
+        {
+            if(_api.MoverItem(_modelo.Id, quadrante))
+            {
+                _modelo.Quadrante = quadrante;
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

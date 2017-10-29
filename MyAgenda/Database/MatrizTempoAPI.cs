@@ -1,4 +1,5 @@
-﻿using MyAgenda.Controladores.MatrizTempo;
+﻿using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.MatrizTempo;
 using System;
 using System.Collections.Generic;
@@ -264,6 +265,30 @@ namespace MyAgenda.Database
             return false;
         }
 
+        /// <summary>
+        /// Move um item do quadrante atual para um outro quadrante
+        /// </summary>
+        /// <param name="itemId">item que será movido</param>
+        /// <param name="quadrante">novo quadrante do item</param>
+        /// <returns></returns>
+        public bool MoverItem(int itemId, Matriz.EQuadrante quadrante)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE item_matriz SET quadrante = @quadrante WHERE id = @item;", _conexao);
+                cmd.Parameters.AddWithValue("@item", itemId);
+                cmd.Parameters.AddWithValue("@quadrante", ((int)quadrante) + 1);
 
+                int qtd = cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                return qtd > 0;
+            }
+
+            _fechaConexao();
+
+            return false;
+        }
     }
 }
