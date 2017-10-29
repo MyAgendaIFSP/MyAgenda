@@ -70,5 +70,20 @@ namespace MyAgenda.Controladores.ListaContatos
         {
             return _api.BuscaContato(busca);
         }
+
+        /// <summary>
+        /// Adiciona um contato novo para o usuário
+        /// </summary>
+        /// <param name="contato"></param>
+        /// <returns></returns>
+        public ContatoItem AdicionaContato(ContatoController contato)
+        {
+            if (_api.AdicionaContato(contato))
+            {
+                return new ContatoItem(contato.GetModelo());
+            }
+
+            return null;
+        }
     }
 }

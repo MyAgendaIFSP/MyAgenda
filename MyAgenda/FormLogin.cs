@@ -1,5 +1,6 @@
 ﻿using MyAgenda.Componentes.Geral;
 using MyAgenda.Controladores.Geral;
+using MyAgenda.Database;
 using MyAgenda.Seguranca;
 using System;
 using System.ComponentModel;
@@ -86,10 +87,23 @@ namespace MyAgenda
         private void FormLogin_Load(object sender, EventArgs e)
         {
             this.Loader.Width = this.Width;
+
         }
 
         private void FormLogin_Shown(object sender, EventArgs e)
         {
+            UsuarioAPI api = UsuarioAPI.GetInstance();
+            this.DesabilitaTudo();
+
+            if (!api.VerificaConexao())
+            {
+                MostraErro("Sem conexão com o servidor.");
+                lblStatus.Enabled = true;
+                return;
+            }
+
+            this.HabilitaTudo();
+
             Properties.Settings configs = Properties.Settings.Default;
 
             if (configs.LembrarLogin)

@@ -131,16 +131,16 @@ namespace MyAgenda.Componentes.Geral
         public void ComecaCarregar()
         {
             Loader.Active = true;
-            _desabilitaTudo();
+            DesabilitaTudo();
         }
 
         public void ParaCarregar()
         {
             Loader.Active = false;
-            _habilitaTudo();
+            HabilitaTudo();
         }
 
-        private void _desabilitaTudo()
+        public void DesabilitaTudo()
         {
             foreach (Control c in this.Controls)
             {
@@ -148,7 +148,7 @@ namespace MyAgenda.Componentes.Geral
             }
         }
 
-        private void _habilitaTudo()
+        public void HabilitaTudo()
         {
             foreach (Control c in this.Controls)
             {

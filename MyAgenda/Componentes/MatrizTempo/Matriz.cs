@@ -211,7 +211,7 @@ namespace MyAgenda.Componentes.MatrizTempo
         {
             try
             {
-                List<ItemMatrizController> itens = _controlador.GetModel().Itens;
+                List<ItemMatrizController> itens = _controlador.GetModelo().Itens;
 
                 panel.Controls.Clear();
 

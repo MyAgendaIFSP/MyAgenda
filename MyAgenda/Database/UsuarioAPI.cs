@@ -98,6 +98,11 @@ namespace MyAgenda.Database
 
         }
 
+        public bool VerificaConexao()
+        {
+            return _abreConexao();
+        }
+
         /// <summary>
         /// Obtém o modelo de um usuário
         /// </summary>

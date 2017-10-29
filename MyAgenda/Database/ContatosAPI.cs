@@ -2,6 +2,7 @@
 using MyAgenda.Controladores.ListaContatos;
 using MyAgenda.Modelos.ListaContatos;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace MyAgenda.Database
@@ -164,5 +165,36 @@ namespace MyAgenda.Database
 
             return null;
         } 
+
+        /// <summary>
+        /// Adiciona um contato para o usuário
+        /// </summary>
+        /// <param name="contato"></param>
+        /// <returns></returns>
+        public bool AdicionaContato(ContatoController contato)
+        {
+            if (_abreConexao())
+            {
+                UsuarioController u = UsuarioController.GetInstance();
+                int usuario = u.GetModelo().Id;
+
+                SqlCommand cmd = new SqlCommand("NovoContato", _conexao);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@contato", contato.GetModelo().Id);
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                SqlParameter output = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                output.Direction = ParameterDirection.ReturnValue;
+
+                cmd.ExecuteNonQuery();
+                
+                _fechaConexao();
+
+                return (int)output.Value > 0;
+            }
+
+            return false;
+        }
     }
 }

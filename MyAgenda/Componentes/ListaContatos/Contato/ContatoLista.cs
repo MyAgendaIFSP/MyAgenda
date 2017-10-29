@@ -23,8 +23,6 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
         /// </summary>
         public void CarregaLista()
         {
-            _ultimoY = 10;
-
             _lista = ListaContatosController.GetInstance();
             _items = _lista.GetViews();
 
@@ -40,6 +38,8 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
             {
                 this.Controls.Clear();
             }
+
+            _ultimoY = 10;
 
             foreach (ContatoItem c in _items)
             {
@@ -91,13 +91,50 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
             return _lista.BuscaContato(busca);
         }
 
+        /// <summary>
+        /// Desenha um novo item sem redesenhar todos os outros contatos
+        /// </summary>
+        /// <param name="contato"></param>
+        private void _acrescentaContato(ContatoItem contato)
+        {
+            contato.Location = new Point(5, _ultimoY);
+            contato.Width = this.ClientSize.Width - 10;
+            contato.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+            contato.MensagemClick += _onItemMensagemClick;
+
+            contato.CreateControl();
+            this.Controls.Add(contato);
+
+            contato.Invalidate();
+            _ultimoY += contato.Height + 5;
+        }
+
+        /// <summary>
+        /// Adiciona um contato aos contatos do usuário
+        /// </summary>
+        /// <param name="contato"></param>
+        /// <returns></returns>
+        public bool AdicionarContato(ContatoController contato)
+        {
+            ContatoItem novoItem = _lista.AdicionaContato(contato);
+
+            if(novoItem != null)
+            {
+                _items.Add(novoItem);
+                _acrescentaContato(_items[_items.Count- 1]);
+                return true;
+            }
+
+            return false;
+        }
+
         private void _onItemMensagemClick(object sender, EventArgs e)
         {
             ContatoItem contato = (ContatoItem)sender;
 
             if(contato.Modelo.Estado != Database.UsuarioAPI.EEstadoUsuario.ONLINE)
             {
-                MessageBox.Show("Contato não está conectado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Contato não está conectado.", "Erro ao abrir conversa", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //Iniciar o chat
         }

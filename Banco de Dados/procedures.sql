@@ -93,3 +93,21 @@ begin
 
 end
 go
+
+create
+procedure NovoContato @contato int, @usuario int
+as
+begin
+
+	declare @lista_contato int;
+
+	select @lista_contato = id
+	from lista_contatos
+	where lista_contatos.usuario = @usuario;
+
+	insert into contato values(@lista_contato, @contato);
+
+	return @@rowcount;
+
+end
+go

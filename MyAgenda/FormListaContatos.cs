@@ -12,9 +12,7 @@ namespace MyAgenda
         private ContatoController _contatoBuscado;
 
         private List<ContatoController> _contatosBuscados;
-
-        private ListaContatosController _lista;
-
+        
         public FormListaContatos()
         {
             InitializeComponent();
@@ -40,6 +38,7 @@ namespace MyAgenda
         {
             //Adicionar o contato buscado
             _contatoBuscado = _contatosBuscados.Single(contato => cbbBuscarContato.Text.Contains(contato.GetModelo().Email));
+            contatoLista.AdicionarContato(_contatoBuscado);
         }
 
         private void Contatos_FormClosed(object sender, FormClosedEventArgs e)
