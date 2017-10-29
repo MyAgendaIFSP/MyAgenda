@@ -70,7 +70,7 @@ namespace MyAgenda.Componentes.Geral
         private void OnBarraNavegacaoContatosClick(Button btn, int itemId)
         {
             //Abrir form de contatos
-            Contatos contatos = new Contatos();
+            FormListaContatos contatos = new FormListaContatos();
             contatos.Show();
         }
 
@@ -166,6 +166,12 @@ namespace MyAgenda.Componentes.Geral
                 Size tamTela = Screen.PrimaryScreen.WorkingArea.Size;
 
                 this.Location = new Point((tamTela.Width / 2) - (this.Width / 2), (tamTela.Height / 2) - (this.Height / 2));
+            }
+
+            UsuarioController u = UsuarioController.GetInstance();
+            if (u.IsAutenticado)
+            {
+                this.Text = u.GetModel().Nome + " | " + this.Text;
             }
         }
         

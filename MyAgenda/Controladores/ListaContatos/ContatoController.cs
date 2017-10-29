@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MyAgenda.Controladores.ListaContatos
 {
 
-    class ContatoController
+    public class ContatoController
     {
 
         private ContatoModelo _modelo { get; set; }

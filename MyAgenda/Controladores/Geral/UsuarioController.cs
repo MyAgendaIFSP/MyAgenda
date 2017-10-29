@@ -30,6 +30,11 @@ namespace MyAgenda.Controladores.Geral
             _api = UsuarioAPI.GetInstance();
         }
 
+        public UsuarioModel GetModel()
+        {
+            return _modelo;
+        }
+
         /// <summary>
         /// Autentica o usuário no sistema
         /// </summary>

@@ -1,56 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using MyAgenda.Database;
 using MyAgenda.Modelos.ListaContatos;
+using System;
+using System.Windows.Forms;
 
 namespace MyAgenda.Componentes.ListaContatos.Contato
 {
     public partial class ContatoItem : UserControl
     {
-        public event EventHandler ContatoClick;
-
-        private ContatoModelo _modelo;
-        public ContatoModelo Modelo
-        {
-            get
-            {
-                return _modelo;
-            }
-
-            set
-            {
-                _modelo = value;
-                lblNome.Text = _modelo.Nome;
-                lblEmail.Text = _modelo.Email;
-                
-                if(_modelo.Estado == Database.UsuarioAPI.EEstadoUsuario.ONLINE)
-                {
-                    pcbEstado.BackgroundImage = Properties.Resources.ic_status_online;
-                }
-                else
-                {
-                    pcbEstado.BackgroundImage = Properties.Resources.ic_status_offline;
-                }
-            }
-        }
+        public event EventHandler MensagemClick;
+        
+        public ContatoModelo Modelo { get; set; }
 
         public ContatoItem()
         {
             InitializeComponent();
         }
 
+        public ContatoItem(ContatoModelo modelo)
+        {
+            InitializeComponent();
+            Modelo = modelo;
+        }
+
+        protected override void OnInvalidated(InvalidateEventArgs e)
+        {
+            base.OnInvalidated(e);
+
+            lblNome.Text = Modelo.Nome;
+            lblEmail.Text = Modelo.Email;
+
+            if (Modelo.Estado == UsuarioAPI.EEstadoUsuario.ONLINE)
+            {
+                pcbEstado.BackgroundImage = Properties.Resources.ic_status_online;
+            }
+            else if(Modelo.Estado == UsuarioAPI.EEstadoUsuario.OFFLINE)
+            {
+                pcbEstado.BackgroundImage = Properties.Resources.ic_status_offline;
+            }
+        }
+
         private void pcbMensagem_Click(object sender, EventArgs e)
         {
-            if(ContatoClick != null)
+            if(MensagemClick != null)
             {
-                ContatoClick(this, new EventArgs());
+                MensagemClick(this, new EventArgs());
             }
+        }
+
+        private void ContatoItem_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.Color.Gainsboro;
+        }
+
+        private void ContatoItem_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.Color.White;
         }
     }
 }

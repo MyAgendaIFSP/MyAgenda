@@ -43,14 +43,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
-            // BarraNavegacao
-            // 
-            this.BarraNavegacao.Size = new System.Drawing.Size(710, 40);
-            // 
-            // Loader
-            // 
-            this.Loader.Size = new System.Drawing.Size(694, 7);
-            // 
             // txtUsuario
             // 
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -201,8 +193,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "FormLogin";
-            this.Text = "MyAgenda | Entrar";
-            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+            this.Text = "MyAgenda - Entrar";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.Shown += new System.EventHandler(this.FormLogin_Shown);
             this.Controls.SetChildIndex(this.txtUsuario, 0);

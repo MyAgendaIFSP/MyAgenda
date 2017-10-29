@@ -1,11 +1,7 @@
 ﻿using MyAgenda.Controladores.ListaContatos;
 using MyAgenda.Modelos.ListaContatos;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyAgenda.Database
 {
@@ -100,8 +96,7 @@ namespace MyAgenda.Database
             {
                 List<ContatoController> contatos = new List<ContatoController>();
 
-                SqlCommand cmd = new SqlCommand("select id, nome, email, [ip] from usuario where usuario.nome like @busca or email like @busca;", _conexao);
-                cmd.Parameters.AddWithValue("@busca", busca);
+                SqlCommand cmd = new SqlCommand("select id, nome, email, estado, [ip] from usuario where usuario.nome like '%" + busca + "%' or email like '%" + busca + "%';", _conexao);
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
@@ -131,7 +126,7 @@ namespace MyAgenda.Database
         /// </summary>
         /// <param name="uid">id do usuario</param>
         /// <returns></returns>
-        public List<ContatoController> CarregaItensMatriz(int uid)
+        public List<ContatoController> CarregaContatos(int uid)
         {
             if (_abreConexao())
             {
@@ -162,7 +157,6 @@ namespace MyAgenda.Database
             }
 
             return null;
-        }
-
+        } 
     }
 }
