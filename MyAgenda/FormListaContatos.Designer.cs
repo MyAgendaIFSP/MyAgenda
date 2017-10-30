@@ -119,7 +119,7 @@
             // timerAtualizaContatos
             // 
             this.timerAtualizaContatos.Enabled = true;
-            this.timerAtualizaContatos.Interval = 1000;
+            this.timerAtualizaContatos.Interval = 2000;
             this.timerAtualizaContatos.Tick += new System.EventHandler(this.timerAtualizaContatos_Tick);
             // 
             // timerBuscaContato

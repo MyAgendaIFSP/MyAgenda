@@ -196,5 +196,31 @@ namespace MyAgenda.Database
 
             return false;
         }
+
+        /// <summary>
+        /// Remove um contato do usuario
+        /// </summary>
+        /// <param name="contato">id do contato</param>
+        /// <returns></returns>
+        public bool RemoveContato(int contato)
+        {
+            if (_abreConexao())
+            {
+                UsuarioController u = UsuarioController.GetInstance();
+                int usuario = u.GetModelo().Id;
+
+                SqlCommand cmd = new SqlCommand("DELETE contato FROM contato INNER JOIN lista_contatos ON contato.lista_contato = lista_contatos.id WHERE contato.usuario = @contato AND lista_contatos.usuario = @usuario; ", _conexao);
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+                cmd.Parameters.AddWithValue("@contato", contato);
+
+                int qtd = cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                return qtd > 0;
+            }
+
+            return false;
+        }
     }
 }

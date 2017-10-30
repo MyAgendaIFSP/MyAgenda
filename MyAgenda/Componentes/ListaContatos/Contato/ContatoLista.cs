@@ -47,6 +47,7 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
                 c.Width = this.ClientSize.Width - 10;
                 c.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
                 c.MensagemClick += _onItemMensagemClick;
+                c.RemoverClick += _onItemRemoverClick;
 
                 c.CreateControl();
                 this.Controls.Add(c);
@@ -101,6 +102,7 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
             contato.Width = this.ClientSize.Width - 10;
             contato.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
             contato.MensagemClick += _onItemMensagemClick;
+            contato.RemoverClick += _onItemRemoverClick;
 
             contato.CreateControl();
             this.Controls.Add(contato);
@@ -137,6 +139,19 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
                 MessageBox.Show("Contato não está conectado.", "Erro ao abrir conversa", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //Iniciar o chat
+        }
+
+        private void _onItemRemoverClick(object sender, EventArgs e)
+        {
+            //Remover o contato
+            ContatoItem contato = (ContatoItem)sender;
+
+            if (_lista.RemoverContato(contato))
+            {
+                this.Controls.Remove(contato);
+                _items.Remove(contato);
+                this.Invalidate();
+            }
         }
     }
 }

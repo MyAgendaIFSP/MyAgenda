@@ -85,5 +85,15 @@ namespace MyAgenda.Controladores.ListaContatos
 
             return null;
         }
+
+        /// <summary>
+        /// Remove um contato do usuário
+        /// </summary>
+        /// <param name="contato"></param>
+        /// <returns></returns>
+        public bool RemoverContato(ContatoItem contato)
+        {
+            return _api.RemoveContato(contato.Modelo.Id);
+        }
     }
 }

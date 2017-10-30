@@ -8,7 +8,8 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
     public partial class ContatoItem : UserControl
     {
         public event EventHandler MensagemClick;
-        
+        public event EventHandler RemoverClick;
+
         public ContatoModelo Modelo { get; set; }
 
         public ContatoItem()
@@ -55,6 +56,14 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
         private void ContatoItem_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = System.Drawing.Color.White;
+        }
+
+        private void pcbRemoverContato_Click(object sender, EventArgs e)
+        {
+            if (RemoverClick != null)
+            {
+                RemoverClick(this, new EventArgs());
+            }
         }
     }
 }
