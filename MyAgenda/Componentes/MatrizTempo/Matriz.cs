@@ -238,6 +238,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             {
                 Panel quadrante = (Panel)_itemClicado.Parent;
                 quadrante.Controls.Remove(_itemClicado);
+                _ultimosY[((int)_itemClicado.MatrizItem.GetModel().Quadrante)] = quadrante.Controls.Count * (_itemClicado.Height + 2);
                 _atualizarQuadrante(quadrante, _itemClicado.Location);
             }
             else
