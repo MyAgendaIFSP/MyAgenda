@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componentes\ListaContatos\Chat\Chat.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Componentes\ListaContatos\Contato\ContatoItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +98,12 @@
     <Compile Include="Database\ContatosAPI.cs" />
     <Compile Include="Database\MatrizTempoAPI.cs" />
     <Compile Include="Database\UsuarioAPI.cs" />
+    <Compile Include="FormChat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChat.Designer.cs">
+      <DependentUpon>FormChat.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Componentes\MatrizTempo\Matriz.resx">
       <DependentUpon>Matriz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChat.resx">
+      <DependentUpon>FormChat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -197,9 +209,7 @@
     <None Include="Resources\ic_archive_white.png" />
     <None Include="Resources\ic_add_circle_outline_black.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Componentes\ListaContatos\Chat\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

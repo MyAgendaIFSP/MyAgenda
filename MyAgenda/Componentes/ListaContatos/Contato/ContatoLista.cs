@@ -171,7 +171,13 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
             {
                 MessageBox.Show("Contato não está conectado.", "Erro ao abrir conversa", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //Iniciar o chat
+            else
+            {
+                //Iniciar o chat
+                FormChat chat = new FormChat(contato.Modelo);
+                chat.Show();
+            }
+
         }
 
         private void _onItemRemoverClick(object sender, EventArgs e)
