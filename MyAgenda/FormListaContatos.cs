@@ -38,7 +38,16 @@ namespace MyAgenda
         {
             //Adicionar o contato buscado
             _contatoBuscado = _contatosBuscados.Single(contato => cbbBuscarContato.Text.Contains(contato.GetModelo().Email));
-            contatoLista.AdicionarContato(_contatoBuscado);
+            cbbBuscarContato.Text = "";
+
+            if (!contatoLista.Contem(_contatoBuscado))
+            {
+                contatoLista.AdicionarContato(_contatoBuscado);
+            }
+            else
+            {
+                MessageBox.Show("Contato já existe.", "Erro ao adicionar contato", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void Contatos_FormClosed(object sender, FormClosedEventArgs e)

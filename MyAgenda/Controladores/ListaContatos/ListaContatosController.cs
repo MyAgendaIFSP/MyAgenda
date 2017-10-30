@@ -95,5 +95,15 @@ namespace MyAgenda.Controladores.ListaContatos
         {
             return _api.RemoveContato(contato.Modelo.Id);
         }
+
+        /// <summary>
+        /// Verifica se um contato já existe
+        /// </summary>
+        /// <param name="contato"></param>
+        /// <returns></returns>
+        public bool ContatoExiste(ContatoController contato)
+        {
+            return _contatos.Contains(contato);
+        }
     }
 }

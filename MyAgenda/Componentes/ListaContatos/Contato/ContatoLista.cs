@@ -130,6 +130,16 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
             return false;
         }
 
+        /// <summary>
+        /// Verifica se um contato já existe para um usuário
+        /// </summary>
+        /// <param name="contato"></param>
+        /// <returns></returns>
+        public bool Contem(ContatoController contato)
+        {
+            return _lista.ContatoExiste(contato);
+        }
+
         private void _atualizarLista(Point location)
         {
             Point ultimaPosicao = new Point();
