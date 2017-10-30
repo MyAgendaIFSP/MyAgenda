@@ -16,7 +16,7 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
 
         List<ContatoItem> _items = new List<ContatoItem>();
 
-        private int _ultimoY = 10;
+        private int _ultimoY = 5;
 
         /// <summary>
         /// Carrega os controles dos contatos em memória
@@ -39,7 +39,7 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
                 this.Controls.Clear();
             }
 
-            _ultimoY = 10;
+            _ultimoY = 5;
 
             foreach (ContatoItem c in _items)
             {
@@ -123,11 +123,34 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
             if(novoItem != null)
             {
                 _items.Add(novoItem);
-                _acrescentaContato(_items[_items.Count- 1]);
+                _acrescentaContato(novoItem);
                 return true;
             }
 
             return false;
+        }
+
+        private void _atualizarLista(Point location)
+        {
+            Point ultimaPosicao = new Point();
+
+            for (int i = 0; i < this.Controls.Count; i++)
+            {
+                if (this.Controls[i].Location.Y > location.Y)
+                {
+                    if (ultimaPosicao.Y == 0)
+                    {
+                        ultimaPosicao = this.Controls[i].Location;
+                        this.Controls[i].Location = location;
+                    }
+                    else
+                    {
+                        location = ultimaPosicao;
+                        ultimaPosicao = this.Controls[i].Location;
+                        this.Controls[i].Location = location;
+                    }
+                }
+            }
         }
 
         private void _onItemMensagemClick(object sender, EventArgs e)
@@ -149,7 +172,9 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
             if (_lista.RemoverContato(contato))
             {
                 this.Controls.Remove(contato);
+                _ultimoY = (this.Controls.Count * (contato.Height + 5)) + 5;
                 _items.Remove(contato);
+                _atualizarLista(contato.Location);
                 this.Invalidate();
             }
         }
