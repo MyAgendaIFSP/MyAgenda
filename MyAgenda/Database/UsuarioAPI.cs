@@ -39,7 +39,7 @@ namespace MyAgenda.Database
             
             STRING_CONEXAO = @"Data Source=tcp:" + ip + @";Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";*/
 
-            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
 
         /// <summary>
@@ -471,7 +471,7 @@ namespace MyAgenda.Database
 
                 NameValueCollection collection = new NameValueCollection();
 
-                byte[] response = client.UploadValues("http://allexhome.ddns.net/IP/ip", collection);
+                byte[] response = client.UploadValues("http://allexhome.ddns.net:5321/IP/ip", collection);
 
                 string result = System.Text.Encoding.UTF8.GetString(response);
 

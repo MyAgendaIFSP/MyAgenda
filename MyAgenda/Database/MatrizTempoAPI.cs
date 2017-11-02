@@ -30,7 +30,7 @@ namespace MyAgenda.Database
 
         private MatrizTempoAPI()
         {
-            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
 
         /// <summary>
