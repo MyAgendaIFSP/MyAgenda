@@ -105,7 +105,7 @@ namespace MyAgenda.Database
         {
             if (_abreConexao())
             {
-                SqlCommand cmd = new SqlCommand("select id from conversa where usuario_criador = @usuario and usuario_dest = @contato", _conexao);
+                SqlCommand cmd = new SqlCommand("select id from conversa where (usuario_criador = @usuario and usuario_dest = @contato) or (usuario_criador = @contato and usuario_dest = @usuario)", _conexao);
                 cmd.Parameters.AddWithValue("@usuario", idUsuario);
                 cmd.Parameters.AddWithValue("@contato", idContato);
 
