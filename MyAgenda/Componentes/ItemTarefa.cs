@@ -35,7 +35,7 @@ namespace MyAgenda.Componentes
             lblDescricaoTarefa.Location = new System.Drawing.Point(35, 0);
             lblDescricaoTarefa.AutoSize = true;
             lblDescricaoTarefa.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            lblDescricaoTarefa.MaximumSize = new Size(600, 0);
+            //lblDescricaoTarefa.MaximumSize = new Size(900, 0);
             lblDescricaoTarefa.CreateControl();
 
 

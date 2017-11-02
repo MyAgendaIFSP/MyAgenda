@@ -41,7 +41,13 @@
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.lblCalendario = new System.Windows.Forms.Label();
             this.btnNovaLista = new System.Windows.Forms.Button();
+            this.itemTarefa1 = new MyAgenda.Componentes.ItemTarefa();
+            this.itemTarefa2 = new MyAgenda.Componentes.ItemTarefa();
+            this.itemTarefa3 = new MyAgenda.Componentes.ItemTarefa();
             this.barraNavegacao1.SuspendLayout();
+            this.panelListaAfazeres.SuspendLayout();
+            this.itemTarefa1.SuspendLayout();
+            this.itemTarefa2.SuspendLayout();
             this.SuspendLayout();
             // 
             // barraNavegacao1
@@ -70,6 +76,7 @@
             this.panelListaAfazeres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelListaAfazeres.Controls.Add(this.itemTarefa1);
             this.panelListaAfazeres.Location = new System.Drawing.Point(288, 53);
             this.panelListaAfazeres.Name = "panelListaAfazeres";
             this.panelListaAfazeres.Size = new System.Drawing.Size(527, 455);
@@ -201,6 +208,41 @@
             this.btnNovaLista.UseVisualStyleBackColor = true;
             this.btnNovaLista.Click += new System.EventHandler(this.btnNovaLista_Click);
             // 
+            // itemTarefa1
+            // 
+            this.itemTarefa1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemTarefa1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.itemTarefa1.Controls.Add(this.itemTarefa2);
+            this.itemTarefa1.Location = new System.Drawing.Point(4, 4);
+            this.itemTarefa1.Name = "itemTarefa1";
+            this.itemTarefa1.Size = new System.Drawing.Size(200, 100);
+            this.itemTarefa1.TabIndex = 0;
+            // 
+            // itemTarefa2
+            // 
+            this.itemTarefa2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemTarefa2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.itemTarefa2.Controls.Add(this.itemTarefa3);
+            this.itemTarefa2.Location = new System.Drawing.Point(0, 0);
+            this.itemTarefa2.Name = "itemTarefa2";
+            this.itemTarefa2.Size = new System.Drawing.Size(200, 100);
+            this.itemTarefa2.TabIndex = 2;
+            // 
+            // itemTarefa3
+            // 
+            this.itemTarefa3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.itemTarefa3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.itemTarefa3.Location = new System.Drawing.Point(0, 0);
+            this.itemTarefa3.Name = "itemTarefa3";
+            this.itemTarefa3.Size = new System.Drawing.Size(200, 100);
+            this.itemTarefa3.TabIndex = 2;
+            // 
             // FormListaAfazeres
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +267,11 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormListaAfazeres_Load);
             this.barraNavegacao1.ResumeLayout(false);
+            this.panelListaAfazeres.ResumeLayout(false);
+            this.itemTarefa1.ResumeLayout(false);
+            this.itemTarefa1.PerformLayout();
+            this.itemTarefa2.ResumeLayout(false);
+            this.itemTarefa2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,5 +292,8 @@
         private Componentes.BarraNavegacao barraNavegacao2;
         private System.Windows.Forms.Label lblCalendario;
         private System.Windows.Forms.Button btnNovaLista;
+        private Componentes.ItemTarefa itemTarefa1;
+        private Componentes.ItemTarefa itemTarefa2;
+        private Componentes.ItemTarefa itemTarefa3;
     }
 }
