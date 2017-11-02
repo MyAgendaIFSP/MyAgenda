@@ -54,10 +54,19 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Componentes\ItemTarefa.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\ItemTarefa.Designer.cs">
+      <DependentUpon>ItemTarefa.cs</DependentUpon>
     </Compile>
     <Compile Include="Componentes\Loader.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEventos.Designer.cs">
+      <DependentUpon>FormEventos.cs</DependentUpon>
     </Compile>
     <Compile Include="FormListaAfazeres.cs">
       <SubType>Form</SubType>
@@ -85,6 +94,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Componentes\ItemTarefa.resx">
+      <DependentUpon>ItemTarefa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEventos.resx">
+      <DependentUpon>FormEventos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormListaAfazeres.resx">
       <DependentUpon>FormListaAfazeres.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +140,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon %281%29.ico" />
+    <None Include="Resources\ic_edit_black.png" />
+    <None Include="Resources\ic_delete_black.png" />
     <None Include="Resources\checked.png" />
     <None Include="Resources\ic_refresh_white.png" />
     <None Include="Resources\ic_home_white.png" />

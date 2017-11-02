@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using MyAgenda.Componentes;
 using static MyAgenda.Componentes.BarraNavegacao;
 
 namespace MyAgenda
@@ -85,6 +86,14 @@ namespace MyAgenda
         private void txtTarefa_Leave(object sender, EventArgs e)
         {
             txtTarefa.Text = "Descrição da tarefa";
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            ItemTarefa itemTarefa = new ItemTarefa();
+            itemTarefa.DescricaoTarefa = "Olá";
+            itemTarefa.Width = panelListaAfazeres.Width;
+            panelListaAfazeres.Controls.Add(itemTarefa);
         }
     }
 }

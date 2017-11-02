@@ -1,69 +1,96 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyAgenda.Componentes
 {
-    class ItemTarefa : Panel
+    public partial class ItemTarefa : UserControl
     {
-        private Button btnChecar;
-
-        private Label lblDescricaoTarefa;
+        public string DescricaoTarefa
+        {
+            get { return lblDescricaoTarefa.Text; }
+            set { lblDescricaoTarefa.Text = value; }
+        }
 
         public ItemTarefa()
         {
-            this.Location = new System.Drawing.Point(0, 0);
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Dock = DockStyle.Top;
             this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-
-            btnChecar = new Button();
-            btnChecar.Height = 18;
-            btnChecar.Width = 18;
-            btnChecar.AutoSize = true;
-            btnChecar.Dock = DockStyle.Left;
-            btnChecar.Image = MyAgenda.Properties.Resources.ic_checked_black;
-            btnChecar.FlatStyle = FlatStyle.Flat;
-            btnChecar.FlatAppearance.BorderSize = 0;
-            btnChecar.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnChecar.CreateControl();
-
-            lblDescricaoTarefa = new Label();
-            lblDescricaoTarefa.Text = "A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z.A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z.A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z.";
-            lblDescricaoTarefa.Font = new Font("Century Gothic", 12, FontStyle.Regular);
-            lblDescricaoTarefa.Location = new System.Drawing.Point(35, 0);
-            lblDescricaoTarefa.AutoSize = true;
-            lblDescricaoTarefa.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            //lblDescricaoTarefa.MaximumSize = new Size(900, 0);
-            lblDescricaoTarefa.CreateControl();
-
-
-            this.Controls.Add(btnChecar);
-            this.Controls.Add(lblDescricaoTarefa);
-
-            this.Invalidate();
+            InitializeComponent();
         }
 
-        public void AddItem(string descricao)
+        private void btnChecar_Click(object sender, EventArgs e)
         {
-            Button btnChecar = new Button();
-            btnChecar.Height = 18;
-            btnChecar.Width = 18;
-            btnChecar.AutoSize = true;
-            btnChecar.Text = "OI";
-            btnChecar.CreateControl();
+            lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Strikeout);
+        }
 
-            Label lblDescricaoTarefa = new Label();
-            lblDescricaoTarefa.Text = "Teste";
-            lblDescricaoTarefa.Height = 18;
-            lblDescricaoTarefa.AutoSize = true;
-            lblDescricaoTarefa.CreateControl();
+        private void ItemTarefa_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnChecar.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
 
-            this.Controls.Add(btnChecar);
-            this.Controls.Add(lblDescricaoTarefa);
+        private void ItemTarefa_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnChecar.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
 
-            this.Invalidate();
+        private void btnExcluir_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnChecar.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void btnExcluir_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnChecar.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
+
+        private void btnEditar_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnChecar.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void btnEditar_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnChecar.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
+
+        private void btnChecar_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnChecar.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void btnChecar_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnChecar.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
         }
     }
 }
