@@ -24,6 +24,12 @@ namespace MyAgenda.Controladores.ListaContatos
             return _instancia;
         }
 
+        private ListaContatosController()
+        {
+            UsuarioController u = UsuarioController.GetInstance();
+            _api.VerificaListaContatos(u.GetModelo().Id);
+        }
+
         /// <summary>
         /// Busca os contatos do usuário no banco de dados
         /// </summary>

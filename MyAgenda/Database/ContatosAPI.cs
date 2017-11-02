@@ -4,6 +4,7 @@ using MyAgenda.Modelos.ListaContatos;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System;
 
 namespace MyAgenda.Database
 {
@@ -30,7 +31,7 @@ namespace MyAgenda.Database
         {
             STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
-
+        
         /// <summary>
         /// Abre a conexão com o banco de dados
         /// </summary>
@@ -87,6 +88,25 @@ namespace MyAgenda.Database
 
         }
 
+        public void VerificaListaContatos(int usuario)
+        {
+            if (_abreConexao())
+            {
+
+                SqlCommand cmd = new SqlCommand("select id from lista_contatos where usuario = @usuario", _conexao);
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                object res = cmd.ExecuteScalar();
+
+                if(res == null)
+                {
+                    _criaListaContatos(usuario);
+                }
+
+                _fechaConexao();
+            }
+        }
+        
         /// <summary>
         /// Busca uma contato no banco de dados
         /// </summary>
@@ -218,6 +238,24 @@ namespace MyAgenda.Database
                 _fechaConexao();
 
                 return qtd > 0;
+            }
+
+            return false;
+        }
+
+        private bool _criaListaContatos(int usuario)
+        {
+            if (_abreConexao())
+            {
+
+                SqlCommand cmd = new SqlCommand("insert into lista_contatos (usuario) values (@usuario);", _conexao);
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                int res = cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                return res > 0;                
             }
 
             return false;
