@@ -33,14 +33,14 @@
             this.barraNavegacao2 = new MyAgenda.Componentes.BarraNavegacao();
             this.panelListaAfazeres = new System.Windows.Forms.Panel();
             this.lblDataAtual = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.cldData = new System.Windows.Forms.MonthCalendar();
             this.lblDiaSemana = new System.Windows.Forms.Label();
             this.lblListaAfazeres = new System.Windows.Forms.Label();
             this.cbbListasAfazeres = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTarefa = new System.Windows.Forms.TextBox();
             this.btnAdicionar = new System.Windows.Forms.Button();
-            this.lblCalendario = new System.Windows.Forms.Label();
+            this.lblData = new System.Windows.Forms.Label();
             this.btnNovaLista = new System.Windows.Forms.Button();
             this.barraNavegacao1.SuspendLayout();
             this.SuspendLayout();
@@ -87,17 +87,17 @@
             this.lblDataAtual.TabIndex = 2;
             this.lblDataAtual.Text = "<Data Atual>";
             // 
-            // monthCalendar1
+            // cldData
             // 
-            this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
-            this.monthCalendar1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monthCalendar1.Location = new System.Drawing.Point(16, 129);
-            this.monthCalendar1.MaxDate = new System.DateTime(2095, 10, 21, 0, 0, 0, 0);
-            this.monthCalendar1.MinDate = new System.DateTime(1995, 10, 21, 0, 0, 0, 0);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.ShowToday = false;
-            this.monthCalendar1.ShowWeekNumbers = true;
-            this.monthCalendar1.TabIndex = 3;
+            this.cldData.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
+            this.cldData.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cldData.Location = new System.Drawing.Point(16, 129);
+            this.cldData.MaxDate = new System.DateTime(2095, 10, 21, 0, 0, 0, 0);
+            this.cldData.MinDate = new System.DateTime(1995, 10, 21, 0, 0, 0, 0);
+            this.cldData.Name = "cldData";
+            this.cldData.ShowToday = false;
+            this.cldData.ShowWeekNumbers = true;
+            this.cldData.TabIndex = 3;
             // 
             // lblDiaSemana
             // 
@@ -174,16 +174,16 @@
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
-            // lblCalendario
+            // lblData
             // 
-            this.lblCalendario.AutoSize = true;
-            this.lblCalendario.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalendario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCalendario.Location = new System.Drawing.Point(12, 109);
-            this.lblCalendario.Name = "lblCalendario";
-            this.lblCalendario.Size = new System.Drawing.Size(97, 21);
-            this.lblCalendario.TabIndex = 11;
-            this.lblCalendario.Text = "Calendário";
+            this.lblData.AutoSize = true;
+            this.lblData.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblData.Location = new System.Drawing.Point(12, 109);
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(51, 21);
+            this.lblData.TabIndex = 11;
+            this.lblData.Text = "Data";
             // 
             // btnNovaLista
             // 
@@ -210,8 +210,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(827, 520);
             this.Controls.Add(this.btnNovaLista);
-            this.Controls.Add(this.lblCalendario);
-            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.lblData);
+            this.Controls.Add(this.cldData);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.txtTarefa);
             this.Controls.Add(this.label1);
@@ -238,7 +238,7 @@
         private Componentes.BarraNavegacao barraNavegacao1;
         private System.Windows.Forms.Panel panelListaAfazeres;
         private System.Windows.Forms.Label lblDataAtual;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar cldData;
         private System.Windows.Forms.Label lblDiaSemana;
         private System.Windows.Forms.Label lblListaAfazeres;
         private System.Windows.Forms.ComboBox cbbListasAfazeres;
@@ -246,7 +246,7 @@
         private System.Windows.Forms.TextBox txtTarefa;
         private System.Windows.Forms.Button btnAdicionar;
         private Componentes.BarraNavegacao barraNavegacao2;
-        private System.Windows.Forms.Label lblCalendario;
+        private System.Windows.Forms.Label lblData;
         private System.Windows.Forms.Button btnNovaLista;
     }
 }
