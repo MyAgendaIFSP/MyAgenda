@@ -111,3 +111,20 @@ begin
 
 end
 go
+
+create
+procedure NovaConversa @usuario int, @contato int
+as
+begin
+
+	declare @id int;
+
+	insert into conversa (usuario_criador, usuario_dest, [data])
+	values(@usuario, @contato, getdate());
+
+	select @id = max(id) from conversa;
+
+	return @id;
+
+end
+go

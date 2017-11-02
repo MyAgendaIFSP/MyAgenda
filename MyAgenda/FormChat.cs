@@ -1,16 +1,7 @@
 ﻿using MyAgenda.Componentes.Geral;
-using MyAgenda.Componentes.ListaContatos.Chat;
 using MyAgenda.Controladores.Geral;
 using MyAgenda.Modelos.ListaContatos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MyAgenda
 {
@@ -20,7 +11,7 @@ namespace MyAgenda
         private ContatoModelo _contato;
 
         private UsuarioController _usuario;
-
+        
         public FormChat()
         {
             InitializeComponent();
@@ -31,6 +22,8 @@ namespace MyAgenda
         public FormChat(ContatoModelo contato)
         {
             InitializeComponent();
+
+            //TODO: Verificar no banco de dados se essa conversa existe no banco
 
             this.TemBarraNavegacao = false;
             Loader.Visible = false;
@@ -53,16 +46,15 @@ namespace MyAgenda
         private void btnEnviarMensagem_Click(object sender, EventArgs e)
         {
             //enviar mensagem
-            /*chat.AdicionaMensagem("Opa", "Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet.", DateTime.Now, ChatMensagem.EEstadoMensagem.ENTREGUE);
-            chat.AdicionaMensagem("Opa", "Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet.", DateTime.Now, ChatMensagem.EEstadoMensagem.NAO_ENTREGUE);
-            chat.AdicionaMensagem("Opa1", "Lorem Ipsum dorem sit amet.", DateTime.Now, ChatMensagem.EEstadoMensagem.ENTREGUE);
-            chat.AdicionaMensagem("Opa1", "Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. Lorem Ipsum dorem sit amet. vLorem Ipsum dorem sit amet.", DateTime.Now, ChatMensagem.EEstadoMensagem.ENTREGUE);
-            chat.AdicionaMensagem("Opa", "Lorem Ipsum dorem sit amet.", DateTime.Now, ChatMensagem.EEstadoMensagem.NAO_ENTREGUE);*/
-
             if (!String.IsNullOrEmpty(txtMensagem.Text))
             {
-                chat.AdicionaMensagem(_usuario.GetModelo().Nome, txtMensagem.Text, DateTime.Now);
+                chat.EnviaMensagem(_usuario.GetModelo().Nome, txtMensagem.Text, DateTime.Now);
             }
+        }
+
+        private void FormChat_Shown(object sender, EventArgs e)
+        {
+            chat.IniciaChat(_contato);
         }
     }
 }

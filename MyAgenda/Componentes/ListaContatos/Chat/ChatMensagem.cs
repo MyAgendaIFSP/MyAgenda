@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MyAgenda.Database;
+using MyAgenda.Modelos.Chat;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyAgenda.Componentes.ListaContatos.Chat
@@ -13,39 +8,21 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
     public partial class ChatMensagem : UserControl
     {
 
-        public enum EEstadoMensagem { ENTREGUE, NAO_ENTREGUE }
-
-        public string Autor { get; set; }
-        public string Mensagem { get; set; }
-        public DateTime Data { get; set; }
-        public EEstadoMensagem Estado { get; set; }
-
+        private MensagemModelo _modelo;
+        
         public ChatMensagem()
         {
             InitializeComponent();
         }
 
-        public ChatMensagem(string autor, string mensagem, DateTime data, EEstadoMensagem estado)
+        public ChatMensagem(MensagemModelo msg)
         {
             InitializeComponent();
 
-            Autor = autor;
-            Mensagem = mensagem;
-            Data = data;
-            Estado = estado;
+            _modelo = msg;
 
         }
-
-        public ChatMensagem(string autor, string mensagem, DateTime data)
-        {
-            InitializeComponent();
-
-            Autor = autor;
-            Mensagem = mensagem;
-            Data = data;
-
-        }
-
+        
         public void MudaCorTexto(Color cor)
         {
             this.ForeColor = cor;
@@ -61,15 +38,21 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
             }
         }
 
+
+        public MensagemModelo GetModelo()
+        {
+            return _modelo;
+        }
+
         protected override void OnInvalidated(InvalidateEventArgs e)
         {
             base.OnInvalidated(e);
 
-            lblAutor.Text = Autor + ":";
-            lblMensagem.Text = Mensagem;
-            lblData.Text = Data.ToString();
+            lblAutor.Text = _modelo.Autor + ":";
+            lblMensagem.Text = _modelo.Texto;
+            lblData.Text = _modelo.Data.ToString();
 
-            if (Estado == EEstadoMensagem.ENTREGUE)
+            if (_modelo.Estado == ChatAPI.EEstadoMensagem.ENTREGUE)
             {
                 pbxEstado.Visible = true;
                 lblData.Visible = true;

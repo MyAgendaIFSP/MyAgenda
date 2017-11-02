@@ -1,45 +1,82 @@
-﻿using System;
+﻿using MyAgenda.Controladores.Chat;
+using MyAgenda.Controladores.Geral;
+using MyAgenda.Database;
+using MyAgenda.Modelos.Chat;
+using MyAgenda.Modelos.ListaContatos;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyAgenda.Componentes.ListaContatos.Chat
 {
     class Chat : Panel
     {
+        
+        private ChatController _chat;
 
-        public enum EDirecao { ENVIADA, RECEBIDA, NENHUM }
-
-        private List<ChatMensagem> _mensagens = new List<ChatMensagem>();
+        private UsuarioController _usuario;
 
         private int _ultimoY = 10;
-
-        private EDirecao _ultimoLado = EDirecao.NENHUM;
-
-        public bool AdicionaMensagem(string autor, string mensagem, DateTime data, ChatMensagem.EEstadoMensagem estado)
+        
+        public void IniciaChat(ContatoModelo contato)
         {
-            ChatMensagem msg = new ChatMensagem(autor, mensagem, data, estado);
+            _usuario = UsuarioController.GetInstance();
 
-            _adicionaMesagem(msg, EDirecao.ENVIADA);
+            _chat = new ChatController(contato);
+            _chat.MensagensCarregadas += _mensagensCarregadas;
+            _chat.MensagemRecebdida += _mensagemRecebida;
+
+            _chat.Carrega();
+            
+        }
+
+        private void _mensagemRecebida(object sender, MensagemModelo msg)
+        {
+            ChatMensagem cmsg = new ChatMensagem(msg);
+            _adicionaMesagem(cmsg, ChatAPI.EDirecao.RECEBIDA);
+        }
+
+        private void _mensagensCarregadas(object sender, List<MensagemModelo> msgs)
+        {
+            foreach(MensagemModelo msg in msgs)
+            {
+                string autor = "";
+                ChatAPI.EDirecao direcao = ChatAPI.EDirecao.NENHUM;
+
+                if (msg.Destinatario == _usuario.GetModelo().Id)
+                {
+                    autor = _chat.GetContato().Nome;
+                    direcao = ChatAPI.EDirecao.RECEBIDA;
+                }
+                else
+                {
+                    autor = _usuario.GetModelo().Nome;
+                    direcao = ChatAPI.EDirecao.ENVIADA;
+                }
+
+                msg.Autor = autor;
+
+                ChatMensagem cmsg = new ChatMensagem(msg);
+                _adicionaMesagem(cmsg, direcao);
+            }
+        }
+        
+        public bool EnviaMensagem(string autor, string mensagem, DateTime data)
+        {
+            ChatMensagem msg = new ChatMensagem(new MensagemModelo(autor, mensagem, ChatAPI.EEstadoMensagem.NAO_ENTREGUE, data, _chat.GetContato().Id));
+
+            if (_chat.EnviaMensagem(msg.GetModelo()))
+            {
+                _adicionaMesagem(msg, ChatAPI.EDirecao.ENVIADA);
+            }
 
             return true;
         }
 
-        public bool AdicionaMensagem(string autor, string mensagem, DateTime data)
+        private void _adicionaMesagem(ChatMensagem msg, ChatAPI.EDirecao direcao)
         {
-            ChatMensagem msg = new ChatMensagem(autor, mensagem, data);
-
-            _adicionaMesagem(msg, EDirecao.ENVIADA);
-
-            return true;
-        }
-
-        private void _adicionaMesagem(ChatMensagem msg, EDirecao direcao)
-        {
-            if (direcao == EDirecao.ENVIADA)
+            if (direcao == ChatAPI.EDirecao.ENVIADA)
             {
                 msg.Location = new Point(this.Width - 327, _ultimoY);
                 msg.BackColor = Color.SlateGray;
@@ -56,11 +93,9 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
 
             msg.Invalidate();
 
-            _mensagens.Add(msg);
-
             this.ScrollControlIntoView(msg);
 
-            _ultimoY = _mensagens[_mensagens.Count - 1].Bottom + 6;
+            _ultimoY = this.Controls[this.Controls.Count - 1].Bottom + 6;
 
             this.Invalidate();
         }

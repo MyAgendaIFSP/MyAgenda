@@ -96,11 +96,13 @@
     <Compile Include="Componentes\MatrizTempo\VerticalLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controladores\Chat\ChatController.cs" />
     <Compile Include="Controladores\Geral\UsuarioController.cs" />
     <Compile Include="Controladores\ListaContatos\ContatoController.cs" />
     <Compile Include="Controladores\ListaContatos\ListaContatosController.cs" />
     <Compile Include="Controladores\MatrizTempo\ItemMatrizController.cs" />
     <Compile Include="Controladores\MatrizTempo\MatrizController.cs" />
+    <Compile Include="Database\ChatAPI.cs" />
     <Compile Include="Database\ContatosAPI.cs" />
     <Compile Include="Database\MatrizTempoAPI.cs" />
     <Compile Include="Database\UsuarioAPI.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="FormListaContatos.Designer.cs">
       <DependentUpon>FormListaContatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Chat\MensagemModelo.cs" />
     <Compile Include="Modelos\Geral\UsuarioModel.cs" />
     <Compile Include="Modelos\ListaContatos\ContatoModelo.cs" />
     <Compile Include="Modelos\MatrizTempo\ItemMatrizModel.cs" />
