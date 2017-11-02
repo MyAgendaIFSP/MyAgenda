@@ -14,26 +14,14 @@ namespace MyAgenda.Database
     {
 
         private readonly string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
-
-        private static ChatAPI _instancia = null;
-
+        
         private SqlConnection _conexao = null;
 
         public enum EDirecao { ENVIADA, RECEBIDA, NENHUM }
 
         public enum EEstadoMensagem { ENTREGUE, NAO_ENTREGUE }
-
-        public static ChatAPI GetInstance()
-        {
-            if (_instancia == null)
-            {
-                _instancia = new ChatAPI();
-            }
-
-            return _instancia;
-        }
-
-        private ChatAPI()
+        
+        public ChatAPI()
         {
             STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
@@ -75,7 +63,7 @@ namespace MyAgenda.Database
                 return false;
             }
         }
-
+        
         /// <summary>
         /// Fecha a conexão com o banco de dados
         /// </summary>
@@ -181,13 +169,82 @@ namespace MyAgenda.Database
                 cmd.Parameters.AddWithValue("@conversa", conversaId);
                 cmd.Parameters.AddWithValue("@destino", msg.Destinatario);
                 cmd.Parameters.AddWithValue("@msg", msg.Texto);
-                cmd.Parameters.AddWithValue("@estado", (int) msg.Estado);
+                cmd.Parameters.AddWithValue("@estado", (int) EEstadoMensagem.NAO_ENTREGUE);
                 cmd.Parameters.AddWithValue("@data", msg.Data);
 
                 int res = cmd.ExecuteNonQuery();
 
                 _fechaConexao();
 
+                return res > 0;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Busca a última mensagem da conversa
+        /// </summary>
+        /// <param name="conversaId">id da conversa para buscar a mensagem</param>
+        /// <param name="usuarioId">id do usuario buscando</param>
+        /// <returns></returns>
+        public MensagemModelo MensagemNova(int conversaId, int usuarioId)
+        {
+            if (_abreConexao())
+            {
+                MensagemModelo msg = null;
+
+                SqlCommand cmd = new SqlCommand("select * from mensagem where estado = @estado and destinatario = @destino;", _conexao);
+                cmd.Parameters.AddWithValue("@estado", EEstadoMensagem.NAO_ENTREGUE);
+                cmd.Parameters.AddWithValue("@destino", usuarioId);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        _fechaConexao();
+                        return null;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        int destino = (int)rdr["destinatario"];
+                        string texto = rdr["texto"].ToString();
+                        DateTime data = DateTime.Parse(rdr["data"].ToString());
+                        EEstadoMensagem estado = (EEstadoMensagem)((int)rdr["estado"]);
+
+                        msg = new MensagemModelo(texto, estado, data, destino);
+                    }
+
+                }
+
+                _fechaConexao();
+                return msg;                
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Marca uma mensagem como lida no banco de dados
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="conversaId"></param>
+        /// <returns></returns>
+        public bool AtualizaEstadoMensagem(MensagemModelo msg, int conversaId)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("update mensagem set estado = @estado where conversa = @conversa and destinatario = @destino and texto like @msg and estado = 1;", _conexao);
+                cmd.Parameters.AddWithValue("@estado", EEstadoMensagem.ENTREGUE);
+                cmd.Parameters.AddWithValue("@conversa", conversaId);
+                cmd.Parameters.AddWithValue("@destino", msg.Destinatario);
+                cmd.Parameters.AddWithValue("@msg", msg.Texto);
+                cmd.Parameters.AddWithValue("@data", msg.Data);
+
+                int res = cmd.ExecuteNonQuery();
+
+                _fechaConexao();
                 return res > 0;
             }
 

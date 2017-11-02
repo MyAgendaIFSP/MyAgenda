@@ -87,15 +87,16 @@ namespace MyAgenda.Componentes.Geral
 
         private void BaseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            UsuarioController u = UsuarioController.GetInstance();
-            if (u.IsAutenticado)
-            {
-                u.EncerraSessao();
-            }
-
+            
             FormCollection forms = Application.OpenForms;
             if (forms.Count == 0)
             {
+                UsuarioController u = UsuarioController.GetInstance();
+                if (u.IsAutenticado)
+                {
+                    u.EncerraSessao();
+                }
+
                 Application.Exit();
             }
             else
@@ -109,6 +110,12 @@ namespace MyAgenda.Componentes.Geral
 
                 if (quit)
                 {
+                    UsuarioController u = UsuarioController.GetInstance();
+                    if (u.IsAutenticado)
+                    {
+                        u.EncerraSessao();
+                    }
+
                     Application.Exit();
                 }
             }

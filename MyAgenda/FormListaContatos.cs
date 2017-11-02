@@ -52,16 +52,16 @@ namespace MyAgenda
 
         private void Contatos_FormClosed(object sender, FormClosedEventArgs e)
         {
-
-            UsuarioController u = UsuarioController.GetInstance();
-            if (u.IsAutenticado)
-            {
-                u.EncerraSessao();
-            }
-
+            
             FormCollection forms = Application.OpenForms;
             if (forms.Count == 0)
             {
+                UsuarioController u = UsuarioController.GetInstance();
+                if (u.IsAutenticado)
+                {
+                    u.EncerraSessao();
+                }
+
                 Application.Exit();
             }
             else
@@ -75,6 +75,12 @@ namespace MyAgenda
 
                 if (quit)
                 {
+                    UsuarioController u = UsuarioController.GetInstance();
+                    if (u.IsAutenticado)
+                    {
+                        u.EncerraSessao();
+                    }
+
                     Application.Exit();
                 }
             }

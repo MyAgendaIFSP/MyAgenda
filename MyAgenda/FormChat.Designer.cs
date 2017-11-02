@@ -102,7 +102,9 @@
             this.Location = new System.Drawing.Point(0, 0);
             this.MaximizeBox = false;
             this.Name = "FormChat";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Conversa";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormChat_FormClosing);
             this.Shown += new System.EventHandler(this.FormChat_Shown);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.chat, 0);

@@ -1,12 +1,10 @@
-﻿using MyAgenda.Componentes.ListaContatos.Chat;
-using MyAgenda.Controladores.Geral;
+﻿using MyAgenda.Controladores.Geral;
 using MyAgenda.Database;
 using MyAgenda.Modelos.Chat;
 using MyAgenda.Modelos.ListaContatos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyAgenda.Controladores.Chat
@@ -19,6 +17,9 @@ namespace MyAgenda.Controladores.Chat
         public event MensagensCarregadasEventHandler MensagensCarregadas;
         public event MensagemRecebidaEventHandler MensagemRecebdida;
 
+        /// <summary>
+        /// Id da conversa atual
+        /// </summary>
         public int Id { get; set; }
 
         public List<MensagemModelo> Mensagens { get; set; }
@@ -29,12 +30,64 @@ namespace MyAgenda.Controladores.Chat
 
         private ChatAPI _api;
 
+        //private BackgroundWorker _escutadorMensagens;
+        Progress<MensagemModelo> _mensagemRepoter;
+
+        public bool Escuta { get; set; }
+
+        public bool AceitaNovaMensagem { get; set; }
+
         public ChatController(ContatoModelo contato)
         {
             Mensagens = new List<MensagemModelo>();
             _contato = contato;
-            _api = ChatAPI.GetInstance();
+            Escuta = true;
+            AceitaNovaMensagem = true;
+            _api = new ChatAPI();
             _usuario = UsuarioController.GetInstance();
+
+            _comecaEscutarMensagens();
+        }
+
+        private void _comecaEscutarMensagens()
+        {
+            _mensagemRepoter = new Progress<MensagemModelo>(_disparaMensagem);
+            Task.Run((Action) _escutaMensagem);
+        }
+
+        private void _escutaMensagem()
+        {
+            var progress = _mensagemRepoter as IProgress<MensagemModelo>;
+            ChatAPI chat = new ChatAPI();
+
+            while (Escuta)
+            {
+                MensagemModelo msg = chat.MensagemNova(Id, _usuario.GetModelo().Id);
+
+                if (msg != null && AceitaNovaMensagem)
+                {
+                    progress.Report(msg);
+                }
+
+                Thread.Sleep(1000);
+            }
+        }
+
+        public void AtualizaMensagem(MensagemModelo msg)
+        {
+            if(_api.AtualizaEstadoMensagem(msg, Id))
+            {
+                msg.Estado = ChatAPI.EEstadoMensagem.ENTREGUE;
+            }
+        }
+
+        private void _disparaMensagem(MensagemModelo msg)
+        {
+            //Recebeu mensagem nova
+            if(MensagemRecebdida != null)
+            {
+                MensagemRecebdida(this, msg);
+            }
         }
 
         public void Carrega()

@@ -2,6 +2,7 @@
 using MyAgenda.Controladores.Geral;
 using MyAgenda.Modelos.ListaContatos;
 using System;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
@@ -22,9 +23,7 @@ namespace MyAgenda
         public FormChat(ContatoModelo contato)
         {
             InitializeComponent();
-
-            //TODO: Verificar no banco de dados se essa conversa existe no banco
-
+            
             this.TemBarraNavegacao = false;
             Loader.Visible = false;
 
@@ -48,13 +47,21 @@ namespace MyAgenda
             //enviar mensagem
             if (!String.IsNullOrEmpty(txtMensagem.Text))
             {
-                chat.EnviaMensagem(_usuario.GetModelo().Nome, txtMensagem.Text, DateTime.Now);
+                if(!chat.EnviaMensagem(_usuario.GetModelo().Nome, txtMensagem.Text, DateTime.Now))
+                {
+                    MessageBox.Show("Sua mensagem não pôde ser enviada. Tente novamente.", "Erro ao enviar mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void FormChat_Shown(object sender, EventArgs e)
         {
             chat.IniciaChat(_contato);
+        }
+
+        private void FormChat_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            chat.DesligaChat();
         }
     }
 }

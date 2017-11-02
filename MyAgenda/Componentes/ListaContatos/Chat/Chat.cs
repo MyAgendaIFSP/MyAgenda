@@ -13,7 +13,7 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
     class Chat : Panel
     {
         
-        private ChatController _chat;
+        private ChatController _chatController;
 
         private UsuarioController _usuario;
 
@@ -23,55 +23,75 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
         {
             _usuario = UsuarioController.GetInstance();
 
-            _chat = new ChatController(contato);
-            _chat.MensagensCarregadas += _mensagensCarregadas;
-            _chat.MensagemRecebdida += _mensagemRecebida;
+            _chatController = new ChatController(contato);
+            _chatController.MensagensCarregadas += _mensagensCarregadas;
+            _chatController.MensagemRecebdida += _mensagemRecebida;
 
-            _chat.Carrega();
+            _chatController.Carrega();
             
+        }
+
+        public void DesligaChat()
+        {
+            _chatController.Escuta = false;
+            _chatController.AceitaNovaMensagem = false;
         }
 
         private void _mensagemRecebida(object sender, MensagemModelo msg)
         {
-            ChatMensagem cmsg = new ChatMensagem(msg);
-            _adicionaMesagem(cmsg, ChatAPI.EDirecao.RECEBIDA);
+            _chatController.AceitaNovaMensagem = false;
+
+            _chatController.AtualizaMensagem(msg);
+            
+            _adicionaMesagem(new ChatMensagem(msg), ChatAPI.EDirecao.RECEBIDA);            
+
+            _chatController.AceitaNovaMensagem = true;
         }
 
         private void _mensagensCarregadas(object sender, List<MensagemModelo> msgs)
         {
+            if(msgs.Count <= 0)
+            {
+                return;
+            }
+
+            this.SuspendLayout();
+
             foreach(MensagemModelo msg in msgs)
             {
-                string autor = "";
                 ChatAPI.EDirecao direcao = ChatAPI.EDirecao.NENHUM;
 
                 if (msg.Destinatario == _usuario.GetModelo().Id)
                 {
-                    autor = _chat.GetContato().Nome;
                     direcao = ChatAPI.EDirecao.RECEBIDA;
                 }
                 else
                 {
-                    autor = _usuario.GetModelo().Nome;
                     direcao = ChatAPI.EDirecao.ENVIADA;
                 }
-
-                msg.Autor = autor;
-
+                
                 ChatMensagem cmsg = new ChatMensagem(msg);
                 _adicionaMesagem(cmsg, direcao);
             }
+
+            this.ResumeLayout();
+            this.PerformLayout();
+
+            this.ScrollControlIntoView(this.Controls[this.Controls.Count - 1]);
+            _ultimoY = this.Controls[this.Controls.Count - 1].Bottom + 6;
         }
         
         public bool EnviaMensagem(string autor, string mensagem, DateTime data)
         {
-            ChatMensagem msg = new ChatMensagem(new MensagemModelo(autor, mensagem, ChatAPI.EEstadoMensagem.NAO_ENTREGUE, data, _chat.GetContato().Id));
+            ChatMensagem msg = new ChatMensagem(new MensagemModelo(autor, mensagem, ChatAPI.EEstadoMensagem.NAO_ENTREGUE, data, _chatController.GetContato().Id));
 
-            if (_chat.EnviaMensagem(msg.GetModelo()))
+            if (_chatController.EnviaMensagem(msg.GetModelo()))
             {
                 _adicionaMesagem(msg, ChatAPI.EDirecao.ENVIADA);
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         private void _adicionaMesagem(ChatMensagem msg, ChatAPI.EDirecao direcao)
@@ -87,6 +107,19 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
                 msg.Location = new Point(10, _ultimoY);
             }
 
+            string autor = "";
+
+            if (msg.GetModelo().Destinatario == _usuario.GetModelo().Id)
+            {
+                autor = _chatController.GetContato().Nome;
+            }
+            else
+            {
+                autor = _usuario.GetModelo().Nome;
+            }
+
+            msg.GetModelo().Autor = autor;
+
             msg.CreateControl();
 
             this.Controls.Add(msg);
@@ -94,10 +127,8 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
             msg.Invalidate();
 
             this.ScrollControlIntoView(msg);
-
+            
             _ultimoY = this.Controls[this.Controls.Count - 1].Bottom + 6;
-
-            this.Invalidate();
         }
 
     }
