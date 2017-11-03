@@ -79,5 +79,10 @@ namespace MyAgenda.Controladores.Geral
             return _api.EmailExiste(email);
         }
 
+        public UsuarioModel GetModelo()
+        {
+            return _modelo;
+        }
+
     }
 }

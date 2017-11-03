@@ -51,13 +51,20 @@ namespace MyAgenda.Controladores.MatrizTempo
         private MatrizController()
         {
             _api = MatrizTempoAPI.GetInstance();
+            _verificaMatriz();
         }
 
         private MatrizController(int id, DateTime dtInicializacao, DateTime ultimoAcesso)
         {
             //Buscar no banco a matriz do usuário
             _api = MatrizTempoAPI.GetInstance();
+            _verificaMatriz();
             _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens(id));
+        }
+
+        private void _verificaMatriz()
+        {
+            _api.VerificaMatriz();
         }
 
         private List<ItemMatrizController> _carregaItens(int id)

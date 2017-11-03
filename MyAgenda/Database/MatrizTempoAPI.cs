@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Controladores.Geral;
 using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.MatrizTempo;
 using System;
@@ -72,7 +73,7 @@ namespace MyAgenda.Database
                 return false;
             }
         }
-
+        
         /// <summary>
         /// Fecha a conexão com o banco de dados
         /// </summary>
@@ -89,6 +90,48 @@ namespace MyAgenda.Database
                 return false;
             }
 
+        }
+
+        public void VerificaMatriz()
+        {
+            if (_abreConexao())
+            {
+                UsuarioController u = UsuarioController.GetInstance();
+                SqlCommand cmd = new SqlCommand("select matriz_tempo from usuario where id = @usuario", _conexao);
+                cmd.Parameters.AddWithValue("@usuario", u.GetModelo().Id);
+
+                object res = cmd.ExecuteScalar();
+
+                if(res == null)
+                {
+                    _criaMatriz(u.GetModelo().Id);
+                }
+
+                _fechaConexao();
+            }
+        }
+
+        private bool _criaMatriz(int usuario)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("NovaMatrizTempo", _conexao);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                SqlParameter output = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                output.Direction = ParameterDirection.ReturnValue;
+
+                cmd.ExecuteNonQuery();
+
+                int res = (output.Value != null) ? (int)output.Value : 0;
+
+                _fechaConexao();
+
+                return res > 0;
+            }
+
+            return false;
         }
 
         /// <summary>
