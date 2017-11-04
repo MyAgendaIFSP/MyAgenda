@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Controladores.Chat;
 using MyAgenda.Controladores.Geral;
 using MyAgenda.Database;
 using System;
@@ -72,6 +73,9 @@ namespace MyAgenda
                 FormMatrizTempo f = new FormMatrizTempo(user);
                 f.Show();
                 this.Hide();
+
+                ChatController chat = new ChatController();
+                chat.Escuta = true;
             }
             else
             {

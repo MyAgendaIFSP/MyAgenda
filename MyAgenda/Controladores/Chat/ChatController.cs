@@ -1,4 +1,6 @@
-﻿using MyAgenda.Controladores.Geral;
+﻿using KellermanSoftware.CompareNetObjects;
+using MyAgenda.Componentes.Geral;
+using MyAgenda.Controladores.Geral;
 using MyAgenda.Database;
 using MyAgenda.Modelos.Chat;
 using MyAgenda.Modelos.ListaContatos;
@@ -24,6 +26,8 @@ namespace MyAgenda.Controladores.Chat
 
         public List<MensagemModelo> Mensagens { get; set; }
 
+        private HashSet<MensagemModelo> _mensagens { get; set; }
+
         private ContatoModelo _contato;
 
         private UsuarioController _usuario;
@@ -38,6 +42,10 @@ namespace MyAgenda.Controladores.Chat
         public bool AceitaNovaMensagem { get; set; }
 
         public bool TodasConversas { get; set; }
+
+        private List<MensagemModelo> _mensagensNotificadas = new List<MensagemModelo>();
+
+        private Notification _notificador = new Notification();
 
         public ChatController()
         {
@@ -77,24 +85,51 @@ namespace MyAgenda.Controladores.Chat
 
             while (Escuta)
             {
-                MensagemModelo msg;
-
+                
                 if (TodasConversas)
                 {
-                    msg = null;
+                    List<MensagemModelo> msgs = chat.MensagemNova(_usuario.GetModelo().Id);
+
+                    if (msgs != null)
+                    {
+                        for (int i = 0; i < msgs.Count; i++)
+                        {
+                            if (!_notificador.IsShown && !_mensagemJaRecebida(msgs[i]))
+                            {
+                                _mensagensNotificadas.Add(msgs[i]);
+                                progress.Report(msgs[i]);
+                                break;
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    msg = chat.MensagemNova(Id, _usuario.GetModelo().Id);
-                }
+                    MensagemModelo msg = chat.MensagemNova(Id, _usuario.GetModelo().Id);
 
-                if (msg != null && AceitaNovaMensagem)
-                {
-                    progress.Report(msg);
-                }
+                    if (msg != null && AceitaNovaMensagem)
+                    {
+                        progress.Report(msg);
+                    }
+                }                
 
                 Thread.Sleep(1000);
             }
+        }
+
+        private bool _mensagemJaRecebida(MensagemModelo msg)
+        {
+            CompareLogic compareLogic = new CompareLogic();
+
+            foreach (MensagemModelo m in _mensagensNotificadas)
+            {
+                if (compareLogic.Compare(m, msg).AreEqual)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void AtualizaMensagem(MensagemModelo msg)
@@ -112,6 +147,8 @@ namespace MyAgenda.Controladores.Chat
             if (TodasConversas)
             {
                 //Mostrar notificação de mensagem
+                _notificador = new Notification();
+                _notificador.Show("Nova mensagem", "Nova mensagem recebida de " + msg.Autor + ", às " + msg.Data.ToString() + ".");
             }
             else
             {

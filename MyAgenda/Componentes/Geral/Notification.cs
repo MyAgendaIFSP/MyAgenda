@@ -12,10 +12,13 @@ namespace MyAgenda.Componentes.Geral
 {
     public partial class Notification : Form
     {
+        public bool IsShown { get; set; }
+
         public Notification()
         {
             InitializeComponent();
             this.MaximumSize = new Size(370, Screen.GetWorkingArea(new Point(0, 0)).Size.Height);
+            IsShown = false;
         }
 
         public void Show(string titulo, string mensagem)
@@ -28,7 +31,7 @@ namespace MyAgenda.Componentes.Geral
             this.Location = _getPosicao();
 
             this.Show();
-
+            IsShown = true;
             timerDispensa.Start();
         }
 
@@ -48,12 +51,14 @@ namespace MyAgenda.Componentes.Geral
         {
             timerDispensa.Stop();
             this.Close();
+            IsShown = false;
         }
 
         private void btnDispensar_Click(object sender, EventArgs e)
         {
             timerDispensa.Stop();
             this.Close();
+            IsShown = false;
         }
     }
 }

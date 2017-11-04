@@ -130,7 +130,7 @@ namespace MyAgenda.Database
             {
                 List<MensagemModelo> itens = new List<MensagemModelo>();
 
-                SqlCommand cmd = new SqlCommand("select * from mensagem where mensagem.conversa = @conversa;", _conexao);
+                SqlCommand cmd = new SqlCommand("select * from mensagem where mensagem.conversa = @conversa order by data;", _conexao);
                 cmd.Parameters.AddWithValue("@conversa", conversaId);
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -220,6 +220,56 @@ namespace MyAgenda.Database
 
                 _fechaConexao();
                 return msg;                
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Busca uma mensagem recebida de qualquer conversa que o usuário possua
+        /// </summary>
+        /// <param name="usuarioId">id do usuário</param>
+        /// <returns></returns>
+        public List<MensagemModelo> MensagemNova(int usuarioId)
+        {
+            if (_abreConexao())
+            {
+                List<MensagemModelo> msgs = new List<MensagemModelo>();
+
+                SqlCommand cmd = new SqlCommand(@"select destinatario, texto, mensagem.estado, mensagem.[data], nome from mensagem, usuario, conversa
+                                                    where destinatario = @usuario
+                                                    and mensagem.estado = @estado
+                                                    and mensagem.conversa = conversa.id
+                                                    and usuario.id != mensagem.destinatario
+                                                    and(usuario.id = conversa.usuario_criador
+                                                    or usuario.id = conversa.usuario_dest)
+                                                    order by mensagem.[data]; ", _conexao);
+                cmd.Parameters.AddWithValue("@estado", EEstadoMensagem.NAO_ENTREGUE);
+                cmd.Parameters.AddWithValue("@usuario", usuarioId);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.HasRows)
+                    {
+                        _fechaConexao();
+                        return null;
+                    }
+
+                    while (rdr.Read())
+                    {
+                        int destino = (int)rdr["destinatario"];
+                        string texto = rdr["texto"].ToString();
+                        string autor = rdr["nome"].ToString();
+                        DateTime data = DateTime.Parse(rdr["data"].ToString());
+                        EEstadoMensagem estado = (EEstadoMensagem)((int)rdr["estado"]);
+
+                        msgs.Add(new MensagemModelo(autor, texto, estado, data, destino));
+                    }
+
+                }
+
+                _fechaConexao();
+                return msgs;
             }
 
             return null;

@@ -70,6 +70,11 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
                     direcao = ChatAPI.EDirecao.ENVIADA;
                 }
                 
+                if(msg.Estado == ChatAPI.EEstadoMensagem.NAO_ENTREGUE)
+                {
+                    _chatController.AtualizaMensagem(msg);
+                }
+
                 ChatMensagem cmsg = new ChatMensagem(msg);
                 _adicionaMesagem(cmsg, direcao);
             }
