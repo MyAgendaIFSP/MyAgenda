@@ -15,7 +15,7 @@ namespace MyAgenda.Controladores.Chat
         public delegate void MensagemRecebidaEventHandler(object sender, MensagemModelo msg);
 
         public event MensagensCarregadasEventHandler MensagensCarregadas;
-        public event MensagemRecebidaEventHandler MensagemRecebdida;
+        public event MensagemRecebidaEventHandler MensagemRecebida;
 
         /// <summary>
         /// Id da conversa atual
@@ -37,6 +37,20 @@ namespace MyAgenda.Controladores.Chat
 
         public bool AceitaNovaMensagem { get; set; }
 
+        public bool TodasConversas { get; set; }
+
+        public ChatController()
+        {
+            Mensagens = new List<MensagemModelo>();
+            Escuta = true;
+            AceitaNovaMensagem = true;
+            _api = new ChatAPI();
+            _usuario = UsuarioController.GetInstance();
+            TodasConversas = true;
+
+            _comecaEscutarMensagens();
+        }
+
         public ChatController(ContatoModelo contato)
         {
             Mensagens = new List<MensagemModelo>();
@@ -45,10 +59,11 @@ namespace MyAgenda.Controladores.Chat
             AceitaNovaMensagem = true;
             _api = new ChatAPI();
             _usuario = UsuarioController.GetInstance();
+            TodasConversas = false;
 
             _comecaEscutarMensagens();
         }
-
+        
         private void _comecaEscutarMensagens()
         {
             _mensagemRepoter = new Progress<MensagemModelo>(_disparaMensagem);
@@ -62,7 +77,16 @@ namespace MyAgenda.Controladores.Chat
 
             while (Escuta)
             {
-                MensagemModelo msg = chat.MensagemNova(Id, _usuario.GetModelo().Id);
+                MensagemModelo msg;
+
+                if (TodasConversas)
+                {
+                    msg = null;
+                }
+                else
+                {
+                    msg = chat.MensagemNova(Id, _usuario.GetModelo().Id);
+                }
 
                 if (msg != null && AceitaNovaMensagem)
                 {
@@ -84,9 +108,17 @@ namespace MyAgenda.Controladores.Chat
         private void _disparaMensagem(MensagemModelo msg)
         {
             //Recebeu mensagem nova
-            if(MensagemRecebdida != null)
+
+            if (TodasConversas)
             {
-                MensagemRecebdida(this, msg);
+                //Mostrar notificação de mensagem
+            }
+            else
+            {
+                if (MensagemRecebida != null)
+                {
+                    MensagemRecebida(this, msg);
+                }
             }
         }
 

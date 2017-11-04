@@ -25,7 +25,7 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
 
             _chatController = new ChatController(contato);
             _chatController.MensagensCarregadas += _mensagensCarregadas;
-            _chatController.MensagemRecebdida += _mensagemRecebida;
+            _chatController.MensagemRecebida += _mensagemRecebida;
 
             _chatController.Carrega();
             

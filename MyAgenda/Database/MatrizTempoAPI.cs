@@ -108,7 +108,6 @@ namespace MyAgenda.Database
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
-                    // iterate through results, printing each to console
                     while (rdr.Read())
                     {
                         int id = (int)rdr["id"];

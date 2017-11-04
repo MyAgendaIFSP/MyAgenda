@@ -1,7 +1,6 @@
 ﻿using MyAgenda.Componentes.Geral;
 using MyAgenda.Controladores.Geral;
 using MyAgenda.Database;
-using MyAgenda.Seguranca;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -28,6 +27,7 @@ namespace MyAgenda
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
