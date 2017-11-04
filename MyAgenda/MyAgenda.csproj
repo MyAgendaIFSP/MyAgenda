@@ -53,6 +53,12 @@
     <Compile Include="Componentes\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Componentes\ItemEvento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\ItemEvento.Designer.cs">
+      <DependentUpon>ItemEvento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Componentes\ItemTarefa.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Componentes\ItemEvento.resx">
+      <DependentUpon>ItemEvento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Componentes\ItemTarefa.resx">
       <DependentUpon>ItemTarefa.cs</DependentUpon>
     </EmbeddedResource>
