@@ -133,10 +133,9 @@ namespace MyAgenda.Database
                         int id = (int)rdr["id"];
                         string nome = rdr["nome"].ToString();
                         string email = rdr["email"].ToString();
-                        string ip = rdr["ip"].ToString();
                         UsuarioAPI.EEstadoUsuario estado = (UsuarioAPI.EEstadoUsuario)rdr["estado"];
 
-                        contatos.Add(new ContatoController(new ContatoModelo(id, nome, email, estado, ip)));
+                        contatos.Add(new ContatoController(new ContatoModelo(id, nome, email, estado)));
                     }
 
                 }
@@ -171,10 +170,9 @@ namespace MyAgenda.Database
                         int id = (int)rdr["id"];
                         string nome = rdr["nome"].ToString();
                         string email = rdr["email"].ToString();
-                        string ip = rdr["ip"].ToString();
                         UsuarioAPI.EEstadoUsuario estado = (UsuarioAPI.EEstadoUsuario)rdr["estado"];
 
-                        contatos.Add(new ContatoController(new ContatoModelo(id, nome, email, estado, ip)));
+                        contatos.Add(new ContatoController(new ContatoModelo(id, nome, email, estado)));
                     }
 
                 }

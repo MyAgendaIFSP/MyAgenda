@@ -419,69 +419,13 @@ namespace MyAgenda.Database
                 int qtd = (int)cmd.ExecuteNonQuery();
 
                 _fechaConexao();
-
-                _atualizaIp(uid);
-
+                
                 return qtd > 0;
 
             }
 
             return false;
         }
-
-        /// <summary>
-        /// Atualiza o ip do usuário no banco de dados
-        /// </summary>
-        /// <param name="uid"></param>
-        /// <returns></returns>
-        private bool _atualizaIp(int uid)
-        {
-            if (_abreConexao())
-            {
-                string ip = _getIp();
-
-                if (string.IsNullOrEmpty(ip))
-                {
-                    return false;
-                }
-
-                SqlCommand cmd = new SqlCommand("UPDATE usuario SET ip = @ip WHERE usuario.id = @id", _conexao);
-                cmd.Parameters.AddWithValue("@id", uid);
-                cmd.Parameters.AddWithValue("@ip", ip);
-
-                int qtd = (int)cmd.ExecuteNonQuery();
-
-                _fechaConexao();
-
-                return qtd > 0;
-
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Obtém o ip público do usuário
-        /// </summary>
-        /// <returns></returns>
-        private string _getIp()
-        {
-            using (WebClient client = new WebClient())
-            {
-
-                NameValueCollection collection = new NameValueCollection();
-
-                byte[] response = client.UploadValues("http://allexhome.ddns.net:5321/IP/ip", collection);
-
-                string result = System.Text.Encoding.UTF8.GetString(response);
-
-                if (result.Contains("FAIL"))
-                {
-                    return null;
-                }
-
-                return result;
-            }
-        }
+                
     }
 }

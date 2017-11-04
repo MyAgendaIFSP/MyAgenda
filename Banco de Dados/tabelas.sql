@@ -55,7 +55,6 @@ create table usuario (
 	email varchar(50) not null,
 	senha varchar(256) not null,
 	salt varchar(256) not null,
-	[ip] varchar(15) not null,
 	lembrar int not null,
 	data_nascimento date not null,
 	constraint usuario_pomodoro_fk foreign key(pomodoro) references pomodoro(id)

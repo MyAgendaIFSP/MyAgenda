@@ -166,17 +166,10 @@ namespace MyAgenda.Componentes.ListaContatos.Contato
         private void _onItemMensagemClick(object sender, EventArgs e)
         {
             ContatoItem contato = (ContatoItem)sender;
-
-            if(contato.Modelo.Estado != Database.UsuarioAPI.EEstadoUsuario.ONLINE)
-            {
-                MessageBox.Show("Contato não está conectado.", "Erro ao abrir conversa", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                //Iniciar o chat
-                FormChat chat = new FormChat(contato.Modelo);
-                chat.Show();
-            }
+            
+            //Iniciar o chat
+            FormChat chat = new FormChat(contato.Modelo);
+            chat.Show();
 
         }
 

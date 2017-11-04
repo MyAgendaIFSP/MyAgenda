@@ -13,16 +13,14 @@ namespace MyAgenda.Modelos.ListaContatos
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
-        public string Ip { get; set; }
         public UsuarioAPI.EEstadoUsuario Estado { get; set; }
 
-        public ContatoModelo(int id, string nome, string email, UsuarioAPI.EEstadoUsuario estado, string ip)
+        public ContatoModelo(int id, string nome, string email, UsuarioAPI.EEstadoUsuario estado)
         {
             Id = id;
             Nome = nome;
             Email = email;
             Estado = estado;
-            Ip = ip;
         }
 
     }

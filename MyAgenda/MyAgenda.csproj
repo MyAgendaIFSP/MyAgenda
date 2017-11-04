@@ -38,10 +38,6 @@
     <StartupObject>MyAgenda.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IpFixoSqnApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\IpFixoSqnApi.dll</HintPath>
-    </Reference>
     <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=3.9.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
       <HintPath>..\packages\CompareNETObjects.3.09.0.0\lib\net45\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
     </Reference>

@@ -30,6 +30,11 @@ namespace MyAgenda
             _contato = contato;
             _usuario = UsuarioController.GetInstance();
             this.Text = "Conversa - " + contato.Nome;
+
+            if (_contato.Estado != Database.UsuarioAPI.EEstadoUsuario.ONLINE)
+            {
+                this.Text += " (offline)";
+            }
         }
 
         private void btnEnviarMensagem_MouseEnter(object sender, EventArgs e)
