@@ -58,6 +58,7 @@ namespace MyAgenda.Controladores.Geral
         /// <returns></returns>
         public bool EncerraSessao()
         {
+            IsAutenticado = false;
             return _api.Logoff(_modelo.Id, true);
         }
 
@@ -67,6 +68,7 @@ namespace MyAgenda.Controladores.Geral
         /// <returns></returns>
         public bool EncerraSessaoDefinitivo()
         {
+            IsAutenticado = false;
             return _api.Logoff(_modelo.Id, false);
         }
 

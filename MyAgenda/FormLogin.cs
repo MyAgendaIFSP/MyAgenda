@@ -74,7 +74,7 @@ namespace MyAgenda
                 f.Show();
                 this.Hide();
 
-                ChatController chat = new ChatController();
+                ChatController chat = ChatController.GetInstance();
                 chat.Escuta = true;
             }
             else

@@ -226,7 +226,7 @@ namespace MyAgenda.Database
         }
 
         /// <summary>
-        /// Busca uma mensagem recebida de qualquer conversa que o usuário possua
+        /// Busca uma mensagem recebida de qualquer conversa que o usuário esteja
         /// </summary>
         /// <param name="usuarioId">id do usuário</param>
         /// <returns></returns>
@@ -243,29 +243,38 @@ namespace MyAgenda.Database
                                                     and usuario.id != mensagem.destinatario
                                                     and(usuario.id = conversa.usuario_criador
                                                     or usuario.id = conversa.usuario_dest)
-                                                    order by mensagem.[data]; ", _conexao);
+                                                    order by mensagem.[data];", _conexao);
                 cmd.Parameters.AddWithValue("@estado", EEstadoMensagem.NAO_ENTREGUE);
                 cmd.Parameters.AddWithValue("@usuario", usuarioId);
 
-                using (SqlDataReader rdr = cmd.ExecuteReader())
+                try
                 {
-                    if (!rdr.HasRows)
+
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
                     {
-                        _fechaConexao();
-                        return null;
+                        if (!rdr.HasRows)
+                        {
+                            _fechaConexao();
+                            return null;
+                        }
+
+                        while (rdr.Read())
+                        {
+                            int destino = (int)rdr["destinatario"];
+                            string texto = rdr["texto"].ToString();
+                            string autor = rdr["nome"].ToString();
+                            DateTime data = DateTime.Parse(rdr["data"].ToString());
+                            EEstadoMensagem estado = (EEstadoMensagem)((int)rdr["estado"]);
+
+                            msgs.Add(new MensagemModelo(autor, texto, estado, data, destino));
+                        }
+
                     }
-
-                    while (rdr.Read())
-                    {
-                        int destino = (int)rdr["destinatario"];
-                        string texto = rdr["texto"].ToString();
-                        string autor = rdr["nome"].ToString();
-                        DateTime data = DateTime.Parse(rdr["data"].ToString());
-                        EEstadoMensagem estado = (EEstadoMensagem)((int)rdr["estado"]);
-
-                        msgs.Add(new MensagemModelo(autor, texto, estado, data, destino));
-                    }
-
+                }
+                catch
+                {
+                    _fechaConexao();
+                    return null;
                 }
 
                 _fechaConexao();

@@ -157,8 +157,6 @@
             // ckbLembrar
             // 
             this.ckbLembrar.AutoSize = true;
-            this.ckbLembrar.Checked = true;
-            this.ckbLembrar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbLembrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ckbLembrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ckbLembrar.Font = new System.Drawing.Font("Century Gothic", 10F);

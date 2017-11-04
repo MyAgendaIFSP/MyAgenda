@@ -64,7 +64,9 @@ namespace MyAgenda.Componentes.Geral
             UsuarioController u = UsuarioController.GetInstance();
             u.EncerraSessaoDefinitivo();
 
-            Application.Exit();
+            FormLogin login = new FormLogin();
+            login.Show();
+            this.Close();
         }
 
         private void OnBarraNavegacaoContatosClick(Button btn, int itemId)

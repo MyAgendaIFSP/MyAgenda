@@ -27,8 +27,12 @@ namespace MyAgenda.Componentes.ListaContatos.Chat
             _chatController.MensagensCarregadas += _mensagensCarregadas;
             _chatController.MensagemRecebida += _mensagemRecebida;
 
+            _chatController.AceitaNovaMensagem = false;
+
             _chatController.Carrega();
-            
+
+            _chatController.AceitaNovaMensagem = true;
+
         }
 
         public void DesligaChat()

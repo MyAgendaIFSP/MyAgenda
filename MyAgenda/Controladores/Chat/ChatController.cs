@@ -47,7 +47,19 @@ namespace MyAgenda.Controladores.Chat
 
         private Notification _notificador = new Notification();
 
-        public ChatController()
+        public static ChatController _instancia = null;
+
+        public static ChatController GetInstance()
+        {
+            if(_instancia == null)
+            {
+                _instancia = new ChatController();
+            }
+
+            return _instancia;
+        }
+
+        private ChatController()
         {
             Mensagens = new List<MensagemModelo>();
             Escuta = true;
