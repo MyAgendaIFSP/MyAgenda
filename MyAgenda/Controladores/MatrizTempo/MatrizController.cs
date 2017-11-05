@@ -82,7 +82,7 @@ namespace MyAgenda.Controladores.MatrizTempo
             return _api.AtualizaUltimoAcessoMatriz(_modelo.Id);
         }
 
-        public MatrizModel GetModel()
+        public MatrizModel GetModelo()
         {
             return _modelo;
         }

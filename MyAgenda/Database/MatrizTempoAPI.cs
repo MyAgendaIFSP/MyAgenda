@@ -32,7 +32,7 @@ namespace MyAgenda.Database
 
         private MatrizTempoAPI()
         {
-            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
 
         /// <summary>
@@ -152,7 +152,6 @@ namespace MyAgenda.Database
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
-                    // iterate through results, printing each to console
                     while (rdr.Read())
                     {
                         int id = (int)rdr["id"];
@@ -208,7 +207,7 @@ namespace MyAgenda.Database
             if (_abreConexao())
             {
                 MatrizController m = MatrizController.GetInstance();
-                int matId = m.GetModel().Id;
+                int matId = m.GetModelo().Id;
 
                 SqlCommand cmd = new SqlCommand("NovoItemMatriz", _conexao);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -245,7 +244,7 @@ namespace MyAgenda.Database
             if (_abreConexao())
             {
                 MatrizController m = MatrizController.GetInstance();
-                int matId = m.GetModel().Id;
+                int matId = m.GetModelo().Id;
 
                 SqlCommand cmd = new SqlCommand("DELETE FROM item_matriz WHERE id = @item", _conexao);
                 cmd.Parameters.AddWithValue("@item", itemId);

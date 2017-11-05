@@ -2,7 +2,11 @@
 using MyAgenda.Modelos.Geral;
 using MyAgenda.Seguranca;
 using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 
 namespace MyAgenda.Database
 {
@@ -34,7 +38,7 @@ namespace MyAgenda.Database
             
             STRING_CONEXAO = @"Data Source=tcp:" + ip + @";Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";*/
 
-            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
         }
 
         /// <summary>
@@ -91,6 +95,11 @@ namespace MyAgenda.Database
                 return false;
             }
 
+        }
+
+        public bool VerificaConexao()
+        {
+            return _abreConexao();
         }
 
         /// <summary>
@@ -382,20 +391,12 @@ namespace MyAgenda.Database
         {
             if (_abreConexao())
             {
-                SqlCommand cmd = new SqlCommand("UPDATE usuario SET estado = @estado WHERE usuario.id = @id", _conexao);
-                cmd.Parameters.AddWithValue("@id", uid);
-                cmd.Parameters.AddWithValue("@estado", (int)EEstadoUsuario.ONLINE);
-
-                int qtd = (int)cmd.ExecuteNonQuery();
-
-                _fechaConexao();
-
-                if(qtd > 0)
+                if (_abreSessao(uid))
                 {
                     UsuarioModel u = _getUsuario(uid);
                     return u;
                 }
-                
+                                
             }
 
             return null;
@@ -417,13 +418,13 @@ namespace MyAgenda.Database
                 int qtd = (int)cmd.ExecuteNonQuery();
 
                 _fechaConexao();
-
+                
                 return qtd > 0;
 
             }
 
             return false;
         }
-
+                
     }
 }

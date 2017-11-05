@@ -46,14 +46,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             this.SuspendLayout();
             // 
-            // BarraNavegacao
-            // 
-            this.BarraNavegacao.Size = new System.Drawing.Size(710, 40);
-            // 
-            // Loader
-            // 
-            this.Loader.Size = new System.Drawing.Size(694, 7);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -258,7 +250,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormMatrizTempo";
-            this.Text = "MyAgenda | Matriz do Tempo";
+            this.Text = "MyAgenda - Matriz do Tempo";
             this.Load += new System.EventHandler(this.FormMatrizTempo_Load);
             this.ResizeEnd += new System.EventHandler(this.FormMatrizTempo_ResizeEnd);
             this.Controls.SetChildIndex(this.BarraNavegacao, 0);

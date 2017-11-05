@@ -22,11 +22,13 @@ namespace MyAgenda
 
             this.StatusLabel = lblStatus;
 
-            BarraNavegacao.AddItem("Início", Properties.Resources.ic_home_white, 1);
-            BarraNavegacao.AddItem("Pomodoro", 2);
-            BarraNavegacao.AddItem("Tarefas", 3);
+            BarraNavegacao.AddItem("Início", Properties.Resources.ic_home_white, (int)EBarraNavegacaoBotoes.INICIO);
+            BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
+            BarraNavegacao.AddItem("Tarefas", (int)EBarraNavegacaoBotoes.TAREFAS);
 
             _usuario = u;
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
         protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
@@ -35,17 +37,14 @@ namespace MyAgenda
 
             switch (itemId)
             {
-                case 1:
+                case (int)EBarraNavegacaoBotoes.INICIO:
                     MessageBox.Show("botão início");
                     break;
-                case 2:
+                case (int)EBarraNavegacaoBotoes.POMODORO:
                     MessageBox.Show("botão Pomodoro");
                     break;
-                case 3:
+                case (int)EBarraNavegacaoBotoes.TAREFAS:
                     MessageBox.Show("botão Tarefas");
-                    break;
-                case 4:
-                    MessageBox.Show("botão Sair");
                     break;
             }
         }

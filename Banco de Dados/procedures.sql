@@ -60,20 +60,71 @@ end
 go
 
 create
-procedure NovaMatrizTempo @usuario int
+procedure GetContatos @usuario_id int
 as
 begin
 
-	declare @mat_id int;
+	SELECT usuario.nome, usuario.email, usuario.id, usuario.estado
+	FROM(
+			SELECT contato.usuario AS uid
+			FROM usuario, contato, lista_contatos
+			WHERE lista_contatos.usuario = @usuario_id
+			AND contato.lista_contato = lista_contatos.id
+			AND contato.usuario = usuario.id
+		) contatos, usuario
+	WHERE usuario.id = contatos.uid;
 
-	INSERT INTO matriz_tempo(ultima_utilizacao,inicializacao)
-	VALUES (getdate(), getdate())
+end
+go
 
-	select @mat_id = max(id) from matriz_tempo;
+create
+procedure BuscaContato @usuario_id int, @busca varchar(255)
+as
+begin
 
-	update usuario set matriz_tempo = @mat_id where id = @usuario;
+	select id, nome, email, estado
+	from usuario
+	where (usuario.nome like concat('%', @busca, '%') or email like concat('%', @busca, '%'))
+	and id <> @usuario_id
+	and id not in (select contato.usuario
+					from contato, lista_contatos, usuario
+					where lista_contatos.usuario = @usuario_id
+					and contato.lista_contato = lista_contatos.id);
+
+end
+go
+
+create
+procedure NovoContato @contato int, @usuario int
+as
+begin
+
+	declare @lista_contato int;
+
+	select @lista_contato = id
+	from lista_contatos
+	where lista_contatos.usuario = @usuario;
+
+	insert into contato values(@lista_contato, @contato);
 
 	return @@rowcount;
+
+end
+go
+
+create
+procedure NovaConversa @usuario int, @contato int
+as
+begin
+
+	declare @id int;
+
+	insert into conversa (usuario_criador, usuario_dest, [data])
+	values(@usuario, @contato, getdate());
+
+	select @id = max(id) from conversa;
+
+	return @id;
 
 end
 go

@@ -1,6 +1,7 @@
 ﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Controladores.Chat;
 using MyAgenda.Controladores.Geral;
-using MyAgenda.Seguranca;
+using MyAgenda.Database;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -27,6 +28,7 @@ namespace MyAgenda
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
@@ -71,6 +73,9 @@ namespace MyAgenda
                 FormMatrizTempo f = new FormMatrizTempo(user);
                 f.Show();
                 this.Hide();
+
+                ChatController chat = ChatController.GetInstance();
+                chat.Escuta = true;
             }
             else
             {
@@ -86,10 +91,23 @@ namespace MyAgenda
         private void FormLogin_Load(object sender, EventArgs e)
         {
             this.Loader.Width = this.Width;
+
         }
 
         private void FormLogin_Shown(object sender, EventArgs e)
         {
+            UsuarioAPI api = UsuarioAPI.GetInstance();
+            this.DesabilitaTudo();
+
+            if (!api.VerificaConexao())
+            {
+                MostraErro("Sem conexão com o servidor.");
+                lblStatus.Enabled = true;
+                return;
+            }
+
+            this.HabilitaTudo();
+
             Properties.Settings configs = Properties.Settings.Default;
 
             if (configs.LembrarLogin)

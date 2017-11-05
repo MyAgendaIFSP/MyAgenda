@@ -30,6 +30,11 @@ namespace MyAgenda.Controladores.Geral
             _api = UsuarioAPI.GetInstance();
         }
 
+        public UsuarioModel GetModelo()
+        {
+            return _modelo;
+        }
+
         /// <summary>
         /// Autentica o usuário no sistema
         /// </summary>
@@ -53,6 +58,7 @@ namespace MyAgenda.Controladores.Geral
         /// <returns></returns>
         public bool EncerraSessao()
         {
+            IsAutenticado = false;
             return _api.Logoff(_modelo.Id, true);
         }
 
@@ -62,6 +68,7 @@ namespace MyAgenda.Controladores.Geral
         /// <returns></returns>
         public bool EncerraSessaoDefinitivo()
         {
+            IsAutenticado = false;
             return _api.Logoff(_modelo.Id, false);
         }
 

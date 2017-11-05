@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Controladores.Geral;
+using MyAgenda.Componentes.ListaContatos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace MyAgenda.Componentes.Geral
 {
     public partial class BaseForm : Form
     {
-
+        public enum EBarraNavegacaoBotoes { INICIO = 1, POMODORO, TAREFAS, MATRIZ_TEMPO, CONTATOS, OFFLINE, SAIR }
         public Label StatusLabel { get; set; }
 
         private bool _temBarraNavegacao = true;
@@ -50,12 +51,11 @@ namespace MyAgenda.Componentes.Geral
 
             BarraNavegacao.MenuItemClick += OnBarraNavegacaoItemClick;
 
-            BarraNavegacao.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoSairClick, 4);
-            BarraNavegacao.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoCloudClick, 5);
+            BarraNavegacao.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoSairClick, (int) EBarraNavegacaoBotoes.SAIR);
+            BarraNavegacao.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoCloudClick, (int)EBarraNavegacaoBotoes.OFFLINE);
+            BarraNavegacao.AddItem("Contatos", Properties.Resources.ic_people_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoContatosClick, (int)EBarraNavegacaoBotoes.CONTATOS);
 
             BarraNavegacao.Width = this.Width;
-
-            this.StartPosition = FormStartPosition.CenterScreen;
 
         }
 
@@ -64,7 +64,16 @@ namespace MyAgenda.Componentes.Geral
             UsuarioController u = UsuarioController.GetInstance();
             u.EncerraSessaoDefinitivo();
 
-            Application.Exit();
+            FormLogin login = new FormLogin();
+            login.Show();
+            this.Close();
+        }
+
+        private void OnBarraNavegacaoContatosClick(Button btn, int itemId)
+        {
+            //Abrir form de contatos
+            FormListaContatos contatos = new FormListaContatos();
+            contatos.Show();
         }
 
         protected virtual void OnBarraNavegacaoItemClick(Button btn, int itemId){ }
@@ -80,15 +89,16 @@ namespace MyAgenda.Componentes.Geral
 
         private void BaseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            UsuarioController u = UsuarioController.GetInstance();
-            if (u.IsAutenticado)
-            {
-                u.EncerraSessao();
-            }
-
+            
             FormCollection forms = Application.OpenForms;
             if (forms.Count == 0)
             {
+                UsuarioController u = UsuarioController.GetInstance();
+                if (u.IsAutenticado)
+                {
+                    u.EncerraSessao();
+                }
+
                 Application.Exit();
             }
             else
@@ -102,6 +112,12 @@ namespace MyAgenda.Componentes.Geral
 
                 if (quit)
                 {
+                    UsuarioController u = UsuarioController.GetInstance();
+                    if (u.IsAutenticado)
+                    {
+                        u.EncerraSessao();
+                    }
+
                     Application.Exit();
                 }
             }
@@ -124,16 +140,16 @@ namespace MyAgenda.Componentes.Geral
         public void ComecaCarregar()
         {
             Loader.Active = true;
-            _desabilitaTudo();
+            DesabilitaTudo();
         }
 
         public void ParaCarregar()
         {
             Loader.Active = false;
-            _habilitaTudo();
+            HabilitaTudo();
         }
 
-        private void _desabilitaTudo()
+        public void DesabilitaTudo()
         {
             foreach (Control c in this.Controls)
             {
@@ -141,7 +157,7 @@ namespace MyAgenda.Componentes.Geral
             }
         }
 
-        private void _habilitaTudo()
+        public void HabilitaTudo()
         {
             foreach (Control c in this.Controls)
             {
@@ -159,6 +175,12 @@ namespace MyAgenda.Componentes.Geral
                 Size tamTela = Screen.PrimaryScreen.WorkingArea.Size;
 
                 this.Location = new Point((tamTela.Width / 2) - (this.Width / 2), (tamTela.Height / 2) - (this.Height / 2));
+            }
+
+            UsuarioController u = UsuarioController.GetInstance();
+            if (u.IsAutenticado)
+            {
+                this.Text = u.GetModelo().Nome + " | " + this.Text;
             }
         }
         

@@ -14,10 +14,6 @@ create table pomodoro(
 	inicializacao datetime null
 );
 
-create table lista_contatos(
-	 id int primary key identity(1,1) not null
-);
-
 create table item_matriz(
 	id int primary key identity(1,1) not null,
 	matriz int not null,
@@ -44,6 +40,11 @@ create table secao_pomodoro(
 	on update cascade
 );
 
+create table lista_contatos(
+	 id int primary key identity(1,1) not null,
+	 usuario int not null
+);
+
 create table usuario (
 	id int primary key identity(1,1) not null,
 	matriz_tempo int null,
@@ -54,7 +55,6 @@ create table usuario (
 	email varchar(50) not null,
 	senha varchar(256) not null,
 	salt varchar(256) not null,
-	[ip] varchar(15) not null,
 	lembrar int not null,
 	data_nascimento date not null,
 	constraint usuario_pomodoro_fk foreign key(pomodoro) references pomodoro(id)
@@ -67,6 +67,11 @@ create table usuario (
 	on delete cascade
 	on update cascade
 );
+
+alter table lista_contatos add 
+constraint lista_contatos_usuario_fk foreign key(usuario) references usuario(id)
+on delete no action
+on update no action;
 
 create table contato(
 	lista_contato int not null,
