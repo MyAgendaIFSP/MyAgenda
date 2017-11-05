@@ -16,5 +16,11 @@ namespace MyAgenda.Componentes
         {
             InitializeComponent();
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            FormEditarEvento formEditarEvento = new FormEditarEvento();
+            formEditarEvento.Show();
+        }
     }
 }
