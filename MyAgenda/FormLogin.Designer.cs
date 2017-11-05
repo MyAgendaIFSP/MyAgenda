@@ -49,6 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsuario.Location = new System.Drawing.Point(48, 100);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(444, 27);
             this.txtUsuario.TabIndex = 0;
@@ -61,6 +62,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSenha.Location = new System.Drawing.Point(48, 162);
             this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSenha.MaxLength = 16;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(444, 27);
@@ -123,7 +125,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblStatus.Location = new System.Drawing.Point(48, 220);
+            this.lblStatus.Location = new System.Drawing.Point(48, 222);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(113, 17);
             this.lblStatus.TabIndex = 6;
@@ -160,7 +162,7 @@
             this.ckbLembrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ckbLembrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ckbLembrar.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.ckbLembrar.Location = new System.Drawing.Point(49, 193);
+            this.ckbLembrar.Location = new System.Drawing.Point(49, 196);
             this.ckbLembrar.Name = "ckbLembrar";
             this.ckbLembrar.Size = new System.Drawing.Size(108, 23);
             this.ckbLembrar.TabIndex = 9;
