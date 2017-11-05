@@ -113,7 +113,6 @@ namespace MyAgenda.Database
             {
                 int id = _getUserId(email);
                 UsuarioModel usuario = null;
-                MatrizController matriz;
 
                 if (id < 0)
                 {
@@ -132,15 +131,10 @@ namespace MyAgenda.Database
                         while (rdr.Read())
                         {
                             int uid = (int)rdr["id"];
-                            int matrizId = (int)rdr["matriz"];
                             string nome = rdr["nome"].ToString();
-                            string d = rdr["matriz_inicializacao"].ToString();
                             DateTime dtNasc = DateTime.Parse(rdr["data_nascimento"].ToString());
-                            DateTime matInit = DateTime.Parse(rdr["matriz_inicializacao"].ToString());
-                            DateTime matUtili = DateTime.Parse(rdr["matriz_ulti_utilizacao"].ToString());
-
-                            matriz = MatrizController.GetInstance(matrizId, matInit, matUtili);
-                            usuario = new UsuarioModel(uid, nome, dtNasc, matriz);
+                            
+                            usuario = new UsuarioModel(uid, nome, dtNasc);
                         }
                     }
                     catch { }
@@ -158,7 +152,6 @@ namespace MyAgenda.Database
             if (_abreConexao())
             {
                 UsuarioModel usuario = null;
-                MatrizController matriz;
 
                 if (uid < 0)
                 {
@@ -176,15 +169,10 @@ namespace MyAgenda.Database
                     {
                         while (rdr.Read())
                         {
-                            int matrizId = (int)rdr["matriz"];
                             string nome = rdr["nome"].ToString();
-                            string d = rdr["matriz_inicializacao"].ToString();
                             DateTime dtNasc = DateTime.Parse(rdr["data_nascimento"].ToString());
-                            DateTime matInit = DateTime.Parse(rdr["matriz_inicializacao"].ToString());
-                            DateTime matUtili = DateTime.Parse(rdr["matriz_ulti_utilizacao"].ToString());
-
-                            matriz = MatrizController.GetInstance(matrizId, matInit, matUtili);
-                            usuario = new UsuarioModel(uid, nome, dtNasc, matriz);
+                            
+                            usuario = new UsuarioModel(uid, nome, dtNasc);
                         }
                     }
                     catch { }

@@ -49,7 +49,6 @@ create table usuario (
 	id int primary key identity(1,1) not null,
 	matriz_tempo int null,
 	pomodoro int null,
-	lista_contatos int null,
 	estado int not null,
 	nome varchar(100) not null,
 	email varchar(50) not null,

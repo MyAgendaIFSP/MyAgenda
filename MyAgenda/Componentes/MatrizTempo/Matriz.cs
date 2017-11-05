@@ -36,6 +36,8 @@ namespace MyAgenda.Componentes.MatrizTempo
         {
             _controlador = MatrizController.GetInstance();
 
+            _controlador.VerificaMatriz();
+
             _controlador.AlteraUltimoAcesso();
 
             if (_controlador != null)
@@ -258,7 +260,10 @@ namespace MyAgenda.Componentes.MatrizTempo
             ItemMatrizController controller = item.MatrizItem;
             if (controller.MoveItem(quadrante))
             {
+                Panel panQuadrante = (Panel)_itemClicado.Parent;
+                Point p = item.Location;
                 item.Parent.Controls.Remove(item);
+                _atualizarQuadrante(panQuadrante, p);
                 _carregaQuadrante(quadrante, _getPanelQuadrante(quadrante));
             }
         }

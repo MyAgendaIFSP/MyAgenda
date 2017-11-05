@@ -106,9 +106,44 @@ namespace MyAgenda.Database
                 {
                     _criaMatriz(u.GetModelo().Id);
                 }
+                else
+                {
+                    u.GetModelo().MatrizTempo = _buscaMatriz(u.GetModelo().Id);
+                }
 
                 _fechaConexao();
             }
+        }
+
+        private MatrizController _buscaMatriz(int matId)
+        {
+            if (_abreConexao())
+            {
+                MatrizController mat = MatrizController.GetInstance();
+                
+                SqlCommand cmd = new SqlCommand("select * from matriz_tempo where id = @matriz", _conexao);
+                cmd.Parameters.AddWithValue("@matriz", matId);
+                
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    try
+                    {
+                        while (rdr.Read())
+                        {
+                            int id = (int)rdr["id"];
+                            DateTime dtUltUtil = DateTime.Parse(rdr["ultima_utilizacao"].ToString());
+                            DateTime dtInit = DateTime.Parse(rdr["inicializacao"].ToString());
+
+                            mat .SetMatriz(id, dtInit, dtUltUtil);
+                        }
+                    } catch { }
+                }
+
+                _fechaConexao();
+                return mat;
+            }
+
+            return null;
         }
 
         private bool _criaMatriz(int usuario)
@@ -165,6 +200,7 @@ namespace MyAgenda.Database
                     }
 
                 }
+
                 _fechaConexao();
 
                 return itens;

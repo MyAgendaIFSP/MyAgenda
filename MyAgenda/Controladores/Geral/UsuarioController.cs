@@ -85,11 +85,6 @@ namespace MyAgenda.Controladores.Geral
             //Checar se o email existe
             return _api.EmailExiste(email);
         }
-
-        public UsuarioModel GetModelo()
-        {
-            return _modelo;
-        }
-
+        
     }
 }

@@ -6,8 +6,7 @@ procedure GetModeloUsuario @user_id int
 as 
 begin
 	
-	select usuario.id, usuario.nome, usuario.data_nascimento,
-		matriz_tempo.id as matriz, matriz_tempo.inicializacao as matriz_inicializacao, matriz_tempo.ultima_utilizacao as matriz_ulti_utilizacao
+	select usuario.id, usuario.nome, usuario.data_nascimento
 	from matriz_tempo, usuario
 	where usuario.matriz_tempo = matriz_tempo.id
 	and usuario.id = @user_id;

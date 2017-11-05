@@ -14,12 +14,11 @@ namespace MyAgenda.Modelos.Geral
 
         public MatrizController MatrizTempo { get; set; }
             
-        public UsuarioModel(int id, string nome, DateTime dataNascimento, MatrizController matrizTempo)
+        public UsuarioModel(int id, string nome, DateTime dataNascimento)
         {
             Id = id;
             Nome = nome;
             DataNascimento = dataNascimento;
-            MatrizTempo = matrizTempo;
         }
         
     }
