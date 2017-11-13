@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEventos));
-            this.panelEventos = new System.Windows.Forms.Panel();
+            this.pnlEventos = new System.Windows.Forms.Panel();
             this.barraNavegacao1 = new MyAgenda.Componentes.BarraNavegacao();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTitulo = new System.Windows.Forms.TextBox();
@@ -45,17 +46,22 @@
             this.lblHorarioTermino = new System.Windows.Forms.Label();
             this.dtpHorarioTermino = new System.Windows.Forms.DateTimePicker();
             this.btnAdicionar = new System.Windows.Forms.Button();
+            this.my_agendaDataSet = new MyAgenda.my_agendaDataSet();
+            this.eventoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eventoTableAdapter = new MyAgenda.my_agendaDataSetTableAdapters.eventoTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.my_agendaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // panelEventos
+            // pnlEventos
             // 
-            this.panelEventos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pnlEventos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelEventos.Location = new System.Drawing.Point(288, 53);
-            this.panelEventos.Name = "panelEventos";
-            this.panelEventos.Size = new System.Drawing.Size(527, 803);
-            this.panelEventos.TabIndex = 2;
+            this.pnlEventos.Location = new System.Drawing.Point(288, 53);
+            this.pnlEventos.Name = "pnlEventos";
+            this.pnlEventos.Size = new System.Drawing.Size(527, 803);
+            this.pnlEventos.TabIndex = 2;
             // 
             // barraNavegacao1
             // 
@@ -69,70 +75,71 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(12, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 19);
+            this.label1.Size = new System.Drawing.Size(143, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Adicionar evento";
             this.label1.UseWaitCursor = true;
             // 
             // txtTitulo
             // 
-            this.txtTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitulo.Location = new System.Drawing.Point(16, 117);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(255, 27);
+            this.txtTitulo.Size = new System.Drawing.Size(255, 26);
             this.txtTitulo.TabIndex = 4;
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitulo.Location = new System.Drawing.Point(12, 93);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(51, 21);
+            this.lblTitulo.Size = new System.Drawing.Size(47, 20);
             this.lblTitulo.TabIndex = 5;
             this.lblTitulo.Text = "Título";
             // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDescricao.Location = new System.Drawing.Point(12, 158);
             this.lblDescricao.Name = "lblDescricao";
-            this.lblDescricao.Size = new System.Drawing.Size(87, 21);
+            this.lblDescricao.Size = new System.Drawing.Size(80, 20);
             this.lblDescricao.TabIndex = 6;
             this.lblDescricao.Text = "Descrição";
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricao.Location = new System.Drawing.Point(16, 182);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(255, 27);
+            this.txtDescricao.Size = new System.Drawing.Size(255, 26);
             this.txtDescricao.TabIndex = 7;
             // 
             // lblDataInicio
             // 
             this.lblDataInicio.AutoSize = true;
-            this.lblDataInicio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDataInicio.Location = new System.Drawing.Point(12, 223);
             this.lblDataInicio.Name = "lblDataInicio";
-            this.lblDataInicio.Size = new System.Drawing.Size(96, 21);
+            this.lblDataInicio.Size = new System.Drawing.Size(85, 20);
             this.lblDataInicio.TabIndex = 8;
             this.lblDataInicio.Text = "Data Início";
             // 
             // cldDataInicio
             // 
             this.cldDataInicio.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
-            this.cldDataInicio.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cldDataInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cldDataInicio.Location = new System.Drawing.Point(16, 250);
             this.cldDataInicio.MaxDate = new System.DateTime(2095, 10, 21, 0, 0, 0, 0);
+            this.cldDataInicio.MaxSelectionCount = 1;
             this.cldDataInicio.MinDate = new System.DateTime(1995, 10, 21, 0, 0, 0, 0);
             this.cldDataInicio.Name = "cldDataInicio";
             this.cldDataInicio.ShowToday = false;
@@ -142,11 +149,11 @@
             // lblHorarioInicio
             // 
             this.lblHorarioInicio.AutoSize = true;
-            this.lblHorarioInicio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHorarioInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHorarioInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblHorarioInicio.Location = new System.Drawing.Point(12, 424);
             this.lblHorarioInicio.Name = "lblHorarioInicio";
-            this.lblHorarioInicio.Size = new System.Drawing.Size(110, 21);
+            this.lblHorarioInicio.Size = new System.Drawing.Size(102, 20);
             this.lblHorarioInicio.TabIndex = 10;
             this.lblHorarioInicio.Text = "Horário Início";
             // 
@@ -162,20 +169,21 @@
             // lblDataTermino
             // 
             this.lblDataTermino.AutoSize = true;
-            this.lblDataTermino.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataTermino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataTermino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDataTermino.Location = new System.Drawing.Point(12, 485);
             this.lblDataTermino.Name = "lblDataTermino";
-            this.lblDataTermino.Size = new System.Drawing.Size(116, 21);
+            this.lblDataTermino.Size = new System.Drawing.Size(105, 20);
             this.lblDataTermino.TabIndex = 12;
             this.lblDataTermino.Text = "Data Término";
             // 
             // cldDataTermino
             // 
             this.cldDataTermino.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
-            this.cldDataTermino.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cldDataTermino.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cldDataTermino.Location = new System.Drawing.Point(16, 515);
             this.cldDataTermino.MaxDate = new System.DateTime(2095, 10, 21, 0, 0, 0, 0);
+            this.cldDataTermino.MaxSelectionCount = 1;
             this.cldDataTermino.MinDate = new System.DateTime(1995, 10, 21, 0, 0, 0, 0);
             this.cldDataTermino.Name = "cldDataTermino";
             this.cldDataTermino.ShowToday = false;
@@ -185,11 +193,11 @@
             // lblHorarioTermino
             // 
             this.lblHorarioTermino.AutoSize = true;
-            this.lblHorarioTermino.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHorarioTermino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHorarioTermino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblHorarioTermino.Location = new System.Drawing.Point(12, 689);
             this.lblHorarioTermino.Name = "lblHorarioTermino";
-            this.lblHorarioTermino.Size = new System.Drawing.Size(130, 21);
+            this.lblHorarioTermino.Size = new System.Drawing.Size(122, 20);
             this.lblHorarioTermino.TabIndex = 14;
             this.lblHorarioTermino.Text = "Horário Término";
             // 
@@ -209,7 +217,7 @@
             this.btnAdicionar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnAdicionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdicionar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdicionar.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
             this.btnAdicionar.Location = new System.Drawing.Point(149, 822);
@@ -219,6 +227,21 @@
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            // 
+            // my_agendaDataSet
+            // 
+            this.my_agendaDataSet.DataSetName = "my_agendaDataSet";
+            this.my_agendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // eventoBindingSource
+            // 
+            this.eventoBindingSource.DataMember = "evento";
+            this.eventoBindingSource.DataSource = this.my_agendaDataSet;
+            // 
+            // eventoTableAdapter
+            // 
+            this.eventoTableAdapter.ClearBeforeFill = true;
             // 
             // FormEventos
             // 
@@ -241,12 +264,15 @@
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.barraNavegacao1);
-            this.Controls.Add(this.panelEventos);
+            this.Controls.Add(this.pnlEventos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEventos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Eventos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormEventos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.my_agendaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,7 +280,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelEventos;
+        private System.Windows.Forms.Panel pnlEventos;
         private Componentes.BarraNavegacao barraNavegacao1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTitulo;
@@ -270,5 +296,8 @@
         private System.Windows.Forms.Label lblHorarioTermino;
         private System.Windows.Forms.DateTimePicker dtpHorarioTermino;
         private System.Windows.Forms.Button btnAdicionar;
+        private my_agendaDataSet my_agendaDataSet;
+        private System.Windows.Forms.BindingSource eventoBindingSource;
+        private my_agendaDataSetTableAdapters.eventoTableAdapter eventoTableAdapter;
     }
 }

@@ -8,16 +8,16 @@ namespace MyAgenda.Entidades
 {
     class Evento
     {
-        long IdEvento;
+        public long IdEvento;
 
-        string Titutlo;
+        public string Titutlo;
 
-        string Descricao;
+        public string Descricao;
 
-        DateTime DataHoraInicio;
+        public DateTime DataHoraInicio;
 
-        DateTime DataHoraTermino;
+        public DateTime DataHoraTermino;
 
-        Usuario Usuario;
+        public Usuario Usuario;
     }
 }

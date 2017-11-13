@@ -12,6 +12,24 @@ namespace MyAgenda.Componentes
 {
     public partial class ItemEvento : UserControl
     {
+        public string Titulo
+        {
+            get { return lblTitulo.Text; }
+            set { lblTitulo.Text = value; }
+        }
+
+        public string Descricao
+        {
+            get { return lblDescricao.Text; }
+            set { lblDescricao.Text = value; }
+        }
+
+        public string DataHoraTermino
+        {
+            get { return lblDataHoraTermino.Text; }
+            set { lblDataHoraTermino.Text = value; }
+        }
+
         public ItemEvento()
         {
             InitializeComponent();

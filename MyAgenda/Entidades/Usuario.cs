@@ -8,14 +8,14 @@ namespace MyAgenda.Entidades
 {
     class Usuario
     {
-        long IdUsuario;
+        public long IdUsuario;
 
-        string Nome;
+        public string Nome;
 
-        string Email;
+        public string Email;
 
-        string Senha;
+        public string Senha;
 
-        DateTime DataNascimento;
+        public DateTime DataNascimento;
     }
 }

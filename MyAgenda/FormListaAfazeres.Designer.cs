@@ -51,7 +51,7 @@
             this.barraNavegacao1.Controls.Add(this.barraNavegacao2);
             this.barraNavegacao1.Cursor = System.Windows.Forms.Cursors.Default;
             this.barraNavegacao1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barraNavegacao1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barraNavegacao1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barraNavegacao1.Location = new System.Drawing.Point(0, 0);
             this.barraNavegacao1.Name = "barraNavegacao1";
             this.barraNavegacao1.Size = new System.Drawing.Size(827, 40);
@@ -79,18 +79,18 @@
             // lblDataAtual
             // 
             this.lblDataAtual.AutoSize = true;
-            this.lblDataAtual.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataAtual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDataAtual.Location = new System.Drawing.Point(12, 53);
             this.lblDataAtual.Name = "lblDataAtual";
-            this.lblDataAtual.Size = new System.Drawing.Size(111, 19);
+            this.lblDataAtual.Size = new System.Drawing.Size(115, 20);
             this.lblDataAtual.TabIndex = 2;
             this.lblDataAtual.Text = "<Data Atual>";
             // 
             // cldData
             // 
             this.cldData.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
-            this.cldData.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cldData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cldData.Location = new System.Drawing.Point(16, 129);
             this.cldData.MaxDate = new System.DateTime(2095, 10, 21, 0, 0, 0, 0);
             this.cldData.MinDate = new System.DateTime(1995, 10, 21, 0, 0, 0, 0);
@@ -102,54 +102,54 @@
             // lblDiaSemana
             // 
             this.lblDiaSemana.AutoSize = true;
-            this.lblDiaSemana.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiaSemana.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDiaSemana.Location = new System.Drawing.Point(13, 72);
             this.lblDiaSemana.Name = "lblDiaSemana";
-            this.lblDiaSemana.Size = new System.Drawing.Size(244, 17);
+            this.lblDiaSemana.Size = new System.Drawing.Size(222, 16);
             this.lblDiaSemana.TabIndex = 4;
             this.lblDiaSemana.Text = "<Dia da semana e semana do ano>";
             // 
             // lblListaAfazeres
             // 
             this.lblListaAfazeres.AutoSize = true;
-            this.lblListaAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListaAfazeres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblListaAfazeres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblListaAfazeres.Location = new System.Drawing.Point(12, 303);
             this.lblListaAfazeres.Name = "lblListaAfazeres";
-            this.lblListaAfazeres.Size = new System.Drawing.Size(140, 21);
+            this.lblListaAfazeres.Size = new System.Drawing.Size(133, 20);
             this.lblListaAfazeres.TabIndex = 6;
             this.lblListaAfazeres.Text = "Lista de Afazeres";
             // 
             // cbbListasAfazeres
             // 
-            this.cbbListasAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbListasAfazeres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbListasAfazeres.FormattingEnabled = true;
             this.cbbListasAfazeres.Items.AddRange(new object[] {
             "Lista 01",
             "Lista 02"});
             this.cbbListasAfazeres.Location = new System.Drawing.Point(12, 327);
             this.cbbListasAfazeres.Name = "cbbListasAfazeres";
-            this.cbbListasAfazeres.Size = new System.Drawing.Size(249, 29);
+            this.cbbListasAfazeres.Size = new System.Drawing.Size(249, 28);
             this.cbbListasAfazeres.TabIndex = 7;
             this.cbbListasAfazeres.Text = "Selecionar lista existente";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(12, 406);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 21);
+            this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Tarefa";
             // 
             // txtTarefa
             // 
-            this.txtTarefa.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTarefa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTarefa.Location = new System.Drawing.Point(16, 430);
             this.txtTarefa.Name = "txtTarefa";
-            this.txtTarefa.Size = new System.Drawing.Size(249, 27);
+            this.txtTarefa.Size = new System.Drawing.Size(249, 26);
             this.txtTarefa.TabIndex = 9;
             this.txtTarefa.Text = "Descrição da tarefa";
             this.txtTarefa.Click += new System.EventHandler(this.txtTarefa_Click);
@@ -162,7 +162,7 @@
             this.btnAdicionar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnAdicionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdicionar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdicionar.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
             this.btnAdicionar.Location = new System.Drawing.Point(139, 474);
@@ -177,11 +177,11 @@
             // lblData
             // 
             this.lblData.AutoSize = true;
-            this.lblData.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblData.Location = new System.Drawing.Point(12, 109);
             this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(51, 21);
+            this.lblData.Size = new System.Drawing.Size(44, 20);
             this.lblData.TabIndex = 11;
             this.lblData.Text = "Data";
             // 
@@ -191,7 +191,7 @@
             this.btnNovaLista.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnNovaLista.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnNovaLista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNovaLista.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNovaLista.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovaLista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnNovaLista.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
             this.btnNovaLista.Location = new System.Drawing.Point(139, 362);
