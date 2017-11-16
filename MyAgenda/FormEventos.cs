@@ -51,23 +51,17 @@ namespace MyAgenda
             EventoAPI eventoAPI = new EventoAPI();
             List<Evento> eventos = eventoAPI.CarregaEventos();
 
-            int y = 1;
+            int x = 0, y = 0;
+            MessageBox.Show(eventos.Count().ToString());
             foreach (Evento evento in eventos)
             {
                 ItemEvento itemEvento = new ItemEvento();
                 itemEvento.Titulo = evento.Titutlo;
                 itemEvento.Descricao = evento.Descricao;
                 itemEvento.DataHoraTermino = evento.DataHoraTermino.ToLongDateString();
-                if (y == 1)
-                {
-                    itemEvento.Location = new Point(0, 0);
-                }
-                else
-                {
-                    itemEvento.Location = new Point(0, y * 60 + 1);
-                }
+                itemEvento.Location = new Point(0, y);
                 pnlEventos.Controls.Add(itemEvento);
-                y++;
+                y = y * 120 + 1;
             }
         }
     }

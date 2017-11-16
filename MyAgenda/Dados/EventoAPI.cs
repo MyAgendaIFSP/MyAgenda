@@ -96,5 +96,42 @@ namespace MyAgenda.Dados
                 }
             }
         }
+
+        public void ExcluirEvento(Evento evento)
+        {
+            string query = "INSERT INTO EVENTO (USUARIO, TITULO, DESCRICAO, INICIO, FINAL) VALUES (@USUARIO, @TITULO, @DESCRICAO, @INICIO, @FINAL)";
+
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = new SqlConnection(C_CONEXAO);
+
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.Add(new SqlParameter("USUARIO", 1));
+                cmd.Parameters.Add(new SqlParameter("TITULO", evento.Titutlo));
+                cmd.Parameters.Add(new SqlParameter("DESCRICAO", evento.Descricao));
+                cmd.Parameters.Add(new SqlParameter("INICIO", evento.DataHoraInicio));
+                cmd.Parameters.Add(new SqlParameter("FINAL", evento.DataHoraTermino));
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
     }
 }

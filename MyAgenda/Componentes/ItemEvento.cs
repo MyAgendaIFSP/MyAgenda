@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MyAgenda.Entidades;
+using MyAgenda.Dados;
 
 namespace MyAgenda.Componentes
 {
@@ -39,6 +41,11 @@ namespace MyAgenda.Componentes
         {
             FormEditarEvento formEditarEvento = new FormEditarEvento();
             formEditarEvento.Show();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            EventoAPI eventoAPI = new EventoAPI();
         }
     }
 }

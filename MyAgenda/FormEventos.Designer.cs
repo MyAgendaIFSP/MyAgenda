@@ -58,9 +58,10 @@
             this.pnlEventos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlEventos.BackColor = System.Drawing.Color.White;
             this.pnlEventos.Location = new System.Drawing.Point(288, 53);
             this.pnlEventos.Name = "pnlEventos";
-            this.pnlEventos.Size = new System.Drawing.Size(527, 803);
+            this.pnlEventos.Size = new System.Drawing.Size(527, 684);
             this.pnlEventos.TabIndex = 2;
             // 
             // barraNavegacao1
@@ -220,7 +221,7 @@
             this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdicionar.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
-            this.btnAdicionar.Location = new System.Drawing.Point(149, 822);
+            this.btnAdicionar.Location = new System.Drawing.Point(149, 703);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(122, 34);
             this.btnAdicionar.TabIndex = 16;
@@ -248,7 +249,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(827, 868);
+            this.ClientSize = new System.Drawing.Size(827, 749);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.dtpHorarioTermino);
             this.Controls.Add(this.lblHorarioTermino);
