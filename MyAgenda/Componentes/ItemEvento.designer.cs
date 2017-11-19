@@ -48,22 +48,22 @@
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitulo.Location = new System.Drawing.Point(30, 6);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(163, 24);
+            this.lblTitulo.Size = new System.Drawing.Size(152, 21);
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "Título do Evento";
             // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricao.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDescricao.Location = new System.Drawing.Point(31, 34);
             this.lblDescricao.Name = "lblDescricao";
-            this.lblDescricao.Size = new System.Drawing.Size(156, 20);
+            this.lblDescricao.Size = new System.Drawing.Size(143, 17);
             this.lblDescricao.TabIndex = 2;
             this.lblDescricao.Text = "Descrição do Evento";
             // 
@@ -96,11 +96,11 @@
             // lblDataHoraTermino
             // 
             this.lblDataHoraTermino.AutoSize = true;
-            this.lblDataHoraTermino.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataHoraTermino.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataHoraTermino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblDataHoraTermino.Location = new System.Drawing.Point(32, 81);
             this.lblDataHoraTermino.Name = "lblDataHoraTermino";
-            this.lblDataHoraTermino.Size = new System.Drawing.Size(207, 16);
+            this.lblDataHoraTermino.Size = new System.Drawing.Size(224, 17);
             this.lblDataHoraTermino.TabIndex = 6;
             this.lblDataHoraTermino.Text = "Data/Hora de Término do Evento";
             // 
