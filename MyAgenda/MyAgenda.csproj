@@ -53,9 +53,29 @@
     <Compile Include="Componentes\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Componentes\ItemEvento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\ItemEvento.designer.cs">
+      <DependentUpon>ItemEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes\ItemTarefa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\ItemTarefa.designer.cs">
+      <DependentUpon>ItemTarefa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Componentes\Loader.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dados\EventoAPI.cs" />
+    <Compile Include="Dados\ListaAfazeresAPI.cs" />
+    <Compile Include="Dados\TarefaAPI.cs" />
+    <Compile Include="Dados\UsuarioAPI.cs" />
+    <Compile Include="Entidades\Evento.cs" />
+    <Compile Include="Entidades\ListaAfazeres.cs" />
+    <Compile Include="Entidades\Tarefa.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Componentes\ItemEvento.resx">
+      <DependentUpon>ItemEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Componentes\ItemTarefa.resx">
+      <DependentUpon>ItemTarefa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon %281%29.ico" />
+    <None Include="Resources\ic_edit_black.png" />
+    <None Include="Resources\ic_delete_black.png" />
+    <None Include="Resources\checked.png" />
     <None Include="Resources\ic_refresh_white.png" />
     <None Include="Resources\ic_home_white.png" />
     <None Include="Resources\ic_exit_to_app_white.png" />
