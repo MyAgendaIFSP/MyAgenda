@@ -70,6 +70,12 @@
     <Compile Include="Entidades\ListaAfazeres.cs" />
     <Compile Include="Entidades\Tarefa.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="FormEditarEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarEvento.Designer.cs">
+      <DependentUpon>FormEditarEvento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEventos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Componentes\ItemEvento.resx">
       <DependentUpon>ItemEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditarEvento.resx">
+      <DependentUpon>FormEditarEvento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEventos.resx">
       <DependentUpon>FormEventos.cs</DependentUpon>

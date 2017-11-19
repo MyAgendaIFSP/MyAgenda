@@ -48,8 +48,8 @@ namespace MyAgenda.Componentes
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            /*FormEditarEvento formEditarEvento = new FormEditarEvento(_evento);
-            formEditarEvento.Show();*/
+            FormEditarEvento formEditarEvento = new FormEditarEvento(_evento);
+            formEditarEvento.Show();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
