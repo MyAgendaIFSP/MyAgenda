@@ -82,6 +82,12 @@
     <Compile Include="FormEditarEvento.Designer.cs">
       <DependentUpon>FormEditarEvento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEditarTarefa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditarTarefa.Designer.cs">
+      <DependentUpon>FormEditarTarefa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEventos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditarEvento.resx">
       <DependentUpon>FormEditarEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditarTarefa.resx">
+      <DependentUpon>FormEditarTarefa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEventos.resx">
       <DependentUpon>FormEventos.cs</DependentUpon>

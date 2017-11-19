@@ -98,9 +98,9 @@ namespace MyAgenda.Dados
             }
         }
 
-        public void EditarTarefa(Tarefa tarefa)
+        public void EditarTarefa(Tarefa tarefaAntiga, Tarefa tarefaAtualizada)
         {
-            string query = "UPDATE EVENTO SET LISTA = @LISTA, USUARIO = @USUARIO, TITULO = @TITULO, MDATA = @MDATA, DESCRICAO = @DESCRICAO WHERE TITULO = @TITULO";
+            string query = "UPDATE TAREFA SET LISTA = @LISTA, USUARIO = @USUARIO, TITULO = @TITULONOVO, MDATA = @MDATA, DESCRICAO = @DESCRICAO WHERE TITULO = @TITULOANTIGO";
 
             SqlConnection conn = null;
 
@@ -114,12 +114,12 @@ namespace MyAgenda.Dados
                 }
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("LISTA", 1));
+                cmd.Parameters.Add(new SqlParameter("LISTA", "Tarefas da Faculdade"));
                 cmd.Parameters.Add(new SqlParameter("USUARIO", 1));
-                cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
-                cmd.Parameters.Add(new SqlParameter("MDATA", tarefa.Data));
-                cmd.Parameters.Add(new SqlParameter("DESCRICAO", tarefa.Descricao));
-                cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+                cmd.Parameters.Add(new SqlParameter("TITULONOVO", tarefaAtualizada.Titulo));
+                cmd.Parameters.Add(new SqlParameter("MDATA", tarefaAtualizada.Data));
+                cmd.Parameters.Add(new SqlParameter("DESCRICAO", tarefaAtualizada.Descricao));
+                cmd.Parameters.Add(new SqlParameter("TITULOANTIGO", tarefaAntiga.Titulo));
 
                 cmd.ExecuteNonQuery();
             }

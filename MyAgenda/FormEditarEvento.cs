@@ -44,18 +44,15 @@ namespace MyAgenda
             eventoAtualizado.Descricao = txtDescricao.Text;
             eventoAtualizado.DataHoraInicio = cldDataInicio.SelectionRange.Start;
             eventoAtualizado.DataHoraTermino = cldDataTermino.SelectionRange.Start;
-            //TODO Ajustar horário inicial e final dos eventos no update
 
             Usuario usuario = new Usuario();
             usuario.IdUsuario = 1;
-            //TODO Ajustar o usuário do evento
 
             eventoAtualizado.Usuario = usuario;
 
             eventoAPI.EditarEvento(_evento, eventoAtualizado);
 
             this.Close();
-            //TODO Atualizar o form de eventos após a atualização
         }
     }
 }

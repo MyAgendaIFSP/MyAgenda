@@ -103,5 +103,17 @@ namespace MyAgenda.Componentes
             btnEditar.BackColor = Color.White;
             btnExcluir.BackColor = Color.White;
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            FormEditarTarefa formEditarTarefa = new FormEditarTarefa(_tarefa);
+            formEditarTarefa.Show();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            TarefaAPI tarefaAPI = new TarefaAPI();
+            tarefaAPI.ExcluirTarefa(_tarefa);
+        }
     }
 }

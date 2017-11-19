@@ -56,7 +56,6 @@ namespace MyAgenda.Componentes
         {
             EventoAPI eventoAPI = new EventoAPI();
             eventoAPI.ExcluirEvento(_evento);
-            //TODO Atualizar a lista após a exclusão do evento
         }
         private void ItemEvento_MouseEnter(object sender, EventArgs e)
         {

@@ -59,6 +59,7 @@
             this.btnEditar.Size = new System.Drawing.Size(44, 28);
             this.btnEditar.TabIndex = 3;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             this.btnEditar.MouseEnter += new System.EventHandler(this.btnEditar_MouseEnter);
             this.btnEditar.MouseLeave += new System.EventHandler(this.btnEditar_MouseLeave);
             // 
@@ -73,6 +74,7 @@
             this.btnExcluir.Size = new System.Drawing.Size(44, 28);
             this.btnExcluir.TabIndex = 2;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             this.btnExcluir.MouseEnter += new System.EventHandler(this.btnExcluir_MouseEnter);
             this.btnExcluir.MouseLeave += new System.EventHandler(this.btnExcluir_MouseLeave);
             // 
