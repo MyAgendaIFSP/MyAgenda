@@ -53,6 +53,12 @@
     <Compile Include="Componentes\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Componentes\ItemEvento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\ItemEvento.designer.cs">
+      <DependentUpon>ItemEvento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Componentes\Loader.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +70,12 @@
     <Compile Include="Entidades\ListaAfazeres.cs" />
     <Compile Include="Entidades\Tarefa.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="FormEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEventos.Designer.cs">
+      <DependentUpon>FormEventos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Componentes\ItemEvento.resx">
+      <DependentUpon>ItemEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEventos.resx">
+      <DependentUpon>FormEventos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
