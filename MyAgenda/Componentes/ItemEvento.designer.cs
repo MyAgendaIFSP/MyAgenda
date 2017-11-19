@@ -79,6 +79,8 @@
             this.btnEditar.TabIndex = 5;
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.btnEditar.MouseEnter += new System.EventHandler(this.btnEditar_MouseEnter);
+            this.btnEditar.MouseLeave += new System.EventHandler(this.btnEditar_MouseLeave);
             // 
             // btnExcluir
             // 
@@ -92,6 +94,8 @@
             this.btnExcluir.TabIndex = 4;
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnExcluir.MouseEnter += new System.EventHandler(this.btnExcluir_MouseEnter);
+            this.btnExcluir.MouseLeave += new System.EventHandler(this.btnExcluir_MouseLeave);
             // 
             // lblDataHoraTermino
             // 
@@ -108,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblDataHoraTermino);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
@@ -117,6 +121,8 @@
             this.Controls.Add(this.pnlPrioridade);
             this.Name = "ItemEvento";
             this.Size = new System.Drawing.Size(605, 104);
+            this.MouseEnter += new System.EventHandler(this.ItemEvento_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.ItemTarefa_MouseLeave);
             this.ResumeLayout(false);
             this.PerformLayout();
 
