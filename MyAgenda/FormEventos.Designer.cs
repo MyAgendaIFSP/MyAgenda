@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEventos));
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.txtTitulo = new System.Windows.Forms.TextBox();
@@ -236,9 +237,10 @@
             this.Controls.Add(this.lblAdicionarEvento);
             this.Controls.Add(this.pnlEventos);
             this.Controls.Add(this.barraNavegacao1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEventos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormEventos";
+            this.Text = "MyAgenda | Eventos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormEventos_Load);
             this.ResumeLayout(false);

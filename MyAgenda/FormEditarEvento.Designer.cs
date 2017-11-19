@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEditarEvento));
             this.lblEditarEvento = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.txtTitulo = new System.Windows.Forms.TextBox();
@@ -213,8 +214,9 @@
             this.Controls.Add(this.lblDescricao);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblEditarEvento);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEditarEvento";
-            this.Text = "FormEditarEvento";
+            this.Text = "MyAgenda | Editar Evento";
             this.Load += new System.EventHandler(this.FormEditarEvento_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
