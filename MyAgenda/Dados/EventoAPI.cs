@@ -115,7 +115,7 @@ namespace MyAgenda.Dados
 
         public void AdicionaEvento(Evento evento)
         {
-            string query = "INSERT INTO EVENTO (USUARIO, TITULO, DESCRICAO, INICIO, FINAL) VALUES (@USUARIO, @TITULO, @DESCRICAO, @INICIO, @FINAL)";
+            string query = "INSERT INTO EVENTO (USUARIO, TITULO, DESCRICAO, INICIO, FINAL, CONCLUIDO) VALUES (@USUARIO, @TITULO, @DESCRICAO, @INICIO, @FINAL, @CONCLUIDO)";
 
             SqlConnection conn = null;
 
@@ -129,11 +129,12 @@ namespace MyAgenda.Dados
                 }
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("USUARIO", 1));
+                cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
                 cmd.Parameters.Add(new SqlParameter("TITULO", evento.Titutlo));
                 cmd.Parameters.Add(new SqlParameter("DESCRICAO", evento.Descricao));
                 cmd.Parameters.Add(new SqlParameter("INICIO", evento.DataHoraInicio));
                 cmd.Parameters.Add(new SqlParameter("FINAL", evento.DataHoraTermino));
+                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
 
                 cmd.ExecuteNonQuery();
             }
@@ -152,7 +153,7 @@ namespace MyAgenda.Dados
 
         public void EditarEvento(Evento eventoAntigo, Evento eventoAtualizado)
         {
-            string query = "UPDATE EVENTO SET TITULO = @TITULO, DESCRICAO = @DESCRICAO, INICIO = @INICIO, FINAL = @FINAL WHERE ID = @ID";
+            string query = "UPDATE EVENTO SET TITULO = @TITULO, DESCRICAO = @DESCRICAO, INICIO = @INICIO, FINAL = @FINAL, CONCLUIDO = @CONCLUIDO WHERE ID = @ID";
 
             SqlConnection conn = null;
 
@@ -170,6 +171,7 @@ namespace MyAgenda.Dados
                 cmd.Parameters.Add(new SqlParameter("DESCRICAO", eventoAtualizado.Descricao));
                 cmd.Parameters.Add(new SqlParameter("INICIO", eventoAtualizado.DataHoraInicio));
                 cmd.Parameters.Add(new SqlParameter("FINAL", eventoAtualizado.DataHoraTermino));
+                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
                 cmd.Parameters.Add(new SqlParameter("ID", eventoAntigo.IdEvento));
 
                 cmd.ExecuteNonQuery();
@@ -203,6 +205,40 @@ namespace MyAgenda.Dados
                 }
 
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.Add(new SqlParameter("ID", evento.IdEvento));
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public void ConcluirEvento(Evento evento)
+        {
+            string query = "UPDATE EVENTO SET CONCLUIDO = @CONCLUIDO WHERE ID = @ID";
+
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = new SqlConnection(C_CONEXAO);
+
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "S"));
                 cmd.Parameters.Add(new SqlParameter("ID", evento.IdEvento));
 
                 cmd.ExecuteNonQuery();
