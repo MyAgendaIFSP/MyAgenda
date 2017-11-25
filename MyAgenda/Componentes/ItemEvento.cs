@@ -56,6 +56,11 @@ namespace MyAgenda.Componentes
         {
             EventoAPI eventoAPI = new EventoAPI();
             eventoAPI.ExcluirEvento(_evento);
+
+            if (System.Windows.Forms.Application.OpenForms["FormEventos"] != null)
+            {
+                (System.Windows.Forms.Application.OpenForms["FormEventos"] as FormEventos).AtualizaEventosEmTela();
+            }
         }
         private void ItemEvento_MouseEnter(object sender, EventArgs e)
         {

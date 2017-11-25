@@ -53,15 +53,17 @@ namespace MyAgenda
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             Tarefa tarefa = new Tarefa();
-            tarefa.Titulo = "Teste";
+            tarefa.Titulo = txtTarefa.Text;
             tarefa.Descricao = txtTarefa.Text;
             tarefa.Data = cldData.SelectionRange.Start;
 
             Usuario usuario = new Usuario();
-            usuario.IdUsuario = 1;
+            usuario.IdUsuario = 2;
+
+            tarefa.Usuario = usuario;
 
             ListaAfazeres lista = new ListaAfazeres();
-            lista.Titulo = "Tarefas da Faculdade";
+            lista.Titulo = "Lista da Faculdade";
 
             tarefa.Lista = lista;
 
@@ -73,7 +75,7 @@ namespace MyAgenda
         private void _carregaTarefasDaBaseDeDados()
         {
             TarefaAPI tarefaAPI = new TarefaAPI();
-            List<Tarefa> tarefas = tarefaAPI.CarregaTarefas("Tarefas da Faculdade");
+            List<Tarefa> tarefas = tarefaAPI.CarregaTarefas("Lista da Faculdade");
 
             int y = 0;
             foreach (Tarefa tarefa in tarefas)

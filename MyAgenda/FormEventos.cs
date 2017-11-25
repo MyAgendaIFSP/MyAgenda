@@ -41,6 +41,13 @@ namespace MyAgenda
             _carregaEventosDaBaseDeDados();
         }
 
+        public void AtualizaEventosEmTela()
+        {
+            pnlEventos.Controls.Clear();
+
+            _carregaEventosDaBaseDeDados();
+        }
+
         private void _carregaEventosDaBaseDeDados()
         {
             EventoAPI eventoAPI = new EventoAPI();

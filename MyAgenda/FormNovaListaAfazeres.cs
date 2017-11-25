@@ -26,7 +26,7 @@ namespace MyAgenda
             listaAfazeres.DataCriacao = DateTime.Now;
 
             Usuario usuario = new Usuario();
-            usuario.IdUsuario = 1;
+            usuario.IdUsuario = 2;
 
             listaAfazeres.Usuario = usuario;
 

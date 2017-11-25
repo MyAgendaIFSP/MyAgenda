@@ -52,6 +52,11 @@ namespace MyAgenda
 
             eventoAPI.EditarEvento(_evento, eventoAtualizado);
 
+            if (System.Windows.Forms.Application.OpenForms["FormEventos"] != null)
+            {
+                (System.Windows.Forms.Application.OpenForms["FormEventos"] as FormEventos).AtualizaEventosEmTela();
+            }
+
             this.Close();
         }
     }
