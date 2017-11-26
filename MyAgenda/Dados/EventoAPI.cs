@@ -255,5 +255,55 @@ namespace MyAgenda.Dados
                 }
             }
         }
+
+        public List<Evento> BuscaInformacoesDeEventosParaEmissaoDeAlerta()
+        {
+            List<Evento> eventos = new List<Evento>();
+
+            string query = "SELECT * FROM EVENTO WHERE CONCLUIDO = @CONCLUIDO ORDER BY INICIO ASC";
+
+            SqlConnection conn = null;
+            SqlDataReader reader = null;
+
+            try
+            {
+                conn = new SqlConnection(C_CONEXAO);
+
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Evento evento = new Evento();
+                    evento.IdEvento = long.Parse(reader["id"].ToString());
+                    evento.Titutlo = reader["titulo"].ToString();
+                    evento.Descricao = reader["descricao"].ToString();
+                    evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
+                    evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
+                    evento.Usuario = new Usuario();
+                    eventos.Add(evento);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return eventos;
+        }
     }
 }
