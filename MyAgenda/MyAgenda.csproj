@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agendamentos\JobEmiteAlertaParaEventos.cs" />
     <Compile Include="Componentes\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -85,6 +86,12 @@
     <Compile Include="Entidades\ListaAfazeres.cs" />
     <Compile Include="Entidades\Tarefa.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="FormAlertaEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAlertaEvento.Designer.cs">
+      <DependentUpon>FormAlertaEvento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEditarEvento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Componentes\ItemTarefa.resx">
       <DependentUpon>ItemTarefa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAlertaEvento.resx">
+      <DependentUpon>FormAlertaEvento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditarEvento.resx">
       <DependentUpon>FormEditarEvento.cs</DependentUpon>
