@@ -44,6 +44,13 @@ namespace MyAgenda
             _carregaTarefasDaBaseDeDados();
         }
 
+        public void AtualizaTarefasEmTela()
+        {
+            pnlListaAfazeres.Controls.Clear();
+
+            _carregaTarefasDaBaseDeDados();
+        }
+
         private void btnNovaLista_Click(object sender, EventArgs e)
         {
             FormNovaListaAfazeres form = new FormNovaListaAfazeres();

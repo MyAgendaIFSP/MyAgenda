@@ -114,6 +114,11 @@ namespace MyAgenda.Componentes
         {
             TarefaAPI tarefaAPI = new TarefaAPI();
             tarefaAPI.ExcluirTarefa(_tarefa);
+
+            if (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] != null)
+            {
+                (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] as FormListaAfazeres).AtualizaTarefasEmTela();
+            }
         }
     }
 }

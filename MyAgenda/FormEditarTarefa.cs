@@ -60,6 +60,11 @@ namespace MyAgenda
 
             tarefaAPI.EditarTarefa(_tarefa, tarefaAtualizada);
 
+            if (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] != null)
+            {
+                (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] as FormListaAfazeres).AtualizaTarefasEmTela();
+            }
+
             this.Close();
         }
     }
