@@ -27,7 +27,8 @@ namespace MyAgenda
 
             Evento = evento;
 
-            string alerta = string.Format("O evento {0} começará em {1} minutos", Evento.Titutlo, minutos); 
+            string alerta = string.Format("O evento {0} começará em {1} minutos", Evento.Titutlo, minutos);
+            lblAlerta.Text = alerta;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

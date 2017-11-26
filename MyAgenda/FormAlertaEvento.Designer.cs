@@ -53,7 +53,7 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnOK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOK.Location = new System.Drawing.Point(452, 68);
+            this.btnOK.Location = new System.Drawing.Point(452, 162);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(122, 34);
             this.btnOK.TabIndex = 15;
@@ -67,7 +67,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(586, 114);
+            this.ClientSize = new System.Drawing.Size(586, 208);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblAlerta);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -32,7 +32,7 @@ namespace MyAgenda
             //Cria a trigger
             ITrigger trigger = TriggerBuilder.Create()
                                .WithIdentity("trigger1", "group1")
-                               .WithSimpleSchedule(x => x.WithIntervalInSeconds(5).RepeatForever())
+                               .WithSimpleSchedule(x => x.WithIntervalInSeconds(60).RepeatForever())
                                .Build();
 
             //Agenda o job com base na trigger

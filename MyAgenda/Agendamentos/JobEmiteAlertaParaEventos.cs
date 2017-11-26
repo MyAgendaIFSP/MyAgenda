@@ -29,12 +29,12 @@ namespace MyAgenda.Agendamentos
 
                 if (DateTime.Compare(dataHoraServidor, dataHoraInicioEvento) < 0)
                 {
-                    tempoRestante = dataHoraInicioEvento.Subtract(dataHoraServidor).TotalMinutes;
+                    tempoRestante = Math.Round(dataHoraInicioEvento.Subtract(dataHoraServidor).TotalMinutes);
 
                     if (tempoRestante == 5 || tempoRestante == 10)
                     {
                         FormAlertaEvento formAlertaEvento = new FormAlertaEvento(evento, tempoRestante);
-                        formAlertaEvento.Show();
+                        formAlertaEvento.ShowDialog();
                     }
                 }
             }
