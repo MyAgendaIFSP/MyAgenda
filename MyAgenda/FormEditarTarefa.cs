@@ -40,7 +40,7 @@ namespace MyAgenda
                 cbbListasAfazeres.Items.Add(lista.Titulo);
             }
 
-            txtTarefa.Text = _tarefa.Descricao;
+            txtTarefa.Text = _tarefa.Titulo;
             cbbListasAfazeres.Text = _tarefa.Lista.Titulo;
             cldData.SetDate(_tarefa.Data);
         }
@@ -49,7 +49,7 @@ namespace MyAgenda
         {
             TarefaAPI tarefaAPI = new TarefaAPI();
             Tarefa tarefaAtualizada = new Tarefa();
-            tarefaAtualizada.Titulo = "Teste";
+            tarefaAtualizada.Titulo = txtTarefa.Text;
             tarefaAtualizada.Descricao = txtTarefa.Text;
             tarefaAtualizada.Data = cldData.SelectionRange.Start;
 

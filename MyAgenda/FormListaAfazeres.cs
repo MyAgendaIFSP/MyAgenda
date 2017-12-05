@@ -24,7 +24,20 @@ namespace MyAgenda
             InitializeComponent();
         }
 
-        private void _populaComboBoxDeListasdeAfazeres()
+        private void _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa()
+        {
+            ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
+
+            List<ListaAfazeres> listasAfazeres = new List<ListaAfazeres>();
+            listasAfazeres = listaAfazeresAPI.CarregaListasAfazeres();
+
+            foreach (ListaAfazeres lista in listasAfazeres)
+            {
+                cbbOpcoesListasAfazeres.Items.Add(lista.Titulo);
+            }
+        }
+
+        private void _populaComboBoxDeListasDeAfazeresDoTopoDoForm()
         {
             ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
 
@@ -39,16 +52,26 @@ namespace MyAgenda
 
         private void FormListaAfazeres_Load(object sender, EventArgs e)
         {
-            _populaComboBoxDeListasdeAfazeres();
+            _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa();
 
-            _carregaTarefasDaBaseDeDados();
+            _populaComboBoxDeListasDeAfazeresDoTopoDoForm();
+
+            ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
+            _carregaTarefasDaBaseDeDados(listaAfazeresAPI.GetNomePrimeiraListaDeAfazeres());
         }
 
         public void AtualizaTarefasEmTela()
         {
             pnlListaAfazeres.Controls.Clear();
+            cbbOpcoesListasAfazeres.Items.Clear();
+            cbbListasAfazeres.Items.Clear();
 
-            _carregaTarefasDaBaseDeDados();
+            ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
+            _carregaTarefasDaBaseDeDados(listaAfazeresAPI.GetNomePrimeiraListaDeAfazeres());
+
+            _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa();
+
+            _populaComboBoxDeListasDeAfazeresDoTopoDoForm();
         }
 
         private void btnNovaLista_Click(object sender, EventArgs e)
@@ -61,7 +84,6 @@ namespace MyAgenda
         {
             Tarefa tarefa = new Tarefa();
             tarefa.Titulo = txtTarefa.Text;
-            tarefa.Descricao = txtTarefa.Text;
             tarefa.Data = cldData.SelectionRange.Start;
 
             Usuario usuario = new Usuario();
@@ -70,31 +92,47 @@ namespace MyAgenda
             tarefa.Usuario = usuario;
 
             ListaAfazeres lista = new ListaAfazeres();
-            lista.Titulo = "Lista da Faculdade";
+            lista.Titulo = cbbOpcoesListasAfazeres.GetItemText(cbbOpcoesListasAfazeres.SelectedItem);
 
             tarefa.Lista = lista;
 
             TarefaAPI tarefaAPI = new TarefaAPI();
             tarefaAPI.AdicionaTarefa(tarefa);
-            _carregaTarefasDaBaseDeDados();
+            _carregaTarefasDaBaseDeDados(lista.Titulo);
         }
 
-        private void _carregaTarefasDaBaseDeDados()
+        private void _carregaTarefasDaBaseDeDados(string listaAfazeres)
         {
             TarefaAPI tarefaAPI = new TarefaAPI();
-            List<Tarefa> tarefas = tarefaAPI.CarregaTarefas("Lista da Faculdade");
+            List<Tarefa> tarefas = tarefaAPI.CarregaTarefas(listaAfazeres);
 
             int y = 0;
             foreach (Tarefa tarefa in tarefas)
             {
                 ItemTarefa itemTarefa = new ItemTarefa(tarefa);
-                itemTarefa.DescricaoTarefa = tarefa.Descricao;
+                itemTarefa.DescricaoTarefa = tarefa.Titulo;
                 itemTarefa.Width = pnlListaAfazeres.Width - 20;
                 itemTarefa.Location = new Point(0, y);
+
                 pnlListaAfazeres.Controls.Add(itemTarefa);
                 y = pnlListaAfazeres.Controls[pnlListaAfazeres.Controls.Count - 1].Bottom + 10;
 
             }
+        }
+
+        private void btnExibirTarefas_Click(object sender, EventArgs e)
+        {
+            string listaAfazeres = cbbListasAfazeres.GetItemText(cbbListasAfazeres.SelectedItem);
+
+            pnlListaAfazeres.Controls.Clear();
+            cbbOpcoesListasAfazeres.Items.Clear();
+            cbbListasAfazeres.Items.Clear();
+
+            _carregaTarefasDaBaseDeDados(listaAfazeres);
+
+            _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa();
+
+            _populaComboBoxDeListasDeAfazeresDoTopoDoForm();
         }
     }
 }

@@ -32,6 +32,12 @@ namespace MyAgenda
 
             ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
             listaAfazeresAPI.AdicionaLista(listaAfazeres);
+
+            if (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] != null)
+            {
+                (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] as FormListaAfazeres).AtualizaTarefasEmTela();
+            }
+
             this.Close();
         }
     }

@@ -103,6 +103,7 @@
             this.Controls.Add(this.btnChecar);
             this.Name = "ItemTarefa";
             this.Size = new System.Drawing.Size(484, 78);
+            this.Load += new System.EventHandler(this.ItemTarefa_Load);
             this.MouseEnter += new System.EventHandler(this.ItemTarefa_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.ItemTarefa_MouseLeave);
             this.ResumeLayout(false);

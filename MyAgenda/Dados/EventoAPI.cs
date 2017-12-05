@@ -68,7 +68,7 @@ namespace MyAgenda.Dados
         {
             Evento evento = new Evento();
 
-            string query = "SELECT * FROM USUARIO WHERE ID = @ID";
+            string query = "SELECT * FROM EVENTO WHERE ID = @ID";
 
             SqlConnection conn = null;
             SqlDataReader reader = null;

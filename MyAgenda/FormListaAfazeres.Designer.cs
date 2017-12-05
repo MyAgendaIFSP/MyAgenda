@@ -33,13 +33,15 @@
             this.txtTarefa = new System.Windows.Forms.TextBox();
             this.lblTarefa = new System.Windows.Forms.Label();
             this.lblListaAfazeres = new System.Windows.Forms.Label();
-            this.cbbListasAfazeres = new System.Windows.Forms.ComboBox();
+            this.cbbOpcoesListasAfazeres = new System.Windows.Forms.ComboBox();
             this.lblData = new System.Windows.Forms.Label();
             this.cldData = new System.Windows.Forms.MonthCalendar();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.pnlListaAfazeres = new System.Windows.Forms.Panel();
             this.barraNavegacao1 = new MyAgenda.Componentes.BarraNavegacao();
             this.btnNovaLista = new System.Windows.Forms.Button();
+            this.cbbListasAfazeres = new System.Windows.Forms.ComboBox();
+            this.btnExibirTarefas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -83,14 +85,15 @@
             this.lblListaAfazeres.TabIndex = 15;
             this.lblListaAfazeres.Text = "Lista de Afazeres";
             // 
-            // cbbListasAfazeres
+            // cbbOpcoesListasAfazeres
             // 
-            this.cbbListasAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbListasAfazeres.FormattingEnabled = true;
-            this.cbbListasAfazeres.Location = new System.Drawing.Point(16, 174);
-            this.cbbListasAfazeres.Name = "cbbListasAfazeres";
-            this.cbbListasAfazeres.Size = new System.Drawing.Size(255, 29);
-            this.cbbListasAfazeres.TabIndex = 16;
+            this.cbbOpcoesListasAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbOpcoesListasAfazeres.FormattingEnabled = true;
+            this.cbbOpcoesListasAfazeres.Location = new System.Drawing.Point(16, 174);
+            this.cbbOpcoesListasAfazeres.Name = "cbbOpcoesListasAfazeres";
+            this.cbbOpcoesListasAfazeres.Size = new System.Drawing.Size(255, 29);
+            this.cbbOpcoesListasAfazeres.TabIndex = 16;
+            this.cbbOpcoesListasAfazeres.Text = "Selecionar Lista de Afazeres";
             // 
             // lblData
             // 
@@ -133,9 +136,9 @@
             this.pnlListaAfazeres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlListaAfazeres.Location = new System.Drawing.Point(288, 53);
+            this.pnlListaAfazeres.Location = new System.Drawing.Point(288, 131);
             this.pnlListaAfazeres.Name = "pnlListaAfazeres";
-            this.pnlListaAfazeres.Size = new System.Drawing.Size(527, 408);
+            this.pnlListaAfazeres.Size = new System.Drawing.Size(527, 330);
             this.pnlListaAfazeres.TabIndex = 21;
             // 
             // barraNavegacao1
@@ -163,18 +166,51 @@
             this.btnNovaLista.UseVisualStyleBackColor = true;
             this.btnNovaLista.Click += new System.EventHandler(this.btnNovaLista_Click);
             // 
+            // cbbListasAfazeres
+            // 
+            this.cbbListasAfazeres.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbListasAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbListasAfazeres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbbListasAfazeres.FormattingEnabled = true;
+            this.cbbListasAfazeres.Location = new System.Drawing.Point(288, 56);
+            this.cbbListasAfazeres.Name = "cbbListasAfazeres";
+            this.cbbListasAfazeres.Size = new System.Drawing.Size(527, 29);
+            this.cbbListasAfazeres.TabIndex = 0;
+            this.cbbListasAfazeres.Text = "Selecionar Lista de Afazeres";
+            // 
+            // btnExibirTarefas
+            // 
+            this.btnExibirTarefas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExibirTarefas.AutoSize = true;
+            this.btnExibirTarefas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExibirTarefas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnExibirTarefas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExibirTarefas.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnExibirTarefas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExibirTarefas.Location = new System.Drawing.Point(508, 91);
+            this.btnExibirTarefas.Name = "btnExibirTarefas";
+            this.btnExibirTarefas.Size = new System.Drawing.Size(304, 34);
+            this.btnExibirTarefas.TabIndex = 23;
+            this.btnExibirTarefas.Text = "Exibir Tarefas da Lista Selecionada";
+            this.btnExibirTarefas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnExibirTarefas.UseVisualStyleBackColor = true;
+            this.btnExibirTarefas.Click += new System.EventHandler(this.btnExibirTarefas_Click);
+            // 
             // FormListaAfazeres
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(827, 512);
+            this.Controls.Add(this.btnExibirTarefas);
+            this.Controls.Add(this.cbbListasAfazeres);
             this.Controls.Add(this.btnNovaLista);
             this.Controls.Add(this.pnlListaAfazeres);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.cldData);
             this.Controls.Add(this.lblData);
-            this.Controls.Add(this.cbbListasAfazeres);
+            this.Controls.Add(this.cbbOpcoesListasAfazeres);
             this.Controls.Add(this.lblListaAfazeres);
             this.Controls.Add(this.txtTarefa);
             this.Controls.Add(this.lblTarefa);
@@ -198,11 +234,13 @@
         private System.Windows.Forms.TextBox txtTarefa;
         private System.Windows.Forms.Label lblTarefa;
         private System.Windows.Forms.Label lblListaAfazeres;
-        private System.Windows.Forms.ComboBox cbbListasAfazeres;
+        private System.Windows.Forms.ComboBox cbbOpcoesListasAfazeres;
         private System.Windows.Forms.Label lblData;
         private System.Windows.Forms.MonthCalendar cldData;
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.Panel pnlListaAfazeres;
         private System.Windows.Forms.Button btnNovaLista;
+        private System.Windows.Forms.ComboBox cbbListasAfazeres;
+        private System.Windows.Forms.Button btnExibirTarefas;
     }
 }

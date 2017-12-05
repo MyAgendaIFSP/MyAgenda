@@ -17,7 +17,7 @@ namespace MyAgenda.Dados
         {
             List<ListaAfazeres> listas = new List<ListaAfazeres>();
 
-            string query = "SELECT * FROM LISTA_AFAZERES";
+            string query = "SELECT * FROM LISTA_AFAZERES ORDER BY TITULO ASC";
 
             SqlConnection conn = null;
             SqlDataReader reader = null;
@@ -56,6 +56,51 @@ namespace MyAgenda.Dados
             }
 
             return listas;
+        }
+
+        public string GetNomePrimeiraListaDeAfazeres()
+        {
+            List<ListaAfazeres> listas = new List<ListaAfazeres>();
+
+            string query = "SELECT * FROM LISTA_AFAZERES ORDER BY TITULO ASC";
+
+            SqlConnection conn = null;
+            SqlDataReader reader = null;
+
+            try
+            {
+                conn = new SqlConnection(C_CONEXAO);
+
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ListaAfazeres lista = new ListaAfazeres();
+                    lista.Titulo = reader["titulo"].ToString();
+                    lista.DataCriacao = Convert.ToDateTime(reader["criacao"].ToString());
+                    listas.Add(lista);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return listas.ElementAt(0).Titulo.ToString();
         }
 
         public void AdicionaLista(ListaAfazeres lista)

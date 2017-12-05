@@ -35,9 +35,23 @@ namespace MyAgenda.Componentes
             this._tarefa = tarefa;
         }
 
-        private void btnChecar_Click(object sender, EventArgs e)
+        public void btnChecar_Click(object sender, EventArgs e)
         {
-            lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Strikeout);
+            TarefaAPI tarefaAPI = new TarefaAPI();
+
+            Tarefa tarefa = new Tarefa();
+            tarefa.Titulo = lblDescricaoTarefa.Text;
+
+            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, "Lista da Faculdade"))
+            {
+                tarefaAPI.DesconcluirTarefa(tarefa);
+                lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Regular);
+            } 
+            else
+            {
+                tarefaAPI.ConcluirTarefa(tarefa);
+                lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Strikeout);
+            }
         }
 
         private void ItemTarefa_MouseEnter(object sender, EventArgs e)
@@ -118,6 +132,23 @@ namespace MyAgenda.Componentes
             if (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] != null)
             {
                 (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] as FormListaAfazeres).AtualizaTarefasEmTela();
+            }
+        }
+
+        private void ItemTarefa_Load(object sender, EventArgs e)
+        {
+            TarefaAPI tarefaAPI = new TarefaAPI();
+
+            Tarefa tarefa = new Tarefa();
+            tarefa.Titulo = lblDescricaoTarefa.Text;
+
+            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, "Lista da Faculdade"))
+            {
+                lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Strikeout);
+            }
+            else
+            {
+                lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Regular);
             }
         }
     }

@@ -17,5 +17,7 @@ namespace MyAgenda.Entidades
         public string Descricao;
 
         public Usuario Usuario;
+
+        public bool IsConcluida;
     }
 }
