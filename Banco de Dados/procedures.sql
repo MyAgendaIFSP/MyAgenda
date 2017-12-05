@@ -7,8 +7,8 @@ as
 begin
 	
 	select usuario.id, usuario.nome, usuario.data_nascimento
-	from matriz_tempo, usuario
-	where usuario.matriz_tempo = matriz_tempo.id
+	from usuario
+	inner join matriz_tempo on usuario.matriz_tempo = matriz_tempo.id
 	and usuario.id = @user_id;
 	
 end
@@ -20,10 +20,10 @@ as
 begin
 
 	select item_matriz.id, item_matriz.quadrante, item_matriz.titulo, item_matriz.descricao, item_matriz.ativo,item_matriz.data_adicao
-	from item_matriz, matriz_tempo, usuario
-	where usuario.id = @user_id
-	and usuario.matriz_tempo = matriz_tempo.id
-	and item_matriz.matriz = matriz_tempo.id;
+	from item_matriz
+	inner join matriz_tempo on item_matriz.matriz = matriz_tempo.id
+	inner join usuario on usuario.matriz_tempo = matriz_tempo.id
+	where usuario.id = @user_id;
 	
 end
 go
@@ -34,9 +34,9 @@ as
 begin
 
 	select item_matriz.id, item_matriz.quadrante, item_matriz.titulo, item_matriz.descricao, item_matriz.ativo,item_matriz.data_adicao
-	from item_matriz, matriz_tempo
-	where matriz_tempo.id = @matriz_id
-	and item_matriz.matriz = matriz_tempo.id;
+	from item_matriz
+	inner join matriz_tempo on item_matriz.matriz = matriz_tempo.id
+	where matriz_tempo.id = @matriz_id;
 	
 end
 go
@@ -66,13 +66,11 @@ begin
 	SELECT usuario.nome, usuario.email, usuario.id, usuario.estado
 	FROM(
 			SELECT contato.usuario AS uid
-			FROM usuario, contato, lista_contatos
+			FROM contato
+			inner join lista_contatos on lista_contatos.id = contato.lista_contato
 			WHERE lista_contatos.usuario = @usuario_id
-			AND contato.lista_contato = lista_contatos.id
-			AND contato.usuario = usuario.id
-		) contatos, usuario
+		) as contatos, usuario
 	WHERE usuario.id = contatos.uid;
-
 end
 go
 
@@ -86,9 +84,10 @@ begin
 	where (usuario.nome like concat('%', @busca, '%') or email like concat('%', @busca, '%'))
 	and id <> @usuario_id
 	and id not in (select contato.usuario
-					from contato, lista_contatos, usuario
-					where lista_contatos.usuario = @usuario_id
-					and contato.lista_contato = lista_contatos.id);
+					from contato
+					inner join lista_contatos
+					on contato.lista_contato = lista_contatos.id
+					where lista_contatos.usuario = @usuario_id);
 
 end
 go

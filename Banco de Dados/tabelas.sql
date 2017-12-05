@@ -40,11 +40,6 @@ create table secao_pomodoro(
 	on update cascade
 );
 
-create table lista_contatos(
-	 id int primary key identity(1,1) not null,
-	 usuario int not null
-);
-
 create table usuario (
 	id int primary key identity(1,1) not null,
 	matriz_tempo int null,
@@ -61,16 +56,16 @@ create table usuario (
 	on update cascade,
 	constraint usuario_matriz_fk foreign key(matriz_tempo) references matriz_tempo(id)
 	on delete cascade
-	on update cascade,
-	constraint usuario_lista_contatos_fk foreign key(lista_contatos) references lista_contatos(id)
-	on delete cascade
 	on update cascade
 );
 
-alter table lista_contatos add 
-constraint lista_contatos_usuario_fk foreign key(usuario) references usuario(id)
-on delete no action
-on update no action;
+create table lista_contatos(
+	 id int primary key identity(1,1) not null,
+	 usuario int not null,
+	 constraint lista_contatos_usuario_fk foreign key(usuario) references usuario(id)
+	 on delete no action
+	 on update no action
+);
 
 create table contato(
 	lista_contato int not null,
