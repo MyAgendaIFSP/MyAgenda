@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BD_IFALJDataSetFinal" targetNamespace="http://tempuri.org/BD_IFALJDataSetFinal.xsd" xmlns:mstns="http://tempuri.org/BD_IFALJDataSetFinal.xsd" xmlns="http://tempuri.org/BD_IFALJDataSetFinal.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BD_IFALJConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BD_IFALJConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Ifalj.Properties.Settings.GlobalReference.Default.BD_IFALJConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_relatorio_pomodoroTableAdapter" GeneratorDataComponentClassName="vw_relatorio_pomodoroTableAdapter" Name="vw_relatorio_pomodoro" UserDataComponentName="vw_relatorio_pomodoroTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BD_IFALJConnectionString (Settings)" DbObjectName="BD_IFALJ.dbo.vw_relatorio_pomodoro" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT nome_usuario, duracao_sessao, data_sessao, tipo FROM dbo.vw_relatorio_pomodoro</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nome_usuario" DataSetColumn="nome_usuario" />
+              <Mapping SourceColumn="duracao_sessao" DataSetColumn="duracao_sessao" />
+              <Mapping SourceColumn="data_sessao" DataSetColumn="data_sessao" />
+              <Mapping SourceColumn="tipo" DataSetColumn="tipo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BD_IFALJDataSetFinal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="BD_IFALJDataSetFinal" msprop:Generator_UserDSName="BD_IFALJDataSetFinal">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_relatorio_pomodoro" msprop:Generator_TableClassName="vw_relatorio_pomodoroDataTable" msprop:Generator_TableVarName="tablevw_relatorio_pomodoro" msprop:Generator_TablePropName="vw_relatorio_pomodoro" msprop:Generator_RowDeletingName="vw_relatorio_pomodoroRowDeleting" msprop:Generator_RowChangingName="vw_relatorio_pomodoroRowChanging" msprop:Generator_RowEvHandlerName="vw_relatorio_pomodoroRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_relatorio_pomodoroRowDeleted" msprop:Generator_UserTableName="vw_relatorio_pomodoro" msprop:Generator_RowChangedName="vw_relatorio_pomodoroRowChanged" msprop:Generator_RowEvArgName="vw_relatorio_pomodoroRowChangeEvent" msprop:Generator_RowClassName="vw_relatorio_pomodoroRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nome_usuario" msprop:Generator_ColumnVarNameInTable="columnnome_usuario" msprop:Generator_ColumnPropNameInRow="nome_usuario" msprop:Generator_ColumnPropNameInTable="nome_usuarioColumn" msprop:Generator_UserColumnName="nome_usuario">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="duracao_sessao" msprop:Generator_ColumnVarNameInTable="columnduracao_sessao" msprop:Generator_ColumnPropNameInRow="duracao_sessao" msprop:Generator_ColumnPropNameInTable="duracao_sessaoColumn" msprop:Generator_UserColumnName="duracao_sessao" type="xs:int" />
+              <xs:element name="data_sessao" msprop:Generator_ColumnVarNameInTable="columndata_sessao" msprop:Generator_ColumnPropNameInRow="data_sessao" msprop:Generator_ColumnPropNameInTable="data_sessaoColumn" msprop:Generator_UserColumnName="data_sessao" type="xs:dateTime" />
+              <xs:element name="tipo" msprop:Generator_ColumnVarNameInTable="columntipo" msprop:Generator_ColumnPropNameInRow="tipo" msprop:Generator_ColumnPropNameInTable="tipoColumn" msprop:Generator_UserColumnName="tipo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
