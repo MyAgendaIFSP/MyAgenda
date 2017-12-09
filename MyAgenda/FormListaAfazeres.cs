@@ -107,20 +107,27 @@ namespace MyAgenda
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Tarefa tarefa = new Tarefa();
-            tarefa.Titulo = txtTarefa.Text;
-            tarefa.Data = cldData.SelectionRange.Start;
+            if (!String.IsNullOrEmpty(txtTarefa.Text))
+            {
+                Tarefa tarefa = new Tarefa();
+                tarefa.Titulo = txtTarefa.Text;
+                tarefa.Data = cldData.SelectionRange.Start;
 
-            tarefa.Usuario = _usuario.GetModelo();
+                tarefa.Usuario = _usuario.GetModelo();
 
-            ListaAfazeres lista = new ListaAfazeres();
-            lista.Titulo = cbbOpcoesListasAfazeres.GetItemText(cbbOpcoesListasAfazeres.SelectedItem);
+                ListaAfazeres lista = new ListaAfazeres();
+                lista.Titulo = cbbOpcoesListasAfazeres.GetItemText(cbbOpcoesListasAfazeres.SelectedItem);
 
-            tarefa.Lista = lista;
+                tarefa.Lista = lista;
 
-            TarefaAPI tarefaAPI = new TarefaAPI();
-            tarefaAPI.AdicionaTarefa(tarefa);
-            _carregaTarefasDaBaseDeDados(lista.Titulo);
+                TarefaAPI tarefaAPI = new TarefaAPI();
+                tarefaAPI.AdicionaTarefa(tarefa);
+                _carregaTarefasDaBaseDeDados(lista.Titulo);
+            }
+            else
+            {
+                MessageBox.Show("Digite um título para a tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void _carregaTarefasDaBaseDeDados(string listaAfazeres)

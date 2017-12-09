@@ -119,7 +119,7 @@ namespace MyAgenda.Dados
 
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("LISTA", tarefa.Lista.Titulo));
-                    cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", tarefa.Usuario.Id));
                     cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
                     cmd.Parameters.Add(new SqlParameter("MDATA", tarefa.Data));
                     cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
@@ -145,7 +145,7 @@ namespace MyAgenda.Dados
                 {
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("LISTA", "Lista da Faculdade"));
-                    cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", tarefaAtualizada.Usuario.Id));
                     cmd.Parameters.Add(new SqlParameter("TITULONOVO", tarefaAtualizada.Titulo));
                     cmd.Parameters.Add(new SqlParameter("MDATA", tarefaAtualizada.Data));
                     cmd.Parameters.Add(new SqlParameter("TITULOANTIGO", tarefaAntiga.Titulo));
