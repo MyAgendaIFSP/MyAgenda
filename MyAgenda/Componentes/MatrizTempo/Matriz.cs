@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Controladores.MatrizTempo;
+using MyAgenda.Dados;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -30,9 +31,10 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
-        public bool CarregaMatriz()
+        public bool CarregaMatriz(int usuario)
         {
-            _controlador = MatrizController.GetInstance();
+            MatrizTempoAPI api = MatrizTempoAPI.GetInstance();
+            _controlador = api.GetMatriz(usuario);
 
             _controlador.AlteraUltimoAcesso();
 

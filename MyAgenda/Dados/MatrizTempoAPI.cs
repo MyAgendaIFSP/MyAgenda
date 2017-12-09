@@ -90,6 +90,42 @@ namespace MyAgenda.Dados
 
         }
 
+        public MatrizController GetMatriz(int usuario)
+        {
+            if (_abreConexao())
+            {
+                MatrizController matriz = null;
+
+                SqlCommand cmd = new SqlCommand(@"select matriz_tempo.id, ultima_utilizacao, inicializacao from matriz_tempo
+                                                    inner join usuario on usuario.matriz_tempo = matriz_tempo.id
+                                                    where usuario.id = @usuario;", _conexao);
+
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    try
+                    {
+                        while (rdr.Read())
+                        {
+                            int id = (int)rdr["id"];
+                            DateTime matInit = rdr.GetDateTime(rdr.GetOrdinal("inicializacao"));
+                            DateTime matUtili = rdr.GetDateTime(rdr.GetOrdinal("ultima_utilizacao")); 
+
+                            matriz = MatrizController.GetInstance(id, matInit, matUtili);
+                        }
+                    }
+                    catch { }
+                }
+
+                _fechaConexao();
+
+                return matriz;
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Carrega os itens da matriz do tempo especificada
         /// </summary>

@@ -70,8 +70,8 @@ namespace MyAgenda
             if (user.IsAutenticado)
             {
                 //abrir próximo form
-                FormMatrizTempo f = new FormMatrizTempo(user);
-                f.Show();
+                FormEventos e = new FormEventos(user);
+                e.Show();
                 this.Hide();
 
                 ChatController chat = ChatController.GetInstance();

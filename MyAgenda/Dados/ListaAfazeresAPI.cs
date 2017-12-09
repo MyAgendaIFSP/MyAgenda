@@ -138,7 +138,14 @@ namespace MyAgenda.Dados
                 _fechaConexao();
             }
 
-            return listas.ElementAt(0).Titulo.ToString();
+            if (listas.Count > 0)
+            {
+                return listas.ElementAt(0).Titulo.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void AdicionaLista(ListaAfazeres lista)

@@ -58,7 +58,7 @@ namespace MyAgenda
             this.ComecaCarregar();
 
             //Buscar no banco de dados os itens do usuário
-            matrizTempo.CarregaMatriz();
+            matrizTempo.CarregaMatriz(_usuario.GetModelo().Id);
 
             BarraNavegacao.Width = this.Width;
 

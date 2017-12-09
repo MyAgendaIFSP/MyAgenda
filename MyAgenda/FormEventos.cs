@@ -21,6 +21,8 @@ namespace MyAgenda
             BarraNavegacao.AddItem("Matriz do Tempo", (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO);
             BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
             BarraNavegacao.AddItem("Tarefas", (int)EBarraNavegacaoBotoes.TAREFAS);
+
+            _usuario = u;
         }
 
         protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
