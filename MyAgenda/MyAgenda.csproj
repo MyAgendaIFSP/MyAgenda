@@ -99,23 +99,21 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Componentes\MatrizTempo\LabelItemMatriz.cs">
-    <Compile Include="Agendamentos\JobEmiteAlertaParaEventos.cs" />
-    <Compile Include="Componentes\BarraNavegacao.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Componentes\ItemEvento.cs">
+    <Compile Include="Agendamentos\JobEmiteAlertaParaEventos.cs" />
+    <Compile Include="Componentes\Tarefas\ItemEvento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\ItemEvento.designer.cs">
+    <Compile Include="Componentes\Tarefas\ItemEvento.designer.cs">
       <DependentUpon>ItemEvento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\ItemTarefa.cs">
+    <Compile Include="Componentes\Tarefas\ItemTarefa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\ItemTarefa.designer.cs">
+    <Compile Include="Componentes\Tarefas\ItemTarefa.designer.cs">
       <DependentUpon>ItemTarefa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\Loader.cs">
     <Compile Include="Componentes\MatrizTempo\Matriz.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,11 +126,9 @@
     <Compile Include="Dados\EventoAPI.cs" />
     <Compile Include="Dados\ListaAfazeresAPI.cs" />
     <Compile Include="Dados\TarefaAPI.cs" />
-    <Compile Include="Dados\UsuarioAPI.cs" />
     <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\ListaAfazeres.cs" />
     <Compile Include="Entidades\Tarefa.cs" />
-    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="FormAlertaEvento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,10 +165,10 @@
     <Compile Include="Controladores\ListaContatos\ListaContatosController.cs" />
     <Compile Include="Controladores\MatrizTempo\ItemMatrizController.cs" />
     <Compile Include="Controladores\MatrizTempo\MatrizController.cs" />
-    <Compile Include="Database\ChatAPI.cs" />
-    <Compile Include="Database\ContatosAPI.cs" />
-    <Compile Include="Database\MatrizTempoAPI.cs" />
-    <Compile Include="Database\UsuarioAPI.cs" />
+    <Compile Include="Dados\ChatAPI.cs" />
+    <Compile Include="Dados\ContatosAPI.cs" />
+    <Compile Include="Dados\MatrizTempoAPI.cs" />
+    <Compile Include="Dados\UsuarioAPI.cs" />
     <Compile Include="FormChat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,10 +225,10 @@
     <EmbeddedResource Include="FormChat.resx">
       <DependentUpon>FormChat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\ItemEvento.resx">
+    <EmbeddedResource Include="Componentes\Tarefas\ItemEvento.resx">
       <DependentUpon>ItemEvento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\ItemTarefa.resx">
+    <EmbeddedResource Include="Componentes\Tarefas\ItemTarefa.resx">
       <DependentUpon>ItemTarefa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAlertaEvento.resx">
@@ -316,7 +312,6 @@
     <None Include="Resources\ic_account_circle_black.png" />
     <None Include="Resources\ic_turned_in_not_black.png" />
     <None Include="Resources\ic_turned_in_black.png" />
-    <None Include="Resources\ic_delete_black.png" />
     <None Include="Resources\ic_delete_white.png" />
     <None Include="Resources\ic_edit_black.png" />
     <None Include="Resources\ic_delete_black.png" />

@@ -1,6 +1,6 @@
 ﻿using MyAgenda.Componentes.ListaContatos.Contato;
 using MyAgenda.Controladores.Geral;
-using MyAgenda.Database;
+using MyAgenda.Dados;
 using System.Collections.Generic;
 
 namespace MyAgenda.Controladores.ListaContatos

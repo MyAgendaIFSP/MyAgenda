@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System;
 
-namespace MyAgenda.Database
+namespace MyAgenda.Dados
 {
     class ContatosAPI
     {

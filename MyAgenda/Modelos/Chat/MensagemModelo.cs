@@ -1,4 +1,4 @@
-﻿using MyAgenda.Database;
+﻿using MyAgenda.Dados;
 using System;
 
 namespace MyAgenda.Modelos.Chat

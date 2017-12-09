@@ -31,7 +31,7 @@ namespace MyAgenda
             _usuario = UsuarioController.GetInstance();
             this.Text = "Conversa - " + contato.Nome;
 
-            if (_contato.Estado != Database.UsuarioAPI.EEstadoUsuario.ONLINE)
+            if (_contato.Estado != Dados.UsuarioAPI.EEstadoUsuario.ONLINE)
             {
                 this.Text += " (offline)";
             }

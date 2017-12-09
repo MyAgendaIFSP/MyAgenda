@@ -1,7 +1,7 @@
 ﻿using MyAgenda.Componentes.Geral;
 using MyAgenda.Controladores.Chat;
 using MyAgenda.Controladores.Geral;
-using MyAgenda.Database;
+using MyAgenda.Dados;
 using System;
 using System.ComponentModel;
 using System.Drawing;

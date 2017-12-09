@@ -44,7 +44,7 @@
             this.cldDataTermino = new System.Windows.Forms.MonthCalendar();
             this.dtpHorarioTermino = new System.Windows.Forms.DateTimePicker();
             this.lblHorarioTermino = new System.Windows.Forms.Label();
-            this.barraNavegacao1 = new MyAgenda.Componentes.BarraNavegacao();
+            this.barraNavegacao1 = new MyAgenda.Componentes.Geral.BarraNavegacao();
             this.SuspendLayout();
             // 
             // btnAdicionar
@@ -250,7 +250,7 @@
 
         #endregion
 
-        private Componentes.BarraNavegacao barraNavegacao1;
+        private Componentes.Geral.BarraNavegacao barraNavegacao1;
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.TextBox txtTitulo;

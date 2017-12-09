@@ -1,19 +1,14 @@
 ﻿using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.Geral;
-using MyAgenda.Modelos.MatrizTempo;
 using MyAgenda.Seguranca;
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Data;
 using System.Data.SqlClient;
-using System.Net;
 
-namespace MyAgenda.Database
+namespace MyAgenda.Dados
 {
     public class UsuarioAPI
     {
-        private readonly string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
+        private string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
 
         private static UsuarioAPI _instancia = null;
 

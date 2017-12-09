@@ -3,17 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MyAgenda.Componentes.ListaContatos.Chat;
 
-namespace MyAgenda.Database
+namespace MyAgenda.Dados
 {
     public class ChatAPI
     {
 
-        private readonly string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
+        private string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
         
         private SqlConnection _conexao = null;
 

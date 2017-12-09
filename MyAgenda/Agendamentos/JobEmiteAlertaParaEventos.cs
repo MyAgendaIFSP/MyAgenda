@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Quartz;
-using Quartz.Impl;
+﻿using MyAgenda.Dados;
 using MyAgenda.Entidades;
-using MyAgenda.Dados;
+using Quartz;
+using System;
+using System.Collections.Generic;
 
 namespace MyAgenda.Agendamentos
 {

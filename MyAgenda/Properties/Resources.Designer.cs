@@ -173,6 +173,16 @@ namespace MyAgenda.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_checked_black {
+            get {
+                object obj = ResourceManager.GetObject("ic_checked_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_clear_white {
             get {
                 object obj = ResourceManager.GetObject("ic_clear_white", resourceCulture);
@@ -216,16 +226,6 @@ namespace MyAgenda.Properties {
         internal static System.Drawing.Bitmap ic_delete_white {
             get {
                 object obj = ResourceManager.GetObject("ic_delete_white", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_delete_black {
-            get {
-                object obj = ResourceManager.GetObject("ic_delete_black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

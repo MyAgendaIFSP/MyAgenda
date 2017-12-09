@@ -1,4 +1,4 @@
-﻿namespace MyAgenda.Componentes
+﻿namespace MyAgenda.Componentes.Tarefas
 {
     partial class ItemEvento
     {

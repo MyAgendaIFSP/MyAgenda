@@ -1,60 +1,107 @@
-﻿using System;
+﻿using MyAgenda.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using MyAgenda.Entidades;
 
 namespace MyAgenda.Dados
 {
     class TarefaAPI
     {
-        const string C_CONEXAO = @"Data Source=DESKTOP-J789RM6; Initial Catalog=my_agenda; User ID=DESKTOP-J789RM6\leticiapc; Trusted_Connection=True";
+        private string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
+
+        private SqlConnection _conexao = null;
+
+        /// <summary>
+        /// Abre a conexão com o banco de dados
+        /// </summary>
+        /// <returns></returns>
+        private bool _abreConexao()
+        {
+            if (_conexao == null)
+            {
+                _conexao = new SqlConnection(STRING_CONEXAO);
+            }
+
+            try
+            {
+                //throw new NotImplementedException();
+                _conexao.Open();
+                return true;
+            }
+            catch
+            {
+
+                if (_conexao.State == System.Data.ConnectionState.Open)
+                {
+                    return true;
+                }
+                else
+                {
+                    try
+                    {
+                        _conexao = new SqlConnection("Server=localhost;Database=my_agenda;MultipleActiveResultSets=true;Integrated Security=true");
+                        _conexao.Open();
+                        return true;
+                    }
+                    catch { }
+                }
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Fecha a conexão com o banco de dados
+        /// </summary>
+        /// <returns></returns>
+        private bool _fechaConexao()
+        {
+            try
+            {
+                _conexao.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
 
         public List<Tarefa> CarregaTarefas(string listaAfazeres)
         {
             List<Tarefa> tarefas = new List<Tarefa>();
 
             string query = "SELECT * FROM TAREFA WHERE LISTA = @LISTA ORDER BY CONCLUIDO ASC";
-
-            SqlConnection conn = null;
+            
             SqlDataReader reader = null;
 
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("LISTA", listaAfazeres));
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Tarefa tarefa = new Tarefa();
+                        tarefa.Lista = new ListaAfazeres();
+                        tarefa.Titulo = reader["titulo"].ToString();
+                        tarefa.Data = Convert.ToDateTime(reader["mdata"].ToString());
+                        tarefa.Usuario = new Usuario();
+                        tarefas.Add(tarefa);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("LISTA", listaAfazeres));
-
-                reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Tarefa tarefa = new Tarefa();
-                    tarefa.Lista = new ListaAfazeres();
-                    tarefa.Titulo = reader["titulo"].ToString();
-                    tarefa.Data = Convert.ToDateTime(reader["mdata"].ToString());
-                    tarefa.Usuario = new Usuario();
-                    tarefas.Add(tarefa);
-                }
-            }
-            catch (Exception e) {
-                Console.Write(e);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
 
             return tarefas;
@@ -64,36 +111,26 @@ namespace MyAgenda.Dados
         {
             string query = "INSERT INTO TAREFA (LISTA, USUARIO, TITULO, MDATA, CONCLUIDO) VALUES (@LISTA, @USUARIO, @TITULO, @MDATA, @CONCLUIDO)";
 
-            SqlConnection conn = null;
-
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("LISTA", tarefa.Lista.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
+                    cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("MDATA", tarefa.Data));
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("LISTA", tarefa.Lista.Titulo));
-                cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
-                cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
-                cmd.Parameters.Add(new SqlParameter("MDATA", tarefa.Data));
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
 
@@ -101,37 +138,26 @@ namespace MyAgenda.Dados
         {
             string query = "UPDATE TAREFA SET LISTA = @LISTA, USUARIO = @USUARIO, TITULO = @TITULONOVO, MDATA = @MDATA, CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULOANTIGO";
 
-            SqlConnection conn = null;
-
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("LISTA", "Lista da Faculdade"));
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
+                    cmd.Parameters.Add(new SqlParameter("TITULONOVO", tarefaAtualizada.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("MDATA", tarefaAtualizada.Data));
+                    cmd.Parameters.Add(new SqlParameter("TITULOANTIGO", tarefaAntiga.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("LISTA", "Lista da Faculdade"));
-                cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
-                cmd.Parameters.Add(new SqlParameter("TITULONOVO", tarefaAtualizada.Titulo));
-                cmd.Parameters.Add(new SqlParameter("MDATA", tarefaAtualizada.Data));
-                cmd.Parameters.Add(new SqlParameter("TITULOANTIGO", tarefaAntiga.Titulo));
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
 
@@ -139,32 +165,21 @@ namespace MyAgenda.Dados
         {
             string query = "DELETE FROM TAREFA WHERE TITULO = @TITULO";
 
-            SqlConnection conn = null;
-
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
 
@@ -173,47 +188,39 @@ namespace MyAgenda.Dados
             Tarefa tarefa = new Tarefa();
 
             string query = "SELECT CONCLUIDO FROM TAREFA WHERE LISTA = @LISTA AND TITULO = @TITULO";
-
-            SqlConnection conn = null;
+            
             SqlDataReader reader = null;
 
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
 
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
-                }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("LISTA", nomeLista));
-                cmd.Parameters.Add(new SqlParameter("TITULO", tituloTarefa));
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("LISTA", nomeLista));
+                    cmd.Parameters.Add(new SqlParameter("TITULO", tituloTarefa));
 
-                reader = cmd.ExecuteReader();
+                    reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    if (reader["concluido"].ToString().Equals("S"))
+                    while (reader.Read())
                     {
-                        tarefa.IsConcluida = true;
-                    }
-                    else
-                    {
-                        tarefa.IsConcluida = false;
+                        if (reader["concluido"].ToString().Equals("S"))
+                        {
+                            tarefa.IsConcluida = true;
+                        }
+                        else
+                        {
+                            tarefa.IsConcluida = false;
+                        }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            finally
-            {
-                if (conn != null)
+                catch (Exception e)
                 {
-                    conn.Close();
+                    Console.Write(e);
                 }
+
+                _fechaConexao();
             }
 
             return tarefa.IsConcluida;
@@ -224,56 +231,48 @@ namespace MyAgenda.Dados
             Tarefa tarefa = new Tarefa();
 
             string query = "SELECT * FROM TAREFA WHERE TAREFA = @TAREFA AND LISTA = @LISTA";
-
-            SqlConnection conn = null;
+            
             SqlDataReader reader = null;
 
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
 
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
-                }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
 
-                cmd.Parameters.Add(new SqlParameter("TAREFA", tituloTarefa));
-                cmd.Parameters.Add(new SqlParameter("LISTA", nomeLista));
+                    cmd.Parameters.Add(new SqlParameter("TAREFA", tituloTarefa));
+                    cmd.Parameters.Add(new SqlParameter("LISTA", nomeLista));
 
-                reader = cmd.ExecuteReader();
+                    reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    tarefa.Titulo = reader["titulo"].ToString();
-                    tarefa.Data = Convert.ToDateTime(reader["mdata"].ToString());
-
-                    ListaAfazeres listaAfazeres = new ListaAfazeres();
-                    listaAfazeres.Titulo = reader["lista"].ToString();
-
-                    string isConcluida = reader["concluida"].ToString();
-
-                    if (isConcluida.Equals("S"))
+                    while (reader.Read())
                     {
-                        tarefa.IsConcluida = true;
-                    } 
-                    else
-                    {
-                        tarefa.IsConcluida = false;
+                        tarefa.Titulo = reader["titulo"].ToString();
+                        tarefa.Data = Convert.ToDateTime(reader["mdata"].ToString());
+
+                        ListaAfazeres listaAfazeres = new ListaAfazeres();
+                        listaAfazeres.Titulo = reader["lista"].ToString();
+
+                        string isConcluida = reader["concluida"].ToString();
+
+                        if (isConcluida.Equals("S"))
+                        {
+                            tarefa.IsConcluida = true;
+                        }
+                        else
+                        {
+                            tarefa.IsConcluida = false;
+                        }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            finally
-            {
-                if (conn != null)
+                catch (Exception e)
                 {
-                    conn.Close();
+                    Console.Write(e);
                 }
+
+                _fechaConexao();
             }
 
             return tarefa;
@@ -283,33 +282,24 @@ namespace MyAgenda.Dados
         {
             string query = "UPDATE TAREFA SET CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULO";
 
-            SqlConnection conn = null;
-
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
 
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "S"));
+                    cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "S"));
-                cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
 
@@ -317,33 +307,22 @@ namespace MyAgenda.Dados
         {
             string query = "UPDATE TAREFA SET CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULO";
 
-            SqlConnection conn = null;
-
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+                    cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
-                cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
     }

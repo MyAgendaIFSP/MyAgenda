@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
 using System.Data.SqlClient;
 using MyAgenda.Entidades;
 
@@ -11,54 +7,102 @@ namespace MyAgenda.Dados
 {
     class EventoAPI
     {
-        const string C_CONEXAO = @"Data Source=DESKTOP-J789RM6; Initial Catalog=my_agenda; User ID=DESKTOP-J789RM6\leticiapc; Trusted_Connection=True";
+        const string STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
 
-        private UsuarioAPI _usuarioAPI = new UsuarioAPI();
+        private SqlConnection _conexao = null;
+        private UsuarioAPI _usuarioAPI = UsuarioAPI.GetInstance();
+
+        /// <summary>
+        /// Abre a conexão com o banco de dados
+        /// </summary>
+        /// <returns></returns>
+        private bool _abreConexao()
+        {
+            if (_conexao == null)
+            {
+                _conexao = new SqlConnection(STRING_CONEXAO);
+            }
+
+            try
+            {
+                _conexao.Open();
+                return true;
+            }
+            catch
+            {
+
+                if (_conexao.State == System.Data.ConnectionState.Open)
+                {
+                    return true;
+                }
+                else
+                {
+                    try
+                    {
+                        _conexao = new SqlConnection("Server=localhost;Database=my_agenda;MultipleActiveResultSets=true;Integrated Security=true");
+                        _conexao.Open();
+                        return true;
+                    }
+                    catch { }
+                }
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Fecha a conexão com o banco de dados
+        /// </summary>
+        /// <returns></returns>
+        private bool _fechaConexao()
+        {
+            try
+            {
+                _conexao.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
 
         public List<Evento> CarregaEventos()
         {
             List<Evento> eventos = new List<Evento>();
 
             string query = "SELECT * FROM EVENTO ORDER BY INICIO ASC";
-
-            SqlConnection conn = null;
+            
             SqlDataReader reader = null;
 
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Evento evento = new Evento();
+                        evento.IdEvento = long.Parse(reader["id"].ToString());
+                        evento.Titutlo = reader["titulo"].ToString();
+                        evento.Descricao = reader["descricao"].ToString();
+                        evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
+                        evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
+                        evento.Usuario = new Usuario();
+                        eventos.Add(evento);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Evento evento = new Evento();
-                    evento.IdEvento = long.Parse(reader["id"].ToString());
-                    evento.Titutlo = reader["titulo"].ToString();
-                    evento.Descricao = reader["descricao"].ToString();
-                    evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
-                    evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
-                    evento.Usuario = new Usuario();
-                    eventos.Add(evento);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
 
             return eventos;
@@ -70,44 +114,35 @@ namespace MyAgenda.Dados
 
             string query = "SELECT * FROM EVENTO WHERE ID = @ID";
 
-            SqlConnection conn = null;
             SqlDataReader reader = null;
 
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+                    
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+
+                    cmd.Parameters.Add(new SqlParameter("ID", idEvento));
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        evento.IdEvento = long.Parse(reader["id"].ToString());
+                        evento.Titutlo = reader["titulo"].ToString();
+                        evento.Descricao = reader["descricao"].ToString();
+                        evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
+                        evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
+                        evento.Usuario = new Usuario();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                cmd.Parameters.Add(new SqlParameter("ID", idEvento));
-
-                reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    evento.IdEvento = long.Parse(reader["id"].ToString());
-                    evento.Titutlo = reader["titulo"].ToString();
-                    evento.Descricao = reader["descricao"].ToString();
-                    evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
-                    evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
-                    evento.Usuario = new Usuario();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
 
             return evento;
@@ -117,75 +152,57 @@ namespace MyAgenda.Dados
         {
             string query = "INSERT INTO EVENTO (USUARIO, TITULO, DESCRICAO, INICIO, FINAL, CONCLUIDO) VALUES (@USUARIO, @TITULO, @DESCRICAO, @INICIO, @FINAL, @CONCLUIDO)";
 
-            SqlConnection conn = null;
 
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
+                    cmd.Parameters.Add(new SqlParameter("TITULO", evento.Titutlo));
+                    cmd.Parameters.Add(new SqlParameter("DESCRICAO", evento.Descricao));
+                    cmd.Parameters.Add(new SqlParameter("INICIO", evento.DataHoraInicio));
+                    cmd.Parameters.Add(new SqlParameter("FINAL", evento.DataHoraTermino));
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
-                cmd.Parameters.Add(new SqlParameter("TITULO", evento.Titutlo));
-                cmd.Parameters.Add(new SqlParameter("DESCRICAO", evento.Descricao));
-                cmd.Parameters.Add(new SqlParameter("INICIO", evento.DataHoraInicio));
-                cmd.Parameters.Add(new SqlParameter("FINAL", evento.DataHoraTermino));
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+                _fechaConexao();
 
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
             }
         }
 
         public void EditarEvento(Evento eventoAntigo, Evento eventoAtualizado)
         {
             string query = "UPDATE EVENTO SET TITULO = @TITULO, DESCRICAO = @DESCRICAO, INICIO = @INICIO, FINAL = @FINAL, CONCLUIDO = @CONCLUIDO WHERE ID = @ID";
-
-            SqlConnection conn = null;
-
-            try
+            
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("TITULO", eventoAtualizado.Titutlo));
+                    cmd.Parameters.Add(new SqlParameter("DESCRICAO", eventoAtualizado.Descricao));
+                    cmd.Parameters.Add(new SqlParameter("INICIO", eventoAtualizado.DataHoraInicio));
+                    cmd.Parameters.Add(new SqlParameter("FINAL", eventoAtualizado.DataHoraTermino));
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+                    cmd.Parameters.Add(new SqlParameter("ID", eventoAntigo.IdEvento));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("TITULO", eventoAtualizado.Titutlo));
-                cmd.Parameters.Add(new SqlParameter("DESCRICAO", eventoAtualizado.Descricao));
-                cmd.Parameters.Add(new SqlParameter("INICIO", eventoAtualizado.DataHoraInicio));
-                cmd.Parameters.Add(new SqlParameter("FINAL", eventoAtualizado.DataHoraTermino));
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
-                cmd.Parameters.Add(new SqlParameter("ID", eventoAntigo.IdEvento));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
 
@@ -193,32 +210,22 @@ namespace MyAgenda.Dados
         {
             string query = "DELETE FROM EVENTO WHERE ID = @ID";
 
-            SqlConnection conn = null;
-
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("ID", evento.IdEvento));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("ID", evento.IdEvento));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
 
@@ -226,33 +233,23 @@ namespace MyAgenda.Dados
         {
             string query = "UPDATE EVENTO SET CONCLUIDO = @CONCLUIDO WHERE ID = @ID";
 
-            SqlConnection conn = null;
-
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "S"));
+                    cmd.Parameters.Add(new SqlParameter("ID", evento.IdEvento));
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "S"));
-                cmd.Parameters.Add(new SqlParameter("ID", evento.IdEvento));
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
         }
 
@@ -261,46 +258,37 @@ namespace MyAgenda.Dados
             List<Evento> eventos = new List<Evento>();
 
             string query = "SELECT * FROM EVENTO WHERE CONCLUIDO = @CONCLUIDO ORDER BY INICIO ASC";
-
-            SqlConnection conn = null;
+            
             SqlDataReader reader = null;
 
-            try
+            if (_abreConexao())
             {
-                conn = new SqlConnection(C_CONEXAO);
-
-                if (conn.State == ConnectionState.Closed)
+                try
                 {
-                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, _conexao);
+                    cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Evento evento = new Evento();
+                        evento.IdEvento = long.Parse(reader["id"].ToString());
+                        evento.Titutlo = reader["titulo"].ToString();
+                        evento.Descricao = reader["descricao"].ToString();
+                        evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
+                        evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
+                        evento.Usuario = new Usuario();
+                        eventos.Add(evento);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e);
                 }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
-
-                reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Evento evento = new Evento();
-                    evento.IdEvento = long.Parse(reader["id"].ToString());
-                    evento.Titutlo = reader["titulo"].ToString();
-                    evento.Descricao = reader["descricao"].ToString();
-                    evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
-                    evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
-                    evento.Usuario = new Usuario();
-                    eventos.Add(evento);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                _fechaConexao();
             }
 
             return eventos;

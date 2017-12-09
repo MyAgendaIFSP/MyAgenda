@@ -1,7 +1,7 @@
 ﻿using KellermanSoftware.CompareNetObjects;
 using MyAgenda.Componentes.Geral;
 using MyAgenda.Controladores.Geral;
-using MyAgenda.Database;
+using MyAgenda.Dados;
 using MyAgenda.Modelos.Chat;
 using MyAgenda.Modelos.ListaContatos;
 using System;

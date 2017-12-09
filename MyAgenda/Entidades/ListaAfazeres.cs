@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyAgenda.Modelos.Geral;
+using System;
 
 namespace MyAgenda.Entidades
 {
@@ -10,7 +7,7 @@ namespace MyAgenda.Entidades
     {
         public string Titulo;
 
-        public Usuario Usuario;
+        public UsuarioModel Usuario;
 
         public DateTime DataCriacao;
     }
