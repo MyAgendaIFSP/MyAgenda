@@ -1,4 +1,6 @@
-﻿using MyAgenda.Controladores.MatrizTempo;
+﻿using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Controladores.Geral;
+using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.MatrizTempo;
 using System;
 using System.Collections.Generic;
@@ -71,7 +73,7 @@ namespace MyAgenda.Dados
                 return false;
             }
         }
-
+        
         /// <summary>
         /// Fecha a conexão com o banco de dados
         /// </summary>
@@ -88,6 +90,119 @@ namespace MyAgenda.Dados
                 return false;
             }
 
+        }
+
+        public MatrizController GetMatriz(int usuario)
+        {
+            if (_abreConexao())
+            {
+                MatrizController matriz = null;
+
+                SqlCommand cmd = new SqlCommand(@"select matriz_tempo.id, ultima_utilizacao, inicializacao from matriz_tempo
+                                                    inner join usuario on usuario.matriz_tempo = matriz_tempo.id
+                                                    where usuario.id = @usuario;", _conexao);
+
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    try
+                    {
+                        while (rdr.Read())
+                        {
+                            int id = (int)rdr["id"];
+                            DateTime matInit = rdr.GetDateTime(rdr.GetOrdinal("inicializacao"));
+                            DateTime matUtili = rdr.GetDateTime(rdr.GetOrdinal("ultima_utilizacao")); 
+
+                            matriz = MatrizController.GetInstance(id, matInit, matUtili);
+                        }
+                    }
+                    catch { }
+                }
+
+                _fechaConexao();
+
+                return matriz;
+            }
+
+            return null;
+        }
+
+        public void VerificaMatriz()
+        {
+            if (_abreConexao())
+            {
+                UsuarioController u = UsuarioController.GetInstance();
+                SqlCommand cmd = new SqlCommand("select matriz_tempo from usuario where id = @usuario", _conexao);
+                cmd.Parameters.AddWithValue("@usuario", u.GetModelo().Id);
+
+                object res = cmd.ExecuteScalar();
+
+                if(res == null)
+                {
+                    _criaMatriz(u.GetModelo().Id);
+                }
+                else
+                {
+                    u.GetModelo().MatrizTempo = _buscaMatriz(u.GetModelo().Id);
+                }
+
+                _fechaConexao();
+            }
+        }
+
+        private MatrizController _buscaMatriz(int matId)
+        {
+            if (_abreConexao())
+            {
+                MatrizController mat = MatrizController.GetInstance();
+                
+                SqlCommand cmd = new SqlCommand("select * from matriz_tempo where id = @matriz", _conexao);
+                cmd.Parameters.AddWithValue("@matriz", matId);
+                
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    try
+                    {
+                        while (rdr.Read())
+                        {
+                            int id = (int)rdr["id"];
+                            DateTime dtUltUtil = DateTime.Parse(rdr["ultima_utilizacao"].ToString());
+                            DateTime dtInit = DateTime.Parse(rdr["inicializacao"].ToString());
+
+                            mat .SetMatriz(id, dtInit, dtUltUtil);
+                        }
+                    } catch { }
+                }
+
+                _fechaConexao();
+                return mat;
+            }
+
+            return null;
+        }
+
+        private bool _criaMatriz(int usuario)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("NovaMatrizTempo", _conexao);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                SqlParameter output = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                output.Direction = ParameterDirection.ReturnValue;
+
+                cmd.ExecuteNonQuery();
+
+                int res = (output.Value != null) ? (int)output.Value : 0;
+
+                _fechaConexao();
+
+                return res > 0;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -121,6 +236,7 @@ namespace MyAgenda.Dados
                     }
 
                 }
+
                 _fechaConexao();
 
                 return itens;
@@ -263,6 +379,30 @@ namespace MyAgenda.Dados
             return false;
         }
 
+        /// <summary>
+        /// Move um item do quadrante atual para um outro quadrante
+        /// </summary>
+        /// <param name="itemId">item que será movido</param>
+        /// <param name="quadrante">novo quadrante do item</param>
+        /// <returns></returns>
+        public bool MoverItem(int itemId, Matriz.EQuadrante quadrante)
+        {
+            if (_abreConexao())
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE item_matriz SET quadrante = @quadrante WHERE id = @item;", _conexao);
+                cmd.Parameters.AddWithValue("@item", itemId);
+                cmd.Parameters.AddWithValue("@quadrante", ((int)quadrante) + 1);
 
+                int qtd = cmd.ExecuteNonQuery();
+
+                _fechaConexao();
+
+                return qtd > 0;
+            }
+
+            _fechaConexao();
+
+            return false;
+        }
     }
 }

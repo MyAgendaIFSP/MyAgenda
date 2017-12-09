@@ -54,6 +54,7 @@
             this.txtMensagem.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.txtMensagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtMensagem.Location = new System.Drawing.Point(3, 3);
+            this.txtMensagem.MaxLength = 1024;
             this.txtMensagem.Multiline = true;
             this.txtMensagem.Name = "txtMensagem";
             this.txtMensagem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;

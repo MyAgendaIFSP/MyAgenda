@@ -8,7 +8,7 @@ namespace MyAgenda.Componentes.MatrizTempo
     class LabelItemMatriz : Label
     {
 
-        public delegate void ItemClickedEventHandler(object sender, ref ItemMatrizController item, bool removePermanente);
+        public delegate void ItemClickedEventHandler(object sender, ItemMatrizController item);
 
         public event ItemClickedEventHandler QuadranteItemClick;
 
@@ -30,27 +30,14 @@ namespace MyAgenda.Componentes.MatrizTempo
         {
             MatrizItem = item;
         }
-
+        
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
-
-            MouseEventArgs args = (MouseEventArgs)e;
-
+                        
             if (QuadranteItemClick != null)
             {
-                bool removePermanente = false;
-
-                if (args.Button == System.Windows.Forms.MouseButtons.Left)
-                {
-                    removePermanente = false;
-                }
-                else
-                {
-                    removePermanente = true;
-                }
-
-                QuadranteItemClick(this, ref _matrizItem, removePermanente);
+                QuadranteItemClick(this, _matrizItem);
             }
 
             this.Invalidate();

@@ -52,5 +52,17 @@ namespace MyAgenda
 
             this.Close();
         }
+
+        private void btnSalvarEdicao_MouseEnter(object sender, EventArgs e)
+        {
+            btnSalvarEdicao.Image = Properties.Resources.ic_add_circle_white;
+            btnSalvarEdicao.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnSalvarEdicao_MouseLeave(object sender, EventArgs e)
+        {
+            btnSalvarEdicao.Image = Properties.Resources.ic_add_circle_black;
+            btnSalvarEdicao.ForeColor = System.Drawing.Color.Black;
+        }
     }
 }

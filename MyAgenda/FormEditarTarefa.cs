@@ -62,5 +62,29 @@ namespace MyAgenda
 
             this.Close();
         }
+
+        private void btnNovaLista_MouseEnter(object sender, EventArgs e)
+        {
+            btnNovaLista.Image = Properties.Resources.ic_add_circle_white;
+            btnNovaLista.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnNovaLista_MouseLeave(object sender, EventArgs e)
+        {
+            btnNovaLista.Image = Properties.Resources.ic_add_circle_black;
+            btnNovaLista.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void btnSalvarEdicao_MouseEnter(object sender, EventArgs e)
+        {
+            btnSalvarEdicao.Image = Properties.Resources.ic_add_circle_white;
+            btnSalvarEdicao.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnSalvarEdicao_MouseLeave(object sender, EventArgs e)
+        {
+            btnSalvarEdicao.Image = Properties.Resources.ic_add_circle_black;
+            btnSalvarEdicao.ForeColor = System.Drawing.Color.Black;
+        }
     }
 }

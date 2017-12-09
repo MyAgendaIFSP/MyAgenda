@@ -24,21 +24,39 @@ namespace MyAgenda
 
         private void btnNovaLista_Click(object sender, EventArgs e)
         {
-            ListaAfazeres listaAfazeres = new ListaAfazeres();
-            listaAfazeres.Titulo = txtTitulo.Text;
-            listaAfazeres.DataCriacao = DateTime.Now;
-            
-            listaAfazeres.Usuario = _usuario.GetModelo();
+            if (!String.IsNullOrEmpty(txtTitulo.Text)) {
+                ListaAfazeres listaAfazeres = new ListaAfazeres();
+                listaAfazeres.Titulo = txtTitulo.Text;
+                listaAfazeres.DataCriacao = DateTime.Now;
 
-            ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
-            listaAfazeresAPI.AdicionaLista(listaAfazeres);
+                listaAfazeres.Usuario = _usuario.GetModelo();
 
-            if (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] != null)
-            {
-                (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] as FormListaAfazeres).AtualizaTarefasEmTela();
+                ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
+                listaAfazeresAPI.AdicionaLista(listaAfazeres);
+
+                if (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] != null)
+                {
+                    (System.Windows.Forms.Application.OpenForms["FormListaAfazeres"] as FormListaAfazeres).AtualizaTarefasEmTela();
+                }
+
+                this.Close();
             }
+            else
+            {
+                MessageBox.Show("Digite um título para a lista.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
-            this.Close();
+        private void btnNovaLista_MouseEnter(object sender, EventArgs e)
+        {
+            btnNovaLista.Image = Properties.Resources.ic_add_circle_white;
+            btnNovaLista.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnNovaLista_MouseLeave(object sender, EventArgs e)
+        {
+            btnNovaLista.Image = Properties.Resources.ic_add_circle_black;
+            btnNovaLista.ForeColor = System.Drawing.Color.Black;
         }
     }
 }

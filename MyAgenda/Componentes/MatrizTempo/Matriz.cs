@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Controladores.MatrizTempo;
+using MyAgenda.Dados;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,6 +11,8 @@ namespace MyAgenda.Componentes.MatrizTempo
     { 
         private MatrizController _controlador;
 
+        private LabelItemMatriz _itemClicado;
+
         public enum EQuadrante { QUADRANTE_1, QUADRANTE_2, QUADRANTE_3, QUADRANTE_4, NENHUM }
 
         /// <summary>
@@ -20,7 +23,7 @@ namespace MyAgenda.Componentes.MatrizTempo
         /// indice 3: quadrante 4
         /// </summary>
         private int[] _ultimosY = new int[4] { 0, 0, 0, 0};
-        
+
         public Matriz()
         {
             InitializeComponent();
@@ -30,9 +33,12 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
-        public bool CarregaMatriz()
+        public bool CarregaMatriz(int usuario)
         {
-            _controlador = MatrizController.GetInstance();
+            MatrizTempoAPI api = MatrizTempoAPI.GetInstance();
+            _controlador = api.GetMatriz(usuario);
+
+            _controlador.VerificaMatriz();
 
             _controlador.AlteraUltimoAcesso();
 
@@ -95,36 +101,21 @@ namespace MyAgenda.Componentes.MatrizTempo
             
         }
 
-        private void _quadranteItemClick(object sender, ref ItemMatrizController item, bool removePermanente)
+        private void _quadranteItemClick(object sender, ItemMatrizController item)
         {
-            if (removePermanente)
+            if (item.GetModel().Ativo)
             {
-                //Deletar o item do banco de dados
-                LabelItemMatriz lbl = (LabelItemMatriz)sender;
-                Panel quadrante = (Panel) lbl.Parent;
-                quadrante.Controls.Remove(lbl);
-
-                _controlador.DeletarItem(item);
-
-                _atualizarQuadrante(quadrante, lbl.Location);
-                
+                //Marcar o item como inativo no banco de dados
+                item.MarcarItemInativo();
             }
             else
             {
-                if (item.GetModel().Ativo)
-                {
-                    //Marcar o item como inativo no banco de dados
-                    item.MarcarItemInativo();
-                }
-                else
-                {
-                    //Marcar o item como ativo no banco de dados
-                    item.MarcarItemAtivo();
-                }
+                //Marcar o item como ativo no banco de dados
+                item.MarcarItemAtivo();
             }
-            
-        }
 
+        }
+        
         private void _addItemQuadrante(Panel panel, ItemMatrizController item)
         {
             LabelItemMatriz lbl = new LabelItemMatriz(item);
@@ -133,6 +124,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             lbl.Font = new Font(this.Font.Name, 11);
             lbl.Cursor = Cursors.Hand;
             lbl.QuadranteItemClick += _quadranteItemClick;
+            lbl.ContextMenuStrip = cmsItemMatrizOpcoes;
             lbl.CreateControl();
 
             lbl.Size = new Size(panel.ClientSize.Width - 12, lbl.Font.Height);
@@ -140,7 +132,7 @@ namespace MyAgenda.Componentes.MatrizTempo
 
             _ultimosY[(int)item.GetModel().Quadrante] += lbl.Height + 2;
         }
-
+        
         private void _atualizarQuadrante(Panel quadrante, Point location)
         {
             Point ultimaPosicao = new Point();
@@ -230,6 +222,7 @@ namespace MyAgenda.Componentes.MatrizTempo
                     lbl.Font = new Font(this.Font.Name, 11);
                     lbl.Cursor = Cursors.Hand;
                     lbl.QuadranteItemClick += _quadranteItemClick;
+                    lbl.ContextMenuStrip = cmsItemMatrizOpcoes;
                     lbl.CreateControl();
 
                     lbl.Size = new Size(panel.ClientSize.Width - 12, lbl.Font.Height);
@@ -241,6 +234,100 @@ namespace MyAgenda.Componentes.MatrizTempo
 
             }
             catch { }
+        }
+
+        private void tsmiDeletar_Click(object sender, EventArgs e)
+        {
+            if (_controlador.DeletarItem(_itemClicado.MatrizItem))
+            {
+                Panel quadrante = (Panel)_itemClicado.Parent;
+                quadrante.Controls.Remove(_itemClicado);
+                _ultimosY[((int)_itemClicado.MatrizItem.GetModel().Quadrante)] = quadrante.Controls.Count * (_itemClicado.Height + 2);
+                _atualizarQuadrante(quadrante, _itemClicado.Location);
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível remover o item.", "Erro ao remover item", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void cmsItemMatrizOpcoes_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _itemClicado = (LabelItemMatriz) ((ContextMenuStrip) sender).SourceControl;
+        }
+
+        private void _moveItem(LabelItemMatriz item, EQuadrante quadrante)
+        {
+            ItemMatrizController controller = item.MatrizItem;
+            if (controller.MoveItem(quadrante))
+            {
+                Panel panQuadrante = (Panel)_itemClicado.Parent;
+                Point p = item.Location;
+                item.Parent.Controls.Remove(item);
+                _atualizarQuadrante(panQuadrante, p);
+                _carregaQuadrante(quadrante, _getPanelQuadrante(quadrante));
+            }
+        }
+
+        private Panel _getPanelQuadrante(EQuadrante quadrante)
+        {
+            switch (quadrante)
+            {
+                case EQuadrante.QUADRANTE_1:
+                    return panelQuad1;
+
+                case EQuadrante.QUADRANTE_2:
+                    return panelQuad2;
+
+                case EQuadrante.QUADRANTE_3:
+                    return panelQuad3;
+
+                case EQuadrante.QUADRANTE_4:
+                    return panelQuad4;
+            }
+
+            return null;
+        }
+
+        private void quadrante1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(_itemClicado.MatrizItem.GetModel().Quadrante == EQuadrante.QUADRANTE_1)
+            {
+                return;
+            }
+
+            _moveItem(_itemClicado, EQuadrante.QUADRANTE_1);
+        }
+
+        private void quadrante2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_itemClicado.MatrizItem.GetModel().Quadrante == EQuadrante.QUADRANTE_2)
+            {
+                return;
+            }
+
+            _moveItem(_itemClicado, EQuadrante.QUADRANTE_2);
+        }
+
+        private void quadrante3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_itemClicado.MatrizItem.GetModel().Quadrante == EQuadrante.QUADRANTE_3)
+            {
+                return;
+            }
+
+            _moveItem(_itemClicado, EQuadrante.QUADRANTE_3);
+        }
+
+        private void quadrante4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_itemClicado.MatrizItem.GetModel().Quadrante == EQuadrante.QUADRANTE_4)
+            {
+                return;
+            }
+
+            _moveItem(_itemClicado, EQuadrante.QUADRANTE_4);
         }
         
     }

@@ -46,15 +46,19 @@
             // 
             // BarraNavegacao
             // 
-            this.BarraNavegacao.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.BarraNavegacao.Size = new System.Drawing.Size(1183, 40);
+            this.BarraNavegacao.Margin = new System.Windows.Forms.Padding(5);
+            this.BarraNavegacao.Size = new System.Drawing.Size(1039, 40);
+            // 
+            // Loader
+            // 
+            this.Loader.Size = new System.Drawing.Size(550, 7);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(20, 86);
+            this.label1.Location = new System.Drawing.Point(14, 60);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 19);
@@ -64,10 +68,10 @@
             // txtTarefa
             // 
             this.txtTarefa.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.txtTarefa.Location = new System.Drawing.Point(27, 186);
-            this.txtTarefa.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtTarefa.Location = new System.Drawing.Point(18, 124);
+            this.txtTarefa.Margin = new System.Windows.Forms.Padding(5);
             this.txtTarefa.Name = "txtTarefa";
-            this.txtTarefa.Size = new System.Drawing.Size(422, 27);
+            this.txtTarefa.Size = new System.Drawing.Size(374, 27);
             this.txtTarefa.TabIndex = 13;
             // 
             // lblTarefa
@@ -75,7 +79,7 @@
             this.lblTarefa.AutoSize = true;
             this.lblTarefa.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblTarefa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTarefa.Location = new System.Drawing.Point(20, 147);
+            this.lblTarefa.Location = new System.Drawing.Point(14, 98);
             this.lblTarefa.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTarefa.Name = "lblTarefa";
             this.lblTarefa.Size = new System.Drawing.Size(60, 21);
@@ -87,7 +91,7 @@
             this.lblListaAfazeres.AutoSize = true;
             this.lblListaAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblListaAfazeres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblListaAfazeres.Location = new System.Drawing.Point(20, 242);
+            this.lblListaAfazeres.Location = new System.Drawing.Point(14, 164);
             this.lblListaAfazeres.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblListaAfazeres.Name = "lblListaAfazeres";
             this.lblListaAfazeres.Size = new System.Drawing.Size(140, 21);
@@ -98,10 +102,10 @@
             // 
             this.cbbOpcoesListasAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbOpcoesListasAfazeres.FormattingEnabled = true;
-            this.cbbOpcoesListasAfazeres.Location = new System.Drawing.Point(27, 281);
-            this.cbbOpcoesListasAfazeres.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbbOpcoesListasAfazeres.Location = new System.Drawing.Point(18, 190);
+            this.cbbOpcoesListasAfazeres.Margin = new System.Windows.Forms.Padding(5);
             this.cbbOpcoesListasAfazeres.Name = "cbbOpcoesListasAfazeres";
-            this.cbbOpcoesListasAfazeres.Size = new System.Drawing.Size(422, 29);
+            this.cbbOpcoesListasAfazeres.Size = new System.Drawing.Size(374, 29);
             this.cbbOpcoesListasAfazeres.TabIndex = 16;
             this.cbbOpcoesListasAfazeres.Text = "Selecionar Lista de Afazeres";
             // 
@@ -110,7 +114,7 @@
             this.lblData.AutoSize = true;
             this.lblData.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblData.Location = new System.Drawing.Point(20, 405);
+            this.lblData.Location = new System.Drawing.Point(14, 275);
             this.lblData.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(51, 21);
@@ -119,14 +123,13 @@
             // 
             // cldData
             // 
-            this.cldData.Location = new System.Drawing.Point(27, 454);
-            this.cldData.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.cldData.Location = new System.Drawing.Point(18, 302);
+            this.cldData.Margin = new System.Windows.Forms.Padding(15);
             this.cldData.Name = "cldData";
             this.cldData.TabIndex = 19;
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdicionar.AutoSize = true;
             this.btnAdicionar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdicionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
@@ -134,43 +137,50 @@
             this.btnAdicionar.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnAdicionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdicionar.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
-            this.btnAdicionar.Location = new System.Drawing.Point(248, 753);
-            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnAdicionar.Location = new System.Drawing.Point(258, 535);
+            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(203, 55);
+            this.btnAdicionar.Size = new System.Drawing.Size(134, 33);
             this.btnAdicionar.TabIndex = 20;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.btnAdicionar.MouseEnter += new System.EventHandler(this.btnAdicionar_MouseEnter);
+            this.btnAdicionar.MouseLeave += new System.EventHandler(this.btnAdicionar_MouseLeave);
             // 
             // pnlListaAfazeres
             // 
             this.pnlListaAfazeres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlListaAfazeres.Location = new System.Drawing.Point(480, 212);
-            this.pnlListaAfazeres.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlListaAfazeres.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlListaAfazeres.Location = new System.Drawing.Point(402, 164);
+            this.pnlListaAfazeres.Margin = new System.Windows.Forms.Padding(5);
             this.pnlListaAfazeres.Name = "pnlListaAfazeres";
-            this.pnlListaAfazeres.Size = new System.Drawing.Size(878, 533);
+            this.pnlListaAfazeres.Size = new System.Drawing.Size(802, 404);
             this.pnlListaAfazeres.TabIndex = 21;
             // 
             // btnNovaLista
             // 
             this.btnNovaLista.AutoSize = true;
+            this.btnNovaLista.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNovaLista.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnNovaLista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNovaLista.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovaLista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnNovaLista.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
-            this.btnNovaLista.Location = new System.Drawing.Point(250, 338);
-            this.btnNovaLista.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnNovaLista.Location = new System.Drawing.Point(267, 229);
+            this.btnNovaLista.Margin = new System.Windows.Forms.Padding(5);
             this.btnNovaLista.Name = "btnNovaLista";
-            this.btnNovaLista.Size = new System.Drawing.Size(202, 53);
+            this.btnNovaLista.Size = new System.Drawing.Size(125, 33);
             this.btnNovaLista.TabIndex = 22;
             this.btnNovaLista.Text = "Nova Lista";
             this.btnNovaLista.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnNovaLista.UseVisualStyleBackColor = true;
             this.btnNovaLista.Click += new System.EventHandler(this.btnNovaLista_Click);
+            this.btnNovaLista.MouseEnter += new System.EventHandler(this.btnNovaLista_MouseEnter);
+            this.btnNovaLista.MouseLeave += new System.EventHandler(this.btnNovaLista_MouseLeave);
             // 
             // cbbListasAfazeres
             // 
@@ -179,10 +189,10 @@
             this.cbbListasAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbListasAfazeres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbListasAfazeres.FormattingEnabled = true;
-            this.cbbListasAfazeres.Location = new System.Drawing.Point(480, 90);
-            this.cbbListasAfazeres.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cbbListasAfazeres.Location = new System.Drawing.Point(402, 122);
+            this.cbbListasAfazeres.Margin = new System.Windows.Forms.Padding(5);
             this.cbbListasAfazeres.Name = "cbbListasAfazeres";
-            this.cbbListasAfazeres.Size = new System.Drawing.Size(876, 29);
+            this.cbbListasAfazeres.Size = new System.Drawing.Size(506, 29);
             this.cbbListasAfazeres.TabIndex = 0;
             this.cbbListasAfazeres.Text = "Selecionar Lista de Afazeres";
             // 
@@ -195,22 +205,24 @@
             this.btnExibirTarefas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExibirTarefas.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnExibirTarefas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnExibirTarefas.Location = new System.Drawing.Point(847, 147);
-            this.btnExibirTarefas.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnExibirTarefas.Location = new System.Drawing.Point(918, 121);
+            this.btnExibirTarefas.Margin = new System.Windows.Forms.Padding(5);
             this.btnExibirTarefas.Name = "btnExibirTarefas";
-            this.btnExibirTarefas.Size = new System.Drawing.Size(507, 55);
+            this.btnExibirTarefas.Size = new System.Drawing.Size(286, 33);
             this.btnExibirTarefas.TabIndex = 23;
             this.btnExibirTarefas.Text = "Exibir Tarefas da Lista Selecionada";
             this.btnExibirTarefas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnExibirTarefas.UseVisualStyleBackColor = true;
             this.btnExibirTarefas.Click += new System.EventHandler(this.btnExibirTarefas_Click);
+            this.btnExibirTarefas.MouseEnter += new System.EventHandler(this.btnExibirTarefas_MouseEnter);
+            this.btnExibirTarefas.MouseLeave += new System.EventHandler(this.btnExibirTarefas_MouseLeave);
             // 
             // FormListaAfazeres
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.ClientSize = new System.Drawing.Size(1218, 582);
             this.Controls.Add(this.btnExibirTarefas);
             this.Controls.Add(this.cbbListasAfazeres);
             this.Controls.Add(this.btnNovaLista);
@@ -225,7 +237,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
-            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Margin = new System.Windows.Forms.Padding(8);
             this.Name = "FormListaAfazeres";
             this.Text = "MyAgenda | Lista de Afazeres";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

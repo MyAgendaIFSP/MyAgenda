@@ -30,12 +30,20 @@ namespace MyAgenda.Componentes.MatrizTempo
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.gbxQuad2 = new System.Windows.Forms.GroupBox();
             this.panelQuad2 = new System.Windows.Forms.Panel();
             this.gbxQuad3 = new System.Windows.Forms.GroupBox();
             this.panelQuad3 = new System.Windows.Forms.Panel();
+            this.cmsItemMatrizOpcoes = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiDeletar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMover = new System.Windows.Forms.ToolStripMenuItem();
+            this.quadrante1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quadrante2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quadrante3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quadrante4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbxQuad4 = new System.Windows.Forms.GroupBox();
             this.panelQuad4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -48,6 +56,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.verticalLabel2 = new MyAgenda.Componentes.MatrizTempo.VerticalLabel();
             this.gbxQuad2.SuspendLayout();
             this.gbxQuad3.SuspendLayout();
+            this.cmsItemMatrizOpcoes.SuspendLayout();
             this.gbxQuad4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbxQuad1.SuspendLayout();
@@ -126,11 +135,67 @@ namespace MyAgenda.Componentes.MatrizTempo
             // 
             this.panelQuad3.AutoScroll = true;
             this.panelQuad3.AutoSize = true;
+            this.panelQuad3.ContextMenuStrip = this.cmsItemMatrizOpcoes;
             this.panelQuad3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelQuad3.Location = new System.Drawing.Point(3, 23);
             this.panelQuad3.Name = "panelQuad3";
             this.panelQuad3.Size = new System.Drawing.Size(308, 214);
             this.panelQuad3.TabIndex = 0;
+            // 
+            // cmsItemMatrizOpcoes
+            // 
+            this.cmsItemMatrizOpcoes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDeletar,
+            this.tsmiMover});
+            this.cmsItemMatrizOpcoes.Name = "cmsItemMatrizOpcoes";
+            this.cmsItemMatrizOpcoes.Size = new System.Drawing.Size(153, 70);
+            this.cmsItemMatrizOpcoes.Opening += new System.ComponentModel.CancelEventHandler(this.cmsItemMatrizOpcoes_Opening);
+            // 
+            // tsmiDeletar
+            // 
+            this.tsmiDeletar.Name = "tsmiDeletar";
+            this.tsmiDeletar.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDeletar.Text = "Deletar";
+            this.tsmiDeletar.Click += new System.EventHandler(this.tsmiDeletar_Click);
+            // 
+            // tsmiMover
+            // 
+            this.tsmiMover.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.quadrante1ToolStripMenuItem,
+            this.quadrante2ToolStripMenuItem,
+            this.quadrante3ToolStripMenuItem,
+            this.quadrante4ToolStripMenuItem});
+            this.tsmiMover.Name = "tsmiMover";
+            this.tsmiMover.Size = new System.Drawing.Size(152, 22);
+            this.tsmiMover.Text = "Mover para...";
+            // 
+            // quadrante1ToolStripMenuItem
+            // 
+            this.quadrante1ToolStripMenuItem.Name = "quadrante1ToolStripMenuItem";
+            this.quadrante1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quadrante1ToolStripMenuItem.Text = "Quadrante 1";
+            this.quadrante1ToolStripMenuItem.Click += new System.EventHandler(this.quadrante1ToolStripMenuItem_Click);
+            // 
+            // quadrante2ToolStripMenuItem
+            // 
+            this.quadrante2ToolStripMenuItem.Name = "quadrante2ToolStripMenuItem";
+            this.quadrante2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quadrante2ToolStripMenuItem.Text = "Quadrante 2";
+            this.quadrante2ToolStripMenuItem.Click += new System.EventHandler(this.quadrante2ToolStripMenuItem_Click);
+            // 
+            // quadrante3ToolStripMenuItem
+            // 
+            this.quadrante3ToolStripMenuItem.Name = "quadrante3ToolStripMenuItem";
+            this.quadrante3ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quadrante3ToolStripMenuItem.Text = "Quadrante 3";
+            this.quadrante3ToolStripMenuItem.Click += new System.EventHandler(this.quadrante3ToolStripMenuItem_Click);
+            // 
+            // quadrante4ToolStripMenuItem
+            // 
+            this.quadrante4ToolStripMenuItem.Name = "quadrante4ToolStripMenuItem";
+            this.quadrante4ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quadrante4ToolStripMenuItem.Text = "Quadrante 4";
+            this.quadrante4ToolStripMenuItem.Click += new System.EventHandler(this.quadrante4ToolStripMenuItem_Click);
             // 
             // gbxQuad4
             // 
@@ -273,6 +338,7 @@ namespace MyAgenda.Componentes.MatrizTempo
             this.gbxQuad2.PerformLayout();
             this.gbxQuad3.ResumeLayout(false);
             this.gbxQuad3.PerformLayout();
+            this.cmsItemMatrizOpcoes.ResumeLayout(false);
             this.gbxQuad4.ResumeLayout(false);
             this.gbxQuad4.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -303,5 +369,12 @@ namespace MyAgenda.Componentes.MatrizTempo
         private Panel panelQuad2;
         private Panel panelQuad3;
         private Panel panelQuad4;
+        private ContextMenuStrip cmsItemMatrizOpcoes;
+        private ToolStripMenuItem tsmiDeletar;
+        private ToolStripMenuItem tsmiMover;
+        private ToolStripMenuItem quadrante1ToolStripMenuItem;
+        private ToolStripMenuItem quadrante2ToolStripMenuItem;
+        private ToolStripMenuItem quadrante3ToolStripMenuItem;
+        private ToolStripMenuItem quadrante4ToolStripMenuItem;
     }
 }

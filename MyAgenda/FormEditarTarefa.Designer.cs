@@ -43,17 +43,20 @@
             // btnNovaLista
             // 
             this.btnNovaLista.AutoSize = true;
+            this.btnNovaLista.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkSlateGray;
             this.btnNovaLista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNovaLista.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovaLista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnNovaLista.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
-            this.btnNovaLista.Location = new System.Drawing.Point(150, 165);
+            this.btnNovaLista.Location = new System.Drawing.Point(150, 166);
             this.btnNovaLista.Name = "btnNovaLista";
             this.btnNovaLista.Size = new System.Drawing.Size(121, 33);
             this.btnNovaLista.TabIndex = 31;
             this.btnNovaLista.Text = "Nova Lista";
             this.btnNovaLista.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnNovaLista.UseVisualStyleBackColor = true;
+            this.btnNovaLista.MouseEnter += new System.EventHandler(this.btnNovaLista_MouseEnter);
+            this.btnNovaLista.MouseLeave += new System.EventHandler(this.btnNovaLista_MouseLeave);
             // 
             // btnSalvarEdicao
             // 
@@ -73,6 +76,8 @@
             this.btnSalvarEdicao.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnSalvarEdicao.UseVisualStyleBackColor = true;
             this.btnSalvarEdicao.Click += new System.EventHandler(this.btnSalvarEdicao_Click);
+            this.btnSalvarEdicao.MouseEnter += new System.EventHandler(this.btnSalvarEdicao_MouseEnter);
+            this.btnSalvarEdicao.MouseLeave += new System.EventHandler(this.btnSalvarEdicao_MouseLeave);
             // 
             // cldData
             // 
@@ -95,7 +100,7 @@
             // 
             this.cbbListasAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbListasAfazeres.FormattingEnabled = true;
-            this.cbbListasAfazeres.Location = new System.Drawing.Point(16, 130);
+            this.cbbListasAfazeres.Location = new System.Drawing.Point(16, 125);
             this.cbbListasAfazeres.Name = "cbbListasAfazeres";
             this.cbbListasAfazeres.Size = new System.Drawing.Size(255, 29);
             this.cbbListasAfazeres.TabIndex = 27;
@@ -105,7 +110,7 @@
             this.lblListaAfazeres.AutoSize = true;
             this.lblListaAfazeres.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblListaAfazeres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblListaAfazeres.Location = new System.Drawing.Point(12, 106);
+            this.lblListaAfazeres.Location = new System.Drawing.Point(12, 101);
             this.lblListaAfazeres.Name = "lblListaAfazeres";
             this.lblListaAfazeres.Size = new System.Drawing.Size(140, 21);
             this.lblListaAfazeres.TabIndex = 26;
@@ -114,7 +119,7 @@
             // txtTarefa
             // 
             this.txtTarefa.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.txtTarefa.Location = new System.Drawing.Point(16, 71);
+            this.txtTarefa.Location = new System.Drawing.Point(16, 66);
             this.txtTarefa.Name = "txtTarefa";
             this.txtTarefa.Size = new System.Drawing.Size(255, 27);
             this.txtTarefa.TabIndex = 24;
@@ -124,7 +129,7 @@
             this.lblTarefa.AutoSize = true;
             this.lblTarefa.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblTarefa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTarefa.Location = new System.Drawing.Point(12, 47);
+            this.lblTarefa.Location = new System.Drawing.Point(12, 42);
             this.lblTarefa.Name = "lblTarefa";
             this.lblTarefa.Size = new System.Drawing.Size(60, 21);
             this.lblTarefa.TabIndex = 25;
@@ -137,7 +142,7 @@
             this.lblEditarTarefa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblEditarTarefa.Location = new System.Drawing.Point(12, 9);
             this.lblEditarTarefa.Name = "lblEditarTarefa";
-            this.lblEditarTarefa.Size = new System.Drawing.Size(118, 21);
+            this.lblEditarTarefa.Size = new System.Drawing.Size(100, 19);
             this.lblEditarTarefa.TabIndex = 23;
             this.lblEditarTarefa.Text = "EditarTarefa";
             // 
@@ -156,8 +161,11 @@
             this.Controls.Add(this.txtTarefa);
             this.Controls.Add(this.lblTarefa);
             this.Controls.Add(this.lblEditarTarefa);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormEditarTarefa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MyAgenda | Editar Tarefa";
             this.Load += new System.EventHandler(this.FormEditarTarefa_Load);
             this.ResumeLayout(false);

@@ -70,8 +70,11 @@
             this.ClientSize = new System.Drawing.Size(586, 208);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblAlerta);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormAlertaEvento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyAgenda | Alerta";
             this.ResumeLayout(false);
             this.PerformLayout();

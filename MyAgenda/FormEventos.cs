@@ -21,6 +21,8 @@ namespace MyAgenda
             BarraNavegacao.AddItem("Matriz do Tempo", (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO);
             BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
             BarraNavegacao.AddItem("Tarefas", (int)EBarraNavegacaoBotoes.TAREFAS);
+
+            _usuario = u;
         }
 
         protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
@@ -51,13 +53,11 @@ namespace MyAgenda
             evento.Titutlo = txtTitulo.Text;
             evento.Descricao = txtDescricao.Text;
 
-            DateTime dataHoraInicio = cldDataInicio.SelectionRange.Start;
-            dataHoraInicio = dataHoraInicio + dtpHorarioInicial.Value.TimeOfDay;
+            DateTime dataHoraInicio = dtpInicio.Value;
 
             evento.DataHoraInicio = dataHoraInicio;
 
-            DateTime dataHoraFinal = cldDataTermino.SelectionRange.Start;
-            dataHoraFinal = dataHoraFinal + dtpHorarioTermino.Value.TimeOfDay;
+            DateTime dataHoraFinal = dtpTermino.Value;
 
             evento.DataHoraTermino = dataHoraFinal;
 
@@ -95,6 +95,18 @@ namespace MyAgenda
         private void FormEventos_Load(object sender, EventArgs e)
         {
             _carregaEventosDaBaseDeDados();
+        }
+
+        private void btnAdicionar_MouseLeave(object sender, EventArgs e)
+        {
+            btnAdicionar.Image = Properties.Resources.ic_add_circle_black;
+            btnAdicionar.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void btnAdicionar_MouseEnter(object sender, EventArgs e)
+        {
+            btnAdicionar.Image = Properties.Resources.ic_add_circle_white;
+            btnAdicionar.ForeColor = System.Drawing.Color.White;
         }
     }
 }

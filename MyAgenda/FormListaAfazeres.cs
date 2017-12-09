@@ -23,6 +23,8 @@ namespace MyAgenda
             BarraNavegacao.AddItem("Início", (int)EBarraNavegacaoBotoes.INICIO);
             BarraNavegacao.AddItem("Matriz do Tempo", (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO);
             BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
+
+            _usuario = u;
         }
 
         protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
@@ -39,9 +41,9 @@ namespace MyAgenda
                 case (int)EBarraNavegacaoBotoes.POMODORO:
                     MessageBox.Show("botão Pomodoro");
                     break;
-                case (int)EBarraNavegacaoBotoes.TAREFAS:
-                    FormListaAfazeres tarefas = new FormListaAfazeres(_usuario);
-                    tarefas.Show();
+                case (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO:
+                    FormMatrizTempo matriz = new FormMatrizTempo(_usuario);
+                    matriz.Show();
                     this.Close();
                     break;
             }
@@ -99,26 +101,33 @@ namespace MyAgenda
 
         private void btnNovaLista_Click(object sender, EventArgs e)
         {
-            FormNovaListaAfazeres form = new FormNovaListaAfazeres();
-            form.Show();
+            FormNovaListaAfazeres form = new FormNovaListaAfazeres(_usuario);
+            form.ShowDialog();
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Tarefa tarefa = new Tarefa();
-            tarefa.Titulo = txtTarefa.Text;
-            tarefa.Data = cldData.SelectionRange.Start;
+            if (!String.IsNullOrEmpty(txtTarefa.Text))
+            {
+                Tarefa tarefa = new Tarefa();
+                tarefa.Titulo = txtTarefa.Text;
+                tarefa.Data = cldData.SelectionRange.Start;
 
-            tarefa.Usuario = _usuario.GetModelo();
+                tarefa.Usuario = _usuario.GetModelo();
 
-            ListaAfazeres lista = new ListaAfazeres();
-            lista.Titulo = cbbOpcoesListasAfazeres.GetItemText(cbbOpcoesListasAfazeres.SelectedItem);
+                ListaAfazeres lista = new ListaAfazeres();
+                lista.Titulo = cbbOpcoesListasAfazeres.GetItemText(cbbOpcoesListasAfazeres.SelectedItem);
 
-            tarefa.Lista = lista;
+                tarefa.Lista = lista;
 
-            TarefaAPI tarefaAPI = new TarefaAPI();
-            tarefaAPI.AdicionaTarefa(tarefa);
-            _carregaTarefasDaBaseDeDados(lista.Titulo);
+                TarefaAPI tarefaAPI = new TarefaAPI();
+                tarefaAPI.AdicionaTarefa(tarefa);
+                _carregaTarefasDaBaseDeDados(lista.Titulo);
+            }
+            else
+            {
+                MessageBox.Show("Digite um título para a tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void _carregaTarefasDaBaseDeDados(string listaAfazeres)
@@ -153,6 +162,40 @@ namespace MyAgenda
             _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa();
 
             _populaComboBoxDeListasDeAfazeresDoTopoDoForm();
+        }
+
+        private void btnNovaLista_MouseEnter(object sender, EventArgs e)
+        {
+            btnNovaLista.Image = Properties.Resources.ic_add_circle_white;
+            btnNovaLista.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnNovaLista_MouseLeave(object sender, EventArgs e)
+        {
+            btnNovaLista.Image = Properties.Resources.ic_add_circle_black;
+            btnNovaLista.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void btnAdicionar_MouseEnter(object sender, EventArgs e)
+        {
+            btnAdicionar.Image = Properties.Resources.ic_add_circle_white;
+            btnAdicionar.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnAdicionar_MouseLeave(object sender, EventArgs e)
+        {
+            btnAdicionar.Image = Properties.Resources.ic_add_circle_black;
+            btnAdicionar.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void btnExibirTarefas_MouseEnter(object sender, EventArgs e)
+        {
+            btnExibirTarefas.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void btnExibirTarefas_MouseLeave(object sender, EventArgs e)
+        {
+            btnExibirTarefas.ForeColor = System.Drawing.Color.Black;
         }
     }
 }

@@ -10,17 +10,19 @@ namespace MyAgenda.Modelos.Geral
 
         public string Nome { get; set; }
         
-        public DateTime DataNascimento { get; set; }
-
         public MatrizController MatrizTempo { get; set; }
             
-        public UsuarioModel(int id, string nome, DateTime dataNascimento, MatrizController matrizTempo)
+        public UsuarioModel(int id, string nome)
         {
             Id = id;
             Nome = nome;
-            DataNascimento = dataNascimento;
-            MatrizTempo = matrizTempo;
         }
-        
+
+        public UsuarioModel(int id, string nome, MatrizController matriz)
+        {
+            Id = id;
+            Nome = nome;
+            MatrizTempo = matriz;
+        }
     }
 }

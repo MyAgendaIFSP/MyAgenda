@@ -37,20 +37,20 @@
             this.lblAdicionarEvento = new System.Windows.Forms.Label();
             this.pnlEventos = new System.Windows.Forms.Panel();
             this.lblDataInicio = new System.Windows.Forms.Label();
-            this.lblHorarioInicio = new System.Windows.Forms.Label();
-            this.dtpHorarioInicial = new System.Windows.Forms.DateTimePicker();
-            this.cldDataInicio = new System.Windows.Forms.MonthCalendar();
-            this.lblDataTermino = new System.Windows.Forms.Label();
-            this.cldDataTermino = new System.Windows.Forms.MonthCalendar();
-            this.dtpHorarioTermino = new System.Windows.Forms.DateTimePicker();
-            this.lblHorarioTermino = new System.Windows.Forms.Label();
+            this.dtpInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermino = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             this.SuspendLayout();
             // 
             // BarraNavegacao
             // 
-            this.BarraNavegacao.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.BarraNavegacao.Size = new System.Drawing.Size(1183, 40);
+            this.BarraNavegacao.Margin = new System.Windows.Forms.Padding(5);
+            this.BarraNavegacao.Size = new System.Drawing.Size(838, 40);
+            // 
+            // Loader
+            // 
+            this.Loader.Size = new System.Drawing.Size(349, 7);
             // 
             // btnAdicionar
             // 
@@ -62,32 +62,34 @@
             this.btnAdicionar.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnAdicionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdicionar.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
-            this.btnAdicionar.Location = new System.Drawing.Point(248, 1123);
-            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnAdicionar.Location = new System.Drawing.Point(214, 573);
+            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(203, 55);
+            this.btnAdicionar.Size = new System.Drawing.Size(136, 37);
             this.btnAdicionar.TabIndex = 14;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            this.btnAdicionar.MouseEnter += new System.EventHandler(this.btnAdicionar_MouseEnter);
+            this.btnAdicionar.MouseLeave += new System.EventHandler(this.btnAdicionar_MouseLeave);
             // 
             // txtDescricao
             // 
             this.txtDescricao.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.txtDescricao.Location = new System.Drawing.Point(27, 279);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtDescricao.Location = new System.Drawing.Point(18, 193);
+            this.txtDescricao.Margin = new System.Windows.Forms.Padding(5);
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(422, 27);
+            this.txtDescricao.Size = new System.Drawing.Size(332, 27);
             this.txtDescricao.TabIndex = 10;
             // 
             // txtTitulo
             // 
             this.txtTitulo.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.txtTitulo.Location = new System.Drawing.Point(27, 184);
-            this.txtTitulo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtTitulo.Location = new System.Drawing.Point(18, 122);
+            this.txtTitulo.Margin = new System.Windows.Forms.Padding(5);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(422, 27);
+            this.txtTitulo.Size = new System.Drawing.Size(332, 27);
             this.txtTitulo.TabIndex = 8;
             // 
             // lblDescricao
@@ -95,7 +97,7 @@
             this.lblDescricao.AutoSize = true;
             this.lblDescricao.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblDescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDescricao.Location = new System.Drawing.Point(20, 241);
+            this.lblDescricao.Location = new System.Drawing.Point(14, 167);
             this.lblDescricao.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(87, 21);
@@ -107,7 +109,7 @@
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitulo.Location = new System.Drawing.Point(20, 145);
+            this.lblTitulo.Location = new System.Drawing.Point(14, 96);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(51, 21);
@@ -120,7 +122,7 @@
             this.lblAdicionarEvento.BackColor = System.Drawing.Color.White;
             this.lblAdicionarEvento.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblAdicionarEvento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblAdicionarEvento.Location = new System.Drawing.Point(20, 86);
+            this.lblAdicionarEvento.Location = new System.Drawing.Point(14, 59);
             this.lblAdicionarEvento.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAdicionarEvento.Name = "lblAdicionarEvento";
             this.lblAdicionarEvento.Size = new System.Drawing.Size(143, 19);
@@ -133,10 +135,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlEventos.AutoScroll = true;
-            this.pnlEventos.Location = new System.Drawing.Point(480, 86);
-            this.pnlEventos.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlEventos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlEventos.Location = new System.Drawing.Point(360, 59);
+            this.pnlEventos.Margin = new System.Windows.Forms.Padding(5);
             this.pnlEventos.Name = "pnlEventos";
-            this.pnlEventos.Size = new System.Drawing.Size(878, 1092);
+            this.pnlEventos.Size = new System.Drawing.Size(651, 557);
             this.pnlEventos.TabIndex = 9;
             // 
             // lblDataInicio
@@ -144,102 +147,54 @@
             this.lblDataInicio.AutoSize = true;
             this.lblDataInicio.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.lblDataInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDataInicio.Location = new System.Drawing.Point(20, 336);
+            this.lblDataInicio.Location = new System.Drawing.Point(20, 241);
             this.lblDataInicio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDataInicio.Name = "lblDataInicio";
-            this.lblDataInicio.Size = new System.Drawing.Size(96, 21);
+            this.lblDataInicio.Size = new System.Drawing.Size(173, 21);
             this.lblDataInicio.TabIndex = 17;
-            this.lblDataInicio.Text = "Data Início";
+            this.lblDataInicio.Text = "Data e hora de início";
             // 
-            // lblHorarioInicio
+            // dtpInicio
             // 
-            this.lblHorarioInicio.AutoSize = true;
-            this.lblHorarioInicio.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblHorarioInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblHorarioInicio.Location = new System.Drawing.Point(20, 661);
-            this.lblHorarioInicio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblHorarioInicio.Name = "lblHorarioInicio";
-            this.lblHorarioInicio.Size = new System.Drawing.Size(110, 21);
-            this.lblHorarioInicio.TabIndex = 19;
-            this.lblHorarioInicio.Text = "Horário Início";
+            this.dtpInicio.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpInicio.Location = new System.Drawing.Point(18, 265);
+            this.dtpInicio.Name = "dtpInicio";
+            this.dtpInicio.Size = new System.Drawing.Size(332, 27);
+            this.dtpInicio.TabIndex = 26;
+            this.dtpInicio.Value = new System.DateTime(2017, 12, 9, 17, 47, 25, 0);
             // 
-            // dtpHorarioInicial
+            // dtpTermino
             // 
-            this.dtpHorarioInicial.AllowDrop = true;
-            this.dtpHorarioInicial.CustomFormat = "";
-            this.dtpHorarioInicial.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHorarioInicial.Location = new System.Drawing.Point(27, 699);
-            this.dtpHorarioInicial.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.dtpHorarioInicial.Name = "dtpHorarioInicial";
-            this.dtpHorarioInicial.ShowUpDown = true;
-            this.dtpHorarioInicial.Size = new System.Drawing.Size(422, 27);
-            this.dtpHorarioInicial.TabIndex = 20;
+            this.dtpTermino.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpTermino.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermino.Location = new System.Drawing.Point(18, 335);
+            this.dtpTermino.Name = "dtpTermino";
+            this.dtpTermino.Size = new System.Drawing.Size(332, 27);
+            this.dtpTermino.TabIndex = 28;
+            this.dtpTermino.Value = new System.DateTime(2017, 12, 9, 17, 47, 25, 0);
             // 
-            // cldDataInicio
+            // label1
             // 
-            this.cldDataInicio.Location = new System.Drawing.Point(27, 384);
-            this.cldDataInicio.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.cldDataInicio.MaxSelectionCount = 1;
-            this.cldDataInicio.Name = "cldDataInicio";
-            this.cldDataInicio.TabIndex = 21;
-            // 
-            // lblDataTermino
-            // 
-            this.lblDataTermino.AutoSize = true;
-            this.lblDataTermino.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblDataTermino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDataTermino.Location = new System.Drawing.Point(20, 745);
-            this.lblDataTermino.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblDataTermino.Name = "lblDataTermino";
-            this.lblDataTermino.Size = new System.Drawing.Size(116, 21);
-            this.lblDataTermino.TabIndex = 22;
-            this.lblDataTermino.Text = "Data Término";
-            // 
-            // cldDataTermino
-            // 
-            this.cldDataTermino.Location = new System.Drawing.Point(27, 793);
-            this.cldDataTermino.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.cldDataTermino.MaxSelectionCount = 1;
-            this.cldDataTermino.Name = "cldDataTermino";
-            this.cldDataTermino.TabIndex = 23;
-            // 
-            // dtpHorarioTermino
-            // 
-            this.dtpHorarioTermino.AllowDrop = true;
-            this.dtpHorarioTermino.CustomFormat = "";
-            this.dtpHorarioTermino.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHorarioTermino.Location = new System.Drawing.Point(27, 1108);
-            this.dtpHorarioTermino.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.dtpHorarioTermino.Name = "dtpHorarioTermino";
-            this.dtpHorarioTermino.ShowUpDown = true;
-            this.dtpHorarioTermino.Size = new System.Drawing.Size(422, 27);
-            this.dtpHorarioTermino.TabIndex = 25;
-            // 
-            // lblHorarioTermino
-            // 
-            this.lblHorarioTermino.AutoSize = true;
-            this.lblHorarioTermino.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblHorarioTermino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblHorarioTermino.Location = new System.Drawing.Point(20, 1069);
-            this.lblHorarioTermino.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblHorarioTermino.Name = "lblHorarioTermino";
-            this.lblHorarioTermino.Size = new System.Drawing.Size(110, 21);
-            this.lblHorarioTermino.TabIndex = 24;
-            this.lblHorarioTermino.Text = "Horário Início";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(20, 311);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(194, 21);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Data e hora de término";
             // 
             // FormEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
-            this.Controls.Add(this.dtpHorarioTermino);
-            this.Controls.Add(this.lblHorarioTermino);
-            this.Controls.Add(this.cldDataTermino);
-            this.Controls.Add(this.lblDataTermino);
-            this.Controls.Add(this.cldDataInicio);
-            this.Controls.Add(this.dtpHorarioInicial);
-            this.Controls.Add(this.lblHorarioInicio);
+            this.ClientSize = new System.Drawing.Size(1017, 624);
+            this.Controls.Add(this.dtpTermino);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpInicio);
             this.Controls.Add(this.lblDataInicio);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.txtDescricao);
@@ -250,7 +205,7 @@
             this.Controls.Add(this.pnlEventos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
-            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Margin = new System.Windows.Forms.Padding(8);
             this.Name = "FormEventos";
             this.Text = "MyAgenda | Eventos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -263,15 +218,11 @@
             this.Controls.SetChildIndex(this.txtDescricao, 0);
             this.Controls.SetChildIndex(this.btnAdicionar, 0);
             this.Controls.SetChildIndex(this.lblDataInicio, 0);
-            this.Controls.SetChildIndex(this.lblHorarioInicio, 0);
-            this.Controls.SetChildIndex(this.dtpHorarioInicial, 0);
-            this.Controls.SetChildIndex(this.cldDataInicio, 0);
-            this.Controls.SetChildIndex(this.lblDataTermino, 0);
-            this.Controls.SetChildIndex(this.cldDataTermino, 0);
-            this.Controls.SetChildIndex(this.lblHorarioTermino, 0);
-            this.Controls.SetChildIndex(this.dtpHorarioTermino, 0);
             this.Controls.SetChildIndex(this.BarraNavegacao, 0);
             this.Controls.SetChildIndex(this.Loader, 0);
+            this.Controls.SetChildIndex(this.dtpInicio, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.dtpTermino, 0);
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -287,12 +238,8 @@
         private System.Windows.Forms.Label lblAdicionarEvento;
         private System.Windows.Forms.Panel pnlEventos;
         private System.Windows.Forms.Label lblDataInicio;
-        private System.Windows.Forms.Label lblHorarioInicio;
-        private System.Windows.Forms.DateTimePicker dtpHorarioInicial;
-        private System.Windows.Forms.MonthCalendar cldDataInicio;
-        private System.Windows.Forms.Label lblDataTermino;
-        private System.Windows.Forms.MonthCalendar cldDataTermino;
-        private System.Windows.Forms.DateTimePicker dtpHorarioTermino;
-        private System.Windows.Forms.Label lblHorarioTermino;
+        private System.Windows.Forms.DateTimePicker dtpInicio;
+        private System.Windows.Forms.DateTimePicker dtpTermino;
+        private System.Windows.Forms.Label label1;
     }
 }

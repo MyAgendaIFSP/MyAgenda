@@ -74,7 +74,8 @@ namespace MyAgenda.Componentes.Geral
         {
             
             FormCollection forms = Application.OpenForms;
-            if (forms.Count == 0)
+            
+            if (forms.Count == 0 || _podeFechar(forms))
             {
                 UsuarioController u = UsuarioController.GetInstance();
                 if (u.IsAutenticado)
@@ -86,6 +87,7 @@ namespace MyAgenda.Componentes.Geral
             }
             else
             {
+
                 bool quit = true;
 
                 foreach (Form f in forms)
@@ -104,6 +106,29 @@ namespace MyAgenda.Componentes.Geral
                     Application.Exit();
                 }
             }
+        }
+
+        private bool _podeFechar(FormCollection forms)
+        {
+            bool podeFechar = true;
+
+            foreach (Form f in forms)
+            {
+                Type tForm = f.GetType();
+
+                if ((tForm != typeof(FormListaContatos) &&
+                    tForm != typeof(FormChat) &&
+                    tForm != typeof(Notification) &&
+                    tForm != typeof(FormEditarEvento) &&
+                    tForm != typeof(FormAlertaEvento) &&
+                    tForm != typeof(FormEditarTarefa)) &&
+                    f.Visible)
+                {
+                    podeFechar = false;
+                }
+            }
+
+            return podeFechar;
         }
 
         public void MostraErro(string msg)

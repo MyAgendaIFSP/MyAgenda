@@ -126,12 +126,7 @@ namespace MyAgenda.Dados
 
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("LISTA", tarefa.Lista.Titulo));
-
-                    UsuarioController usuarioController = UsuarioController.GetInstance();
-                    UsuarioModel usuarioModel = usuarioController.GetModelo();
-
-                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
-
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", tarefa.Usuario.Id));
                     cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
                     cmd.Parameters.Add(new SqlParameter("MDATA", tarefa.Data));
                     cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
@@ -156,6 +151,7 @@ namespace MyAgenda.Dados
                 try
                 {
                     SqlCommand cmd = new SqlCommand(query, _conexao);
+<<<<<<< HEAD
                     cmd.Parameters.Add(new SqlParameter("LISTA", tarefaAtualizada.Lista));
 
                     UsuarioController usuarioController = UsuarioController.GetInstance();
@@ -163,6 +159,10 @@ namespace MyAgenda.Dados
 
                     cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
 
+=======
+                    cmd.Parameters.Add(new SqlParameter("LISTA", "Lista da Faculdade"));
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", tarefaAtualizada.Usuario.Id));
+>>>>>>> 75ddb59bbb8f8c097e3293e647581f57a7172978
                     cmd.Parameters.Add(new SqlParameter("TITULONOVO", tarefaAtualizada.Titulo));
                     cmd.Parameters.Add(new SqlParameter("MDATA", tarefaAtualizada.Data));
                     cmd.Parameters.Add(new SqlParameter("TITULOANTIGO", tarefaAntiga.Titulo));

@@ -48,6 +48,13 @@ namespace MyAgenda
                 this.ParaCarregar();
                 return;
             }
+            else if (txtSenha.Text.Length < 6)
+            {
+                this.MostraErro("Sua senha deve possuir entre 6 e 16 caracteres.");
+                txtSenha.Focus();
+                this.ParaCarregar();
+                return;
+            }
 
             this.ComecaCarregar();
             worker.RunWorkerAsync();
@@ -70,8 +77,8 @@ namespace MyAgenda
             if (user.IsAutenticado)
             {
                 //abrir próximo form
-                FormMatrizTempo f = new FormMatrizTempo(user);
-                f.Show();
+                FormEventos e = new FormEventos(user);
+                e.Show();
                 this.Hide();
 
                 ChatController chat = ChatController.GetInstance();
