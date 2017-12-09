@@ -37,7 +37,7 @@ namespace MyAgenda.Componentes.Tarefas
             Tarefa tarefa = new Tarefa();
             tarefa.Titulo = lblDescricaoTarefa.Text;
 
-            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, "Lista da Faculdade"))
+            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, _tarefa.Lista.Titulo))
             {
                 tarefaAPI.DesconcluirTarefa(tarefa);
                 lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Regular);
@@ -137,7 +137,7 @@ namespace MyAgenda.Componentes.Tarefas
             Tarefa tarefa = new Tarefa();
             tarefa.Titulo = lblDescricaoTarefa.Text;
 
-            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, "Lista da Faculdade"))
+            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, _tarefa.Lista.Titulo))
             {
                 lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Strikeout);
             }

@@ -6,10 +6,9 @@ procedure GetModeloUsuario @user_id int
 as 
 begin
 	
-	select usuario.id, usuario.nome, usuario.data_nascimento
+	select usuario.id, usuario.nome
 	from usuario
-	inner join matriz_tempo on usuario.matriz_tempo = matriz_tempo.id
-	and usuario.id = @user_id;
+	where usuario.id = @user_id;
 	
 end
 go

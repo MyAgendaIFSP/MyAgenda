@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemTarefa));
             this.lblDescricaoTarefa = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -37,7 +36,8 @@
             // 
             // lblDescricaoTarefa
             // 
-            this.lblDescricaoTarefa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblDescricaoTarefa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescricaoTarefa.AutoSize = true;
             this.lblDescricaoTarefa.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -50,10 +50,12 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.BackgroundImage = global::MyAgenda.Properties.Resources.ic_mode_edit_black_18dp_1x;
+            this.btnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.Location = new System.Drawing.Point(387, 47);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(44, 28);
@@ -65,10 +67,12 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.BackgroundImage = global::MyAgenda.Properties.Resources.ic_delete_black;
+            this.btnExcluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExcluir.FlatAppearance.BorderSize = 0;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluir.Image")));
             this.btnExcluir.Location = new System.Drawing.Point(437, 47);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(44, 28);
@@ -80,6 +84,8 @@
             // 
             // btnChecar
             // 
+            this.btnChecar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnChecar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnChecar.FlatAppearance.BorderSize = 0;
             this.btnChecar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChecar.Image = global::MyAgenda.Properties.Resources.ic_checked_black;

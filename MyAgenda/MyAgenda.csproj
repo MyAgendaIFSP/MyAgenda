@@ -291,6 +291,7 @@
   <ItemGroup>
     <Content Include="AppReadme\Compare-NET-Objects-Help.txt" />
     <Content Include="favicon %281%29.ico" />
+    <None Include="Resources\ic_mode_edit_black_18dp_1x.png" />
     <None Include="Resources\ic_clear_white.png" />
     <None Include="Resources\ic_check_white.png" />
     <None Include="Resources\ic_check_black.png" />

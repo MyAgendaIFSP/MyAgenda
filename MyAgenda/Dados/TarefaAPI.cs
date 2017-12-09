@@ -1,7 +1,6 @@
 ﻿using MyAgenda.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace MyAgenda.Dados
