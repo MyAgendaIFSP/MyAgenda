@@ -1,4 +1,6 @@
 ﻿using MyAgenda.Entidades;
+using MyAgenda.Controladores.Geral;
+using MyAgenda.Modelos.Geral;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -73,7 +75,7 @@ namespace MyAgenda.Dados
         {
             List<ListaAfazeres> listas = new List<ListaAfazeres>();
 
-            string query = "SELECT * FROM LISTA_AFAZERES ORDER BY TITULO ASC";
+            string query = "SELECT * FROM LISTA_AFAZERES WHERE USUARIO = @USUARIO ORDER BY TITULO ASC";
             
             SqlDataReader reader = null;
 
@@ -84,6 +86,11 @@ namespace MyAgenda.Dados
 
                     SqlCommand cmd = new SqlCommand(query, _conexao);
 
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
+
                     reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -91,6 +98,8 @@ namespace MyAgenda.Dados
                         ListaAfazeres lista = new ListaAfazeres();
                         lista.Titulo = reader["titulo"].ToString();
                         lista.DataCriacao = Convert.ToDateTime(reader["criacao"].ToString());
+                        lista.Usuario = usuarioModel;
+
                         listas.Add(lista);
                     }
                 }
@@ -109,7 +118,7 @@ namespace MyAgenda.Dados
         {
             List<ListaAfazeres> listas = new List<ListaAfazeres>();
 
-            string query = "SELECT * FROM LISTA_AFAZERES ORDER BY TITULO ASC";
+            string query = "SELECT * FROM LISTA_AFAZERES WHERE USUARIO = @USUARIO ORDER BY TITULO ASC";
             
             SqlDataReader reader = null;
 
@@ -120,6 +129,11 @@ namespace MyAgenda.Dados
 
                     SqlCommand cmd = new SqlCommand(query, _conexao);
 
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
+
                     reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -127,6 +141,8 @@ namespace MyAgenda.Dados
                         ListaAfazeres lista = new ListaAfazeres();
                         lista.Titulo = reader["titulo"].ToString();
                         lista.DataCriacao = Convert.ToDateTime(reader["criacao"].ToString());
+                        lista.Usuario = usuarioModel;
+
                         listas.Add(lista);
                     }
                 }

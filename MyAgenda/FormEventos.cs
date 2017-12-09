@@ -52,12 +52,12 @@ namespace MyAgenda
             evento.Descricao = txtDescricao.Text;
 
             DateTime dataHoraInicio = cldDataInicio.SelectionRange.Start;
-            dataHoraInicio.Add(dtpHorarioInicial.Value.TimeOfDay);
+            dataHoraInicio = dataHoraInicio + dtpHorarioInicial.Value.TimeOfDay;
 
             evento.DataHoraInicio = dataHoraInicio;
 
             DateTime dataHoraFinal = cldDataTermino.SelectionRange.Start;
-            dataHoraFinal.Add(dtpHorarioTermino.Value.TimeOfDay);
+            dataHoraFinal = dataHoraFinal + dtpHorarioTermino.Value.TimeOfDay;
 
             evento.DataHoraTermino = dataHoraFinal;
 
