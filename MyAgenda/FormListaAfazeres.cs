@@ -1,27 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Globalization;
-using MyAgenda.Componentes;
-using MyAgenda.Entidades;
+﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Componentes.Tarefas;
+using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
+using MyAgenda.Entidades;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
-    public partial class FormListaAfazeres : Form
+    public partial class FormListaAfazeres : BaseForm
     {
-
+        private UsuarioController _usuario = null;
         private CultureInfo cultureInfo = new CultureInfo("pt-BR");
 
-        public FormListaAfazeres()
+        public FormListaAfazeres(UsuarioController u)
         {
             InitializeComponent();
+
+            BarraNavegacao.AddItem("Início", (int)EBarraNavegacaoBotoes.INICIO);
+            BarraNavegacao.AddItem("Matriz do Tempo", (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO);
+            BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
+        }
+
+        protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
+        {
+            base.OnBarraNavegacaoItemClick(btn, itemId);
+
+            switch (itemId)
+            {
+                case (int)EBarraNavegacaoBotoes.INICIO:
+                    FormEventos eventos = new FormEventos(_usuario);
+                    eventos.Show();
+                    this.Close();
+                    break;
+                case (int)EBarraNavegacaoBotoes.POMODORO:
+                    MessageBox.Show("botão Pomodoro");
+                    break;
+                case (int)EBarraNavegacaoBotoes.TAREFAS:
+                    FormListaAfazeres tarefas = new FormListaAfazeres(_usuario);
+                    tarefas.Show();
+                    this.Close();
+                    break;
+            }
         }
 
         private void _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa()
@@ -86,10 +109,7 @@ namespace MyAgenda
             tarefa.Titulo = txtTarefa.Text;
             tarefa.Data = cldData.SelectionRange.Start;
 
-            Usuario usuario = new Usuario();
-            usuario.IdUsuario = 2;
-
-            tarefa.Usuario = usuario;
+            tarefa.Usuario = _usuario.GetModelo();
 
             ListaAfazeres lista = new ListaAfazeres();
             lista.Titulo = cbbOpcoesListasAfazeres.GetItemText(cbbOpcoesListasAfazeres.SelectedItem);

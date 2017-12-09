@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MyAgenda.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using MyAgenda.Entidades;
 
 namespace MyAgenda.Dados
 {
@@ -93,7 +93,8 @@ namespace MyAgenda.Dados
                         evento.Descricao = reader["descricao"].ToString();
                         evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
                         evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
-                        evento.Usuario = new Usuario();
+                        // TODO: Verificar como está funcionando essa busca. Não há distinção entre usuários? 
+                        //evento.Usuario = new UsuarioModel();
                         eventos.Add(evento);
                     }
                 }
@@ -134,7 +135,7 @@ namespace MyAgenda.Dados
                         evento.Descricao = reader["descricao"].ToString();
                         evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
                         evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
-                        evento.Usuario = new Usuario();
+                        //evento.Usuario = new UsuarioModel();
                     }
                 }
                 catch (Exception e)
@@ -279,7 +280,7 @@ namespace MyAgenda.Dados
                         evento.Descricao = reader["descricao"].ToString();
                         evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
                         evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
-                        evento.Usuario = new Usuario();
+                        // evento.Usuario = new UsuarioModel();
                         eventos.Add(evento);
                     }
                 }

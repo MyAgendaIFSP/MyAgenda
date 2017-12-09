@@ -1,30 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MyAgenda.Entidades;
+﻿using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
+using MyAgenda.Entidades;
+using System;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
     public partial class FormEditarEvento : Form
     {
         private Evento _evento;
+        private UsuarioController _usuario = null;
 
         public FormEditarEvento()
         {
             InitializeComponent();
         }
 
-        public FormEditarEvento(Evento evento)
+        public FormEditarEvento(Evento evento, UsuarioController usuario)
         {
             InitializeComponent();
 
+            _usuario = usuario;
             _evento = evento;
         }
 
@@ -44,17 +40,14 @@ namespace MyAgenda
             eventoAtualizado.Descricao = txtDescricao.Text;
             eventoAtualizado.DataHoraInicio = cldDataInicio.SelectionRange.Start;
             eventoAtualizado.DataHoraTermino = cldDataTermino.SelectionRange.Start;
-
-            Usuario usuario = new Usuario();
-            usuario.IdUsuario = 1;
-
-            eventoAtualizado.Usuario = usuario;
+            
+            eventoAtualizado.Usuario = _usuario.GetModelo();
 
             eventoAPI.EditarEvento(_evento, eventoAtualizado);
 
-            if (System.Windows.Forms.Application.OpenForms["FormEventos"] != null)
+            if (Application.OpenForms["FormEventos"] != null)
             {
-                (System.Windows.Forms.Application.OpenForms["FormEventos"] as FormEventos).AtualizaEventosEmTela();
+                (Application.OpenForms["FormEventos"] as FormEventos).AtualizaEventosEmTela();
             }
 
             this.Close();

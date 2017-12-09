@@ -151,7 +151,7 @@ namespace MyAgenda.Dados
                 {
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("TITULO", lista.Titulo));
-                    cmd.Parameters.Add(new SqlParameter("USUARIO", lista.Usuario.IdUsuario));
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", lista.Usuario.Id));
                     cmd.Parameters.Add(new SqlParameter("CRIACAO", lista.DataCriacao));
 
                     cmd.ExecuteNonQuery();

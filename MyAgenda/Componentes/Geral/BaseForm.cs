@@ -1,20 +1,13 @@
 ﻿using MyAgenda.Controladores.Geral;
-using MyAgenda.Componentes.ListaContatos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyAgenda.Componentes.Geral
 {
     public partial class BaseForm : Form
     {
-        public enum EBarraNavegacaoBotoes { INICIO = 1, POMODORO, TAREFAS, MATRIZ_TEMPO, CONTATOS, OFFLINE, SAIR }
+        public enum EBarraNavegacaoBotoes { INICIO = 1, POMODORO, TAREFAS, MATRIZ_TEMPO, CONTATOS, SAIR }
         public Label StatusLabel { get; set; }
 
         private bool _temBarraNavegacao = true;
@@ -52,7 +45,6 @@ namespace MyAgenda.Componentes.Geral
             BarraNavegacao.MenuItemClick += OnBarraNavegacaoItemClick;
 
             BarraNavegacao.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoSairClick, (int) EBarraNavegacaoBotoes.SAIR);
-            BarraNavegacao.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoCloudClick, (int)EBarraNavegacaoBotoes.OFFLINE);
             BarraNavegacao.AddItem("Contatos", Properties.Resources.ic_people_white, BarraNavegacao.EPosicao.DIREITA, OnBarraNavegacaoContatosClick, (int)EBarraNavegacaoBotoes.CONTATOS);
 
             BarraNavegacao.Width = this.Width;
@@ -77,16 +69,7 @@ namespace MyAgenda.Componentes.Geral
         }
 
         protected virtual void OnBarraNavegacaoItemClick(Button btn, int itemId){ }
-
-        protected virtual void OnBarraNavegacaoCloudClick(Button btn, int itemId)
-        {
-            MessageBox.Show("botão Nuvem");
-
-            //Realizar aqui a sincronização dos dados do usuário
-
-            btn.Image = Properties.Resources.ic_cloud_white;
-        }
-
+        
         private void BaseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             

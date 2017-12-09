@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MyAgenda.Entidades;
+﻿using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
+using MyAgenda.Entidades;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
@@ -16,15 +11,18 @@ namespace MyAgenda
     {
         private Tarefa _tarefa;
 
+        private UsuarioController _usuario;
+
         public FormEditarTarefa()
         {
             InitializeComponent();
         }
 
-        public FormEditarTarefa(Tarefa tarefa)
+        public FormEditarTarefa(Tarefa tarefa, UsuarioController usuario)
         {
             InitializeComponent();
 
+            _usuario = usuario;
             this._tarefa = tarefa;
         }
 
@@ -52,11 +50,8 @@ namespace MyAgenda
             tarefaAtualizada.Titulo = txtTarefa.Text;
             tarefaAtualizada.Descricao = txtTarefa.Text;
             tarefaAtualizada.Data = cldData.SelectionRange.Start;
-
-            Usuario usuario = new Usuario();
-            usuario.IdUsuario = 1;
-
-            tarefaAtualizada.Usuario = usuario;
+            
+            tarefaAtualizada.Usuario = _usuario.GetModelo();
 
             tarefaAPI.EditarTarefa(_tarefa, tarefaAtualizada);
 

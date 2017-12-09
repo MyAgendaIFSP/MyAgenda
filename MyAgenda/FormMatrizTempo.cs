@@ -38,13 +38,17 @@ namespace MyAgenda
             switch (itemId)
             {
                 case (int)EBarraNavegacaoBotoes.INICIO:
-                    MessageBox.Show("botão início");
+                    FormEventos eventos = new FormEventos(_usuario);
+                    eventos.Show();
+                    this.Close();
                     break;
                 case (int)EBarraNavegacaoBotoes.POMODORO:
                     MessageBox.Show("botão Pomodoro");
                     break;
                 case (int)EBarraNavegacaoBotoes.TAREFAS:
-                    MessageBox.Show("botão Tarefas");
+                    FormListaAfazeres tarefas = new FormListaAfazeres(_usuario);
+                    tarefas.Show();
+                    this.Close();
                     break;
             }
         }

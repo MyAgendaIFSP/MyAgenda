@@ -1,4 +1,5 @@
-﻿using MyAgenda.Dados;
+﻿using MyAgenda.Controladores.Geral;
+using MyAgenda.Dados;
 using MyAgenda.Entidades;
 using System;
 using System.Drawing;
@@ -42,7 +43,7 @@ namespace MyAgenda.Componentes.Tarefas
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            FormEditarEvento formEditarEvento = new FormEditarEvento(_evento);
+            FormEditarEvento formEditarEvento = new FormEditarEvento(_evento, UsuarioController.GetInstance());
             formEditarEvento.Show();
         }
 

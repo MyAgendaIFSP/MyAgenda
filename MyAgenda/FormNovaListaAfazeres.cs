@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
 using MyAgenda.Entidades;
+using System;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
     public partial class FormNovaListaAfazeres : Form
     {
+
+        private UsuarioController _usuario;
+
         public FormNovaListaAfazeres()
         {
             InitializeComponent();
+        }
+
+        public FormNovaListaAfazeres(UsuarioController usuario)
+        {
+            InitializeComponent();
+            _usuario = usuario;
         }
 
         private void btnNovaLista_Click(object sender, EventArgs e)
@@ -24,11 +27,8 @@ namespace MyAgenda
             ListaAfazeres listaAfazeres = new ListaAfazeres();
             listaAfazeres.Titulo = txtTitulo.Text;
             listaAfazeres.DataCriacao = DateTime.Now;
-
-            Usuario usuario = new Usuario();
-            usuario.IdUsuario = 2;
-
-            listaAfazeres.Usuario = usuario;
+            
+            listaAfazeres.Usuario = _usuario.GetModelo();
 
             ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
             listaAfazeresAPI.AdicionaLista(listaAfazeres);

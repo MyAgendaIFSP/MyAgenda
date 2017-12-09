@@ -1,23 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MyAgenda.Entidades;
+﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Componentes.Tarefas;
+using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
-using MyAgenda.Componentes;
+using MyAgenda.Entidades;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
-    public partial class FormEventos : Form
+    public partial class FormEventos : BaseForm
     {
-        public FormEventos()
+        private UsuarioController _usuario = null;
+
+        public FormEventos(UsuarioController u)
         {
             InitializeComponent();
+
+            BarraNavegacao.AddItem("Matriz do Tempo", (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO);
+            BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
+            BarraNavegacao.AddItem("Tarefas", (int)EBarraNavegacaoBotoes.TAREFAS);
+        }
+
+        protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
+        {
+            base.OnBarraNavegacaoItemClick(btn, itemId);
+
+            switch (itemId)
+            {
+                case (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO:
+                    FormMatrizTempo matriz = new FormMatrizTempo(_usuario);
+                    matriz.Show();
+                    this.Close();
+                    break;
+                case (int)EBarraNavegacaoBotoes.POMODORO:
+                    MessageBox.Show("botão Pomodoro");
+                    break;
+                case (int)EBarraNavegacaoBotoes.TAREFAS:
+                    FormListaAfazeres tarefas = new FormListaAfazeres(_usuario);
+                    tarefas.Show();
+                    this.Close();
+                    break;
+            }
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)

@@ -92,7 +92,8 @@ namespace MyAgenda.Dados
                         tarefa.Lista = new ListaAfazeres();
                         tarefa.Titulo = reader["titulo"].ToString();
                         tarefa.Data = Convert.ToDateTime(reader["mdata"].ToString());
-                        tarefa.Usuario = new Usuario();
+                        //TODO: Não há distinção entre usuário?
+                        //tarefa.Usuario = new UsuarioModel();
                         tarefas.Add(tarefa);
                     }
                 }
