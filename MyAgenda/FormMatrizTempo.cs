@@ -1,12 +1,11 @@
-﻿using MyAgenda.Controladores.Geral;
+﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Controladores.Geral;
 using MyAgenda.Controladores.MatrizTempo;
 using MyAgenda.Modelos.MatrizTempo;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using MyAgenda.Componentes.Geral;
-using MyAgenda.Componentes.MatrizTempo;
 
 namespace MyAgenda
 {

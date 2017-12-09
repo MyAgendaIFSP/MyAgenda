@@ -45,7 +45,7 @@
             this.btnNovaLista.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnNovaLista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnNovaLista.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
-            this.btnNovaLista.Location = new System.Drawing.Point(189, 188);
+            this.btnNovaLista.Location = new System.Drawing.Point(189, 112);
             this.btnNovaLista.Name = "btnNovaLista";
             this.btnNovaLista.Size = new System.Drawing.Size(122, 34);
             this.btnNovaLista.TabIndex = 21;
@@ -53,6 +53,8 @@
             this.btnNovaLista.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnNovaLista.UseVisualStyleBackColor = true;
             this.btnNovaLista.Click += new System.EventHandler(this.btnNovaLista_Click);
+            this.btnNovaLista.MouseEnter += new System.EventHandler(this.btnNovaLista_MouseEnter);
+            this.btnNovaLista.MouseLeave += new System.EventHandler(this.btnNovaLista_MouseLeave);
             // 
             // txtTitulo
             // 
@@ -80,7 +82,7 @@
             this.lblNovaLista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblNovaLista.Location = new System.Drawing.Point(12, 9);
             this.lblNovaLista.Name = "lblNovaLista";
-            this.lblNovaLista.Size = new System.Drawing.Size(204, 21);
+            this.lblNovaLista.Size = new System.Drawing.Size(176, 19);
             this.lblNovaLista.TabIndex = 18;
             this.lblNovaLista.Text = "Criar Lista de Afazeres";
             // 
@@ -89,13 +91,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(323, 234);
+            this.ClientSize = new System.Drawing.Size(323, 158);
             this.Controls.Add(this.btnNovaLista);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblNovaLista);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormNovaListaAfazeres";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MyAgenda | Nova Lista de Afazeres";
             this.ResumeLayout(false);
             this.PerformLayout();

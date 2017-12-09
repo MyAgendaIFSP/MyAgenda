@@ -118,7 +118,10 @@ namespace MyAgenda.Componentes.Geral
 
                 if ((tForm != typeof(FormListaContatos) &&
                     tForm != typeof(FormChat) &&
-                    tForm != typeof(Notification)) &&
+                    tForm != typeof(Notification) &&
+                    tForm != typeof(FormEditarEvento) &&
+                    tForm != typeof(FormAlertaEvento) &&
+                    tForm != typeof(FormEditarTarefa)) &&
                     f.Visible)
                 {
                     podeFechar = false;
