@@ -17,7 +17,7 @@ namespace MyAgenda.Dados
         {
             List<ListaAfazeres> listas = new List<ListaAfazeres>();
 
-            string query = "SELECT * FROM LISTA_AFAZERES ORDER BY TITULO ASC";
+            string query = "SELECT * FROM LISTA_AFAZERES WHERE USUARIO = 1 ORDER BY TITULO ASC";
 
             SqlConnection conn = null;
             SqlDataReader reader = null;
@@ -62,7 +62,7 @@ namespace MyAgenda.Dados
         {
             List<ListaAfazeres> listas = new List<ListaAfazeres>();
 
-            string query = "SELECT * FROM LISTA_AFAZERES ORDER BY TITULO ASC";
+            string query = "SELECT * FROM LISTA_AFAZERES WHERE USUARIO = 1 ORDER BY TITULO ASC";
 
             SqlConnection conn = null;
             SqlDataReader reader = null;

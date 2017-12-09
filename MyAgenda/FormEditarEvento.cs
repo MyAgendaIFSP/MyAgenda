@@ -42,8 +42,8 @@ namespace MyAgenda
             Evento eventoAtualizado = new Evento();
             eventoAtualizado.Titutlo = txtTitulo.Text;
             eventoAtualizado.Descricao = txtDescricao.Text;
-            eventoAtualizado.DataHoraInicio = cldDataInicio.SelectionRange.Start;
-            eventoAtualizado.DataHoraTermino = cldDataTermino.SelectionRange.Start;
+            eventoAtualizado.DataHoraInicio = cldDataInicio.SelectionRange.Start + dtpHorarioInicial.Value.TimeOfDay;
+            eventoAtualizado.DataHoraTermino = cldDataTermino.SelectionRange.Start + dtpHorarioTermino.Value.TimeOfDay;
 
             Usuario usuario = new Usuario();
             usuario.IdUsuario = 1;

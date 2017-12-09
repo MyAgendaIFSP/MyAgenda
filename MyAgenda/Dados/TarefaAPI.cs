@@ -17,7 +17,7 @@ namespace MyAgenda.Dados
         {
             List<Tarefa> tarefas = new List<Tarefa>();
 
-            string query = "SELECT * FROM TAREFA WHERE LISTA = @LISTA ORDER BY CONCLUIDO ASC";
+            string query = "SELECT * FROM TAREFA WHERE LISTA = @LISTA AND USUARIO = 1 ORDER BY CONCLUIDO ASC";
 
             SqlConnection conn = null;
             SqlDataReader reader = null;
@@ -99,7 +99,7 @@ namespace MyAgenda.Dados
 
         public void EditarTarefa(Tarefa tarefaAntiga, Tarefa tarefaAtualizada)
         {
-            string query = "UPDATE TAREFA SET LISTA = @LISTA, USUARIO = @USUARIO, TITULO = @TITULONOVO, MDATA = @MDATA, CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULOANTIGO";
+            string query = "UPDATE TAREFA SET LISTA = @LISTA, USUARIO = @USUARIO, TITULO = @TITULONOVO, MDATA = @MDATA, CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULOANTIGO AND USUARIO = 1 AND LISTA = @LISTAANTIGA";
 
             SqlConnection conn = null;
 
@@ -113,11 +113,12 @@ namespace MyAgenda.Dados
                 }
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("LISTA", "Lista da Faculdade"));
-                cmd.Parameters.Add(new SqlParameter("USUARIO", 2));
+                cmd.Parameters.Add(new SqlParameter("LISTA", "Tarefas da Faculdade"));
+                cmd.Parameters.Add(new SqlParameter("USUARIO", 1));
                 cmd.Parameters.Add(new SqlParameter("TITULONOVO", tarefaAtualizada.Titulo));
                 cmd.Parameters.Add(new SqlParameter("MDATA", tarefaAtualizada.Data));
                 cmd.Parameters.Add(new SqlParameter("TITULOANTIGO", tarefaAntiga.Titulo));
+                cmd.Parameters.Add(new SqlParameter("LISTAANTIGA", "Tarefas da Faculdade"));
                 cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
 
                 cmd.ExecuteNonQuery();

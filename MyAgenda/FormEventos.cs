@@ -27,12 +27,14 @@ namespace MyAgenda
             evento.Descricao = txtDescricao.Text;
 
             DateTime dataHoraInicio = cldDataInicio.SelectionRange.Start;
-            dataHoraInicio.Add(dtpHorarioInicial.Value.TimeOfDay);
+            TimeSpan horaInicio = dtpHorarioInicial.Value.TimeOfDay;
+            dataHoraInicio = dataHoraInicio + horaInicio;
 
             evento.DataHoraInicio = dataHoraInicio;
 
             DateTime dataHoraFinal = cldDataTermino.SelectionRange.Start;
-            dataHoraFinal.Add(dtpHorarioTermino.Value.TimeOfDay);
+            TimeSpan horaFinal = dtpHorarioTermino.Value.TimeOfDay;
+            dataHoraFinal = dataHoraFinal + horaFinal;
 
             evento.DataHoraTermino = dataHoraFinal;
 

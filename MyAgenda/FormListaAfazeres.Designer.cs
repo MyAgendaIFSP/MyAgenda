@@ -136,6 +136,7 @@
             this.pnlListaAfazeres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlListaAfazeres.AutoScroll = true;
             this.pnlListaAfazeres.Location = new System.Drawing.Point(288, 131);
             this.pnlListaAfazeres.Name = "pnlListaAfazeres";
             this.pnlListaAfazeres.Size = new System.Drawing.Size(527, 330);
