@@ -60,6 +60,11 @@ namespace MyAgenda.Controladores.MatrizTempo
             _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens(id));
         }
 
+        public void VerificaMatriz()
+        {
+            _api.VerificaMatriz();
+        }
+
         private List<ItemMatrizController> _carregaItens(int id)
         {
             return _api.CarregaItensMatriz(id);
@@ -105,6 +110,10 @@ namespace MyAgenda.Controladores.MatrizTempo
 
             return false;
         }
-                
+
+        public void SetMatriz(int id, DateTime dtInit, DateTime dtUltUtil)
+        {
+            _modelo = new MatrizModel(id, dtInit, dtUltUtil, _carregaItens(id));
+        }
     }
 }

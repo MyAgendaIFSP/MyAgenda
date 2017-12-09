@@ -291,7 +291,6 @@
   <ItemGroup>
     <Content Include="AppReadme\Compare-NET-Objects-Help.txt" />
     <Content Include="favicon %281%29.ico" />
-    <Content Include="Libs\IpFixoSqnApi.dll" />
     <None Include="Resources\ic_clear_white.png" />
     <None Include="Resources\ic_check_white.png" />
     <None Include="Resources\ic_check_black.png" />
