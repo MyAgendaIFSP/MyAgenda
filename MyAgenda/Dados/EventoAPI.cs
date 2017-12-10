@@ -74,7 +74,7 @@ namespace MyAgenda.Dados
         {
             List<Evento> eventos = new List<Evento>();
 
-            string query = "SELECT * FROM EVENTO WHERE USUARIO = @USUARIO ORDER BY INICIO ASC";
+            string query = "SELECT * FROM EVENTO WHERE USUARIO = @USUARIO ORDER BY INICIO DESC";
             
             SqlDataReader reader = null;
 

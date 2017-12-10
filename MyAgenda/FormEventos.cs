@@ -77,8 +77,6 @@ namespace MyAgenda
         {
             EventoAPI eventoAPI = new EventoAPI();
             List<Evento> eventos = eventoAPI.CarregaEventos();
-
-            int y = 0;
             foreach (Evento evento in eventos)
             {
                 ItemEvento itemEvento = new ItemEvento(evento);
@@ -86,6 +84,25 @@ namespace MyAgenda
                 itemEvento.Descricao = evento.Descricao;
                 itemEvento.DataHoraTermino = evento.DataHoraTermino.ToLongDateString();
                 itemEvento.Dock = DockStyle.Top;
+
+                double dateDiff = (evento.DataHoraInicio - DateTime.Now).TotalDays;
+
+                if (dateDiff < 0)
+                {
+                    itemEvento.Prioridade = Color.LightGray;
+                }
+                else if (dateDiff <= 2)
+                {
+                    itemEvento.Prioridade = Color.LightSalmon;
+                }
+                else if (dateDiff <= 7)
+                {
+                    itemEvento.Prioridade = Color.LightYellow;
+                } else
+                {
+                    itemEvento.Prioridade = Color.LightGreen;
+                }
+
                 pnlEventos.Controls.Add(itemEvento);
             }
         }

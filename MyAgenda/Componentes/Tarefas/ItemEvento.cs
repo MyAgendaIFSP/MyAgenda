@@ -29,6 +29,11 @@ namespace MyAgenda.Componentes.Tarefas
             set { lblDataHoraTermino.Text = value; }
         }
 
+        public Color Prioridade
+        {
+            set { pnlPrioridade.BackColor = value; }
+        }
+
         public ItemEvento()
         {
             InitializeComponent();
