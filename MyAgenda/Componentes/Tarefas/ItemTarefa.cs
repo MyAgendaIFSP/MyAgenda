@@ -33,18 +33,15 @@ namespace MyAgenda.Componentes.Tarefas
         public void btnChecar_Click(object sender, EventArgs e)
         {
             TarefaAPI tarefaAPI = new TarefaAPI();
-
-            Tarefa tarefa = new Tarefa();
-            tarefa.Titulo = lblDescricaoTarefa.Text;
-
-            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, "Lista da Faculdade"))
+            
+            if (tarefaAPI.IsTarefaConcluida(_tarefa.Titulo, _tarefa.Lista.Titulo))
             {
-                tarefaAPI.DesconcluirTarefa(tarefa);
+                tarefaAPI.DesconcluirTarefa(_tarefa);
                 lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Regular);
             } 
             else
             {
-                tarefaAPI.ConcluirTarefa(tarefa);
+                tarefaAPI.ConcluirTarefa(_tarefa);
                 lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Strikeout);
             }
         }
@@ -116,7 +113,7 @@ namespace MyAgenda.Componentes.Tarefas
         private void btnEditar_Click(object sender, EventArgs e)
         {
             FormEditarTarefa formEditarTarefa = new FormEditarTarefa(_tarefa, UsuarioController.GetInstance());
-            formEditarTarefa.Show();
+            formEditarTarefa.ShowDialog();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -137,7 +134,7 @@ namespace MyAgenda.Componentes.Tarefas
             Tarefa tarefa = new Tarefa();
             tarefa.Titulo = lblDescricaoTarefa.Text;
 
-            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, "Lista da Faculdade"))
+            if (tarefaAPI.IsTarefaConcluida(lblDescricaoTarefa.Text, _tarefa.Lista.Titulo))
             {
                 lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Strikeout);
             }

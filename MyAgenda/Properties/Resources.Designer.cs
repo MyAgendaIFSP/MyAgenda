@@ -233,16 +233,6 @@ namespace MyAgenda.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ic_edit_black {
-            get {
-                object obj = ResourceManager.GetObject("ic_edit_black", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ic_exit_to_app_white {
             get {
                 object obj = ResourceManager.GetObject("ic_exit_to_app_white", resourceCulture);
@@ -266,6 +256,16 @@ namespace MyAgenda.Properties {
         internal static System.Drawing.Bitmap ic_message_black {
             get {
                 object obj = ResourceManager.GetObject("ic_message_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_mode_edit_black_18dp_1x {
+            get {
+                object obj = ResourceManager.GetObject("ic_mode_edit_black_18dp_1x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

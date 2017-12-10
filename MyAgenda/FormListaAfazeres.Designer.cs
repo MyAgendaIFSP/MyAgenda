@@ -242,6 +242,7 @@
             this.Text = "MyAgenda | Lista de Afazeres";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormListaAfazeres_Load);
+            this.Shown += new System.EventHandler(this.FormListaAfazeres_Shown);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.lblTarefa, 0);
             this.Controls.SetChildIndex(this.txtTarefa, 0);

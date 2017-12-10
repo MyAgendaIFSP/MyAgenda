@@ -1,7 +1,5 @@
-﻿using MyAgenda.Controladores.MatrizTempo;
-using MyAgenda.Modelos.Geral;
+﻿using MyAgenda.Modelos.Geral;
 using MyAgenda.Seguranca;
-using System;
 using System.Data.SqlClient;
 
 namespace MyAgenda.Dados
