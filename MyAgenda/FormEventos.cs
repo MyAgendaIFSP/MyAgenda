@@ -68,6 +68,11 @@ namespace MyAgenda
 
         public void AtualizaEventosEmTela()
         {
+            txtTitulo.Text = "";
+            txtDescricao.Text = "";
+            dtpInicio.Value = DateTime.Now;
+            dtpTermino.Value = DateTime.Now;        
+
             pnlEventos.Controls.Clear();        
 
             _carregaEventosDaBaseDeDados();

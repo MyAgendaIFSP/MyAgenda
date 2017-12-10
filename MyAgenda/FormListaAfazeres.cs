@@ -92,6 +92,8 @@ namespace MyAgenda
 
         public void AtualizaTarefasEmTela()
         {
+            txtTarefa.Text = "";
+
             pnlListaAfazeres.Controls.Clear();
             cbbOpcoesListasAfazeres.Items.Clear();
             cbbListasAfazeres.Items.Clear();
@@ -129,7 +131,7 @@ namespace MyAgenda
                 {
                     TarefaAPI tarefaAPI = new TarefaAPI();
                     tarefaAPI.AdicionaTarefa(tarefa);
-                    _carregaTarefasDaBaseDeDados(lista.Titulo);
+                    AtualizaTarefasEmTela();
                 }
                 else
                 {
