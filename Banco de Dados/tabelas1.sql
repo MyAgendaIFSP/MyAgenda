@@ -1,12 +1,20 @@
 create database my_agenda;
 
+go
+
 use my_agenda;
+
+go
+
 
 create table matriz_tempo(
     id int primary key identity(1,1) not null,
     ultima_utilizacao datetime null,
     inicializacao datetime null
 );
+
+go
+
 
 create table item_matriz(
     id int primary key identity(1,1) not null,
@@ -21,19 +29,23 @@ create table item_matriz(
     on update cascade
 );
 
+go
+
+
 create table usuario (
 	id int primary key identity(1,1) not null,
 	matriz_tempo int null,
-	estado int not null,
 	nome varchar(100) not null,
 	email varchar(50) not null,
 	senha varchar(256) not null,
 	salt varchar(256) not null,
-	lembrar int not null,
 	constraint usuario_matriz_fk foreign key(matriz_tempo) references matriz_tempo(id)
 	on delete cascade
 	on update cascade
 );
+
+go
+
 
 create table pomodoro(
 	id_sessao int primary key identity(1,1),
@@ -43,6 +55,9 @@ create table pomodoro(
 	data_sessao datetime not null,
 )
 
+go
+
+
 create table lista_contatos(
      id int primary key identity(1,1) not null,
      usuario int not null,
@@ -50,6 +65,9 @@ create table lista_contatos(
      on delete no action
      on update no action
 );
+
+go
+
 
 create table contato(
     lista_contato int not null,
@@ -61,6 +79,9 @@ create table contato(
     on delete no action
     on update no action
 );
+
+go
+
 
 create table conversa(
     id int primary key identity(1,1) not null,
@@ -75,6 +96,9 @@ create table conversa(
     on update no action
 );
 
+go
+
+
 create table mensagem(
     conversa int not null,
     destinatario int not null,
@@ -82,6 +106,9 @@ create table mensagem(
     estado int not null,
     data datetime not null
 );
+
+go
+
 
 create table evento(
     id int primary key identity(1,1) not null,
@@ -95,6 +122,9 @@ create table evento(
     on update cascade
 );
 
+go
+
+
 create table lista_afazeres(
     titulo varchar(50) not null,
     usuario int not null,
@@ -104,6 +134,9 @@ create table lista_afazeres(
     on delete cascade
     on update cascade
 );
+
+go
+
 
 create table tarefa(
     lista varchar(50) not null,
@@ -116,3 +149,6 @@ create table tarefa(
     on delete cascade
     on update cascade
 );
+
+go
+

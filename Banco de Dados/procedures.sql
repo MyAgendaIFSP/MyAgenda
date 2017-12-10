@@ -62,7 +62,7 @@ procedure GetContatos @usuario_id int
 as
 begin
 
-	SELECT usuario.nome, usuario.email, usuario.id, usuario.estado
+	SELECT usuario.nome, usuario.email, usuario.id
 	FROM(
 			SELECT contato.usuario AS uid
 			FROM contato
@@ -78,7 +78,7 @@ procedure BuscaContato @usuario_id int, @busca varchar(255)
 as
 begin
 
-	select id, nome, email, estado
+	select id, nome, email
 	from usuario
 	where (usuario.nome like concat('%', @busca, '%') or email like concat('%', @busca, '%'))
 	and id <> @usuario_id
