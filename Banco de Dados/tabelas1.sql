@@ -35,10 +35,12 @@ go
 create table usuario (
 	id int primary key identity(1,1) not null,
 	matriz_tempo int null,
+	estado int not null,
 	nome varchar(100) not null,
 	email varchar(50) not null,
 	senha varchar(256) not null,
 	salt varchar(256) not null,
+	lembrar int not null,
 	constraint usuario_matriz_fk foreign key(matriz_tempo) references matriz_tempo(id)
 	on delete cascade
 	on update cascade

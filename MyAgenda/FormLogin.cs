@@ -93,7 +93,8 @@ namespace MyAgenda
 
         private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //FrmCadastro.Show();
+            FrmCadastro cad = new FrmCadastro();
+            cad.ShowDialog();
         }
 
         private void FormLogin_Load(object sender, EventArgs e)

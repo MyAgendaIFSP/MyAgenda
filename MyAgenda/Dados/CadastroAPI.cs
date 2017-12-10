@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyAgenda.Seguranca;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace MyAgenda.Dados
 
         private SqlConnection _conexao = null;
 
-        public const string strInsert = "INSERT INTO usuario VALUES (@email_usuario, @nome_usuario, @sobrenome_usuario, @senha_usuario)";
+        public const string strInsert = "INSERT INTO usuario (estado, nome, email, senha, salt, lembrar) VALUES (1, @nome_usuario, @email_usuario, @senha_usuario, @salt, 0)";
         private bool _abreConexao()
         {
             if (_conexao == null)
@@ -71,12 +72,14 @@ namespace MyAgenda.Dados
         {
             if (_abreConexao())
             {
+                Criptografia c = new Criptografia();
+                string salt = c.GeraSalt();
                 SqlCommand objCommand = new SqlCommand(strInsert, _conexao);
 
                 objCommand.Parameters.AddWithValue("@email_usuario", email_usuario);
-                objCommand.Parameters.AddWithValue("@nome_usuario", nome_usuario);
-                objCommand.Parameters.AddWithValue("@sobrenome_usuario", sobrenome_usuario);
-                objCommand.Parameters.AddWithValue("@senha_usuario", senha_usuario);
+                objCommand.Parameters.AddWithValue("@nome_usuario", nome_usuario + " " + sobrenome_usuario);
+                objCommand.Parameters.AddWithValue("@senha_usuario", c.GetHashSenha(senha_usuario, salt));
+                objCommand.Parameters.AddWithValue("@salt", salt);
 
                 objCommand.ExecuteNonQuery();
 

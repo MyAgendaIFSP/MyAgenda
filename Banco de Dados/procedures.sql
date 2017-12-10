@@ -125,3 +125,21 @@ begin
 
 end
 go
+
+create
+procedure NovaMatrizTempo @usuario int
+as
+begin
+
+	declare @matriz int;
+
+	insert into matriz_tempo (inicializacao, ultima_utilizacao) values (getdate(), getdate());
+
+	select @matriz = max(id) from matriz_tempo;
+
+	update usuario set matriz_tempo = @matriz where id = @usuario;
+	
+	return @matriz;
+
+end
+go
