@@ -37,27 +37,41 @@
             this.btnEntrar = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.llblCadastrar = new System.Windows.Forms.LinkLabel();
-            this.loader1 = new MyAgenda.Componentes.Loader();
+            this.loader1 = new MyAgenda.Componentes.Geral.Loader();
+            this.ckbLembrar = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
+            // BarraNavegacao
+            // 
+            this.BarraNavegacao.Size = new System.Drawing.Size(542, 40);
+            // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(48, 109);
+            this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUsuario.Location = new System.Drawing.Point(48, 100);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(351, 27);
+            this.txtUsuario.Size = new System.Drawing.Size(444, 27);
             this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.Text = "allexxrodriguess@gmail.com";
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(48, 174);
+            this.txtSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSenha.Location = new System.Drawing.Point(48, 162);
             this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSenha.MaxLength = 16;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(351, 27);
+            this.txtSenha.Size = new System.Drawing.Size(444, 27);
             this.txtSenha.TabIndex = 1;
+            this.txtSenha.Text = "123456";
             this.txtSenha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
@@ -75,17 +89,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 83);
+            this.label2.Location = new System.Drawing.Point(44, 74);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 21);
+            this.label2.Size = new System.Drawing.Size(51, 21);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Usuário";
+            this.label2.Text = "Email";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 148);
+            this.label3.Location = new System.Drawing.Point(44, 136);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 21);
@@ -94,6 +108,8 @@
             // 
             // btnEntrar
             // 
+            this.btnEntrar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEntrar.BackColor = System.Drawing.Color.LightSlateGray;
             this.btnEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEntrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SlateGray;
@@ -101,9 +117,9 @@
             this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.ForeColor = System.Drawing.Color.White;
-            this.btnEntrar.Location = new System.Drawing.Point(48, 238);
+            this.btnEntrar.Location = new System.Drawing.Point(48, 245);
             this.btnEntrar.Name = "btnEntrar";
-            this.btnEntrar.Size = new System.Drawing.Size(351, 37);
+            this.btnEntrar.Size = new System.Drawing.Size(444, 37);
             this.btnEntrar.TabIndex = 5;
             this.btnEntrar.Text = "&Entrar";
             this.btnEntrar.UseVisualStyleBackColor = false;
@@ -113,7 +129,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblStatus.Location = new System.Drawing.Point(48, 204);
+            this.lblStatus.Location = new System.Drawing.Point(48, 222);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(113, 17);
             this.lblStatus.TabIndex = 6;
@@ -125,7 +141,7 @@
             this.llblCadastrar.AutoSize = true;
             this.llblCadastrar.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.llblCadastrar.LinkColor = System.Drawing.Color.RoyalBlue;
-            this.llblCadastrar.Location = new System.Drawing.Point(48, 277);
+            this.llblCadastrar.Location = new System.Drawing.Point(48, 284);
             this.llblCadastrar.Name = "llblCadastrar";
             this.llblCadastrar.Size = new System.Drawing.Size(118, 17);
             this.llblCadastrar.TabIndex = 7;
@@ -136,18 +152,35 @@
             // loader1
             // 
             this.loader1.Active = false;
+            this.loader1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.loader1.Location = new System.Drawing.Point(0, 0);
             this.loader1.Name = "loader1";
-            this.loader1.Size = new System.Drawing.Size(449, 5);
+            this.loader1.Size = new System.Drawing.Size(542, 5);
             this.loader1.TabIndex = 8;
             this.loader1.TabStop = false;
+            // 
+            // ckbLembrar
+            // 
+            this.ckbLembrar.AutoSize = true;
+            this.ckbLembrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckbLembrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ckbLembrar.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.ckbLembrar.Location = new System.Drawing.Point(49, 196);
+            this.ckbLembrar.Name = "ckbLembrar";
+            this.ckbLembrar.Size = new System.Drawing.Size(108, 23);
+            this.ckbLembrar.TabIndex = 9;
+            this.ckbLembrar.Text = "Lembrar-me";
+            this.ckbLembrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ckbLembrar.UseVisualStyleBackColor = true;
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(449, 317);
+            this.ClientSize = new System.Drawing.Size(542, 323);
+            this.Controls.Add(this.ckbLembrar);
             this.Controls.Add(this.loader1);
             this.Controls.Add(this.llblCadastrar);
             this.Controls.Add(this.lblStatus);
@@ -157,15 +190,29 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtUsuario);
-            this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "FormLogin";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MyAgenda | Entrar";
+            this.Text = "MyAgenda - Entrar";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
+            this.Shown += new System.EventHandler(this.FormLogin_Shown);
+            this.Controls.SetChildIndex(this.txtUsuario, 0);
+            this.Controls.SetChildIndex(this.txtSenha, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.btnEntrar, 0);
+            this.Controls.SetChildIndex(this.lblStatus, 0);
+            this.Controls.SetChildIndex(this.llblCadastrar, 0);
+            this.Controls.SetChildIndex(this.loader1, 0);
+            this.Controls.SetChildIndex(this.BarraNavegacao, 0);
+            this.Controls.SetChildIndex(this.Loader, 0);
+            this.Controls.SetChildIndex(this.ckbLembrar, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -182,7 +229,8 @@
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.LinkLabel llblCadastrar;
-        private MyAgenda.Componentes.Loader loader1;
+        private MyAgenda.Componentes.Geral.Loader loader1;
+        private System.Windows.Forms.CheckBox ckbLembrar;
     }
 }
 

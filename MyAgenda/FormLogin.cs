@@ -1,89 +1,129 @@
-﻿using System;
+﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Controladores.Chat;
+using MyAgenda.Controladores.Geral;
+using MyAgenda.Dados;
+using System;
+using MyAgenda;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace MyAgenda
 {
-    public partial class FormLogin : Form
+    public partial class FormLogin : BaseForm
     {
+        private UsuarioController user = UsuarioController.GetInstance();
+
         public FormLogin()
         {
             InitializeComponent();
+
+            this.Size = new Size(558, 362);
+            this.WindowState = FormWindowState.Normal;
+            
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.TemBarraNavegacao = false;
+            this.StatusLabel = lblStatus;
+            
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            _autenticarUsuario();
-
-            FormMatrizTempo f = new FormMatrizTempo();
-                f.Show();
-        }
-
-        private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //Abrir tela de cadastro como um diálogo
-        }
-
-        private void _autenticarUsuario()
-        {
-            _comecaCarregar();
+            
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
 
             //Validar entradas do usuário
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
-                _mostraErro("Digite um nome de usuário.");
+                this.MostraErro("Digite um nome de usuário.");
                 txtUsuario.Focus();
+                this.ParaCarregar();
+                return;
             }
             else if (String.IsNullOrEmpty(txtSenha.Text))
             {
-                _mostraErro("Digite sua senha cadastrada.");
+                this.MostraErro("Digite sua senha cadastrada.");
                 txtSenha.Focus();
+                this.ParaCarregar();
+                return;
+            }
+            else if (txtSenha.Text.Length < 6)
+            {
+                this.MostraErro("Sua senha deve possuir entre 6 e 16 caracteres.");
+                txtSenha.Focus();
+                this.ParaCarregar();
+                return;
             }
 
-            _paraCarregar();
-
-            btnEntrar.Enabled = true;
+            this.ComecaCarregar();
+            worker.RunWorkerAsync();
         }
 
-        private void _mostraErro(string msg)
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            lblStatus.ForeColor = Color.Red;
-            lblStatus.Text = msg;
-            lblStatus.Visible = true;
+            _avancaTela();
         }
 
-        private void _mostraSucesso(string msg)
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            lblStatus.ForeColor = Color.LimeGreen;
-            lblStatus.Text = msg;
-            lblStatus.Visible = true;
+            user.Autentica(txtUsuario.Text, txtSenha.Text, ckbLembrar.Checked);
         }
 
-        private void _comecaCarregar()
+        private void _avancaTela()
         {
-            loader1.Active = true;
-            _desabilitaTudo();
-        }
+            this.ParaCarregar();
 
-        private void _paraCarregar()
-        {
-            loader1.Active = false;
-            _habilitaTudo();
-        }
-
-        private void _desabilitaTudo()
-        {
-            foreach(Control c in this.Controls)
+            if (user.IsAutenticado)
             {
-                c.Enabled = false;
+                //abrir próximo form
+                FormEventos e = new FormEventos(user);
+                e.Show();
+                this.Hide();
+
+                ChatController chat = ChatController.GetInstance();
+                chat.Escuta = true;
+            }
+            else
+            {
+                this.MostraErro("Usuário não autenticado. Verifique suas informações e tente novamente.");
             }
         }
 
-        private void _habilitaTudo()
+        private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            foreach (Control c in this.Controls)
+            //FrmCadastro.Show();
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            this.Loader.Width = this.Width;
+
+        }
+
+        private void FormLogin_Shown(object sender, EventArgs e)
+        {
+            UsuarioAPI api = UsuarioAPI.GetInstance();
+            this.DesabilitaTudo();
+
+            if (!api.VerificaConexao())
             {
-                c.Enabled = true;
+                MostraErro("Sem conexão com o servidor.");
+                lblStatus.Enabled = true;
+                return;
+            }
+
+            this.HabilitaTudo();
+
+            Properties.Settings configs = Properties.Settings.Default;
+
+            if (configs.LembrarLogin)
+            {
+                this.ComecaCarregar();
+
+                user.AbreSessaoLembrada();
+                _avancaTela();
             }
         }
     }

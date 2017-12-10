@@ -1,68 +1,161 @@
-﻿using System;
+﻿using MyAgenda.Componentes.Geral;
+using MyAgenda.Componentes.MatrizTempo;
+using MyAgenda.Controladores.Geral;
+using MyAgenda.Controladores.MatrizTempo;
+using MyAgenda.Modelos.MatrizTempo;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
-using static MyAgenda.Componentes.BarraNavegacao;
 
 namespace MyAgenda
 {
-    public partial class FormMatrizTempo : Form
+    public partial class FormMatrizTempo : BaseForm
     {
-        public FormMatrizTempo()
+        private Matriz.EQuadrante _quadranteSelecionado = Matriz.EQuadrante.NENHUM;
+
+        private UsuarioController _usuario = null;
+
+        public FormMatrizTempo(UsuarioController u)
         {
             InitializeComponent();
-            barraNavegacao1.MenuItemClick += _click;
-            
-            barraNavegacao1.AddItem("Início", Properties.Resources.ic_home_white, 1);
-            barraNavegacao1.AddItem("Pomodoro", 2);
-            barraNavegacao1.AddItem("Tarefas", 3);
-            barraNavegacao1.AddItem("Sair", Properties.Resources.ic_exit_to_app_white, EPosicao.DIREITA, 4);
-            barraNavegacao1.AddItem("Offline", Properties.Resources.ic_cloud_queue_white, EPosicao.DIREITA, _cloudClick, 5);
 
+            this.StatusLabel = lblStatus;
+
+            BarraNavegacao.AddItem("Início", Properties.Resources.ic_home_white, (int)EBarraNavegacaoBotoes.INICIO);
+            BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
+            BarraNavegacao.AddItem("Tarefas", (int)EBarraNavegacaoBotoes.TAREFAS);
+
+            _usuario = u;
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
-        private void _cloudClick(ref Button btn, int itemId)
+        protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
         {
-            MessageBox.Show("botão Nuvem");
+            base.OnBarraNavegacaoItemClick(btn, itemId);
 
-            btn.Image = Properties.Resources.ic_cloud_white;
-        }
-
-        private void _click(ref Button btn, int itemId)
-        {            
-            switch(itemId)
+            switch (itemId)
             {
-                case 1:
-                    MessageBox.Show("botão início");
+                case (int)EBarraNavegacaoBotoes.INICIO:
+                    FormEventos eventos = new FormEventos(_usuario);
+                    eventos.Show();
+                    this.Close();
                     break;
-                case 2:
-                    MessageBox.Show("botão Pomodoro");
+                case (int)EBarraNavegacaoBotoes.POMODORO:
+                    Pomodoro pomodoro = new Pomodoro(_usuario);
+                    pomodoro.Show();
+                    this.Close();
                     break;
-                case 3:
-                    MessageBox.Show("botão Tarefas");
-                    break;
-                case 4:
-                    MessageBox.Show("botão Sair");
+                case (int)EBarraNavegacaoBotoes.TAREFAS:
+                    FormListaAfazeres tarefas = new FormListaAfazeres(_usuario);
+                    tarefas.Show();
+                    this.Close();
                     break;
             }
         }
 
+        private void FormMatrizTempo_Load(object sender, EventArgs e)
+        {
+            this.ComecaCarregar();
+
+            //Buscar no banco de dados os itens do usuário
+            matrizTempo.CarregaMatriz(_usuario.GetModelo().Id);
+
+            BarraNavegacao.Width = this.Width;
+
+            this.ParaCarregar();
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            string titulo = txtTitulo.Text;
+            string descricao = txtDescricao.Text;
+            
+            if (String.IsNullOrEmpty(titulo))
+            {
+                this.MostraErro("Digite um título para o item");
+                return;
+            }
+            else if (_quadranteSelecionado == Matriz.EQuadrante.NENHUM)
+            {
+                this.MostraErro("Selecione um quadrante");
+                return;
+            }
+
+            this.ComecaCarregar();
+
+            ItemMatrizModel item = new ItemMatrizModel(titulo, descricao, _quadranteSelecionado);
+
+            matrizTempo.AdicionaItem(new ItemMatrizController(item));
+
+            this.ParaCarregar();
+            this.MostraSucesso("Item adicionado.");
+        }
+
+        private void btnQuad1_Click(object sender, EventArgs e)
+        {
+            btnQuad1.BackColor = Color.DarkSlateGray;
+            btnQuad2.BackColor = Color.LightSlateGray;
+            btnQuad3.BackColor = Color.LightSlateGray;
+            btnQuad4.BackColor = Color.LightSlateGray;
+
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_1;
+        }
+
+        private void btnQuad2_Click(object sender, EventArgs e)
+        {
+            btnQuad2.BackColor = Color.DarkSlateGray;
+            btnQuad1.BackColor = Color.LightSlateGray;
+            btnQuad3.BackColor = Color.LightSlateGray;
+            btnQuad4.BackColor = Color.LightSlateGray;
+
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_2;
+        }
+
+        private void btnQuad3_Click(object sender, EventArgs e)
+        {
+            btnQuad3.BackColor = Color.DarkSlateGray;
+            btnQuad1.BackColor = Color.LightSlateGray;
+            btnQuad2.BackColor = Color.LightSlateGray;
+            btnQuad4.BackColor = Color.LightSlateGray;
+
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_3;
+        }
+
+        private void btnQuad4_Click(object sender, EventArgs e)
+        {
+            btnQuad4.BackColor = Color.DarkSlateGray;
+            btnQuad1.BackColor = Color.LightSlateGray;
+            btnQuad2.BackColor = Color.LightSlateGray;
+            btnQuad3.BackColor = Color.LightSlateGray;
+
+            _quadranteSelecionado = Matriz.EQuadrante.QUADRANTE_4;
+        }
+
+        #region Tramits de interface do usuário
+
         private void btnQuad1_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 1 na matriz
+            matrizTempo.IniciaHighlightQuadrante1();
         }
 
         private void btnQuad2_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 2 na matriz
+            matrizTempo.IniciaHighlightQuadrante2();
         }
 
         private void btnQuad3_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 3 na matriz
+            matrizTempo.IniciaHighlightQuadrante3();
         }
 
         private void btnQuad4_MouseEnter(object sender, EventArgs e)
         {
             //Destacar quadrante 4 na matriz
+            matrizTempo.IniciaHighlightQuadrante4();
         }
 
         private void btnAdicionar_MouseEnter(object sender, EventArgs e)
@@ -75,6 +168,34 @@ namespace MyAgenda
         {
             btnAdicionar.Image = Properties.Resources.ic_add_circle_black;
             btnAdicionar.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void btnQuad1_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante1();
+        }
+
+        private void btnQuad2_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante2();
+        }
+
+        private void btnQuad3_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante3();
+        }
+
+        private void btnQuad4_MouseLeave(object sender, EventArgs e)
+        {
+            matrizTempo.ParaHighlightQuadrante4();
+        }
+
+
+        #endregion
+
+        private void FormMatrizTempo_ResizeEnd(object sender, EventArgs e)
+        {
+            matrizTempo.Invalidate();
         }
     }
 }
