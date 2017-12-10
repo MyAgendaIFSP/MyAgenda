@@ -117,25 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnEditar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAAU1JREFUSEvt
-        1tsqhVEUhuFfLoPCASX7QxyIC1ByJ5QcyU3gFmxKNqHcAScuBSX78L5l1OzPssqcfzlYXz0nom+NMUeo
-        OvnP6cIYVjGPbjQWy2ZxhEdcYxGNZQgHsOwD77iBpY1M2od9vODz2xuusIAicY39WEYvRnCJV1jopA9Y
-        QXYsc42nuMMOBjCMKHW9h/CDZMWyKbhC1+Y099iCpaPwPTUNv//P8YcncYEoi/VZuo0e+KaDyC6bwTGe
-        EWWpWywhOzGZZXH69TInPoHTZSfW6GStynZRZI1e4x7SNwuW+yHOMIGsRJmn36rM9brmImWusdVkcjLL
-        PKTsNf50+im/fg4nyy5rd/qWOXl2mfHvWbvT9029xiJZw2+n72TZp59mA/WiOH3f1LctmnqhZU/wN0jx
-        MlMvdDLL/Peh2BrTzGEzsY5xNFLWSYFU1RfiupKUIHOMbAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnExcluir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAKxJREFUWEft
-        0bsNwkAURNEtgwC5BUqgXDANEFIGrZDwmZeh1WBxGSQI9konYj1rmTYawVZylPsL9Vud+UobOXXO4i5+
-        Vmf652oLtxV3wSdqC/fzF/ib+v+TinOflIhzo0ScGyXi3CgR50aJODdKxLlRIs6NEnFulIhzo0ScGyXi
-        3CgR50aJODdKxLlRIu4ibvgd9WzcQW7iLlhylb3ETTIL+RJ1didrGY0Wau0BTKBkD6Skf2gAAAAASUVO
-        RK5CYII=
-</value>
-  </data>
 </root>

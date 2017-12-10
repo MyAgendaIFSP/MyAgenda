@@ -85,7 +85,8 @@ namespace MyAgenda
                 itemEvento.Titulo = evento.Titutlo;
                 itemEvento.Descricao = evento.Descricao;
                 itemEvento.DataHoraTermino = evento.DataHoraTermino.ToLongDateString();
-                itemEvento.Width = pnlEventos.Width - 20;
+                itemEvento.Dock = DockStyle.Top;
+                //itemEvento.Width = pnlEventos.Width - 20;
                 itemEvento.Location = new Point(0, y);
                 pnlEventos.Controls.Add(itemEvento);
                 y = pnlEventos.Controls[pnlEventos.Controls.Count - 1].Bottom + 10;
