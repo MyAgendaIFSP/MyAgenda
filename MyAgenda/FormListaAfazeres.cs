@@ -20,7 +20,7 @@ namespace MyAgenda
         {
             InitializeComponent();
 
-            BarraNavegacao.AddItem("Início", (int)EBarraNavegacaoBotoes.INICIO);
+            BarraNavegacao.AddItem("Início", Properties.Resources.ic_home_white, (int)EBarraNavegacaoBotoes.INICIO);
             BarraNavegacao.AddItem("Matriz do Tempo", (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO);
             BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
 
@@ -77,6 +77,11 @@ namespace MyAgenda
 
         private void FormListaAfazeres_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void FormListaAfazeres_Shown(object sender, EventArgs e)
+        {
             _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa();
 
             _populaComboBoxDeListasDeAfazeresDoTopoDoForm();
@@ -116,13 +121,20 @@ namespace MyAgenda
                 tarefa.Usuario = _usuario.GetModelo();
 
                 ListaAfazeres lista = new ListaAfazeres();
-                lista.Titulo = cbbOpcoesListasAfazeres.GetItemText(cbbOpcoesListasAfazeres.SelectedItem);
+                lista.Titulo = cbbOpcoesListasAfazeres.Text;
 
                 tarefa.Lista = lista;
 
-                TarefaAPI tarefaAPI = new TarefaAPI();
-                tarefaAPI.AdicionaTarefa(tarefa);
-                _carregaTarefasDaBaseDeDados(lista.Titulo);
+                if (!String.IsNullOrEmpty(lista.Titulo))
+                {
+                    TarefaAPI tarefaAPI = new TarefaAPI();
+                    tarefaAPI.AdicionaTarefa(tarefa);
+                    _carregaTarefasDaBaseDeDados(lista.Titulo);
+                }
+                else
+                {
+                    MessageBox.Show("Selecione uma lista ou crie uma nova.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
@@ -134,13 +146,15 @@ namespace MyAgenda
         {
             TarefaAPI tarefaAPI = new TarefaAPI();
             List<Tarefa> tarefas = tarefaAPI.CarregaTarefas(listaAfazeres);
-
+            pnlListaAfazeres.Controls.Clear();
             int y = 0;
             foreach (Tarefa tarefa in tarefas)
             {
+                tarefa.Lista.Titulo = listaAfazeres;
                 ItemTarefa itemTarefa = new ItemTarefa(tarefa);
                 itemTarefa.DescricaoTarefa = tarefa.Titulo;
-                itemTarefa.Width = pnlListaAfazeres.Width - 20;
+                //itemTarefa.Width = pnlListaAfazeres.Width - 20;
+                itemTarefa.Dock = DockStyle.Top;
                 itemTarefa.Location = new Point(0, y);
 
                 pnlListaAfazeres.Controls.Add(itemTarefa);
@@ -151,7 +165,7 @@ namespace MyAgenda
 
         private void btnExibirTarefas_Click(object sender, EventArgs e)
         {
-            string listaAfazeres = cbbListasAfazeres.GetItemText(cbbListasAfazeres.SelectedItem);
+            string listaAfazeres = cbbListasAfazeres.Text;
 
             pnlListaAfazeres.Controls.Clear();
             cbbOpcoesListasAfazeres.Items.Clear();
@@ -197,5 +211,6 @@ namespace MyAgenda
         {
             btnExibirTarefas.ForeColor = System.Drawing.Color.Black;
         }
+
     }
 }
