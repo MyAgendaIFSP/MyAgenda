@@ -102,6 +102,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Agendamentos\JobEmiteAlertaParaEventos.cs" />
+    <Compile Include="Componentes\Pomodoro\CircularProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\Pomodoro\CircularProgressBar.Designer.cs">
+      <DependentUpon>CircularProgressBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Componentes\Tarefas\ItemEvento.cs">
       <SubType>UserControl</SubType>
     </Compile>
