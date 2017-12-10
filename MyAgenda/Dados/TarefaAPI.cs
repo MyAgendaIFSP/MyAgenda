@@ -1,4 +1,6 @@
 ﻿using MyAgenda.Entidades;
+using MyAgenda.Controladores.Geral;
+using MyAgenda.Modelos.Geral;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -72,7 +74,7 @@ namespace MyAgenda.Dados
         {
             List<Tarefa> tarefas = new List<Tarefa>();
 
-            string query = "SELECT * FROM TAREFA WHERE LISTA = @LISTA ORDER BY CONCLUIDO ASC";
+            string query = "SELECT * FROM TAREFA WHERE LISTA = @LISTA AND USUARIO = @USUARIO ORDER BY CONCLUIDO ASC";
             
             SqlDataReader reader = null;
 
@@ -83,6 +85,11 @@ namespace MyAgenda.Dados
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("LISTA", listaAfazeres));
 
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
+
                     reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -91,8 +98,8 @@ namespace MyAgenda.Dados
                         tarefa.Lista = new ListaAfazeres();
                         tarefa.Titulo = reader["titulo"].ToString();
                         tarefa.Data = Convert.ToDateTime(reader["mdata"].ToString());
-                        //TODO: Não há distinção entre usuário?
-                        //tarefa.Usuario = new UsuarioModel();
+                        tarefa.Usuario = usuarioModel;
+
                         tarefas.Add(tarefa);
                     }
                 }
@@ -136,18 +143,29 @@ namespace MyAgenda.Dados
 
         public void EditarTarefa(Tarefa tarefaAntiga, Tarefa tarefaAtualizada)
         {
-            string query = "UPDATE TAREFA SET LISTA = @LISTA, USUARIO = @USUARIO, TITULO = @TITULONOVO, MDATA = @MDATA, CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULOANTIGO";
+            string query = "UPDATE TAREFA SET LISTA = @LISTA, USUARIO = @USUARIO, TITULO = @TITULONOVO, MDATA = @MDATA, CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULOANTIGO AND USUARIO = @USUARIO AND LISTA = @LISTAANTIGA";
 
             if (_abreConexao())
             {
                 try
                 {
                     SqlCommand cmd = new SqlCommand(query, _conexao);
+<<<<<<< HEAD
+                    cmd.Parameters.Add(new SqlParameter("LISTA", tarefaAtualizada.Lista));
+
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
+
+=======
                     cmd.Parameters.Add(new SqlParameter("LISTA", "Lista da Faculdade"));
                     cmd.Parameters.Add(new SqlParameter("USUARIO", tarefaAtualizada.Usuario.Id));
+>>>>>>> 75ddb59bbb8f8c097e3293e647581f57a7172978
                     cmd.Parameters.Add(new SqlParameter("TITULONOVO", tarefaAtualizada.Titulo));
                     cmd.Parameters.Add(new SqlParameter("MDATA", tarefaAtualizada.Data));
                     cmd.Parameters.Add(new SqlParameter("TITULOANTIGO", tarefaAntiga.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("LISTAANTIGA", tarefaAntiga.Lista));
                     cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
 
                     cmd.ExecuteNonQuery();
@@ -163,7 +181,7 @@ namespace MyAgenda.Dados
 
         public void ExcluirTarefa(Tarefa tarefa)
         {
-            string query = "DELETE FROM TAREFA WHERE TITULO = @TITULO";
+            string query = "DELETE FROM TAREFA WHERE TITULO = @TITULO AND LISTA = @LISTA AND USUARIO = @USUARIO";
 
             if (_abreConexao())
             {
@@ -171,6 +189,13 @@ namespace MyAgenda.Dados
                 {
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("LISTA", tarefa.Lista));
+
+
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
 
                     cmd.ExecuteNonQuery();
                 }
@@ -187,7 +212,7 @@ namespace MyAgenda.Dados
         {
             Tarefa tarefa = new Tarefa();
 
-            string query = "SELECT CONCLUIDO FROM TAREFA WHERE LISTA = @LISTA AND TITULO = @TITULO";
+            string query = "SELECT CONCLUIDO FROM TAREFA WHERE LISTA = @LISTA AND TITULO = @TITULO AND USUARIO = @USUARIO";
             
             SqlDataReader reader = null;
 
@@ -200,6 +225,11 @@ namespace MyAgenda.Dados
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("LISTA", nomeLista));
                     cmd.Parameters.Add(new SqlParameter("TITULO", tituloTarefa));
+
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
 
                     reader = cmd.ExecuteReader();
 
@@ -230,7 +260,7 @@ namespace MyAgenda.Dados
         {
             Tarefa tarefa = new Tarefa();
 
-            string query = "SELECT * FROM TAREFA WHERE TAREFA = @TAREFA AND LISTA = @LISTA";
+            string query = "SELECT * FROM TAREFA WHERE TAREFA = @TAREFA AND LISTA = @LISTA AND USUARIO = @USUARIO";
             
             SqlDataReader reader = null;
 
@@ -244,6 +274,11 @@ namespace MyAgenda.Dados
 
                     cmd.Parameters.Add(new SqlParameter("TAREFA", tituloTarefa));
                     cmd.Parameters.Add(new SqlParameter("LISTA", nomeLista));
+
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
 
                     reader = cmd.ExecuteReader();
 
@@ -280,7 +315,7 @@ namespace MyAgenda.Dados
 
         public void ConcluirTarefa(Tarefa tarefa)
         {
-            string query = "UPDATE TAREFA SET CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULO";
+            string query = "UPDATE TAREFA SET CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULO AND LISTA = @LISTA AND USUARIO = @USUARIO";
 
             if (_abreConexao())
             {
@@ -291,6 +326,12 @@ namespace MyAgenda.Dados
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "S"));
                     cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("LISTA", tarefa.Lista));
+
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
 
                     cmd.ExecuteNonQuery();
                 }
@@ -305,7 +346,7 @@ namespace MyAgenda.Dados
 
         public void DesconcluirTarefa(Tarefa tarefa)
         {
-            string query = "UPDATE TAREFA SET CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULO";
+            string query = "UPDATE TAREFA SET CONCLUIDO = @CONCLUIDO WHERE TITULO = @TITULO AND LISTA = @LISTA AND USUARIO = @USUARIO";
 
             if (_abreConexao())
             {
@@ -314,6 +355,12 @@ namespace MyAgenda.Dados
                     SqlCommand cmd = new SqlCommand(query, _conexao);
                     cmd.Parameters.Add(new SqlParameter("CONCLUIDO", "N"));
                     cmd.Parameters.Add(new SqlParameter("TITULO", tarefa.Titulo));
+                    cmd.Parameters.Add(new SqlParameter("LISTA", tarefa.Lista));
+
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
 
                     cmd.ExecuteNonQuery();
                 }
