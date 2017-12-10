@@ -3,6 +3,7 @@ using MyAgenda.Controladores.Chat;
 using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
 using System;
+using MyAgenda;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -92,7 +93,7 @@ namespace MyAgenda
 
         private void llblCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Abrir tela de cadastro como um diálogo
+            //FrmCadastro.Show();
         }
 
         private void FormLogin_Load(object sender, EventArgs e)

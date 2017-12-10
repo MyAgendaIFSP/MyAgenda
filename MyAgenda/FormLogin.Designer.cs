@@ -43,6 +43,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
             // 
+            // BarraNavegacao
+            // 
+            this.BarraNavegacao.Size = new System.Drawing.Size(542, 40);
+            // 
             // txtUsuario
             // 
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 

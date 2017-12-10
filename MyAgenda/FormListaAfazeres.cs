@@ -39,7 +39,9 @@ namespace MyAgenda
                     this.Close();
                     break;
                 case (int)EBarraNavegacaoBotoes.POMODORO:
-                    MessageBox.Show("botão Pomodoro");
+                    Pomodoro pomodoro = new Pomodoro(_usuario);
+                    pomodoro.Show();
+                    this.Close();
                     break;
                 case (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO:
                     FormMatrizTempo matriz = new FormMatrizTempo(_usuario);

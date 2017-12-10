@@ -42,7 +42,9 @@ namespace MyAgenda
                     this.Close();
                     break;
                 case (int)EBarraNavegacaoBotoes.POMODORO:
-                    MessageBox.Show("botão Pomodoro");
+                    Pomodoro pomodoro = new Pomodoro(_usuario);
+                    pomodoro.Show();
+                    this.Close();
                     break;
                 case (int)EBarraNavegacaoBotoes.TAREFAS:
                     FormListaAfazeres tarefas = new FormListaAfazeres(_usuario);
