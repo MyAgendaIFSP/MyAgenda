@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace MyAgenda.Modelos.Util
 {
     class RecarregadorDados
     {
-        public void RecarregarDadosPrimeiraTelaCadastro(TextBox txtGetEmail, TextBox txtGetSenha, TextBox txtGetConfirmacaoSenha, Label lblEmail, Label lblSenha, Label lblConfirmaSenha, Button btnRetornarCadastro, Button btnFinalizarCadastro, ProgressBar pbCadastrar, Label lblsobrenome, Label lblDataNasc)
+        public void RecarregarDadosPrimeiraTelaCadastro(TextBox txtGetEmail, TextBox txtGetSenha, TextBox txtGetConfirmacaoSenha, Label lblEmail, Label lblSenha, Label lblConfirmaSenha, Button btnRetornarCadastro, Button btnFinalizarCadastro, ProgressBar pbCadastrar, Label lblsobrenome)
         {
             txtGetSenha.Visible = false;
             txtGetConfirmacaoSenha.Visible = false;
-            txtGetEmail.Visible = false;
+            txtGetEmail.Visible = true;
 
             lblSenha.Visible = false;
             lblConfirmaSenha.Visible = false;
-            lblEmail.Visible = false;
+            lblEmail.Visible = true;
 
             lblsobrenome.Visible = true;
-            lblDataNasc.Visible = true;
 
             btnFinalizarCadastro.Visible = false;
             btnRetornarCadastro.Visible = false;
