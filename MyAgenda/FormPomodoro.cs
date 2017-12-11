@@ -27,9 +27,14 @@ namespace MyAgenda
 
         }
 
+        public FormPomodoro()
+        {
+            InitializeComponent();
+        }
+
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            tmrPomodoro_Tick(sender, e);        
+            if (cclPbrPomodoro.Value != 0) { tmrPomodoro_Tick(sender, e); } 
         }
 
         private void nudTempo_ValueChanged(object sender, EventArgs e)
@@ -53,7 +58,10 @@ namespace MyAgenda
 
         private void btnResetar_Click(object sender, EventArgs e)
         {
-            cclPbrPomodoro.Value = int.Parse(nudTempo.Value.ToString());
+            if(tipoSessao == 1) { nudTempo.Value = 25; }
+            else if(tipoSessao == 2) { nudTempoShort.Value = 5; }
+            else { nudTempoLong.Value = 10; }
+            //cclPbrPomodoro.Value = int.Parse(nudTempo.Value.ToString());
         }
 
         private void btnShortBreak_Click(object sender, EventArgs e)
@@ -85,8 +93,9 @@ namespace MyAgenda
 
         private void nudTempoLong_ValueChanged(object sender, EventArgs e)
         {
-            cclPbrPomodoro.Maximum = (int)Math.Round(nudTempo.Value);
-            cclPbrPomodoro.Value = long.Parse(nudTempo.Value.ToString());
+            //cclPbrPomodoro.Maximum = (int)Math.Round(nudTempo.Value);
+            //cclPbrPomodoro.Value = long.Parse(nudTempo.Value.ToString());
+            //cclPbrPomodoro.Value = int.Parse(nudTempoLong.Value.ToString());
             cclPbrPomodoro.Value = int.Parse(nudTempoLong.Value.ToString());
         }
 

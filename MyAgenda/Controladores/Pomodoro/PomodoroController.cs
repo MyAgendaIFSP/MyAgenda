@@ -29,45 +29,45 @@ namespace MyAgenda.Controladores.Pomodoro
                     tmrPomodoro.Stop();
                     if (contadorQuadro1 == 0)
                     {
-                        contadorQuadro1++;
                         CallDataConnection(1,tipoSessao,tempoSessao);
                         AlarmePomodoro();
                         TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
                         if (tipoSessao == 1)
                         {
+                            contadorQuadro1++;
                             txtQuadroColor1.BackColor = Color.Orange;
                         }
                     }
                     else if (contadorQuadro2 == 0)
                     {
-                        contadorQuadro2++;
                         CallDataConnection(1, tipoSessao, tempoSessao);
                         AlarmePomodoro();
                         TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
                         if(tipoSessao == 1)
                         {
+                            contadorQuadro2++;
                             txtQuadroColor2.BackColor = Color.Orange;
                         }
                     }
                     else if (contadorQuadro3 == 0)
                     {
-                        contadorQuadro3++;
                         CallDataConnection(1, tipoSessao, tempoSessao);
                         AlarmePomodoro();
                         TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
                         if(tipoSessao == 1)
                         {
+                            contadorQuadro3++;
                             txtQuadroColor3.BackColor = Color.Orange;
                         }
                     }
                     else
                     {
-                        contadorQuadro4++;
                         CallDataConnection(1, tipoSessao, tempoSessao);
                         AlarmePomodoro();
                         TrocarContexto(ref btnPomodoro);
                         if(tipoSessao == 1)
                         {
+                            contadorQuadro4++;
                             txtQuadroColor4.BackColor = Color.Orange;
                         }
                     }
@@ -91,11 +91,10 @@ namespace MyAgenda.Controladores.Pomodoro
 
         public void AlarmePomodoro()
         {
-            var file = new FileInfo(Path.Combine(Path.GetDirectoryName(
-            Assembly.GetExecutingAssembly().Location), @"Alarm.wav"));
+            //var file = new FileInfo(Path.Combine(Path.GetDirectoryName(
+            //Assembly.GetExecutingAssembly().Location), @"Alarm.wav"));
 
-
-            SoundPlayer soundPlayer = new SoundPlayer(file.ToString());
+            SoundPlayer soundPlayer = new SoundPlayer(MyAgenda.Properties.Resources.Alarm);
             try
             {
                 soundPlayer.Play();

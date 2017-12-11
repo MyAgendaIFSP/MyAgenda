@@ -63,11 +63,11 @@
             // 
             // BarraNavegacao
             // 
-            this.BarraNavegacao.Size = new System.Drawing.Size(885, 40);
+            this.BarraNavegacao.Size = new System.Drawing.Size(920, 40);
             // 
             // Loader
             // 
-            this.Loader.Size = new System.Drawing.Size(869, 7);
+            this.Loader.Size = new System.Drawing.Size(904, 7);
             // 
             // txtQuadroColor1
             // 
@@ -346,7 +346,7 @@
             // 
             this.btnRelatorioPomodoro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelatorioPomodoro.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRelatorioPomodoro.Location = new System.Drawing.Point(695, 82);
+            this.btnRelatorioPomodoro.Location = new System.Drawing.Point(663, 81);
             this.btnRelatorioPomodoro.Name = "btnRelatorioPomodoro";
             this.btnRelatorioPomodoro.Size = new System.Drawing.Size(120, 39);
             this.btnRelatorioPomodoro.TabIndex = 18;
@@ -368,7 +368,7 @@
             this.cclPbrPomodoro.TabIndex = 19;
             this.cclPbrPomodoro.Value = ((long)(0));
             // 
-            // Pomodoro
+            // FormPomodoro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -388,7 +388,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.Name = "Pomodoro";
+            this.Name = "FormPomodoro";
             this.Text = "Pomodoro";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.SizeChanged += new System.EventHandler(this.Pomodoro_SizeChanged);
