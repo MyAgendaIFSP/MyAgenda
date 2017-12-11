@@ -1,4 +1,5 @@
 ﻿using MyAgenda.Componentes.Pomodoro;
+using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
 using System;
 using System.Drawing;
@@ -21,56 +22,77 @@ namespace MyAgenda.Controladores.Pomodoro
         {
             if (tempoSessao > 0)
             {
-                
-                tmrPomodoro.Enabled = true;
                 cclPbrPomodoro.Decrement(1);
                 if (cclPbrPomodoro.Value == 0)
                 {
                     tmrPomodoro.Stop();
-                    if (contadorQuadro1 == 0)
+
+                    CallDataConnection(UsuarioController.GetInstance().GetModelo().Id, tipoSessao, tempoSessao);
+
+                    if (tipoSessao == 1)
                     {
-                        contadorQuadro1++;
-                        CallDataConnection(1,tipoSessao,tempoSessao);
-                        AlarmePomodoro();
-                        TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
-                        if (tipoSessao == 1)
+                        if (contadorQuadro1 == 0)
                         {
+                            contadorQuadro1++;
+                            AlarmePomodoro("Sua sessão de trabalho acabou. Hora da pausa!");
+                            TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
                             txtQuadroColor1.BackColor = Color.Orange;
                         }
-                    }
-                    else if (contadorQuadro2 == 0)
-                    {
-                        contadorQuadro2++;
-                        CallDataConnection(1, tipoSessao, tempoSessao);
-                        AlarmePomodoro();
-                        TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
-                        if(tipoSessao == 1)
+                        else if (contadorQuadro2 == 0)
                         {
+                            contadorQuadro2++;
+                            AlarmePomodoro("Sua sessão de trabalho acabou. Hora da pausa!");
+                            TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
                             txtQuadroColor2.BackColor = Color.Orange;
                         }
-                    }
-                    else if (contadorQuadro3 == 0)
-                    {
-                        contadorQuadro3++;
-                        CallDataConnection(1, tipoSessao, tempoSessao);
-                        AlarmePomodoro();
-                        TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
-                        if(tipoSessao == 1)
+                        else if (contadorQuadro3 == 0)
                         {
+                            contadorQuadro3++;
+                            AlarmePomodoro("Sua sessão de trabalho acabou. Hora da pausa!");
+                            TrocarContexto(ref btnShortBreak, ref btnPomodoro, tipoSessao);
                             txtQuadroColor3.BackColor = Color.Orange;
                         }
-                    }
-                    else
-                    {
-                        contadorQuadro4++;
-                        CallDataConnection(1, tipoSessao, tempoSessao);
-                        AlarmePomodoro();
-                        TrocarContexto(ref btnPomodoro);
-                        if(tipoSessao == 1)
+                        else
                         {
+                            contadorQuadro4++;
+                            AlarmePomodoro("Sua sessão de trabalho acabou. Hora da pausa!");
+                            TrocarContexto(ref btnLongBreak);
                             txtQuadroColor4.BackColor = Color.Orange;
                         }
                     }
+                    else if (tipoSessao == 2)
+                    {
+                        AlarmePomodoro("Fim da pausa. De volta ao trabalho!");
+                        btnPomodoro.PerformClick();
+                    }
+                    else if (tipoSessao == 3)
+                    {
+                        if (contadorQuadro1 >= 0 &&
+                            contadorQuadro2 >= 0 &&
+                            contadorQuadro3 >= 0 &&
+                            contadorQuadro4 >= 0)
+                        {
+                            txtQuadroColor1.BackColor = Color.WhiteSmoke;
+                            txtQuadroColor2.BackColor = Color.WhiteSmoke;
+                            txtQuadroColor3.BackColor = Color.WhiteSmoke;
+                            txtQuadroColor4.BackColor = Color.WhiteSmoke;
+
+                            contadorQuadro1 = 0;
+                            contadorQuadro2 = 0;
+                            contadorQuadro3 = 0;
+                            contadorQuadro4 = 0;
+
+                            btnPomodoro.PerformClick();
+                            AlarmePomodoro("Parabéns, você concluiu um clico pomodoro!");
+                        }
+                        else
+                        {
+                            AlarmePomodoro("Fim da pausa. De volta ao trabalho!");
+                            btnPomodoro.PerformClick();
+                        }
+                        
+                    }
+
                 }
             }
         }
@@ -89,7 +111,7 @@ namespace MyAgenda.Controladores.Pomodoro
             }
         }
 
-        public void AlarmePomodoro()
+        public void AlarmePomodoro(string msg)
         {
             var file = new FileInfo(Path.Combine(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location), @"Alarm.wav"));
@@ -102,7 +124,7 @@ namespace MyAgenda.Controladores.Pomodoro
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sua sessão chegou ao fim");
+                MessageBox.Show(msg);
             }
 
         }

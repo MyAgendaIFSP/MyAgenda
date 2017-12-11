@@ -128,11 +128,11 @@ namespace MyAgenda
             }
         }
 
-        private void lblEsqueciSenha_Click(object sender, EventArgs e)
+        private void lblEsqueciSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             RecuperadorSenha recuperador = new RecuperadorSenha();
-           // this.Close();
-            recuperador.Show();
+            // this.Close();
+            recuperador.ShowDialog();
         }
     }
 }

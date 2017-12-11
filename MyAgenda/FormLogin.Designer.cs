@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Label lblEsqueciSenha;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
@@ -40,7 +39,7 @@
             this.llblCadastrar = new System.Windows.Forms.LinkLabel();
             this.loader1 = new MyAgenda.Componentes.Geral.Loader();
             this.ckbLembrar = new System.Windows.Forms.CheckBox();
-            lblEsqueciSenha = new System.Windows.Forms.Label();
+            this.lblEsqueciSenha = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).BeginInit();
             this.SuspendLayout();
@@ -178,14 +177,16 @@
             // 
             // lblEsqueciSenha
             // 
-            lblEsqueciSenha.AutoSize = true;
-            lblEsqueciSenha.Font = new System.Drawing.Font("Century Gothic", 9F);
-            lblEsqueciSenha.Location = new System.Drawing.Point(378, 295);
-            lblEsqueciSenha.Name = "lblEsqueciSenha";
-            lblEsqueciSenha.Size = new System.Drawing.Size(132, 17);
-            lblEsqueciSenha.TabIndex = 10;
-            lblEsqueciSenha.Text = "Esqueci Minha Senha";
-            lblEsqueciSenha.Click += new System.EventHandler(this.lblEsqueciSenha_Click);
+            this.lblEsqueciSenha.AutoSize = true;
+            this.lblEsqueciSenha.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblEsqueciSenha.LinkColor = System.Drawing.Color.RoyalBlue;
+            this.lblEsqueciSenha.Location = new System.Drawing.Point(360, 284);
+            this.lblEsqueciSenha.Name = "lblEsqueciSenha";
+            this.lblEsqueciSenha.Size = new System.Drawing.Size(132, 17);
+            this.lblEsqueciSenha.TabIndex = 11;
+            this.lblEsqueciSenha.TabStop = true;
+            this.lblEsqueciSenha.Text = "Esqueci Minha Senha";
+            this.lblEsqueciSenha.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblEsqueciSenha_LinkClicked);
             // 
             // FormLogin
             // 
@@ -193,7 +194,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(542, 323);
-            this.Controls.Add(lblEsqueciSenha);
+            this.Controls.Add(this.lblEsqueciSenha);
             this.Controls.Add(this.ckbLembrar);
             this.Controls.Add(this.loader1);
             this.Controls.Add(this.llblCadastrar);
@@ -226,7 +227,7 @@
             this.Controls.SetChildIndex(this.BarraNavegacao, 0);
             this.Controls.SetChildIndex(this.Loader, 0);
             this.Controls.SetChildIndex(this.ckbLembrar, 0);
-            this.Controls.SetChildIndex(lblEsqueciSenha, 0);
+            this.Controls.SetChildIndex(this.lblEsqueciSenha, 0);
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loader1)).EndInit();
             this.ResumeLayout(false);
@@ -246,6 +247,7 @@
         private System.Windows.Forms.LinkLabel llblCadastrar;
         private MyAgenda.Componentes.Geral.Loader loader1;
         private System.Windows.Forms.CheckBox ckbLembrar;
+        private System.Windows.Forms.LinkLabel lblEsqueciSenha;
     }
 }
 

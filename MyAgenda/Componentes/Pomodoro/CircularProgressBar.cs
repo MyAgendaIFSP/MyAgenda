@@ -94,12 +94,14 @@ namespace MyAgenda.Componentes.Pomodoro
         {
             base.OnResize(e);
             SetStandardSize();
+            this.Invalidate();
         }
 
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
             SetStandardSize();
+            this.Invalidate();
         }
 
         protected override void OnPaintBackground(PaintEventArgs p)
@@ -144,7 +146,7 @@ namespace MyAgenda.Componentes.Pomodoro
                 {
                     graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     graphics.Clear(this.BackColor);
-                    using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, this._ProgressColor1, this._ProgressColor2, LinearGradientMode.ForwardDiagonal))
+                    using (LinearGradientBrush brush = new LinearGradientBrush(new Rectangle(0, 0, this.Width, this.Height), this._ProgressColor1, this._ProgressColor2, LinearGradientMode.ForwardDiagonal))
                     {
                         using (Pen pen = new Pen(brush, 14f))
                         {
@@ -163,7 +165,7 @@ namespace MyAgenda.Componentes.Pomodoro
                             graphics.DrawArc(pen, 0x12, 0x12, (this.Width - 0x23) - 2, (this.Height - 0x23) - 2, -90, (int)Math.Round((double)((360.0 / ((double)this._Maximum)) * this._Value)));
                         }
                     }
-                    using (LinearGradientBrush brush2 = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(0x34, 0x34, 0x34), Color.FromArgb(0x34, 0x34, 0x34), LinearGradientMode.Vertical))
+                    using (LinearGradientBrush brush2 = new LinearGradientBrush(new Rectangle(0, 0, this.Width, this.Height), Color.FromArgb(0x34, 0x34, 0x34), Color.FromArgb(0x34, 0x34, 0x34), LinearGradientMode.Vertical))
                     {
                         graphics.FillEllipse(brush2, 0x18, 0x18, (this.Width - 0x30) - 1, (this.Height - 0x30) - 1);
                     }
