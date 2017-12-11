@@ -203,7 +203,7 @@ namespace MyAgenda.Dados
         {
             List<Evento> eventos = new List<Evento>();
 
-            string query = "SELECT * FROM EVENTO WHERE ORDER BY INICIO ASC";
+            string query = "SELECT * FROM EVENTO WHERE USUARIO = @USUARIO ORDER BY INICIO ASC";
             
             SqlDataReader reader = null;
 
@@ -213,6 +213,11 @@ namespace MyAgenda.Dados
                 {
 
                     SqlCommand cmd = new SqlCommand(query, _conexao);
+
+                    UsuarioController usuarioController = UsuarioController.GetInstance();
+                    UsuarioModel usuarioModel = usuarioController.GetModelo();
+
+                    cmd.Parameters.Add(new SqlParameter("USUARIO", usuarioModel.Id));
 
                     reader = cmd.ExecuteReader();
 
@@ -224,9 +229,6 @@ namespace MyAgenda.Dados
                         evento.Descricao = reader["descricao"].ToString();
                         evento.DataHoraInicio = Convert.ToDateTime(reader["inicio"].ToString());
                         evento.DataHoraTermino = Convert.ToDateTime(reader["final"].ToString());
-
-                        UsuarioController usuarioController = UsuarioController.GetInstance();
-                        UsuarioModel usuarioModel = usuarioController.GetModelo();
                         evento.Usuario = usuarioModel;
 
                         eventos.Add(evento);
