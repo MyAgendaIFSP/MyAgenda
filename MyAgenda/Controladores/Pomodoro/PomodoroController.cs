@@ -113,11 +113,10 @@ namespace MyAgenda.Controladores.Pomodoro
 
         public void AlarmePomodoro(string msg)
         {
-            var file = new FileInfo(Path.Combine(Path.GetDirectoryName(
-            Assembly.GetExecutingAssembly().Location), @"Alarm.wav"));
+            //var file = new FileInfo(Path.Combine(Path.GetDirectoryName(
+            //Assembly.GetExecutingAssembly().Location), @"Alarm.wav"));
 
-
-            SoundPlayer soundPlayer = new SoundPlayer(file.ToString());
+            SoundPlayer soundPlayer = new SoundPlayer(MyAgenda.Properties.Resources.Alarm);
             try
             {
                 soundPlayer.Play();
