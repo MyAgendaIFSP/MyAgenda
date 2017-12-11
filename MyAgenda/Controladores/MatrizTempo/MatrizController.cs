@@ -60,9 +60,10 @@ namespace MyAgenda.Controladores.MatrizTempo
             _modelo = new MatrizModel(id, dtInicializacao, ultimoAcesso, _carregaItens(id));
         }
 
-        public void VerificaMatriz()
+        public static void VerificaMatriz()
         {
-            _api.VerificaMatriz();
+            MatrizTempoAPI api = MatrizTempoAPI.GetInstance();
+            api.VerificaMatriz();
         }
 
         private List<ItemMatrizController> _carregaItens(int id)

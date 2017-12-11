@@ -38,14 +38,14 @@
     <StartupObject>MyAgenda.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=3.9.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
-      <HintPath>..\packages\CompareNETObjects.3.09.0.0\lib\net45\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=4.0.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
+      <HintPath>..\packages\CompareNETObjects.4.00.0.0\lib\net45\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
     </Reference>
     <Reference Include="Quartz, Version=2.6.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\packages\Quartz.2.6.1\lib\net40\Quartz.dll</HintPath>
@@ -129,8 +129,12 @@
     <Compile Include="Componentes\MatrizTempo\VerticalLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controladores\Pomodoro\PomodoroController.cs" />
+    <Compile Include="Dados\CadastroAPI.cs" />
     <Compile Include="Dados\EventoAPI.cs" />
     <Compile Include="Dados\ListaAfazeresAPI.cs" />
+    <Compile Include="Dados\PomodoroAPI.cs" />
+    <Compile Include="Dados\RecuperadorSenhaAPI.cs" />
     <Compile Include="Dados\TarefaAPI.cs" />
     <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\ListaAfazeres.cs" />
@@ -199,6 +203,12 @@
     <Compile Include="FormListaContatos.Designer.cs">
       <DependentUpon>FormListaContatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCadastro.designer.cs">
+      <DependentUpon>FrmCadastro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Chat\MensagemModelo.cs" />
     <Compile Include="Modelos\Geral\UsuarioModel.cs" />
     <Compile Include="Modelos\ListaContatos\ContatoModelo.cs" />
@@ -210,8 +220,31 @@
     <Compile Include="FormNovaListaAfazeres.Designer.cs">
       <DependentUpon>FormNovaListaAfazeres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Util\Constantes.cs" />
+    <Compile Include="Modelos\Util\ConversorHoras.cs" />
+    <Compile Include="Modelos\Util\MensagemInterface.cs" />
+    <Compile Include="Modelos\Util\RecarregadorDados.cs" />
+    <Compile Include="Modelos\Util\Validator.cs" />
+    <Compile Include="FormPomodoro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPomodoro.designer.cs">
+      <DependentUpon>FormPomodoro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecuperadorSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecuperadorSenha.designer.cs">
+      <DependentUpon>RecuperadorSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RelatorioPomodoro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RelatorioPomodoro.designer.cs">
+      <DependentUpon>RelatorioPomodoro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Seguranca\Criptografia.cs" />
     <EmbeddedResource Include="Componentes\Geral\Notification.resx">
       <DependentUpon>Notification.cs</DependentUpon>
@@ -264,6 +297,12 @@
     <EmbeddedResource Include="FormNovaListaAfazeres.resx">
       <DependentUpon>FormNovaListaAfazeres.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCadastro.resx">
+      <DependentUpon>FrmCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPomodoro.resx">
+      <DependentUpon>FormPomodoro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -274,6 +313,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RecuperadorSenha.resx">
+      <DependentUpon>RecuperadorSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RelatorioPomodoro.resx">
+      <DependentUpon>RelatorioPomodoro.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>

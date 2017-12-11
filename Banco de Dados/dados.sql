@@ -13,17 +13,17 @@ VALUES (getdate(), getdate())
 INSERT INTO dbo.matriz_tempo(ultima_utilizacao,inicializacao)
 VALUES (getdate(), getdate())
 
-INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt, estado, lembrar)
-VALUES (1,'Allex','allexxrodriguess@gmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=',0,0);
+INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt)
+VALUES (1,'Allex','allexxrodriguess@gmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=');
 
-INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt, estado, lembrar)
-VALUES (2,'Nilzete','nilzetdias@hotmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=',0,0);
+INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt)
+VALUES (2,'Nilzete','nilzetdias@hotmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=');
 
-INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt, estado, lembrar)
-VALUES (3,'Noilson','noilsonamaral@gmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=',0,0);
+INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt)
+VALUES (3,'Noilson','noilsonamaral@gmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=');
 
-INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt, estado, lembrar)
-VALUES (4,'Petit','petiti_pidoga@gmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=',0,0);
+INSERT INTO dbo.usuario(matriz_tempo,nome,email,senha,salt)
+VALUES (4,'Petit','petiti_pidoga@gmail.com','pWKzzvsyID3bW6eJ4gD6s5Xy2aaw4WrOIk8IC+Xm2AU=','XL2z3UkUhe4oh7FLu+Y43+ykQK5z+TdWr2HJ9pz1YlE=');
 
 --Item matriz
 --MATRIZ 1

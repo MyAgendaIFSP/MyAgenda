@@ -36,9 +36,9 @@ namespace MyAgenda.Componentes.MatrizTempo
         public bool CarregaMatriz(int usuario)
         {
             MatrizTempoAPI api = MatrizTempoAPI.GetInstance();
+            MatrizController.VerificaMatriz();
+            _controlador = MatrizController.GetInstance();
             _controlador = api.GetMatriz(usuario);
-
-            _controlador.VerificaMatriz();
 
             _controlador.AlteraUltimoAcesso();
 
