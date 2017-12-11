@@ -51,8 +51,8 @@
             this.nudTempoShort = new System.Windows.Forms.NumericUpDown();
             this.tmrView = new System.Windows.Forms.Timer(this.components);
             this.btnRelatorioPomodoro = new System.Windows.Forms.Button();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.cclPbrPomodoro = new MyAgenda.Componentes.Pomodoro.CircularProgressBar();
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTempo)).BeginInit();
@@ -61,12 +61,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTempoShort)).BeginInit();
             this.SuspendLayout();
             // 
+            // BarraNavegacao
+            // 
+            this.BarraNavegacao.Size = new System.Drawing.Size(885, 40);
+            // 
+            // Loader
+            // 
+            this.Loader.Size = new System.Drawing.Size(869, 7);
+            // 
             // txtQuadroColor1
             // 
             this.txtQuadroColor1.BackColor = System.Drawing.SystemColors.Control;
             this.txtQuadroColor1.Enabled = false;
             this.txtQuadroColor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuadroColor1.Location = new System.Drawing.Point(33, 56);
+            this.txtQuadroColor1.Location = new System.Drawing.Point(30, 82);
             this.txtQuadroColor1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtQuadroColor1.Multiline = true;
             this.txtQuadroColor1.Name = "txtQuadroColor1";
@@ -77,7 +85,7 @@
             // txtQuadroColor2
             // 
             this.txtQuadroColor2.Enabled = false;
-            this.txtQuadroColor2.Location = new System.Drawing.Point(171, 56);
+            this.txtQuadroColor2.Location = new System.Drawing.Point(166, 81);
             this.txtQuadroColor2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtQuadroColor2.Multiline = true;
             this.txtQuadroColor2.Name = "txtQuadroColor2";
@@ -88,7 +96,7 @@
             // txtQuadroColor3
             // 
             this.txtQuadroColor3.Enabled = false;
-            this.txtQuadroColor3.Location = new System.Drawing.Point(322, 56);
+            this.txtQuadroColor3.Location = new System.Drawing.Point(305, 81);
             this.txtQuadroColor3.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtQuadroColor3.Multiline = true;
             this.txtQuadroColor3.Name = "txtQuadroColor3";
@@ -99,7 +107,7 @@
             // txtQuadroColor4
             // 
             this.txtQuadroColor4.Enabled = false;
-            this.txtQuadroColor4.Location = new System.Drawing.Point(460, 55);
+            this.txtQuadroColor4.Location = new System.Drawing.Point(446, 82);
             this.txtQuadroColor4.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.txtQuadroColor4.Multiline = true;
             this.txtQuadroColor4.Name = "txtQuadroColor4";
@@ -119,11 +127,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(43, 140);
+            this.groupBox1.Location = new System.Drawing.Point(40, 92);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.groupBox1.Size = new System.Drawing.Size(428, 263);
+            this.groupBox1.Size = new System.Drawing.Size(410, 207);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sessões";
@@ -140,7 +148,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(2, 24);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(424, 235);
+            this.dataGridView1.Size = new System.Drawing.Size(406, 179);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -169,7 +177,7 @@
             this.btnPausar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPausar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPausar.ForeColor = System.Drawing.Color.White;
-            this.btnPausar.Location = new System.Drawing.Point(187, 411);
+            this.btnPausar.Location = new System.Drawing.Point(170, 355);
             this.btnPausar.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnPausar.Name = "btnPausar";
             this.btnPausar.Size = new System.Drawing.Size(142, 52);
@@ -187,7 +195,7 @@
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.Color.White;
-            this.btnIniciar.Location = new System.Drawing.Point(46, 411);
+            this.btnIniciar.Location = new System.Drawing.Point(40, 355);
             this.btnIniciar.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(142, 52);
@@ -204,7 +212,7 @@
             this.btnPomodoro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPomodoro.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPomodoro.ForeColor = System.Drawing.Color.White;
-            this.btnPomodoro.Location = new System.Drawing.Point(43, 26);
+            this.btnPomodoro.Location = new System.Drawing.Point(40, 26);
             this.btnPomodoro.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnPomodoro.Name = "btnPomodoro";
             this.btnPomodoro.Size = new System.Drawing.Size(142, 58);
@@ -221,7 +229,7 @@
             this.btnShortBreak.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShortBreak.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShortBreak.ForeColor = System.Drawing.Color.White;
-            this.btnShortBreak.Location = new System.Drawing.Point(184, 26);
+            this.btnShortBreak.Location = new System.Drawing.Point(170, 26);
             this.btnShortBreak.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnShortBreak.Name = "btnShortBreak";
             this.btnShortBreak.Size = new System.Drawing.Size(142, 58);
@@ -238,7 +246,7 @@
             this.btnLongBreak.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLongBreak.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLongBreak.ForeColor = System.Drawing.Color.White;
-            this.btnLongBreak.Location = new System.Drawing.Point(323, 26);
+            this.btnLongBreak.Location = new System.Drawing.Point(306, 26);
             this.btnLongBreak.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnLongBreak.Name = "btnLongBreak";
             this.btnLongBreak.Size = new System.Drawing.Size(142, 58);
@@ -256,7 +264,7 @@
             this.btnResetar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResetar.ForeColor = System.Drawing.Color.White;
-            this.btnResetar.Location = new System.Drawing.Point(326, 411);
+            this.btnResetar.Location = new System.Drawing.Point(308, 355);
             this.btnResetar.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnResetar.Name = "btnResetar";
             this.btnResetar.Size = new System.Drawing.Size(142, 52);
@@ -269,7 +277,7 @@
             // 
             this.nudTempo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.nudTempo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTempo.Location = new System.Drawing.Point(46, 560);
+            this.nudTempo.Location = new System.Drawing.Point(46, 504);
             this.nudTempo.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.nudTempo.Name = "nudTempo";
             this.nudTempo.Size = new System.Drawing.Size(420, 27);
@@ -293,19 +301,18 @@
             this.panel1.Controls.Add(this.btnIniciar);
             this.panel1.Controls.Add(this.btnShortBreak);
             this.panel1.Controls.Add(this.btnPomodoro);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(885, 0);
+            this.panel1.Location = new System.Drawing.Point(885, 56);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(504, 635);
+            this.panel1.Size = new System.Drawing.Size(504, 579);
             this.panel1.TabIndex = 17;
             // 
             // nudTempoLong
             // 
             this.nudTempoLong.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.nudTempoLong.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTempoLong.Location = new System.Drawing.Point(46, 560);
+            this.nudTempoLong.Location = new System.Drawing.Point(46, 504);
             this.nudTempoLong.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.nudTempoLong.Name = "nudTempoLong";
             this.nudTempoLong.Size = new System.Drawing.Size(420, 27);
@@ -322,7 +329,7 @@
             // 
             this.nudTempoShort.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.nudTempoShort.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTempoShort.Location = new System.Drawing.Point(46, 560);
+            this.nudTempoShort.Location = new System.Drawing.Point(46, 504);
             this.nudTempoShort.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.nudTempoShort.Name = "nudTempoShort";
             this.nudTempoShort.Size = new System.Drawing.Size(420, 27);
@@ -339,7 +346,7 @@
             // 
             this.btnRelatorioPomodoro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRelatorioPomodoro.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRelatorioPomodoro.Location = new System.Drawing.Point(651, 56);
+            this.btnRelatorioPomodoro.Location = new System.Drawing.Point(695, 82);
             this.btnRelatorioPomodoro.Name = "btnRelatorioPomodoro";
             this.btnRelatorioPomodoro.Size = new System.Drawing.Size(120, 39);
             this.btnRelatorioPomodoro.TabIndex = 18;
@@ -347,25 +354,17 @@
             this.btnRelatorioPomodoro.UseVisualStyleBackColor = true;
             this.btnRelatorioPomodoro.Click += new System.EventHandler(this.btnRelatorioPomodoro_Click);
             // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Location = new System.Drawing.Point(635, 241);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(250, 250);
-            this.webBrowser1.TabIndex = 20;
-            // 
             // cclPbrPomodoro
             // 
             this.cclPbrPomodoro.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.cclPbrPomodoro.Location = new System.Drawing.Point(55, 164);
+            this.cclPbrPomodoro.Location = new System.Drawing.Point(90, 193);
             this.cclPbrPomodoro.Maximum = ((long)(100));
             this.cclPbrPomodoro.MinimumSize = new System.Drawing.Size(100, 100);
             this.cclPbrPomodoro.Name = "cclPbrPomodoro";
             this.cclPbrPomodoro.ProgressColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.cclPbrPomodoro.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.cclPbrPomodoro.ProgressShape = MyAgenda.Componentes.Pomodoro.CircularProgressBar._ProgressShape.Round;
-            this.cclPbrPomodoro.Size = new System.Drawing.Size(439, 439);
+            this.cclPbrPomodoro.Size = new System.Drawing.Size(404, 404);
             this.cclPbrPomodoro.TabIndex = 19;
             this.cclPbrPomodoro.Value = ((long)(0));
             // 
@@ -377,7 +376,6 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1354, 652);
-            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.cclPbrPomodoro);
             this.Controls.Add(this.btnRelatorioPomodoro);
             this.Controls.Add(this.panel1);
@@ -388,12 +386,22 @@
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "Pomodoro";
             this.Text = "Pomodoro";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Pomodoro_Load);
             this.SizeChanged += new System.EventHandler(this.Pomodoro_SizeChanged);
+            this.Controls.SetChildIndex(this.txtQuadroColor1, 0);
+            this.Controls.SetChildIndex(this.txtQuadroColor2, 0);
+            this.Controls.SetChildIndex(this.txtQuadroColor3, 0);
+            this.Controls.SetChildIndex(this.txtQuadroColor4, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.btnRelatorioPomodoro, 0);
+            this.Controls.SetChildIndex(this.cclPbrPomodoro, 0);
+            this.Controls.SetChildIndex(this.BarraNavegacao, 0);
+            this.Controls.SetChildIndex(this.Loader, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.Loader)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTempo)).EndInit();
@@ -432,6 +440,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn duracaosessaoDataGridViewTextBoxColumn;
         private Componentes.Pomodoro.CircularProgressBar cclPbrPomodoro;
-        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

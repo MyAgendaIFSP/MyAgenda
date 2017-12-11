@@ -127,5 +127,12 @@ namespace MyAgenda
                 _avancaTela();
             }
         }
+
+        private void lblEsqueciSenha_Click(object sender, EventArgs e)
+        {
+            RecuperadorSenha recuperador = new RecuperadorSenha();
+           // this.Close();
+            recuperador.Show();
+        }
     }
 }

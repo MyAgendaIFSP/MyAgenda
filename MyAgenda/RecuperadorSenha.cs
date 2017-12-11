@@ -18,6 +18,7 @@ namespace MyAgenda
     public partial class RecuperadorSenha : Form
     {
         RecuperadorSenhaAPI dataCon = new RecuperadorSenhaAPI();
+        int codigoEnviado;
         public RecuperadorSenha()
         {
             InitializeComponent();
@@ -38,7 +39,8 @@ namespace MyAgenda
                 mensagem.From = new MailAddress("ifaljservices@outlook.com", "Ifalj Recovery Service");
                 mensagem.To.Add(email);
                 mensagem.Subject = ("Recuperação de Senha");
-                mensagem.Body = ("Sua senha: " + dataCon.GetSenha(txtEmailRecovery.Text));
+                codigoEnviado = dataCon.GetSenha(txtEmailRecovery.Text);
+                mensagem.Body = ("Código: " + codigoEnviado);
                 mensagem.Priority = MailPriority.High;
 
                 smtp.EnableSsl = true;
@@ -48,11 +50,22 @@ namespace MyAgenda
                 smtp.Send(mensagem);
                 Cursor.Current = Cursors.WaitCursor;
                 MessageBox.Show("Código enviado com sucesso, por favor verifique seu e mail");
+
                 Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao enviar. Verifique o email digitado e tente novamente ou tente novamente mais tarde.");
+            }
+        }
+
+        private void btnValidarCodigo_Click(object sender, EventArgs e)
+        {
+            if(codigoEnviado.ToString() == txtGetCodigo.Text)
+            {
+                FormNewPassword alterador = new FormNewPassword(txtEmailRecovery.Text);
+                alterador.Show();
+                this.Close();
             }
         }
     }

@@ -95,22 +95,18 @@ namespace MyAgenda
             cclPbrPomodoro.Value = int.Parse(nudTempoShort.Value.ToString());
         }
 
-        private void Pomodoro_Load(object sender, EventArgs e)
-        {
 
-        }
+        //private void fillByToolStripButton_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        System.Windows.Forms.MessageBox.Show(ex.Message);
+        //    }
 
-        private void fillByToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
+        //}
 
         private void Pomodoro_SizeChanged(object sender, EventArgs e)
         {
@@ -121,8 +117,6 @@ namespace MyAgenda
         private void btnRelatorioPomodoro_Click(object sender, EventArgs e)
         {
             RelatorioPomodoro relatorio = new RelatorioPomodoro();
-            RecuperadorSenha recuperador = new RecuperadorSenha();
-            recuperador.Show();
             relatorio.Show();
         }
     }
