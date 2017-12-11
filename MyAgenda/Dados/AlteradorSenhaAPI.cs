@@ -8,20 +8,13 @@ using System.Windows.Forms;
 
 namespace MyAgenda.Dados
 {
-    class RecuperadorSenhaAPI
+    class AlteradorSenhaAPI
     {
         private string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
 
         private SqlConnection _conexao = null;
 
-        //Constante com instruções SQL de busca de emails
-
-        public const string strSelectEmail = "SELECT email FROM usuario";
-
-        //Constante com instruções SQL de busca de senha
-
-        public const string strSelectSenha = "SELECT senha FROM usuario WHERE email = @email_usuario";
-
+        public const string strUpdateSenha = "UPDATE usuario SET senha = @senha WHERE email = @email";
         private bool _abreConexao()
         {
             if (_conexao == null)
@@ -71,29 +64,26 @@ namespace MyAgenda.Dados
             {
                 return false;
             }
-
         }
 
-        public bool VerificarEmail(string emailDigitado)
+        public void AlterarSenha(string email, string senha)
         {
             if (_abreConexao())
             {
-                SqlCommand objCommand = new SqlCommand(strSelectEmail, _conexao);
+                SqlCommand objCommand = new SqlCommand(strUpdateSenha, _conexao);
 
                 try
                 {
 
-                    SqlDataReader reader = objCommand.ExecuteReader();
+                    objCommand.Parameters.AddWithValue("@senha", senha);
+                    objCommand.Parameters.AddWithValue("@email", email);
 
-                    while (reader.Read())
-                    {
-                        if (reader["email"].ToString() == emailDigitado)
-                        {
-                            return true;
-                        }
-                    }
+                    objCommand.ExecuteNonQuery();
 
-                    reader.Close();
+                    MessageBox.Show("Senha alterada com sucesso!");
+
+                    _fechaConexao();
+
                 }
                 catch (Exception ex)
                 {
@@ -103,48 +93,7 @@ namespace MyAgenda.Dados
                 {
                     _fechaConexao();
                 }
-            }                
-            return false;
-        }
-
-        //public string GetSenha(string email)
-        //{
-        //    string senha;
-
-        //    if (_abreConexao())
-        //    {
-        //        SqlCommand objCommand = new SqlCommand(strSelectSenha, _conexao);
-
-        //        try
-        //        {
-
-        //            objCommand.Parameters.AddWithValue("@email_usuario", email);
-
-        //            senha = (string)objCommand.ExecuteScalar();
-
-        //            return senha;
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Ocorreu um erro: " + ex);
-        //        }
-        //        finally
-        //        {
-        //            _fechaConexao();
-        //        }
-        //    }
-
-        //    return null;
-        //}
-
-        public int GetSenha(string email)
-        {
-            Random random = new Random();
-
-            int dice = random.Next(1000, 9999);
-            
-            return dice;
+            }
         }
     }
 }
