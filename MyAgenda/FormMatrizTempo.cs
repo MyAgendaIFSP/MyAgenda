@@ -42,7 +42,7 @@ namespace MyAgenda
                     this.Close();
                     break;
                 case (int)EBarraNavegacaoBotoes.POMODORO:
-                    Pomodoro pomodoro = new Pomodoro(_usuario);
+                    FormPomodoro pomodoro = new FormPomodoro(_usuario);
                     pomodoro.Show();
                     this.Close();
                     break;

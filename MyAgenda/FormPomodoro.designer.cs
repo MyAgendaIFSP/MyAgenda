@@ -1,6 +1,6 @@
 ﻿namespace MyAgenda
 {
-    partial class Pomodoro
+    partial class FormPomodoro
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pomodoro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPomodoro));
             this.txtQuadroColor1 = new System.Windows.Forms.TextBox();
             this.txtQuadroColor2 = new System.Windows.Forms.TextBox();
             this.txtQuadroColor3 = new System.Windows.Forms.TextBox();

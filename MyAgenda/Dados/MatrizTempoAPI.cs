@@ -138,7 +138,7 @@ namespace MyAgenda.Dados
 
                 object res = cmd.ExecuteScalar();
 
-                if(res == null)
+                if(String.IsNullOrEmpty(res.ToString()))
                 {
                     _criaMatriz(u.GetModelo().Id);
                 }
@@ -170,7 +170,7 @@ namespace MyAgenda.Dados
                             DateTime dtUltUtil = DateTime.Parse(rdr["ultima_utilizacao"].ToString());
                             DateTime dtInit = DateTime.Parse(rdr["inicializacao"].ToString());
 
-                            mat .SetMatriz(id, dtInit, dtUltUtil);
+                            mat.SetMatriz(id, dtInit, dtUltUtil);
                         }
                     } catch { }
                 }
@@ -196,6 +196,12 @@ namespace MyAgenda.Dados
                 cmd.ExecuteNonQuery();
 
                 int res = (output.Value != null) ? (int)output.Value : 0;
+
+                if(res > 0)
+                {
+                    UsuarioController u = UsuarioController.GetInstance();
+                    u.GetModelo().MatrizTempo = MatrizController.GetInstance(res, DateTime.Now, DateTime.Now);
+                }
 
                 _fechaConexao();
 

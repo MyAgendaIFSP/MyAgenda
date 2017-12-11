@@ -3,19 +3,11 @@ using MyAgenda.Controladores.Geral;
 using MyAgenda.Controladores.Pomodoro;
 using MyAgenda.Modelos.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static MyAgenda.Componentes.Geral.BaseForm;
 
 namespace MyAgenda
 {
-    public partial class Pomodoro : BaseForm
+    public partial class FormPomodoro : BaseForm
     {
         ConversorHoras cvHoras = new ConversorHoras();
         PomodoroController pModel = new PomodoroController();
@@ -23,7 +15,7 @@ namespace MyAgenda
         int tipoSessao = 1;
         int tempoSessao;
 
-        public Pomodoro(UsuarioController u)
+        public FormPomodoro(UsuarioController u)
         {
             InitializeComponent();
 

@@ -25,7 +25,7 @@ namespace MyAgenda.Modelos.Util
 
         }
 
-        public void ValidarCampos(object sender, EventArgs e, TextBox txtGetEmail, TextBox txtGetSenha, TextBox txtGetConfirmacaoSenha, TextBox txtGetNome, TextBox txtGetSobreNome, ProgressBar pbCadastrar, Label lblEmail, Label lblSenha, Label lblConfirmaSenha, TextBox txtGetApelido, Button btnFinalizarCadastro, Button btnVoltarCadastro, Label lblSobreNome, Label lblApelido)
+        public void ValidarCampos(object sender, EventArgs e, TextBox txtGetEmail, TextBox txtGetSenha, TextBox txtGetConfirmacaoSenha, TextBox txtGetNome, TextBox txtGetSobreNome, ProgressBar pbCadastrar, Label lblEmail, Label lblSenha, Label lblConfirmaSenha, Button btnFinalizarCadastro, Button btnVoltarCadastro, Label lblSobreNome)
         {
             if (String.IsNullOrWhiteSpace(txtGetNome.Text) || String.IsNullOrWhiteSpace(txtGetSobreNome.Text))
             {
@@ -41,14 +41,13 @@ namespace MyAgenda.Modelos.Util
             else
             {
                 lblSobreNome.Visible = false;
-                lblApelido.Visible = false;
 
-                lblEmail.Visible = true;
+                lblEmail.Visible = false;
                 lblSenha.Visible = true;
                 lblConfirmaSenha.Visible = true;
            
 
-                txtGetEmail.Visible = true;
+                txtGetEmail.Visible = false;
                 txtGetSenha.Visible = true;
                 txtGetConfirmacaoSenha.Visible = true;
 

@@ -232,11 +232,11 @@
     <Compile Include="Modelos\Util\MensagemInterface.cs" />
     <Compile Include="Modelos\Util\RecarregadorDados.cs" />
     <Compile Include="Modelos\Util\Validator.cs" />
-    <Compile Include="Pomodoro.cs">
+    <Compile Include="FormPomodoro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pomodoro.designer.cs">
-      <DependentUpon>Pomodoro.cs</DependentUpon>
+    <Compile Include="FormPomodoro.designer.cs">
+      <DependentUpon>FormPomodoro.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -310,8 +310,8 @@
     <EmbeddedResource Include="FrmCadastro.resx">
       <DependentUpon>FrmCadastro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pomodoro.resx">
-      <DependentUpon>Pomodoro.cs</DependentUpon>
+    <EmbeddedResource Include="FormPomodoro.resx">
+      <DependentUpon>FormPomodoro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
