@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MyAgenda.Seguranca;
+using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyAgenda.Dados
@@ -14,7 +11,7 @@ namespace MyAgenda.Dados
 
         private SqlConnection _conexao = null;
 
-        public const string strUpdateSenha = "UPDATE usuario SET senha = @senha WHERE email = @email";
+        public const string strUpdateSenha = "UPDATE usuario SET senha = @senha, salt = @salt WHERE email = @email";
         private bool _abreConexao()
         {
             if (_conexao == null)
@@ -74,9 +71,11 @@ namespace MyAgenda.Dados
 
                 try
                 {
-
-                    objCommand.Parameters.AddWithValue("@senha", senha);
+                    Criptografia c = new Criptografia();
+                    string salt = c.GeraSalt();
+                    objCommand.Parameters.AddWithValue("@senha", c.GetHashSenha(senha, salt));
                     objCommand.Parameters.AddWithValue("@email", email);
+                    objCommand.Parameters.AddWithValue("@salt", salt);
 
                     objCommand.ExecuteNonQuery();
 
@@ -89,10 +88,8 @@ namespace MyAgenda.Dados
                 {
                     MessageBox.Show("Ocorreu um erro: " + ex);
                 }
-                finally
-                {
-                    _fechaConexao();
-                }
+
+                _fechaConexao();
             }
         }
     }
