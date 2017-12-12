@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace MyAgenda.Dados
@@ -80,6 +81,100 @@ namespace MyAgenda.Dados
                 _fechaConexao();
             }
             
+        }
+
+        public DataTable GetSessoesPomodoro(int usuario)
+        {
+            if (_abreConexao())
+            {
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Tipo da Sessão");
+                dt.Columns.Add("Duração");
+
+                SqlCommand cmd = new SqlCommand(@"select tipo_sessao = (SELECT CASE
+                                                      WHEN tipo_sessao = 1 THEN 'Pomodoro'
+                                                      WHEN tipo_sessao = 2 THEN 'Short Break'
+                                                      WHEN tipo_sessao = 3 THEN 'Long Break'
+                                                      ELSE CONVERT(VARCHAR, tipo_sessao)
+                                                   END), duracao_sessao
+	                                            FROM pomodoro
+                                                WHERE id_usuario = @usuario", _conexao);
+
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if(rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            DataRow row = dt.NewRow();
+                            
+                            row[0] = rdr[0];
+                            row[1] = rdr[1] + " minutos";
+
+                            dt.Rows.Add(row);
+                            row.AcceptChanges();
+
+                        }
+                    }
+                }
+
+                _fechaConexao();
+                return dt;                
+            }
+
+            return null;
+        }
+
+        public DataTable GetRelatorio()
+        {
+            if (_abreConexao())
+            {
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Usuário");
+                dt.Columns.Add("Tipo da Sessão");
+                dt.Columns.Add("Duração");
+                dt.Columns.Add("Data");
+
+                SqlCommand cmd = new SqlCommand(@"select u.nome, tipo, p.duracao_sessao, p.data_sessao
+                                                    from usuario as u
+                                                    inner join 
+                                                     (select case when tipo_sessao = 1 then 'Pomodoro'
+			                                                    when tipo_sessao = 2 then 'Short Break' 
+			                                                    when tipo_sessao = 3 then 'Long Break' 
+			                                                    ELSE CONVERT(VARCHAR, tipo_sessao)
+			                                                    end as tipo, data_sessao, duracao_sessao, id_usuario from pomodoro)
+			                                                    as p
+                                                    on u.id = p.id_usuario", _conexao);
+                
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            DataRow row = dt.NewRow();
+
+                            row[0] = rdr[0];
+                            row[1] = rdr[1];
+                            row[2] = rdr[2] + " minutos";
+                            row[3] = rdr[3];
+
+                            dt.Rows.Add(row);
+                            row.AcceptChanges();
+
+                        }
+                    }
+                }
+
+                _fechaConexao();
+                return dt;
+            }
+
+            return null;
         }
     }
 }

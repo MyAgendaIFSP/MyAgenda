@@ -8,8 +8,8 @@ create view vw_pomodoro as
           WHEN tipo_sessao = 3 THEN 'Long Break'
           ELSE CONVERT(VARCHAR, tipo_sessao)
        END), duracao_sessao
-  FROM pomodoro
-
+	FROM pomodoro
+	
 go
 
 create view vw_relatorio_pomodoro as

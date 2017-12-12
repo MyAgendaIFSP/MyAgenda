@@ -1,9 +1,13 @@
 ﻿using MyAgenda.Componentes.Geral;
 using MyAgenda.Controladores.Geral;
 using MyAgenda.Controladores.Pomodoro;
+using MyAgenda.Dados;
 using MyAgenda.Modelos.Util;
 using System;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyAgenda
 {
@@ -30,11 +34,35 @@ namespace MyAgenda
             InitializeComponent();
 
             BarraNavegacao.AddItem("Início", Properties.Resources.ic_home_white, (int)EBarraNavegacaoBotoes.INICIO);
-            BarraNavegacao.AddItem("Pomodoro", (int)EBarraNavegacaoBotoes.POMODORO);
+            BarraNavegacao.AddItem("Matriz Tempo", (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO);
             BarraNavegacao.AddItem("Tarefas", (int)EBarraNavegacaoBotoes.TAREFAS);
 
             _usuario = u;
 
+        }
+
+        protected override void OnBarraNavegacaoItemClick(Button btn, int itemId)
+        {
+            base.OnBarraNavegacaoItemClick(btn, itemId);
+
+            switch (itemId)
+            {
+                case (int)EBarraNavegacaoBotoes.MATRIZ_TEMPO:
+                    FormMatrizTempo matriz = new FormMatrizTempo(_usuario);
+                    matriz.Show();
+                    this.Close();
+                    break;
+                case (int)EBarraNavegacaoBotoes.INICIO:
+                    FormEventos eventos = new FormEventos(_usuario);
+                    eventos.Show();
+                    this.Close();
+                    break;
+                case (int)EBarraNavegacaoBotoes.TAREFAS:
+                    FormListaAfazeres tarefas = new FormListaAfazeres(_usuario);
+                    tarefas.Show();
+                    this.Close();
+                    break;
+            }
         }
 
         public FormPomodoro()
@@ -141,7 +169,7 @@ namespace MyAgenda
         private void btnRelatorioPomodoro_Click(object sender, EventArgs e)
         {
             RelatorioPomodoro relatorio = new RelatorioPomodoro();
-            relatorio.Show();
+            relatorio.ShowDialog();
         }
 
         private void tmrAlternaCor_Tick(object sender, EventArgs e)
@@ -156,6 +184,33 @@ namespace MyAgenda
         {
             _tempoSessaoParaLabel--;
             lblTempo.Text = cvHoras.SecondsToMinute(_tempoSessaoParaLabel);
+        }
+
+        private void FormPomodoro_Shown(object sender, EventArgs e)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+
+            ComecaCarregar();
+            worker.RunWorkerAsync();
+            
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            dataGridView1.DataSource = (DataTable)e.Result;
+            ParaCarregar();
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            PomodoroAPI api = new PomodoroAPI();
+            DataTable dt = api.GetSessoesPomodoro(UsuarioController.GetInstance().GetModelo().Id);
+            if (dt != null)
+            {
+                e.Result = dt;
+            }
         }
     }
 

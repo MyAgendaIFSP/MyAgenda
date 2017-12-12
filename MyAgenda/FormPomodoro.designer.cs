@@ -37,8 +37,6 @@
             this.tmrPomodoro = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.duracao_sessao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPausar = new System.Windows.Forms.Button();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnPomodoro = new System.Windows.Forms.Button();
@@ -144,32 +142,15 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.duracao_sessao});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(2, 24);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.Size = new System.Drawing.Size(430, 232);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "tipo";
-            this.Column1.HeaderText = "Tipo";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 150;
-            // 
-            // duracao_sessao
-            // 
-            this.duracao_sessao.DataPropertyName = "duracao_sessao";
-            this.duracao_sessao.HeaderText = "Duração";
-            this.duracao_sessao.Name = "duracao_sessao";
-            this.duracao_sessao.ReadOnly = true;
-            this.duracao_sessao.Width = 300;
             // 
             // btnPausar
             // 
@@ -434,6 +415,7 @@
             this.Name = "FormPomodoro";
             this.Text = "Pomodoro";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Shown += new System.EventHandler(this.FormPomodoro_Shown);
             this.SizeChanged += new System.EventHandler(this.Pomodoro_SizeChanged);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
@@ -473,8 +455,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.Button btnShortBreak;
         private System.Windows.Forms.Button btnRelatorioPomodoro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn duracao_sessao;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn duracaosessaoDataGridViewTextBoxColumn;
         private Componentes.Pomodoro.CircularProgressBar cclPbrPomodoro;
