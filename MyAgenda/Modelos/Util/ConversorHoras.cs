@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MyAgenda.Modelos.Util
 {
@@ -18,11 +13,27 @@ namespace MyAgenda.Modelos.Util
             }
             else
             {
-                valorFormatado = value / 60 + "h" + value % 60;
+                valorFormatado = value / 60 + ":" + value % 60;
             }
             //MessageBox.Show(valorFormatado.ToString());
             return valorFormatado;
             
+        }
+
+        public String SecondsToMinute(int value)
+        {
+            String valorFormatado;
+            if (value < 60)
+            {
+                valorFormatado = "00:" + value.ToString();
+            }
+            else
+            {
+                valorFormatado = (value / 60).ToString() + ":" + ((value % 60 < 10)? "0" + (value % 60).ToString() : (value % 60).ToString());
+            }
+            //MessageBox.Show(valorFormatado.ToString());
+            return valorFormatado;
+
         }
     }
 }

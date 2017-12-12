@@ -3,10 +3,7 @@ using MyAgenda.Controladores.Geral;
 using MyAgenda.Dados;
 using System;
 using System.Drawing;
-using System.IO;
 using System.Media;
-using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace MyAgenda.Controladores.Pomodoro
@@ -18,16 +15,17 @@ namespace MyAgenda.Controladores.Pomodoro
         int contadorQuadro3;
         int contadorQuadro4;
 
-        public void PomodoroOrganizer(int tipoSessao,int tempoSessao, System.Windows.Forms.Timer tmrPomodoro, CircularProgressBar cclPbrPomodoro, TextBox txtQuadroColor1, TextBox txtQuadroColor2, TextBox txtQuadroColor3, TextBox txtQuadroColor4, ref Button btnShortBreak, ref Button btnLongBreak, ref Button btnPomodoro)
+        public void PomodoroOrganizer(int tipoSessao,int tempoSessaoTotal, int tempoSessaoAtual, System.Windows.Forms.Timer tmrPomodoro, CircularProgressBar cclPbrPomodoro, TextBox txtQuadroColor1, TextBox txtQuadroColor2, TextBox txtQuadroColor3, TextBox txtQuadroColor4, ref Button btnShortBreak, ref Button btnLongBreak, ref Button btnPomodoro)
         {
-            if (tempoSessao > 0)
+            if (tempoSessaoTotal / 60 > 0)
             {
-                cclPbrPomodoro.Decrement(1);
+                cclPbrPomodoro.Value = (int)Math.Floor((double)(tempoSessaoAtual * 100) / tempoSessaoTotal);
+
                 if (cclPbrPomodoro.Value == 0)
                 {
                     tmrPomodoro.Stop();
 
-                    CallDataConnection(UsuarioController.GetInstance().GetModelo().Id, tipoSessao, tempoSessao);
+                    CallDataConnection(UsuarioController.GetInstance().GetModelo().Id, tipoSessao, tempoSessaoTotal / 60);
 
                     if (tipoSessao == 1)
                     {

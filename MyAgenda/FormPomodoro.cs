@@ -13,8 +13,8 @@ namespace MyAgenda
         PomodoroController pModel = new PomodoroController();
         private UsuarioController _usuario = null;
         int tipoSessao = 1;
-        int tempoSessao;
         int _tempoAtual = 0;
+        int _tempoSessaoParaLabel = 0;
         bool _foiPausado = false;
 
         private Color[] _cores = new Color[4]
@@ -47,68 +47,68 @@ namespace MyAgenda
             if (_foiPausado)
             {
                 _foiPausado = false;
-                cclPbrPomodoro.Maximum = _tempoAtual;
             }
             else
             {
-                tempoSessao = int.Parse(nudTempo.Value.ToString());
-                _tempoAtual = tempoSessao;
-                cclPbrPomodoro.Maximum = tempoSessao;
-                cclPbrPomodoro.Value = tempoSessao;
+                lblTempo.Text = "00:00";
+                int tempoSessao = int.Parse(nudTempo.Value.ToString());
+                _tempoSessaoParaLabel = tempoSessao * 60;
+                _tempoAtual = _tempoSessaoParaLabel;
+                cclPbrPomodoro.Value = 100;
             }
 
-            tmrPomodoro.Start();        
+            tmrPomodoro.Start();
+            //tmrView.Start();
         }
 
         private void nudTempo_ValueChanged(object sender, EventArgs e)
         {
-            tempoSessao = int.Parse(nudTempo.Value.ToString());
-            _tempoAtual = tempoSessao;
-            cclPbrPomodoro.Maximum = tempoSessao;
-            cclPbrPomodoro.Value = tempoSessao;
+            int tempoSessao = int.Parse(nudTempo.Value.ToString());
+            _tempoSessaoParaLabel = tempoSessao * 60;
+            _tempoAtual = _tempoSessaoParaLabel;
+            cclPbrPomodoro.Value = 100;
         }
 
         private void tmrPomodoro_Tick(object sender, EventArgs e)
         {
-            tempoSessao = Convert.ToInt16(nudTempo.Value);
-            _tempoAtual = Convert.ToInt16(nudTempo.Value);
-            pModel.PomodoroOrganizer(tipoSessao,tempoSessao, tmrPomodoro, cclPbrPomodoro, txtQuadroColor1, txtQuadroColor2, txtQuadroColor3, txtQuadroColor4, ref btnShortBreak, ref btnLongBreak, ref btnPomodoro);
+            _tempoAtual--;
+            lblTempo.Text = cvHoras.SecondsToMinute(_tempoAtual);
+            pModel.PomodoroOrganizer(tipoSessao, _tempoSessaoParaLabel, _tempoAtual, tmrPomodoro, cclPbrPomodoro, txtQuadroColor1, txtQuadroColor2, txtQuadroColor3, txtQuadroColor4, ref btnShortBreak, ref btnLongBreak, ref btnPomodoro);
         }
 
         private void btnPausar_Click(object sender, EventArgs e)
         {
             _foiPausado = true;
             tmrPomodoro.Stop();
+            tmrView.Stop();
         }
 
         private void btnResetar_Click(object sender, EventArgs e)
         {
             tmrPomodoro.Stop();
-            cclPbrPomodoro.Value = int.Parse(nudTempo.Value.ToString());
+            cclPbrPomodoro.Value = 100;
+            lblTempo.Text = cvHoras.SecondsToMinute((int)nudTempo.Value * 60);
         }
 
         private void btnShortBreak_Click(object sender, EventArgs e)
         {
             tipoSessao = 2;
             nudTempo.Value = 5;
-            cclPbrPomodoro.Value = 5;
-            cclPbrPomodoro.Maximum = cclPbrPomodoro.Value;
+            lblTempo.Text = cvHoras.SecondsToMinute((int) nudTempo.Value * 60);
         }
 
         private void btnLongBreak_Click(object sender, EventArgs e)
         {
             tipoSessao = 3;
             nudTempo.Value = 15;
-            cclPbrPomodoro.Value = 15;
-            cclPbrPomodoro.Maximum = cclPbrPomodoro.Value;
+            lblTempo.Text = cvHoras.SecondsToMinute((int)nudTempo.Value * 60);
         }
 
         private void btnPomodoro_Click(object sender, EventArgs e)
         {
             tipoSessao = 1;
             nudTempo.Value = 25;
-            cclPbrPomodoro.Value = 25;
-            cclPbrPomodoro.Maximum = cclPbrPomodoro.Value;
+            lblTempo.Text = cvHoras.SecondsToMinute((int)nudTempo.Value * 60);
         }
         
         private void Pomodoro_SizeChanged(object sender, EventArgs e)
@@ -150,6 +150,12 @@ namespace MyAgenda
 
             cclPbrPomodoro.ProgressColor1 = _cores[rnd.Next(0 ,4)];
             cclPbrPomodoro.ProgressColor2 = _cores[rnd.Next(0, 4)];
+        }
+
+        private void tmrView_Tick(object sender, EventArgs e)
+        {
+            _tempoSessaoParaLabel--;
+            lblTempo.Text = cvHoras.SecondsToMinute(_tempoSessaoParaLabel);
         }
     }
 

@@ -53,8 +53,8 @@
             this.cclPbrPomodoro = new MyAgenda.Componentes.Pomodoro.CircularProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelRelogio = new System.Windows.Forms.Panel();
-            this.tmrAlternaCor = new System.Windows.Forms.Timer(this.components);
             this.lblTempo = new System.Windows.Forms.Label();
+            this.tmrAlternaCor = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Loader)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -124,6 +124,7 @@
             // 
             // tmrPomodoro
             // 
+            this.tmrPomodoro.Interval = 10;
             this.tmrPomodoro.Tick += new System.EventHandler(this.tmrPomodoro_Tick);
             // 
             // groupBox1
@@ -352,6 +353,11 @@
             this.btnRelatorioPomodoro.UseVisualStyleBackColor = true;
             this.btnRelatorioPomodoro.Click += new System.EventHandler(this.btnRelatorioPomodoro_Click);
             // 
+            // tmrView
+            // 
+            this.tmrView.Interval = 1000;
+            this.tmrView.Tick += new System.EventHandler(this.tmrView_Tick);
+            // 
             // cclPbrPomodoro
             // 
             this.cclPbrPomodoro.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -367,7 +373,7 @@
             this.cclPbrPomodoro.ProgressShape = MyAgenda.Componentes.Pomodoro.CircularProgressBar._ProgressShape.Round;
             this.cclPbrPomodoro.Size = new System.Drawing.Size(371, 371);
             this.cclPbrPomodoro.TabIndex = 19;
-            this.cclPbrPomodoro.Value = ((long)(0));
+            this.cclPbrPomodoro.Value = ((long)(100));
             // 
             // panel2
             // 
@@ -394,12 +400,6 @@
             this.panelRelogio.Size = new System.Drawing.Size(600, 402);
             this.panelRelogio.TabIndex = 21;
             // 
-            // tmrAlternaCor
-            // 
-            this.tmrAlternaCor.Enabled = true;
-            this.tmrAlternaCor.Interval = 10000;
-            this.tmrAlternaCor.Tick += new System.EventHandler(this.tmrAlternaCor_Tick);
-            // 
             // lblTempo
             // 
             this.lblTempo.Dock = System.Windows.Forms.DockStyle.Top;
@@ -409,6 +409,12 @@
             this.lblTempo.TabIndex = 20;
             this.lblTempo.Text = "00:00";
             this.lblTempo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tmrAlternaCor
+            // 
+            this.tmrAlternaCor.Enabled = true;
+            this.tmrAlternaCor.Interval = 10000;
+            this.tmrAlternaCor.Tick += new System.EventHandler(this.tmrAlternaCor_Tick);
             // 
             // FormPomodoro
             // 
