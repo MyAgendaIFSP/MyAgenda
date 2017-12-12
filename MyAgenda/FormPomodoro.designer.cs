@@ -122,7 +122,7 @@
             // 
             // tmrPomodoro
             // 
-            this.tmrPomodoro.Interval = 10;
+            this.tmrPomodoro.Interval = 1000;
             this.tmrPomodoro.Tick += new System.EventHandler(this.tmrPomodoro_Tick);
             // 
             // groupBox1
