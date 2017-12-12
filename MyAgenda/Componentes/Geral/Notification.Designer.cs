@@ -87,7 +87,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(370, 86);
+            this.ClientSize = new System.Drawing.Size(370, 0);
             this.Controls.Add(this.lblMensagem);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnDispensar);
@@ -99,6 +99,7 @@
             this.Name = "Notification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Notification";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 
