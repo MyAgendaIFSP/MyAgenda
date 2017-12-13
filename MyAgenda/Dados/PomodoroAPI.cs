@@ -11,6 +11,12 @@ namespace MyAgenda.Dados
         private SqlConnection _conexao = null;
 
         public const string strInsertPomodoro = "INSERT INTO pomodoro VALUES (@id_usuario, @tipo_sessao, @duracao_sessao, @data_sessao)";
+
+        public PomodoroAPI()
+        {
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+        }
+
         private bool _abreConexao()
         {
             if (_conexao == null)

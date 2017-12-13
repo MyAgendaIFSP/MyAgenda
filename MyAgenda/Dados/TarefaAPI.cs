@@ -13,6 +13,11 @@ namespace MyAgenda.Dados
 
         private SqlConnection _conexao = null;
 
+        public TarefaAPI()
+        {
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+        }
+
         /// <summary>
         /// Abre a conexão com o banco de dados
         /// </summary>

@@ -12,6 +12,12 @@ namespace MyAgenda.Dados
         private SqlConnection _conexao = null;
 
         public const string strUpdateSenha = "UPDATE usuario SET senha = @senha, salt = @salt WHERE email = @email";
+
+        public AlteradorSenhaAPI()
+        {
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+        }
+
         private bool _abreConexao()
         {
             if (_conexao == null)

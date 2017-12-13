@@ -21,6 +21,11 @@ namespace MyAgenda.Dados
         //Constante com instruções SQL de busca de senha
 
         public const string strSelectSenha = "SELECT senha FROM usuario WHERE email = @email_usuario";
+        public RecuperadorSenhaAPI()
+        {
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+        }
+
 
         private bool _abreConexao()
         {

@@ -9,10 +9,15 @@ namespace MyAgenda.Dados
 {
     class EventoAPI
     {
-        const string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
+        private  string STRING_CONEXAO = "Server=localhost;Database=my_agenda;Integrated Security=true";
 
         private SqlConnection _conexao = null;
         private UsuarioAPI _usuarioAPI = UsuarioAPI.GetInstance();
+
+        public EventoAPI()
+        {
+            STRING_CONEXAO = @"Data Source=tcp:allexhome.ddns.net,1433;Initial Catalog=my_agenda;MultipleActiveResultSets=true;User ID=sa;Password=mYaGeNdA2017";
+        }
 
         /// <summary>
         /// Abre a conexão com o banco de dados
