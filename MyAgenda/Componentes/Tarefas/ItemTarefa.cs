@@ -143,5 +143,21 @@ namespace MyAgenda.Componentes.Tarefas
                 lblDescricaoTarefa.Font = new Font(lblDescricaoTarefa.Font, FontStyle.Regular);
             }
         }
+
+        private void lblDescricaoTarefa_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnChecar.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void lblDescricaoTarefa_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnChecar.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
     }
 }

@@ -34,15 +34,11 @@
             this.txtTitulo = new System.Windows.Forms.TextBox();
             this.lblDescricao = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.cldDataInicio = new System.Windows.Forms.MonthCalendar();
-            this.dtpHorarioInicial = new System.Windows.Forms.DateTimePicker();
-            this.lblHorarioInicio = new System.Windows.Forms.Label();
             this.lblDataInicio = new System.Windows.Forms.Label();
-            this.dtpHorarioTermino = new System.Windows.Forms.DateTimePicker();
-            this.lblHorarioTermino = new System.Windows.Forms.Label();
-            this.cldDataTermino = new System.Windows.Forms.MonthCalendar();
             this.lblDataTermino = new System.Windows.Forms.Label();
             this.btnSalvarEdicao = new System.Windows.Forms.Button();
+            this.dtpInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermino = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lblEditarEvento
@@ -53,7 +49,7 @@
             this.lblEditarEvento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblEditarEvento.Location = new System.Drawing.Point(12, 9);
             this.lblEditarEvento.Name = "lblEditarEvento";
-            this.lblEditarEvento.Size = new System.Drawing.Size(109, 19);
+            this.lblEditarEvento.Size = new System.Drawing.Size(130, 21);
             this.lblEditarEvento.TabIndex = 12;
             this.lblEditarEvento.Text = "Editar evento";
             // 
@@ -95,36 +91,6 @@
             this.lblTitulo.TabIndex = 16;
             this.lblTitulo.Text = "Título";
             // 
-            // cldDataInicio
-            // 
-            this.cldDataInicio.Location = new System.Drawing.Point(16, 132);
-            this.cldDataInicio.MaxSelectionCount = 1;
-            this.cldDataInicio.Name = "cldDataInicio";
-            this.cldDataInicio.TabIndex = 25;
-            // 
-            // dtpHorarioInicial
-            // 
-            this.dtpHorarioInicial.AllowDrop = true;
-            this.dtpHorarioInicial.CustomFormat = "";
-            this.dtpHorarioInicial.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpHorarioInicial.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHorarioInicial.Location = new System.Drawing.Point(16, 327);
-            this.dtpHorarioInicial.Name = "dtpHorarioInicial";
-            this.dtpHorarioInicial.ShowUpDown = true;
-            this.dtpHorarioInicial.Size = new System.Drawing.Size(255, 27);
-            this.dtpHorarioInicial.TabIndex = 24;
-            // 
-            // lblHorarioInicio
-            // 
-            this.lblHorarioInicio.AutoSize = true;
-            this.lblHorarioInicio.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblHorarioInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblHorarioInicio.Location = new System.Drawing.Point(12, 303);
-            this.lblHorarioInicio.Name = "lblHorarioInicio";
-            this.lblHorarioInicio.Size = new System.Drawing.Size(110, 21);
-            this.lblHorarioInicio.TabIndex = 23;
-            this.lblHorarioInicio.Text = "Horário Início";
-            // 
             // lblDataInicio
             // 
             this.lblDataInicio.AutoSize = true;
@@ -135,36 +101,6 @@
             this.lblDataInicio.Size = new System.Drawing.Size(96, 21);
             this.lblDataInicio.TabIndex = 22;
             this.lblDataInicio.Text = "Data Início";
-            // 
-            // dtpHorarioTermino
-            // 
-            this.dtpHorarioTermino.AllowDrop = true;
-            this.dtpHorarioTermino.CustomFormat = "";
-            this.dtpHorarioTermino.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpHorarioTermino.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHorarioTermino.Location = new System.Drawing.Point(291, 327);
-            this.dtpHorarioTermino.Name = "dtpHorarioTermino";
-            this.dtpHorarioTermino.ShowUpDown = true;
-            this.dtpHorarioTermino.Size = new System.Drawing.Size(255, 27);
-            this.dtpHorarioTermino.TabIndex = 29;
-            // 
-            // lblHorarioTermino
-            // 
-            this.lblHorarioTermino.AutoSize = true;
-            this.lblHorarioTermino.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.lblHorarioTermino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblHorarioTermino.Location = new System.Drawing.Point(287, 303);
-            this.lblHorarioTermino.Name = "lblHorarioTermino";
-            this.lblHorarioTermino.Size = new System.Drawing.Size(110, 21);
-            this.lblHorarioTermino.TabIndex = 28;
-            this.lblHorarioTermino.Text = "Horário Início";
-            // 
-            // cldDataTermino
-            // 
-            this.cldDataTermino.Location = new System.Drawing.Point(291, 132);
-            this.cldDataTermino.MaxSelectionCount = 1;
-            this.cldDataTermino.Name = "cldDataTermino";
-            this.cldDataTermino.TabIndex = 27;
             // 
             // lblDataTermino
             // 
@@ -187,7 +123,7 @@
             this.btnSalvarEdicao.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnSalvarEdicao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnSalvarEdicao.Image = global::MyAgenda.Properties.Resources.ic_add_circle_black;
-            this.btnSalvarEdicao.Location = new System.Drawing.Point(399, 369);
+            this.btnSalvarEdicao.Location = new System.Drawing.Point(398, 265);
             this.btnSalvarEdicao.Name = "btnSalvarEdicao";
             this.btnSalvarEdicao.Size = new System.Drawing.Size(146, 34);
             this.btnSalvarEdicao.TabIndex = 30;
@@ -198,20 +134,38 @@
             this.btnSalvarEdicao.MouseEnter += new System.EventHandler(this.btnSalvarEdicao_MouseEnter);
             this.btnSalvarEdicao.MouseLeave += new System.EventHandler(this.btnSalvarEdicao_MouseLeave);
             // 
+            // dtpInicio
+            // 
+            this.dtpInicio.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpInicio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpInicio.Location = new System.Drawing.Point(16, 126);
+            this.dtpInicio.Name = "dtpInicio";
+            this.dtpInicio.Size = new System.Drawing.Size(255, 27);
+            this.dtpInicio.TabIndex = 31;
+            this.dtpInicio.Value = new System.DateTime(2017, 12, 9, 17, 47, 25, 0);
+            // 
+            // dtpTermino
+            // 
+            this.dtpTermino.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpTermino.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTermino.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermino.Location = new System.Drawing.Point(289, 126);
+            this.dtpTermino.Name = "dtpTermino";
+            this.dtpTermino.Size = new System.Drawing.Size(255, 27);
+            this.dtpTermino.TabIndex = 32;
+            this.dtpTermino.Value = new System.DateTime(2017, 12, 9, 17, 47, 25, 0);
+            // 
             // FormEditarEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(556, 414);
+            this.ClientSize = new System.Drawing.Size(556, 311);
+            this.Controls.Add(this.dtpTermino);
+            this.Controls.Add(this.dtpInicio);
             this.Controls.Add(this.btnSalvarEdicao);
-            this.Controls.Add(this.dtpHorarioTermino);
-            this.Controls.Add(this.lblHorarioTermino);
-            this.Controls.Add(this.cldDataTermino);
             this.Controls.Add(this.lblDataTermino);
-            this.Controls.Add(this.cldDataInicio);
-            this.Controls.Add(this.dtpHorarioInicial);
-            this.Controls.Add(this.lblHorarioInicio);
             this.Controls.Add(this.lblDataInicio);
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.txtTitulo);
@@ -237,14 +191,10 @@
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.Label lblDescricao;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.MonthCalendar cldDataInicio;
-        private System.Windows.Forms.DateTimePicker dtpHorarioInicial;
-        private System.Windows.Forms.Label lblHorarioInicio;
         private System.Windows.Forms.Label lblDataInicio;
-        private System.Windows.Forms.DateTimePicker dtpHorarioTermino;
-        private System.Windows.Forms.Label lblHorarioTermino;
-        private System.Windows.Forms.MonthCalendar cldDataTermino;
         private System.Windows.Forms.Label lblDataTermino;
         private System.Windows.Forms.Button btnSalvarEdicao;
+        private System.Windows.Forms.DateTimePicker dtpInicio;
+        private System.Windows.Forms.DateTimePicker dtpTermino;
     }
 }

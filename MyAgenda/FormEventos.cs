@@ -89,7 +89,8 @@ namespace MyAgenda
                 ItemEvento itemEvento = new ItemEvento(evento);
                 itemEvento.Titulo = evento.Titutlo;
                 itemEvento.Descricao = evento.Descricao;
-                itemEvento.DataHoraTermino = evento.DataHoraTermino.ToLongDateString();
+                itemEvento.DataInicio = evento.DataHoraInicio.ToLongDateString();
+                itemEvento.HoraInicioHoraFim = evento.DataHoraInicio.TimeOfDay.ToString(@"hh\:mm") + " - " + evento.DataHoraTermino.TimeOfDay.ToString(@"hh\:mm");
                 itemEvento.Dock = DockStyle.Top;
 
                 double dateDiff = (evento.DataHoraInicio - DateTime.Now).TotalDays;
@@ -117,6 +118,9 @@ namespace MyAgenda
         private void FormEventos_Load(object sender, EventArgs e)
         {
             _carregaEventosDaBaseDeDados();
+
+            dtpInicio.Value = DateTime.Now;
+            dtpTermino.Value = DateTime.Now;
         }
 
         private void btnAdicionar_MouseLeave(object sender, EventArgs e)

@@ -28,8 +28,8 @@ namespace MyAgenda
         {
             txtTitulo.Text = _evento.Titutlo;
             txtDescricao.Text = _evento.Descricao;
-            cldDataInicio.SetDate(_evento.DataHoraInicio);
-            cldDataTermino.SetDate(_evento.DataHoraTermino);
+            dtpInicio.Value = _evento.DataHoraInicio;
+            dtpTermino.Value = _evento.DataHoraTermino;
         }
 
         private void btnSalvarEdicao_Click(object sender, EventArgs e)
@@ -38,8 +38,8 @@ namespace MyAgenda
             Evento eventoAtualizado = new Evento();
             eventoAtualizado.Titutlo = txtTitulo.Text;
             eventoAtualizado.Descricao = txtDescricao.Text;
-            eventoAtualizado.DataHoraInicio = cldDataInicio.SelectionRange.Start + dtpHorarioInicial.Value.TimeOfDay;
-            eventoAtualizado.DataHoraTermino = cldDataTermino.SelectionRange.Start + dtpHorarioTermino.Value.TimeOfDay;
+            eventoAtualizado.DataHoraInicio = dtpInicio.Value;
+            eventoAtualizado.DataHoraTermino = dtpTermino.Value;
             
             eventoAtualizado.Usuario = _usuario.GetModelo();
 

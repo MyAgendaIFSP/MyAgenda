@@ -77,11 +77,6 @@ namespace MyAgenda
             }
         }
 
-        private void FormListaAfazeres_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void FormListaAfazeres_Shown(object sender, EventArgs e)
         {
             _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa();
@@ -90,6 +85,8 @@ namespace MyAgenda
 
             ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
             _carregaTarefasDaBaseDeDados(listaAfazeresAPI.GetNomePrimeiraListaDeAfazeres());
+
+            cbbListasAfazeres.Text = listaAfazeresAPI.GetNomePrimeiraListaDeAfazeres();
         }
 
         public void AtualizaTarefasEmTela()
@@ -102,6 +99,7 @@ namespace MyAgenda
 
             ListaAfazeresAPI listaAfazeresAPI = new ListaAfazeresAPI();
             _carregaTarefasDaBaseDeDados(listaAfazeresAPI.GetNomePrimeiraListaDeAfazeres());
+            cbbListasAfazeres.Text = listaAfazeresAPI.GetNomePrimeiraListaDeAfazeres();
 
             _populaComboBoxDeListasdeAfazeresDoFormAdicionarTarefa();
 

@@ -33,7 +33,8 @@
             this.lblDescricao = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.lblDataHoraTermino = new System.Windows.Forms.Label();
+            this.lblDataInicio = new System.Windows.Forms.Label();
+            this.lblHoraInicioHoraFim = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pnlPrioridade
@@ -51,9 +52,11 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitulo.Location = new System.Drawing.Point(30, 6);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(128, 19);
+            this.lblTitulo.Size = new System.Drawing.Size(152, 21);
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "Título do Evento";
+            this.lblTitulo.MouseEnter += new System.EventHandler(this.lblTitulo_MouseEnter);
+            this.lblTitulo.MouseLeave += new System.EventHandler(this.lblTitulo_MouseLeave);
             // 
             // lblDescricao
             // 
@@ -65,6 +68,8 @@
             this.lblDescricao.Size = new System.Drawing.Size(143, 17);
             this.lblDescricao.TabIndex = 2;
             this.lblDescricao.Text = "Descrição do Evento";
+            this.lblDescricao.MouseEnter += new System.EventHandler(this.lblDescricao_MouseEnter);
+            this.lblDescricao.MouseLeave += new System.EventHandler(this.lblDescricao_MouseLeave);
             // 
             // btnEditar
             // 
@@ -100,23 +105,39 @@
             this.btnExcluir.MouseEnter += new System.EventHandler(this.btnExcluir_MouseEnter);
             this.btnExcluir.MouseLeave += new System.EventHandler(this.btnExcluir_MouseLeave);
             // 
-            // lblDataHoraTermino
+            // lblDataInicio
             // 
-            this.lblDataHoraTermino.AutoSize = true;
-            this.lblDataHoraTermino.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataHoraTermino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDataHoraTermino.Location = new System.Drawing.Point(32, 81);
-            this.lblDataHoraTermino.Name = "lblDataHoraTermino";
-            this.lblDataHoraTermino.Size = new System.Drawing.Size(224, 17);
-            this.lblDataHoraTermino.TabIndex = 6;
-            this.lblDataHoraTermino.Text = "Data/Hora de Término do Evento";
+            this.lblDataInicio.AutoSize = true;
+            this.lblDataInicio.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblDataInicio.Location = new System.Drawing.Point(32, 69);
+            this.lblDataInicio.Name = "lblDataInicio";
+            this.lblDataInicio.Size = new System.Drawing.Size(151, 17);
+            this.lblDataInicio.TabIndex = 6;
+            this.lblDataInicio.Text = "Data início do evento";
+            this.lblDataInicio.MouseEnter += new System.EventHandler(this.lblDataInicio_MouseEnter);
+            this.lblDataInicio.MouseLeave += new System.EventHandler(this.lblDataInicio_MouseLeave);
+            // 
+            // lblHoraInicioHoraFim
+            // 
+            this.lblHoraInicioHoraFim.AutoSize = true;
+            this.lblHoraInicioHoraFim.Font = new System.Drawing.Font("Century Gothic", 8.75F);
+            this.lblHoraInicioHoraFim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblHoraInicioHoraFim.Location = new System.Drawing.Point(32, 86);
+            this.lblHoraInicioHoraFim.Name = "lblHoraInicioHoraFim";
+            this.lblHoraInicioHoraFim.Size = new System.Drawing.Size(135, 17);
+            this.lblHoraInicioHoraFim.TabIndex = 7;
+            this.lblHoraInicioHoraFim.Text = "Hora Início  - Hora Fim";
+            this.lblHoraInicioHoraFim.MouseEnter += new System.EventHandler(this.lblHoraInicioHoraFim_MouseEnter);
+            this.lblHoraInicioHoraFim.MouseLeave += new System.EventHandler(this.lblHoraInicioHoraFim_MouseLeave);
             // 
             // ItemEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.lblDataHoraTermino);
+            this.Controls.Add(this.lblHoraInicioHoraFim);
+            this.Controls.Add(this.lblDataInicio);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.lblDescricao);
@@ -138,6 +159,7 @@
         private System.Windows.Forms.Label lblDescricao;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.Label lblDataHoraTermino;
+        private System.Windows.Forms.Label lblDataInicio;
+        private System.Windows.Forms.Label lblHoraInicioHoraFim;
     }
 }

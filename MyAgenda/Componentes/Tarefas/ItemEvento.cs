@@ -23,10 +23,16 @@ namespace MyAgenda.Componentes.Tarefas
             set { lblDescricao.Text = value; }
         }
 
-        public string DataHoraTermino
+        public string DataInicio
         {
-            get { return lblDataHoraTermino.Text; }
-            set { lblDataHoraTermino.Text = value; }
+            get { return lblDataInicio.Text; }
+            set { lblDataInicio.Text = value; }
+        }
+
+        public string HoraInicioHoraFim
+        {
+            get { return lblHoraInicioHoraFim.Text; }
+            set { lblHoraInicioHoraFim.Text = value; }
         }
 
         public Color Prioridade
@@ -98,6 +104,62 @@ namespace MyAgenda.Componentes.Tarefas
         }
 
         private void btnEditar_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
+
+        private void lblTitulo_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void lblDescricao_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void lblDataInicio_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void lblHoraInicioHoraFim_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = Color.LightGray;
+            btnEditar.BackColor = Color.LightGray;
+            btnExcluir.BackColor = Color.LightGray;
+        }
+
+        private void lblTitulo_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
+
+        private void lblDescricao_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
+
+        private void lblDataInicio_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+            btnEditar.BackColor = Color.White;
+            btnExcluir.BackColor = Color.White;
+        }
+
+        private void lblHoraInicioHoraFim_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = Color.White;
             btnEditar.BackColor = Color.White;

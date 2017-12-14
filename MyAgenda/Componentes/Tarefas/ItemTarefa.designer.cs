@@ -47,6 +47,8 @@
             this.lblDescricaoTarefa.Size = new System.Drawing.Size(57, 21);
             this.lblDescricaoTarefa.TabIndex = 1;
             this.lblDescricaoTarefa.Text = "label1";
+            this.lblDescricaoTarefa.MouseEnter += new System.EventHandler(this.lblDescricaoTarefa_MouseEnter);
+            this.lblDescricaoTarefa.MouseLeave += new System.EventHandler(this.lblDescricaoTarefa_MouseLeave);
             // 
             // btnEditar
             // 

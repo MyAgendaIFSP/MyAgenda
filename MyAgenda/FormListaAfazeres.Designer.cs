@@ -61,7 +61,7 @@
             this.label1.Location = new System.Drawing.Point(14, 60);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 19);
+            this.label1.Size = new System.Drawing.Size(155, 21);
             this.label1.TabIndex = 3;
             this.label1.Text = "Adicionar tarefa";
             // 
@@ -241,7 +241,6 @@
             this.Name = "FormListaAfazeres";
             this.Text = "MyAgenda | Lista de Afazeres";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormListaAfazeres_Load);
             this.Shown += new System.EventHandler(this.FormListaAfazeres_Shown);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.lblTarefa, 0);
